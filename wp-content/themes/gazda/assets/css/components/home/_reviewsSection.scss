@@ -1,0 +1,111 @@
+#home {
+  & .reviews {
+    padding-top: clamp(5rem, 4.813rem + 0.83vw, 5.56rem);
+    padding-bottom: clamp(4rem, 3.48rem + 2.31vw, 5.56rem);
+
+    background-image: url(../images/wave.webp), url(../images/horizontal.webp);
+    background-position: top 7rem left calc(50% - 15.625rem), bottom 0.5rem right calc(50% - 20.77875rem);
+    background-size: auto, 38.4375rem 0.625rem;
+    background-repeat: no-repeat;
+
+    @media screen and (min-width: 992px) {
+      background-image: url(../images/wave.webp), url(../images/pig.webp);
+
+      background-position: top 7.375rem left calc(50% - 49.275rem), top 5.1873rem right calc(50% - 22.28125rem);
+      background-size: auto;
+    }
+
+    & .swiper-pagination {
+      margin-top: 2rem;
+    }
+  }
+
+  & .reviews-title {
+    margin-bottom: clamp(2.5rem, 1.93rem + 2.53vw, 3.5rem);
+
+    color: $third-text-color;
+  }
+
+  & .wptripadvisor_t1_outer_div,
+  & .wptripadvisor_t1_DIV_1 {
+    padding: 0 !important;
+  }
+
+  & .wptripadvisor_t1_DIV_1 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  & .wptripadvisor_t1_DIV_2 {
+    min-height: 19.8125rem;
+    margin-bottom: 0;
+
+    @media screen and (max-width: 991px) {
+      min-height: 18.1875rem;
+
+      padding: 2.06rem 1.875rem;
+    }
+
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
+
+  & .wptripadvisor_t1_SPAN_5 {
+    padding-top: 0
+  }
+
+  & .wptripadvisor_star_imgs_T1 {
+    margin-bottom: 1.5rem;
+
+    aspect-ratio: 1 / calc(1.25 / 6.86044);
+    max-width: 6.86044rem;
+
+    & img {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
+
+  & .wptripadvisor_t1_P_3 {
+    margin-bottom: 1.5rem;
+
+    font-size: 1.125rem;
+
+    font-family: 'Gazda Pro', sans-serif;
+    font-style: normal;
+    line-height: calc(1.6875 / 1.125);
+  }
+
+  & .wprs_rd_more {
+    & span {
+      @include transition(color);
+
+      color: $secondary-accent-color;
+    }
+
+    &:hover,
+    &:focus {
+      & span {
+        color: $black-color;
+      }
+    }
+  }
+
+  & .wptripadvisor_t1_P_3,
+  & .wptripadvisor_star_imgs_T1 {
+    @media screen and (min-width: 992px) {
+      margin: 0 0 2.375rem
+    }
+  }
+
+  & .wptripadvisor_t1_SPAN_5 {
+    font-family: 'Gazda Pro', sans-serif;
+    font-size: 1rem;
+    line-height: normal;
+    text-transform: none;
+
+    color: $fifth-bg-color;
+  }
+}

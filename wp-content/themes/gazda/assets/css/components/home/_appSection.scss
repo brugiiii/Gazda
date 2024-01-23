@@ -1,0 +1,109 @@
+#home {
+  & .app {
+    padding-top: clamp(3.5rem, 2.813rem + 3.06vw, 5.563rem);
+    padding-bottom: clamp(3.5rem, 3.063rem + 1.94vw, 4.813rem);
+
+    @media screen and (min-width: 992px) {
+      background-image: url(../images/horizontal.webp);
+      background-position: top 1.90625rem left calc(50% - 15.34375rem);
+      background-repeat: no-repeat;
+    }
+
+    & .vertical {
+      position: absolute;
+      bottom: -8.25rem;
+      left: calc(50% - 57.3125rem);
+
+      width: 0.9375rem;
+      height: 38.4375rem;
+    }
+
+    & .container {
+      @media screen and (min-width: 768px) and (max-width: 991px) {
+        max-width: 540px;
+      }
+    }
+  }
+
+  & .app-wrapper {
+    padding: 2rem 0.875rem 17.38rem 0.94rem;
+
+    background-size: 25.0625rem, 19.0625rem;
+    background-position: bottom -2rem left calc(50% - 6.7rem), bottom left calc(50% + 2rem);
+    background-repeat: no-repeat;
+
+    border-radius: $third-radius;
+
+    background-color: $secondary-accent-color;
+
+    @media screen and (min-width: 992px) {
+      height: initial;
+      padding: 0 0 0 2.5rem;
+
+      background-size: 42.9375rem, 41.8125rem;
+      background-position: right -0.5rem bottom -1.25rem, right -8.2rem bottom -1.22rem;
+    }
+
+    @media screen and (min-width: 1200px) {
+      background-position: right 4.5rem bottom, right -3.2rem bottom;
+    }
+
+    @media screen and (min-width: 1440px) {
+      background-position: right 9.15rem bottom, right 0.2rem bottom;
+    }
+
+    @media screen and (min-width: 1440px) {
+      padding-left: 4.5rem;
+    }
+
+    @media screen and (min-width: 992px) {
+      min-height: 31.5625rem;
+    }
+
+    & .app-list {
+      gap: clamp(0.31rem, -0.368rem + 3.01vw, 1.5rem);
+    }
+
+    & .app-list__item {
+      border-radius: $fourth-radius;
+      background-color: $accent-color;
+
+      &:first-child {
+        max-width: 8.75rem;
+      }
+
+      &:last-child {
+        max-width: 9.625rem;
+      }
+    }
+  }
+
+  & .app-content {
+    @media screen and (min-width: 992px) {
+      max-width: 28rem;
+    }
+  }
+
+  & .app-title {
+    margin-bottom: 1.375rem;
+  }
+
+  & .app-text {
+    &:first-of-type {
+      margin-bottom: 1.69rem;
+
+      @media screen and (min-width: 992px) {
+        font-size: 1.25rem;
+        line-height: calc(1.7857 / 1.25);
+      }
+    }
+
+    &:last-of-type {
+      @media screen and (min-width: 992px) {
+        font-size: 0.875rem;
+        line-height: calc(1.225 / 0.875);
+        letter-spacing: 0.01875rem;
+      }
+    }
+  }
+}

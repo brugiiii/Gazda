@@ -1,0 +1,28 @@
+//@import 'utils/module';
+//@import 'vendors/module';
+//@import 'themes/module';
+//@import 'pages/module';
+
+@import "base/variables";
+@import "utils/mixins";
+@import "base/fonts";
+@import "base/utils";
+@import "base/common";
+@import "vendors/hamburgers";
+
+//Layouts
+@import "layout/burger";
+@import "layout/pageHeader";
+@import "layout/pageFooter";
+
+//Home
+@import 'components/home/heroSection';
+@import "components/home/aboutSection";
+@import "components/home/shopSection";
+@import "components/home/reviewsSection";
+@import "components/home/appSection";
+@import "components/home/gallerySection";
+@import "components/home/contactsSection";
+
+//Restaurant
+@import "components/restaurant/menuSection";

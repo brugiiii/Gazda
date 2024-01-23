@@ -1,0 +1,49 @@
+#home {
+  & .gallery {
+    @include py(7.19rem, 2.44rem, 6.5rem, 7.5rem);
+
+    background-image: url(../images/wave.webp), url(../images/glass.webp);
+    background-repeat: no-repeat;
+    background-position: right calc(50% + 15.625rem) top 1.06rem, top 0.94rem left calc(50% + 7.77875rem);
+    background-size: 31.25rem, 16.4375rem 11.0625rem;
+
+    @media screen and (min-width: 992px) {
+      background-position: right calc(50% - 14.9375rem) top 4.75rem, top left calc(50% - 24.2775rem);
+      background-size: auto;
+    }
+
+    & .container {
+      @media screen and (min-width: 1920px) {
+        padding: 0;
+      }
+    }
+  }
+
+  & .gallery-title {
+    margin-bottom: clamp(2.875rem, 1.733rem + 5.08vw, 4.88rem);
+
+    color: $third-text-color;
+  }
+
+  & .gallery-swiper {
+    max-width: 120rem;
+    padding: 0 clamp(1.25rem, 1.084rem + 0.74vw, 1.97rem) 0 clamp(1.25rem, 0.982rem + 1.19vw, 2.41rem);
+    margin-bottom: clamp(2.5rem, 2.46rem + 0.18vw, 2.62rem);
+
+    @media screen and (min-width: 992px) and (max-width: 1439px) {
+      padding-right: 4.875rem;
+    }
+
+    & .swiper-wrapper {
+      @media screen and (max-width: 1919px) {
+        margin-left: -3.03rem;
+      }
+    }
+
+    & .swiper-slide {
+      aspect-ratio: 1 / calc(18.75 / 28);
+      overflow: hidden;
+      border-radius: $fourth-radius;
+    }
+  }
+}

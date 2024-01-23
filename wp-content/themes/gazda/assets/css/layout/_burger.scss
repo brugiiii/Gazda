@@ -1,0 +1,215 @@
+.burger-wrapper {
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.burger-search {
+  display: block;
+
+  width: calc(100% - 2rem);
+  margin: 0.75rem auto;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+
+  & input {
+    width: 100%;
+    height: 2.5rem;
+
+    padding: 0 0 0 2.5rem;
+    border: none;
+
+    font-size: 0.875rem;
+    line-height: calc(1.225 / 0.875);
+
+    border-radius: 0.75rem;
+    background-color: $fourth-text-color;
+
+    &::placeholder {
+      color: $fifth-text-color;
+    }
+  }
+}
+
+.burger-search__icon {
+  left: 0.62rem;
+
+  fill: $fifth-text-color;
+}
+
+.burger {
+  display: none;
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 2.38rem;
+  }
+
+  @media screen and (max-width: 1439px) {
+    background-color: $seventh-bg-color;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-bottom: 0.31rem;
+
+    background-image: linear-gradient(to bottom, $seventh-bg-color 0 4.3125rem, $sixth-bg-color 4.3125rem);
+  }
+
+  & .nav-list {
+    width: 100%;
+
+    @media screen and (min-width: 1440px) {
+      display: flex;
+
+      width: initial;
+    }
+
+    & > .menu-item-has-children {
+      & > a {
+        @media screen and (max-width: 1439px) {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        &.is-active {
+          &::after {
+            transform: rotate(180deg);
+          }
+        }
+
+        &::after {
+          @media screen and (max-width: 1439px) {
+            @include transition(transform);
+
+            content: '';
+            display: inline-block;
+
+            width: 1.5rem;
+            height: 1.5rem;
+
+            background-image: url(../../assets/images/icon_caret_down.svg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+        }
+      }
+    }
+
+    & > li {
+      @media screen and (min-width: 1440px) {
+        padding: 0 0.875rem;
+      }
+
+      @media screen and (max-width: 1439px) {
+        border-bottom: 1px solid $eighth-bg-color;
+      }
+
+      &:first-child {
+        @media screen and (max-width: 1439px) {
+          border-top: 1px solid $eighth-bg-color;
+        }
+      }
+
+      &:not(:last-child) {
+        @media screen and (min-width: 1440px) {
+          border-right: 1px solid $eighth-bg-color;
+        }
+      }
+
+      & a {
+        display: block;
+      }
+
+      & > a {
+        padding: 1.84rem 1rem 1.28125rem;
+
+        text-transform: uppercase;
+
+        color: $secondary-accent-color;
+
+        @media screen and (min-width: 1440px) {
+          padding: 2rem 1rem 1rem;
+        }
+      }
+
+      & > .sub-menu {
+        display: none;
+
+        padding: 2rem 2.75rem 2rem 2rem;
+
+        background-color: $sixth-bg-color;
+
+        @media screen and (min-width: 1440px) {
+          display: block !important;
+
+          padding: 0 1rem;
+          margin-top: 1rem;
+
+          background-color: initial;
+        }
+
+        & .menu-item-has-children {
+          &:not(:last-child) {
+            margin-bottom: 2.12rem;
+          }
+        }
+
+        & > li {
+          &:last-child {
+            & .sub-menu {
+              padding-bottom: 0.5rem;
+            }
+          }
+
+          &:not(:last-child) {
+            margin-bottom: 1.5rem;
+
+            @media screen and (min-width: 1440px) {
+              margin-bottom: 1rem;
+            }
+          }
+
+          & a {
+            font-size: 0.875rem;
+            line-height: calc(1.225 / 0.875);
+          }
+
+          & > a {
+            @include hover(color $fourth-text-color $secondary-accent-color);
+          }
+
+          & .sub-menu {
+            margin-top: 1rem;
+
+            & li {
+              &:not(:last-child) {
+                margin-bottom: 1rem;
+              }
+
+              & a {
+                @include hover(color $secondary-text-color $secondary-accent-color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.burger-signin {
+  width: calc(100% - 2rem);
+
+  padding: 0.4375rem 0.6875rem 0.4375rem 0.9375rem;
+  border: 1px solid $secondary-accent-color;
+  margin-top: 0.875rem;
+
+  border-radius: 0.75rem;
+
+  color: $secondary-accent-color;
+  fill: $secondary-accent-color;
+}
