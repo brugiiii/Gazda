@@ -50,13 +50,8 @@ h3,
 h4,
 h5,
 h6, {
-  margin-top: 0;
   font-weight: 400;
   line-height: normal;
-}
-
-p {
-  margin-top: 0;
 }
 
 ul,
@@ -76,20 +71,6 @@ img {
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 0.0625rem;
-  height: 0.0625rem;
-  margin: -0.0625rem;
-  border: 0;
-  padding: 0;
-
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
 }
 
 .backdrop {

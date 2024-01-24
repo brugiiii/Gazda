@@ -2898,8 +2898,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
 /* harmony import */ var modern_normalize_modern_normalize_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! modern-normalize/modern-normalize.css */ "./node_modules/modern-normalize/modern-normalize.css");
 /* harmony import */ var swiper_css_bundle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper/css/bundle */ "./node_modules/swiper/swiper-bundle.css");
-/* harmony import */ var _main_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main/utils */ "./assets/js/main/utils.js");
-/* harmony import */ var _main_burger__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./main/burger */ "./assets/js/main/burger.js");
+/* harmony import */ var _js_main_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../js/main/utils */ "./assets/js/main/utils.js");
+/* harmony import */ var _js_main_burger__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../js/main/burger */ "./assets/js/main/burger.js");
 /* harmony import */ var _css_main_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../css/main.scss */ "./assets/css/main.scss");
 
 

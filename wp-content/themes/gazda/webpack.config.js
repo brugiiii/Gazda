@@ -9,6 +9,7 @@ module.exports = {
     main: "./assets/js/main.js",
     restaurant: "./assets/js/restaurant.js",
     home: "./assets/js/home.js",
+    shop: "./assets/js/shop.js",
   },
   output: {
     filename: "js/[name].bundle.js",
@@ -86,7 +87,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "css/style.css",
+      filename: "css/[name].bundle.css",
     }),
   ],
   devtool: 'source-map',

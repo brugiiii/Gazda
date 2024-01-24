@@ -12,23 +12,25 @@ function enqueue_scripts_and_styles() {
     wp_register_script('jquery', '//code.jquery.com/jquery-1.11.0.min.js');
     wp_register_script('jquery-migrate', '//code.jquery.com/jquery-migrate-1.2.1.min.js');
 
-    wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/style.css');
-
+    wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/main.bundle.css');
     wp_enqueue_script('jquery');
     wp_enqueue_script('main-js', get_template_directory_uri() . '/dist/js/main.bundle.js', array('jquery'), null, true);
 
     $current_lang = pll_current_language();
-    $current_page_id = get_the_ID();
 
-    $scripts_to_enqueue = array(
-        array('id' => 16, 'handle' => 'home-js', 'file' => 'home.bundle.js'),
-        array('id' => 34, 'handle' => 'restaurant-js', 'file' => 'restaurant.bundle.js')
-    );
+    if (is_page(16) || is_page(23)) {
+        wp_enqueue_script('home-js', get_template_directory_uri() . '/dist/js/home.bundle.js', array('jquery'), null, true);
+        wp_enqueue_style('home-style', get_template_directory_uri() . '/dist/css/home.bundle.css');
+    }
 
-    foreach ($scripts_to_enqueue as $script) {
-        if ($current_page_id == $script['id'] && pll_get_post($script['id'], $current_lang)) {
-            wp_enqueue_script($script['handle'], get_template_directory_uri() . '/dist/js/' . $script['file'], array('jquery'), null, true);
-        }
+    if (is_page(34) || is_page(6339)) {
+        wp_enqueue_script('restaurant-js', get_template_directory_uri() . '/dist/js/restaurant.bundle.js', array('jquery'), null, true);
+        wp_enqueue_style('restaurant-style', get_template_directory_uri() . '/dist/css/restaurant.bundle.css');
+    }
+
+    if (is_shop() || is_page(6357)) {
+        wp_enqueue_script('shop-js', get_template_directory_uri() . '/dist/js/shop.bundle.js', array('jquery'), null, true);
+        wp_enqueue_style('shop-style', get_template_directory_uri() . '/dist/css/shop.bundle.css');
     }
 
     $settings = array(
@@ -89,7 +91,12 @@ $strings_to_translate = array(
     'gluten' => 'глютен',
     'lactose' => 'лактоза',
     'menu' => 'Меню',
-    'wishlist' => 'Обране'
+    'wishlist' => 'Обране',
+    'categories' => 'Категорії',
+    'all_products' => 'Усі товари',
+    'filter' => 'Фільтр',
+    'low_to_high' => 'Від дешевих до дорогих',
+    'high_to_low' => 'Від дорогих до дешевих'
 );
 
 if (function_exists('pll_register_string')) {

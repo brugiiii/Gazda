@@ -64,6 +64,18 @@ var gallerySwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["default"](".
 
 /***/ }),
 
+/***/ "./assets/css/home.scss":
+/*!******************************!*\
+  !*** ./assets/css/home.scss ***!
+  \******************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/swiper/modules/a11y.mjs":
 /*!**********************************************!*\
   !*** ./node_modules/swiper/modules/a11y.mjs ***!
@@ -10359,6 +10371,8 @@ var __webpack_exports__ = {};
   \***************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home/swiper */ "./assets/js/home/swiper.js");
+/* harmony import */ var _css_home_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/home.scss */ "./assets/css/home.scss");
+
 
 }();
 /******/ })()

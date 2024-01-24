@@ -616,6 +616,19 @@ module.exports = throttle;
 
 /***/ }),
 
+/***/ "./assets/css/restaurant.scss":
+/*!************************************!*\
+  !*** ./assets/css/restaurant.scss ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/a-callable.js":
 /*!******************************************************!*\
   !*** ./node_modules/core-js/internals/a-callable.js ***!
@@ -14018,6 +14031,8 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _restaurant_restaurantMenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./restaurant/restaurantMenu */ "./assets/js/restaurant/restaurantMenu.js");
 /* harmony import */ var _restaurant_wishlist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./restaurant/wishlist */ "./assets/js/restaurant/wishlist.js");
+/* harmony import */ var _css_restaurant_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/restaurant.scss */ "./assets/css/restaurant.scss");
+
 
 
 }();
