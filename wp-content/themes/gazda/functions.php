@@ -6,6 +6,10 @@ add_action('wpcf7_before_send_mail', 'send_message_to_telegram');
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
 add_action('wp_ajax_get_wishlist_count', 'get_wishlist_count_ajax');
 add_action('wp_ajax_nopriv_get_wishlist_count', 'get_wishlist_count_ajax');
+add_action('wp_ajax_fetch_products', 'fetch_products');
+add_action('wp_ajax_nopriv_fetch_products', 'fetch_products');
+add_action('wp_ajax_add_to_cart', 'add_to_cart_ajax');
+add_action('wp_ajax_nopriv_add_to_cart', 'add_to_cart_ajax');
 
 function enqueue_scripts_and_styles() {
     wp_deregister_script('jquery');
@@ -31,6 +35,11 @@ function enqueue_scripts_and_styles() {
     if (is_shop() || is_page(6357)) {
         wp_enqueue_script('shop-js', get_template_directory_uri() . '/dist/js/shop.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('shop-style', get_template_directory_uri() . '/dist/css/shop.bundle.css');
+    }
+
+    if (class_exists('woocommerce')) {
+        wp_enqueue_script('wc-add-to-cart', plugins_url('woocommerce/assets/js/frontend/add-to-cart.min.js'), array('jquery'), null, true);
+        wp_localize_script('wc-add-to-cart', 'wc_add_to_cart_params', array('ajax_url' => admin_url('admin-ajax.php')));
     }
 
     $settings = array(
@@ -59,6 +68,23 @@ function theme_setup()
 function get_image($name)
 {
     echo get_template_directory_uri() . "/assets/images/" . $name;
+}
+
+function fetch_products()
+{
+    get_template_part('templates/shop/fetchProducts');
+}
+
+function add_to_cart_ajax() {
+    $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
+    $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
+
+    if ($product_id > 0 && $quantity > 0) {
+        WC()->cart->add_to_cart($product_id, $quantity);
+        echo 'Product added to cart successfully!';
+    }
+
+    wp_die();
 }
 
 function translate_and_output($string_key, $group = 'Main Page')
@@ -96,7 +122,9 @@ $strings_to_translate = array(
     'all_products' => 'Усі товари',
     'filter' => 'Фільтр',
     'low_to_high' => 'Від дешевих до дорогих',
-    'high_to_low' => 'Від дорогих до дешевих'
+    'high_to_low' => 'Від дорогих до дешевих',
+    'no_products' => 'Немає товарів',
+    'buy' => 'Купити'
 );
 
 if (function_exists('pll_register_string')) {
@@ -104,6 +132,7 @@ if (function_exists('pll_register_string')) {
         pll_register_string($string_key, $string_value, 'Main Page');
     }
 }
+
 
 function get_wishlist_count_ajax()
 {

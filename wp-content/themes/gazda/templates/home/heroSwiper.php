@@ -36,5 +36,5 @@
             </li>
         </ul>
     </div>
-    <?php get_template_part('templates/ctrls.php'); ?>
+    <?php get_template_part('templates/ctrls'); ?>
 </div>

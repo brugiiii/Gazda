@@ -45,15 +45,7 @@ function display_category_products($category_hierarchy)
                                             <?= get_the_title() ?>
                                         </h3>
                                         <span class="products-list__price d-md-none">
-                                            <?php
-                                            $currency_symbol = get_woocommerce_currency_symbol();
-                                            $price = get_post_meta(get_the_ID(), '_price', true);
-
-                                            // Форматування ціни з двома знаками після коми
-                                            $formatted_price = number_format($price, 2, '.', '');
-
-                                            echo esc_html($formatted_price . $currency_symbol);
-                                            ?>
+                                            <?= get_template_part('templates/price'); ?>
                                         </span>
                                     </div>
                                 </div>
@@ -143,15 +135,7 @@ function display_category_products($category_hierarchy)
                                 </div>
                                 <div class="d-flex flex-column justify-content-between">
                                     <span class="products-list__price d-none d-md-block">
-                                    <?php
-                                    $currency_symbol = get_woocommerce_currency_symbol();
-                                    $price = get_post_meta(get_the_ID(), '_price', true);
-
-                                    // Форматування ціни з двома знаками після коми
-                                    $formatted_price = number_format($price, 2, '.', '');
-
-                                    echo esc_html($formatted_price . $currency_symbol);
-                                    ?>
+                                    <?= get_template_part('templates/price'); ?>
                                     </span>
                                     <span class="products-list__favorite">
                                         <?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>

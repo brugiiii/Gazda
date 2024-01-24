@@ -51,6 +51,9 @@
 .products-nav__button:hover, .products-nav__button:focus {
   color: #1F252E;
 }
+.products-nav__button.is-active {
+  color: #1F252E;
+}
 
 .nav-wrapper,
 .products-toolbar {
@@ -79,6 +82,77 @@
   color: #1F252E;
   background-color: #F5F5F5;
   fill: #C0C2C4;
+}
+
+.products-list {
+  gap: 1.25rem;
+}
+
+.products-list__item {
+  aspect-ratio: 1/1.4056603774;
+  -ms-flex-preferred-size: calc((100% - 3.75rem) / 4);
+      flex-basis: calc((100% - 3.75rem) / 4);
+}
+
+.product-list__wrapper {
+  -webkit-transition: -webkit-box-shadow 200ms ease-in-out;
+  transition: -webkit-box-shadow 200ms ease-in-out;
+  transition: box-shadow 200ms ease-in-out;
+  transition: box-shadow 200ms ease-in-out, -webkit-box-shadow 200ms ease-in-out;
+  min-height: 100%;
+}
+.product-list__wrapper:hover {
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.product-list__wrapper:hover .quantity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.products-list__thumb {
+  height: clamp(8.5rem, 7.895rem + 2.69vw, 9.563rem);
+}
+
+.product-list__title {
+  min-height: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.01875rem;
+  color: #333;
+}
+
+.product-list__price {
+  font-size: 1.25rem;
+  line-height: 1.43;
+  color: #E5A83A;
+}
+
+.product-list__button {
+  height: 2.5rem;
+  fill: #FFF;
+}
+
+.quantity {
+  display: none;
+  gap: 1.5rem;
+  padding: 0.31rem 0;
+  border-radius: 0.75rem;
+  background-color: #F5F5F5;
+}
+
+.quantity__value {
+  width: 1.875rem;
+  height: 1.875rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.01875rem;
+  color: #1F252E;
+}
+
+.quantity__icon {
+  fill: #8A8D92;
 }
 
 /*# sourceMappingURL=shop.bundle.css.map*/
