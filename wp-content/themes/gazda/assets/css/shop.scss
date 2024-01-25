@@ -2,5 +2,12 @@
 @import "base/variables";
 @import "utils/mixins";
 
-//Restaurant
+//Vendors
+@import "vendors/skeleton";
+
+//Products
+@import "components/shop/productsList";
 @import "components/shop/productsSection";
+
+//Pagination
+@import "components/pagination";

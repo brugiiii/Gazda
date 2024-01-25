@@ -1,13 +1,5 @@
 <?php
-$cart_items = WC()->cart->get_cart();
-
-$product_ids = array();
-
-foreach ($cart_items as $cart_item_key => $cart_item) {
-    $product_ids[] = $cart_item['product_id'];
-}
-
-$distinct_product_count = count(array_unique($product_ids));
+$unique_items_count = count(WC()->cart->get_cart());
 ?>
 
 <div class="toolbar d-flex align-items-center gap-2 gap-xl-3">
@@ -25,7 +17,7 @@ $distinct_product_count = count(array_unique($product_ids));
             </svg>
         </a>
     </div>
-    <div class="toolbar__item position-relative">
+    <div class="toolbar__item position-relative" id="cart">
 
         <button class="toolbar__button header-card unset">
             <svg class="header-icon" width="24" height="24">
@@ -33,15 +25,9 @@ $distinct_product_count = count(array_unique($product_ids));
             </svg>
         </button>
 
-        <?php
-        if ($distinct_product_count) {
-            ?>
-            <span class="card-quantity position-absolute top-0 start-0 text-danger">
-                <?= esc_html($distinct_product_count); ?>
-            </span>
-            <?php
-        }
-        ?>
+        <span class="card-quantity position-absolute top-0 start-0 text-danger <?= $unique_items_count === 0 ? 'is-hidden' : '' ?>">
+            <?= $unique_items_count; ?>
+        </span>
 
     </div>
     <div class="toolbar__item d-none d-sm-block">

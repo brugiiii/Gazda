@@ -1,0 +1,44 @@
+.pagination {
+  margin-top: 2rem;
+
+  gap: 0.375rem;
+}
+
+.pagination__item {
+  background-color: transparent;
+
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.01875rem;
+
+  fill: $third-text-color;
+  stroke: $third-text-color;
+  color: $third-text-color;
+
+  &.number {
+    width: 2.125rem;
+    height: 2.125rem;
+  }
+
+  &.current {
+    color: $white-color;
+    background-color: $accent-color;
+  }
+}
+
+.load-more {
+  min-width: 12.375rem;
+  max-width: fit-content;
+  height: 2.5rem;
+
+  margin-top: 2rem;
+  border-radius: $primary-radius;
+
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.01875rem;
+
+  fill: $white-color;
+  background-color: $secondary-accent-color;
+  color: $white-color;
+}

@@ -10,6 +10,8 @@ add_action('wp_ajax_fetch_products', 'fetch_products');
 add_action('wp_ajax_nopriv_fetch_products', 'fetch_products');
 add_action('wp_ajax_add_to_cart', 'add_to_cart_ajax');
 add_action('wp_ajax_nopriv_add_to_cart', 'add_to_cart_ajax');
+add_action('wp_ajax_get_cart_count', 'get_cart_count_ajax');
+add_action('wp_ajax_nopriv_get_cart_count', 'get_cart_count_ajax');
 
 function enqueue_scripts_and_styles() {
     wp_deregister_script('jquery');
@@ -35,6 +37,8 @@ function enqueue_scripts_and_styles() {
     if (is_shop() || is_page(6357)) {
         wp_enqueue_script('shop-js', get_template_directory_uri() . '/dist/js/shop.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('shop-style', get_template_directory_uri() . '/dist/css/shop.bundle.css');
+        wp_enqueue_script('tween-max-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js', array('jquery'), null, true);
+
     }
 
     if (class_exists('woocommerce')) {
@@ -87,6 +91,12 @@ function add_to_cart_ajax() {
     wp_die();
 }
 
+function get_cart_count_ajax() {
+    $unique_items_count = count(WC()->cart->get_cart());
+    echo $unique_items_count;
+    wp_die();
+}
+
 function translate_and_output($string_key, $group = 'Main Page')
 {
     global $strings_to_translate;
@@ -124,7 +134,8 @@ $strings_to_translate = array(
     'low_to_high' => 'Від дешевих до дорогих',
     'high_to_low' => 'Від дорогих до дешевих',
     'no_products' => 'Немає товарів',
-    'buy' => 'Купити'
+    'buy' => 'Купити',
+    'load_more' => 'Показати ще'
 );
 
 if (function_exists('pll_register_string')) {
@@ -132,7 +143,6 @@ if (function_exists('pll_register_string')) {
         pll_register_string($string_key, $string_value, 'Main Page');
     }
 }
-
 
 function get_wishlist_count_ajax()
 {

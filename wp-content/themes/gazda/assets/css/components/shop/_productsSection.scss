@@ -46,7 +46,7 @@
   font-size: 0.875rem;
   line-height: 1.4;
   letter-spacing: 0.01875rem;
-  
+
   &.is-active {
     color: $third-text-color;
   }
@@ -71,7 +71,7 @@
 }
 
 .toolbar-els__button {
-  padding: 0.375rem 0.75rem;
+  padding: 0.25rem 0.75rem;
   border: 2px solid $fifth-bg-color;
   border-radius: $primary-radius;
 
@@ -84,78 +84,44 @@
   fill: $fifth-text-color;
 }
 
-.products-list {
-  gap: 1.25rem;
-}
+.order-list {
+  @include transition(opacity, visibility);
 
-.products-list__item {
-  aspect-ratio: 1 / calc(18.625 / 13.25);
-  flex-basis: calc((100% - 3.75rem) / 4);
-}
+  top: calc(100% + 0.5rem);
 
-.product-list__wrapper {
-  @include transition(box-shadow);
+  border-radius: 1rem;
+  border: 2px solid $fifth-bg-color;
+  background-color: $fourth-text-color;
 
-  min-height: 100%;
-
-  &:hover {
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-    & .quantity {
-      display: flex;
-    }
+  &.is-hidden {
+    visibility: hidden;
+    opacity: 0;
   }
 }
 
-.products-list__thumb {
-  height: clamp(8.5rem, 7.895rem + 2.69vw, 9.563rem);
-}
+.order-list__button {
+  @include hover(color $third-text-color $white-color, background-color transparent $accent-color);
 
-.product-list__title {
-  min-height: 2.5rem;
-
-  font-size: 0.875rem;
-  line-height: 1.4;
-  letter-spacing: 0.01875rem;
-
-  color: $seventh-text-color;
-}
-
-.product-list__price {
-  font-size: 1.25rem;
-  line-height: calc(1.7875 / 1.25);
-
-  color: $secondary-accent-color;
-}
-
-.product-list__button {
-  height: 2.5rem;
-
-  fill: $white-color;
-}
-
-.quantity {
-  display: none;
-
-  gap: 1.5rem;
-
-  padding: 0.31rem 0;
-
-  border-radius: $primary-radius;
-  background-color: $fourth-text-color;
-}
-
-.quantity__value {
-  width: 1.875rem;
-  height: 1.875rem;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
 
   font-size: 0.875rem;
   line-height: 1.4;
   letter-spacing: 0.01875rem;
 
-  color: $third-text-color;
+  &:first-child {
+    padding-top: 0.625rem;
+    padding-bottom: 0.5rem;
+  }
+
+  &:last-child {
+    padding-top: 0.5rem;
+    padding-bottom: 0.625rem;
+  }
+
+  &.is-active {
+    color: $white-color;
+    background-color: $accent-color;
+  }
 }
 
-.quantity__icon {
-  fill: $secondary-text-color;
-}

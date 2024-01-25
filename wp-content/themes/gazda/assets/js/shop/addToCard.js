@@ -1,13 +1,18 @@
+import {flyToCart} from "./flyToCard"
+const {ajax_url} = settings
+
 $(document).ready(function () {
     $('.products-items').on('click', '.product-list__button', function () {
         const $this = $(this);
+
+        flyToCart($this);
 
         const productId = $this.data('product-id');
         const quantity = $this.next('.quantity').find('.quantity__value').text();
 
         $.ajax({
             type: 'POST',
-            url: settings.ajax_url,
+            url: ajax_url,
             data: {
                 action: 'add_to_cart',
                 product_id: productId,
@@ -15,7 +20,25 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response);
+
+                // Оновити кількість унікальних товарів у кошику на сторінці
+                updateCartCount();
             },
         });
     });
+
+    function updateCartCount() {
+        // Здійснюємо AJAX-запит, щоб отримати оновлену кількість унікальних товарів у кошику
+        $.ajax({
+            type: 'GET',
+            url: ajax_url,
+            data: {
+                action: 'get_cart_count', // Оновлене ім'я дії
+            },
+            success: function (response) {
+                // Оновлюємо відображення кількості унікальних товарів у кошику на сторінці
+                $('.card-quantity').text(response);
+            },
+        });
+    }
 });

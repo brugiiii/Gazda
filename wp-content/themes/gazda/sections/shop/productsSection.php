@@ -3,7 +3,7 @@ $current_lang = pll_current_language();
 $home_page = pll_get_post(16, $current_lang);
 ?>
 
-<section class="section">
+<section class="section products position-relative">
     <h1 class="visually-hidden">
         <?php woocommerce_page_title(); ?>
     </h1>
@@ -17,10 +17,12 @@ $home_page = pll_get_post(16, $current_lang);
                 <?= is_shop() ? woocommerce_page_title() : get_the_title(6357); ?>
             </span>
             <?= get_template_part('helpers/separator'); ?>
-            <span class="current"></span>
+            <span class="current">
+                <?= translate_and_output('all_products'); ?>
+            </span>
         </div>
         <div class="products-wrapper d-lg-flex">
-            <div class="nav-wrapper bg-white flex-shrink-0 rounded-3 p-3">
+            <div class="nav-wrapper align-self-start bg-white flex-shrink-0 rounded-3 p-3">
                 <h2 class="nav-wrapper__title text-uppercase fw-semibold">
                     <?= translate_and_output('categories'); ?>
                 </h2>
@@ -45,14 +47,21 @@ $home_page = pll_get_post(16, $current_lang);
                                 </div>
                             </div>
                             <div class="position-relative">
-                                <button class="toolbar-els__button d-flex align-items-center gap-2" type="button">
-                                    <?= translate_and_output('low_to_high'); ?>
+                                <button class="toolbar-els__button order-button d-flex align-items-center gap-2" type="button">
+                                    <span class="order-button__text">
+                                        <?= translate_and_output('low_to_high'); ?>
+                                    </span>
                                     <svg class="" width="24" height="24">
                                         <use href="<?php get_image('sprite.svg#icon-sort'); ?>"></use>
                                     </svg>
                                 </button>
-                                <div class="position-absolute">
-
+                                <div class="order-list is-hidden overflow-hidden rounded-4 position-absolute z-1">
+                                    <button class="order-list__button is-active border-0" type="button" data-order="ASC">
+                                        <?= translate_and_output('low_to_high'); ?>
+                                    </button>
+                                    <button class="order-list__button border-0" type="button" data-order="DESC">
+                                        <?= translate_and_output('high_to_low'); ?>
+                                    </button>
                                 </div>
                             </div>
                         </div>
