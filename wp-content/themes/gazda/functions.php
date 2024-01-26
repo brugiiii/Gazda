@@ -22,23 +22,20 @@ function enqueue_scripts_and_styles() {
     wp_enqueue_script('jquery');
     wp_enqueue_script('main-js', get_template_directory_uri() . '/dist/js/main.bundle.js', array('jquery'), null, true);
 
-    $current_lang = pll_current_language();
-
     if (is_page(16) || is_page(23)) {
         wp_enqueue_script('home-js', get_template_directory_uri() . '/dist/js/home.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('home-style', get_template_directory_uri() . '/dist/css/home.bundle.css');
     }
 
-    if (is_page(34) || is_page(6339)) {
+    if (is_page(34) || is_page(6384)) {
         wp_enqueue_script('restaurant-js', get_template_directory_uri() . '/dist/js/restaurant.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('restaurant-style', get_template_directory_uri() . '/dist/css/restaurant.bundle.css');
     }
 
-    if (is_shop() || is_page(6357)) {
+    if (is_page(6386) || is_shop()) {
         wp_enqueue_script('shop-js', get_template_directory_uri() . '/dist/js/shop.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('shop-style', get_template_directory_uri() . '/dist/css/shop.bundle.css');
         wp_enqueue_script('tween-max-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js', array('jquery'), null, true);
-
     }
 
     if (class_exists('woocommerce')) {
@@ -78,6 +75,7 @@ function fetch_products()
 {
     get_template_part('templates/shop/fetchProducts');
 }
+
 
 function add_to_cart_ajax() {
     $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
@@ -135,7 +133,11 @@ $strings_to_translate = array(
     'high_to_low' => 'Від дорогих до дешевих',
     'no_products' => 'Немає товарів',
     'buy' => 'Купити',
-    'load_more' => 'Показати ще'
+    'load_more' => 'Показати ще',
+    'own' => 'Власне виробництво',
+    'kitchen' => 'Закарпатська кухня',
+    'recommended' => 'Ґазда рекомендує',
+    'new' => 'Шось нове'
 );
 
 if (function_exists('pll_register_string')) {

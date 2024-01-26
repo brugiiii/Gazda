@@ -1,5 +1,9 @@
 import {flyToCart} from "./flyToCard"
+
 const {ajax_url} = settings
+
+const cartIcon = $('#cart')
+const cartQuantity = $('.card-quantity')
 
 $(document).ready(function () {
     $('.products-items').on('click', '.product-list__button', function () {
@@ -36,8 +40,12 @@ $(document).ready(function () {
                 action: 'get_cart_count', // Оновлене ім'я дії
             },
             success: function (response) {
-                // Оновлюємо відображення кількості унікальних товарів у кошику на сторінці
-                $('.card-quantity').text(response);
+                cartIcon.addClass('animate');
+                cartQuantity.text(response);
+
+                setTimeout(function () {
+                    cartIcon.removeClass('animate');
+                }, 700);
             },
         });
     }

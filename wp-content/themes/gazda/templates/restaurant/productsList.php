@@ -33,7 +33,9 @@ function display_category_products($category_hierarchy)
                             $weight = get_field('weight');
                             $time = get_field('time');
                             $ingredients = get_field('ingredients');
-                            $allergens = get_field('allergens');
+                            $allergens_ua = get_field('allergens_ua');
+                            $allergens_eng = get_field('allergens_eng');
+                            $labels = get_field('label');
                             ?>
                             <li class="products-list__item d-md-flex gap-3 py-3">
                                 <div class="products-list__wrapper gap-3">
@@ -54,7 +56,7 @@ function display_category_products($category_hierarchy)
                                         <?= get_the_title() ?>
                                     </h3>
 
-                                    <?php if ($ingredients || $allergens) : ?>
+                                    <?php if ($ingredients || $allergens_ua || $allergens_eng) : ?>
                                         <div class="products-list__content order-3 order-md-2">
                                             <?php if ($ingredients) : ?>
                                                 <span class="mb-1 d-block">
@@ -62,16 +64,33 @@ function display_category_products($category_hierarchy)
                                                 </span>
                                             <?php endif; ?>
 
-                                            <?php if ($allergens) : ?>
+                                            <?php if ($allergens_ua) : ?>
                                                 <?php
-                                                $allergens_length = count($allergens);
+                                                $allergens_length = count($allergens_ua);
                                                 $counter = 1;
                                                 ?>
                                                 <span class="d-block">
                                                     <?php
                                                     echo translate_and_output('allergens') . ': ';
-                                                    foreach ($allergens as $allergen) :
-                                                        echo translate_and_output($allergen['value']);
+                                                    foreach ($allergens_ua as $allergen) :
+                                                        echo $allergen['label'];
+                                                        if ($counter < $allergens_length) {
+                                                            echo ', ';
+                                                        }
+                                                        $counter++;
+                                                    endforeach;
+                                                    ?>
+                                                </span>
+                                            <?php elseif ($allergens_eng) : ?>
+                                                <?php
+                                                $allergens_length = count($allergens_eng);
+                                                $counter = 1;
+                                                ?>
+                                                <span class="d-block">
+                                                    <?php
+                                                    echo translate_and_output('allergens') . ': ';
+                                                    foreach ($allergens_eng as $allergen) :
+                                                        echo $allergen['label'];
                                                         if ($counter < $allergens_length) {
                                                             echo ', ';
                                                         }
@@ -82,6 +101,7 @@ function display_category_products($category_hierarchy)
                                             <?php endif; ?>
                                         </div>
                                     <?php endif; ?>
+
 
                                     <?php if ($weight || $time) : ?>
                                         <div class="products-list__content d-flex gap-3 order-4 order-md-3">
@@ -105,34 +125,29 @@ function display_category_products($category_hierarchy)
                                         </div>
                                     <?php endif; ?>
 
-                                    <ul class="tags-list d-flex flex-wrap gap-2 order-2 order-md-last">
-                                        <?php
-                                        $tags = get_the_terms(get_the_ID(), 'product_tag');
-                                        if ($tags && !is_wp_error($tags)) {
-                                            $tag_classes = [
-                                                402 => 'sprout',
-                                                406 => 'like',
-                                                404 => 'kitchen',
-                                                408 => 'fire',
+                                    <?php
+                                    if ($labels) : ?>
+                                        <ul class="tags-list d-flex flex-wrap gap-2 order-2 order-md-last">
+                                            <?php
+                                            $classMapping = [
+                                                'own' => 'sprout',
+                                                'kitchen' => 'kitchen',
+                                                'recommended' => 'like',
+                                                'new' => 'fire',
                                             ];
 
-                                            foreach ($tags as $tag) {
-                                                $tag_id = $tag->term_id;
-                                                $class = '';
-
-                                                if (function_exists('pll_get_term_language') && pll_get_term_language($tag_id) == pll_current_language() && isset($tag_classes[$tag_id])) {
-                                                    $class = $tag_classes[$tag_id];
-                                                }
+                                            foreach ($labels as $label) :
+                                                $class = isset($classMapping[$label['value']]) ? $classMapping[$label['value']] : '';
                                                 ?>
-                                                <li class="tags-list__item d-flex gap-2 align-items-center px-2 py-1 rounded-3 <?= esc_attr($class); ?>">
-                                                    <?= esc_html($tag->name); ?>
+                                                <li class="tags-list__item d-flex gap-2 align-items-center px-2 py-1 rounded-3 <?= $class; ?>">
+                                                    <?= translate_and_output($label['value']); ?>
                                                 </li>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
-                                    </ul>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
+
                                 </div>
+
                                 <div class="d-flex flex-column justify-content-between">
                                     <span class="products-list__price d-none d-md-block">
                                     <?= get_template_part('templates/price'); ?>

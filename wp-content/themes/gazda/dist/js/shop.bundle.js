@@ -18,7 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_fill_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_fill_js__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var productsSkeleton = "\n    <div class=\"products-list d-flex flex-wrap\">\n        ".concat(Array(8).fill("\n            <div class=\"skeleton-list__item products-list__item\">\n            </div>").join(''), "\n    </div>");
+var productsSkeleton = "\n    ".concat(Array(8).fill("\n            <li class=\"skeleton-list__item products-list__item\">\n            </li>").join(''), "\n");
 
 /***/ }),
 
@@ -40,6 +40,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var _settings = settings,
   ajax_url = _settings.ajax_url;
+var cartIcon = $('#cart');
+var cartQuantity = $('.card-quantity');
 $(document).ready(function () {
   $('.products-items').on('click', '.product-list__button', function () {
     var $this = $(this);
@@ -72,8 +74,11 @@ $(document).ready(function () {
       },
 
       success: function success(response) {
-        // Оновлюємо відображення кількості унікальних товарів у кошику на сторінці
-        $('.card-quantity').text(response);
+        cartIcon.addClass('animate');
+        cartQuantity.text(response);
+        setTimeout(function () {
+          cartIcon.removeClass('animate');
+        }, 700);
       }
     });
   }
@@ -90,7 +95,7 @@ $(document).ready(function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   loadPosts: function() { return /* binding */ loadPosts; }
+/* harmony export */   fetchAndRenderProducts: function() { return /* binding */ fetchAndRenderProducts; }
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
 /* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -109,7 +114,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../helpers/productsSkeleton */ "./assets/js/helpers/productsSkeleton.js");
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../helpers/productsSkeleton */ "./assets/js/helpers/productsSkeleton.js");
+
 
 
 
@@ -122,64 +130,111 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 
-var _settings = settings,
-  ajax_url = _settings.ajax_url;
 var productsItems = $('.products-items');
+var productsList = $('.products-list');
+var paginationContainer = $('.pagination-container');
+var filterContainer = $('.filter-container');
 var productsNav = $('.products-nav');
 var orderButtons = $('.order-list__button');
-var orderButton = $('.order-button__text');
+var orderButton = $('.order-button');
+var orderButtonText = $('.order-button__text');
 var orderList = $('.order-list');
 var breadCrumbCurrent = $('.breadcrumb .current');
+var toolbarFilter = $('.toolbar-filter');
+var filterButton = $('.filter-button');
+var initialPostsPerPage = 12;
+var loadMoreClickCount = 0;
+var _settings = settings,
+  ajax_url = _settings.ajax_url;
 var query = {
   page: 1,
   categories: [],
-  posts_per_page: 12,
+  posts_per_page: initialPostsPerPage,
   order: 'ASC',
-  attributes: []
+  tags: []
 };
-var loadPosts = function loadPosts() {
-  productsItems.html(_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_9__.productsSkeleton);
+var fetchAndRenderProducts = function fetchAndRenderProducts() {
+  var useSkeleton = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+  if (useSkeleton) {
+    productsList.html(_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_10__.productsSkeleton);
+  }
   $.ajax({
     url: ajax_url,
     type: 'post',
     data: _objectSpread({
       action: 'fetch_products'
     }, query),
-    success: function success(response) {
-      return productsItems.html(response);
-    },
-    error: function error(_error) {
-      return console.log(_error);
-    }
+    success: handleProductsFetchSuccess,
+    error: handleProductsFetchError
   });
 };
-var handleCategoryClick = function handleCategoryClick(e) {
-  var $this = $(e.currentTarget);
-  if ($this.hasClass("is-active")) {
-    return;
+var handleProductsFetchSuccess = function handleProductsFetchSuccess(response) {
+  var tempElement = document.createElement('div');
+  tempElement.innerHTML = response;
+  var paginationWrapper = tempElement.querySelector('.pagination-wrapper');
+  var filterWrapper = tempElement.querySelector('.filter-wrapper');
+  paginationContainer.addClass("d-none");
+  toolbarFilter.addClass('d-none');
+  if (paginationWrapper) {
+    paginationContainer.removeClass('d-none');
+    paginationWrapper.remove();
   }
-  var categoriesIds = $this.data('categoriesIds');
-  var navItem = $this.closest('.products-nav__item');
-  var siblingButtons = navItem.siblings().find('.products-nav__button');
-  $this.addClass('is-active');
-  siblingButtons.removeClass('is-active');
-  breadCrumbCurrent.text($this.text());
-  if (categoriesIds) {
-    var idsArray = categoriesIds.split(' ');
-    query.categories = idsArray;
-  } else {
-    var categoryId = $this.data('categoryId');
-    query.categories = [categoryId];
+  if (filterWrapper) {
+    toolbarFilter.removeClass('d-none');
+    filterWrapper.remove();
   }
-  query.page = 1;
-  loadPosts();
+  var remainingHTML = tempElement.innerHTML;
+  productsList.html(remainingHTML);
+  paginationContainer.html(paginationWrapper);
+  filterContainer.html(filterWrapper);
+  var lastPaginationItem = $('.pagination__item[data-page]:last');
+  lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
 };
-var handlePaginationClick = function handlePaginationClick(e) {
-  var $this = $(e.currentTarget);
-  if ($this.hasClass('current')) {
+var handleProductsFetchError = function handleProductsFetchError(error) {
+  console.error(error);
+};
+var handleCategoryButtonClick = function handleCategoryButtonClick(event) {
+  var $clickedButton = $(event.currentTarget);
+  if ($clickedButton.hasClass("is-active")) {
     return;
   }
-  var action = $this.data("action");
+  var categoryIds = $clickedButton.data('categoriesIds');
+  var navItem = $clickedButton.closest('.products-nav__item');
+  var siblingButtons = navItem.siblings().find('.products-nav__button');
+  $clickedButton.addClass('is-active');
+  siblingButtons.removeClass('is-active');
+  breadCrumbCurrent.text($clickedButton.text());
+  loadMoreClickCount = 1;
+  query.categories = categoryIds ? categoryIds.split(' ') : [$clickedButton.data('categoryId')];
+  query.posts_per_page = initialPostsPerPage;
+  query.page = 1;
+  fetchAndRenderProducts();
+};
+var handleFilterChange = function handleFilterChange(e) {
+  var $this = $(e.currentTarget);
+  var tagId = $this.val();
+  var tagIndex = query.tags.indexOf(tagId);
+  if (tagIndex === -1) {
+    // Якщо тега немає в масиві, то додаємо його
+    query.tags.push(tagId);
+  } else {
+    // Якщо тег вже є в масиві, то видаляємо його
+    query.tags.splice(tagIndex, 1);
+  }
+  console.log(query.tags);
+};
+var handleLoadMoreClick = function handleLoadMoreClick($this) {
+  $this.addClass('loading');
+  $this.attr('disabled', true);
+  loadMoreClickCount += 1;
+  query.posts_per_page = initialPostsPerPage * loadMoreClickCount;
+  fetchAndRenderProducts(false);
+};
+var handlePaginationButtonClick = function handlePaginationButtonClick($clickedButton) {
+  if ($clickedButton.hasClass('current')) {
+    return;
+  }
+  var action = $clickedButton.data("action");
   if (action) {
     switch (action) {
       case 'prev':
@@ -192,42 +247,84 @@ var handlePaginationClick = function handlePaginationClick(e) {
         query.page = 1;
         break;
       case 'last':
-        query.page = $this.data('last-page');
+        query.page = $clickedButton.data('last-page');
         break;
     }
   } else {
-    query.page = $this.data("page");
+    query.page = $clickedButton.data("page");
   }
-  loadPosts();
+  fetchAndRenderProducts();
 };
-var handleOrderButtonClick = function handleOrderButtonClick(e) {
-  var $this = $(e.currentTarget);
-  var order = $this.data("order");
+var handlePaginationClick = function handlePaginationClick(event) {
+  var $clickedButton = $(event.currentTarget);
+  if ($clickedButton.hasClass('load-more')) {
+    handleLoadMoreClick($clickedButton);
+  } else {
+    handlePaginationButtonClick($clickedButton);
+  }
+};
+var handleOrderButtonClick = function handleOrderButtonClick(event) {
+  var $clickedButton = $(event.currentTarget);
+  var order = $clickedButton.data("order");
   if (query.order === order) {
     return;
   }
-  $this.addClass("is-active").siblings().removeClass('is-active');
-  orderButton.text($this.text());
+  $clickedButton.addClass("is-active").siblings().removeClass('is-active');
+  orderButtonText.text($clickedButton.text());
   orderList.addClass('is-hidden');
   query.order = order;
-  loadPosts();
+  fetchAndRenderProducts();
 };
-var showOrderButtons = function showOrderButtons() {
-  e.stopPropagation();
+var toggleOrderListVisibility = function toggleOrderListVisibility(event) {
+  event.stopPropagation();
   if (orderList.hasClass('is-hidden')) {
+    // Keyboard tracking
+    $(document).on("keydown", function (e) {
+      if (e.key === "Escape") {
+        orderList.addClass('is-hidden');
+        $(document).off("keydown");
+      }
+    });
+
+    // Click tracking
     $(document).on("click", function (e) {
       if (!orderList.is(e.target) && orderList.has(e.target).length === 0) {
         orderList.addClass('is-hidden');
         $(document).off("click");
+        $(document).off("keydown");
       }
     });
   }
   orderList.toggleClass('is-hidden');
 };
-productsItems.on("click", '.pagination__item', handlePaginationClick);
-productsNav.on("click", '.products-nav__button', handleCategoryClick);
+var toggleFilterListVisibility = function toggleFilterListVisibility(event) {
+  event.stopPropagation();
+  if (filterContainer.hasClass('is-hidden')) {
+    // Keyboard tracking
+    $(document).on("keydown", function (e) {
+      if (e.key === "Escape") {
+        filterContainer.addClass('is-hidden');
+        $(document).off("keydown");
+      }
+    });
+
+    // Click tracking
+    $(document).on("click", function (e) {
+      if (!filterContainer.is(e.target) && filterContainer.has(e.target).length === 0) {
+        filterContainer.addClass('is-hidden');
+        $(document).off("click");
+        $(document).off("keydown");
+      }
+    });
+  }
+  filterContainer.toggleClass('is-hidden');
+};
+productsItems.on("click", '.pagination__item, .load-more', handlePaginationClick);
+productsNav.on("click", '.products-nav__button', handleCategoryButtonClick);
+toolbarFilter.on("change", '.filter-wrapper__input', handleFilterChange);
 orderButtons.on("click", handleOrderButtonClick);
-orderButton.on("click", showOrderButtons);
+orderButton.on("click", toggleOrderListVisibility);
+filterButton.on('click', toggleFilterListVisibility);
 $(document).ready(function () {
   $('.products-nav__button:first').trigger("click");
 });
@@ -665,6 +762,44 @@ module.exports = function (METHOD_NAME, argument) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/array-set-length.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/internals/array-set-length.js ***!
+  \************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
+var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js/internals/is-array.js");
+
+var $TypeError = TypeError;
+// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+
+// Safari < 13 does not throw an error in this case
+var SILENT_ON_NON_WRITABLE_LENGTH_SET = DESCRIPTORS && !function () {
+  // makes no sense without proper strict mode support
+  if (this !== undefined) return true;
+  try {
+    // eslint-disable-next-line es/no-object-defineproperty -- safe
+    Object.defineProperty([], 'length', { writable: false }).length = 1;
+  } catch (error) {
+    return error instanceof TypeError;
+  }
+}();
+
+module.exports = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function (O, length) {
+  if (isArray(O) && !getOwnPropertyDescriptor(O, 'length').writable) {
+    throw new $TypeError('Cannot set read only .length');
+  } return O.length = length;
+} : function (O, length) {
+  return O.length = length;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/array-slice-simple.js":
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/internals/array-slice-simple.js ***!
@@ -997,6 +1132,25 @@ module.exports = function (key, value) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/delete-property-or-throw.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/core-js/internals/delete-property-or-throw.js ***!
+  \********************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var tryToString = __webpack_require__(/*! ../internals/try-to-string */ "./node_modules/core-js/internals/try-to-string.js");
+
+var $TypeError = TypeError;
+
+module.exports = function (O, P) {
+  if (!delete O[P]) throw new $TypeError('Cannot delete property ' + tryToString(P) + ' of ' + tryToString(O));
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/descriptors.js":
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/internals/descriptors.js ***!
@@ -1055,6 +1209,25 @@ var EXISTS = isObject(document) && isObject(document.createElement);
 
 module.exports = function (it) {
   return EXISTS ? document.createElement(it) : {};
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/does-not-exceed-safe-integer.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/core-js/internals/does-not-exceed-safe-integer.js ***!
+  \************************************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+var $TypeError = TypeError;
+var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF; // 2 ** 53 - 1 == 9007199254740991
+
+module.exports = function (it) {
+  if (it > MAX_SAFE_INTEGER) throw $TypeError('Maximum allowed index exceeded');
+  return it;
 };
 
 
@@ -3389,6 +3562,84 @@ var FORCED = ES3_STRINGS || !arrayMethodIsStrict('join', ',');
 $({ target: 'Array', proto: true, forced: FORCED }, {
   join: function join(separator) {
     return nativeJoin(toIndexedObject(this), separator === undefined ? ',' : separator);
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.array.splice.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.splice.js ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
+var toAbsoluteIndex = __webpack_require__(/*! ../internals/to-absolute-index */ "./node_modules/core-js/internals/to-absolute-index.js");
+var toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ "./node_modules/core-js/internals/to-integer-or-infinity.js");
+var lengthOfArrayLike = __webpack_require__(/*! ../internals/length-of-array-like */ "./node_modules/core-js/internals/length-of-array-like.js");
+var setArrayLength = __webpack_require__(/*! ../internals/array-set-length */ "./node_modules/core-js/internals/array-set-length.js");
+var doesNotExceedSafeInteger = __webpack_require__(/*! ../internals/does-not-exceed-safe-integer */ "./node_modules/core-js/internals/does-not-exceed-safe-integer.js");
+var arraySpeciesCreate = __webpack_require__(/*! ../internals/array-species-create */ "./node_modules/core-js/internals/array-species-create.js");
+var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js/internals/create-property.js");
+var deletePropertyOrThrow = __webpack_require__(/*! ../internals/delete-property-or-throw */ "./node_modules/core-js/internals/delete-property-or-throw.js");
+var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('splice');
+
+var max = Math.max;
+var min = Math.min;
+
+// `Array.prototype.splice` method
+// https://tc39.es/ecma262/#sec-array.prototype.splice
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  splice: function splice(start, deleteCount /* , ...items */) {
+    var O = toObject(this);
+    var len = lengthOfArrayLike(O);
+    var actualStart = toAbsoluteIndex(start, len);
+    var argumentsLength = arguments.length;
+    var insertCount, actualDeleteCount, A, k, from, to;
+    if (argumentsLength === 0) {
+      insertCount = actualDeleteCount = 0;
+    } else if (argumentsLength === 1) {
+      insertCount = 0;
+      actualDeleteCount = len - actualStart;
+    } else {
+      insertCount = argumentsLength - 2;
+      actualDeleteCount = min(max(toIntegerOrInfinity(deleteCount), 0), len - actualStart);
+    }
+    doesNotExceedSafeInteger(len + insertCount - actualDeleteCount);
+    A = arraySpeciesCreate(O, actualDeleteCount);
+    for (k = 0; k < actualDeleteCount; k++) {
+      from = actualStart + k;
+      if (from in O) createProperty(A, k, O[from]);
+    }
+    A.length = actualDeleteCount;
+    if (insertCount < actualDeleteCount) {
+      for (k = actualStart; k < len - actualDeleteCount; k++) {
+        from = k + actualDeleteCount;
+        to = k + insertCount;
+        if (from in O) O[to] = O[from];
+        else deletePropertyOrThrow(O, to);
+      }
+      for (k = len; k > len - actualDeleteCount + insertCount; k--) deletePropertyOrThrow(O, k - 1);
+    } else if (insertCount > actualDeleteCount) {
+      for (k = len - actualDeleteCount; k > actualStart; k--) {
+        from = k + actualDeleteCount - 1;
+        to = k + insertCount - 1;
+        if (from in O) O[to] = O[from];
+        else deletePropertyOrThrow(O, to);
+      }
+    }
+    for (k = 0; k < insertCount; k++) {
+      O[k + actualStart] = arguments[k + 2];
+    }
+    setArrayLength(O, len - actualDeleteCount + insertCount);
+    return A;
   }
 });
 

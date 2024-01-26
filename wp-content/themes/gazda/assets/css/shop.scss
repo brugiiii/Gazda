@@ -1,6 +1,9 @@
-//Utils
+//Base
 @import "base/variables";
+
+//Utils
 @import "utils/mixins";
+@import "utils/animations";
 
 //Vendors
 @import "vendors/skeleton";

@@ -84,12 +84,12 @@
   fill: $fifth-text-color;
 }
 
-.order-list {
+.order-list,
+.filter-container {
   @include transition(opacity, visibility);
 
   top: calc(100% + 0.5rem);
 
-  border-radius: 1rem;
   border: 2px solid $fifth-bg-color;
   background-color: $fourth-text-color;
 
@@ -125,3 +125,45 @@
   }
 }
 
+.filter-wrapper {
+  padding: 0.875rem 4.875rem 0.875rem 0.625rem;
+}
+
+.filter-wrapper__field {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.01875rem;
+
+  cursor: pointer;
+
+  color: $third-text-color;
+
+  &:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.filter-wrapper__input {
+  all: unset;
+  
+  display: inline-block;
+
+  width: 1.5rem;
+  height: 1.5rem;
+  
+  background-image: url(../images/checkbox.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  
+  &:checked {
+    background-image: url(../images/checkbox-checked.svg);
+  }
+}
+
+#cart {
+  &.animate {
+    animation-name: tada;
+    animation-duration: 0.8s;
+  }
+}

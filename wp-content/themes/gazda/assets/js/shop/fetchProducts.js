@@ -1,72 +1,135 @@
 import {productsSkeleton} from "../helpers/productsSkeleton";
 
-const {ajax_url} = settings;
 const productsItems = $('.products-items');
+const productsList = $('.products-list');
+const paginationContainer = $('.pagination-container');
+const filterContainer = $('.filter-container')
 const productsNav = $('.products-nav');
-const orderButtons = $('.order-list__button')
-const orderButton = $('.order-button__text')
-const orderList = $('.order-list')
-const breadCrumbCurrent = $('.breadcrumb .current')
+const orderButtons = $('.order-list__button');
+const orderButton = $('.order-button');
+const orderButtonText = $('.order-button__text');
+const orderList = $('.order-list');
+const breadCrumbCurrent = $('.breadcrumb .current');
+const toolbarFilter = $('.toolbar-filter')
+const filterButton = $('.filter-button')
 
+const initialPostsPerPage = 12;
+let loadMoreClickCount = 0;
+
+const {ajax_url} = settings;
 const query = {
     page: 1,
     categories: [],
-    posts_per_page: 12,
+    posts_per_page: initialPostsPerPage,
     order: 'ASC',
-    attributes: []
-}
+    tags: []
+};
 
-export const loadPosts = () => {
-    productsItems.html(productsSkeleton);
+export const fetchAndRenderProducts = (useSkeleton = true) => {
+    if (useSkeleton) {
+        productsList.html(productsSkeleton);
+    }
 
     $.ajax({
         url: ajax_url,
         type: 'post',
-        data: {
-            action: 'fetch_products',
-            ...query
-        },
-        success: response => productsItems.html(response),
-        error: error => console.log(error)
+        data: {action: 'fetch_products', ...query},
+        success: handleProductsFetchSuccess,
+        error: handleProductsFetchError
     });
 };
 
-const handleCategoryClick = e => {
-    const $this = $(e.currentTarget);
+const handleProductsFetchSuccess = (response) => {
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = response;
 
-    if ($this.hasClass("is-active")){
+    const paginationWrapper = tempElement.querySelector('.pagination-wrapper');
+    const filterWrapper = tempElement.querySelector('.filter-wrapper');
+
+    paginationContainer.addClass("d-none");
+    toolbarFilter.addClass('d-none');
+
+    if (paginationWrapper) {
+        paginationContainer.removeClass('d-none');
+        paginationWrapper.remove();
+    }
+
+    if (filterWrapper) {
+        toolbarFilter.removeClass('d-none');
+        filterWrapper.remove();
+    }
+
+    const remainingHTML = tempElement.innerHTML;
+
+    productsList.html(remainingHTML);
+    paginationContainer.html(paginationWrapper);
+    filterContainer.html(filterWrapper)
+
+    const lastPaginationItem = $('.pagination__item[data-page]:last');
+
+    lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
+};
+
+const handleProductsFetchError = (error) => {
+    console.error(error);
+};
+
+const handleCategoryButtonClick = (event) => {
+    const $clickedButton = $(event.currentTarget);
+
+    if ($clickedButton.hasClass("is-active")) {
         return;
     }
 
-    const categoriesIds = $this.data('categoriesIds');
-    const navItem = $this.closest('.products-nav__item');
+    const categoryIds = $clickedButton.data('categoriesIds');
+    const navItem = $clickedButton.closest('.products-nav__item');
     const siblingButtons = navItem.siblings().find('.products-nav__button');
 
-    $this.addClass('is-active');
+    $clickedButton.addClass('is-active');
     siblingButtons.removeClass('is-active');
-    breadCrumbCurrent.text($this.text())
+    breadCrumbCurrent.text($clickedButton.text());
+    loadMoreClickCount = 1;
 
-    if (categoriesIds) {
-        const idsArray = categoriesIds.split(' ');
-        query.categories = idsArray;
-    } else {
-        const categoryId = $this.data('categoryId');
-        query.categories = [categoryId];
-    }
-
+    query.categories = categoryIds ? categoryIds.split(' ') : [$clickedButton.data('categoryId')];
+    query.posts_per_page = initialPostsPerPage;
     query.page = 1;
 
-    loadPosts();
+    fetchAndRenderProducts();
+};
+
+const handleFilterChange = (e) => {
+    const $this = $(e.currentTarget);
+    const tagId = $this.val();
+
+    const tagIndex = query.tags.indexOf(tagId);
+
+    if (tagIndex === -1) {
+        // Якщо тега немає в масиві, то додаємо його
+        query.tags.push(tagId);
+    } else {
+        // Якщо тег вже є в масиві, то видаляємо його
+        query.tags.splice(tagIndex, 1);
+    }
+
+    console.log(query.tags);
 }
 
-const handlePaginationClick = e => {
-    const $this = $(e.currentTarget);
+const handleLoadMoreClick = ($this) => {
+    $this.addClass('loading')
+    $this.attr('disabled', true)
 
-    if ($this.hasClass('current')) {
+    loadMoreClickCount += 1;
+    query.posts_per_page = initialPostsPerPage * loadMoreClickCount;
+
+    fetchAndRenderProducts(false);
+};
+
+const handlePaginationButtonClick = ($clickedButton) => {
+    if ($clickedButton.hasClass('current')) {
         return;
     }
 
-    const action = $this.data("action");
+    const action = $clickedButton.data("action");
 
     if (action) {
         switch (action) {
@@ -80,52 +143,99 @@ const handlePaginationClick = e => {
                 query.page = 1;
                 break;
             case 'last':
-                query.page = $this.data('last-page');
+                query.page = $clickedButton.data('last-page');
                 break;
         }
     } else {
-        query.page = $this.data("page");
+        query.page = $clickedButton.data("page");
     }
 
-    loadPosts();
+    fetchAndRenderProducts();
 };
 
-const handleOrderButtonClick = e => {
-    const $this = $(e.currentTarget);
-    const order = $this.data("order");
+const handlePaginationClick = (event) => {
+    const $clickedButton = $(event.currentTarget);
+
+    if ($clickedButton.hasClass('load-more')) {
+        handleLoadMoreClick($clickedButton);
+    } else {
+        handlePaginationButtonClick($clickedButton);
+    }
+};
+
+const handleOrderButtonClick = (event) => {
+    const $clickedButton = $(event.currentTarget);
+    const order = $clickedButton.data("order");
 
     if (query.order === order) {
         return;
     }
 
-    $this.addClass("is-active").siblings().removeClass('is-active');
-    orderButton.text($this.text());
-    orderList.addClass('is-hidden')
+    $clickedButton.addClass("is-active").siblings().removeClass('is-active');
+    orderButtonText.text($clickedButton.text());
+    orderList.addClass('is-hidden');
 
     query.order = order;
-    loadPosts();
+    fetchAndRenderProducts();
 };
 
-const showOrderButtons = () => {
-    e.stopPropagation();
+const toggleOrderListVisibility = (event) => {
+    event.stopPropagation();
 
-    if(orderList.hasClass('is-hidden')){
+    if (orderList.hasClass('is-hidden')) {
+        // Keyboard tracking
+        $(document).on("keydown", function (e) {
+            if (e.key === "Escape") {
+                orderList.addClass('is-hidden');
+                $(document).off("keydown");
+            }
+        });
+
+        // Click tracking
         $(document).on("click", function (e) {
             if (!orderList.is(e.target) && orderList.has(e.target).length === 0) {
                 orderList.addClass('is-hidden');
                 $(document).off("click");
+                $(document).off("keydown");
             }
         });
     }
 
     orderList.toggleClass('is-hidden');
+};
+
+const toggleFilterListVisibility = (event) => {
+    event.stopPropagation();
+
+    if (filterContainer.hasClass('is-hidden')) {
+        // Keyboard tracking
+        $(document).on("keydown", function (e) {
+            if (e.key === "Escape") {
+                filterContainer.addClass('is-hidden');
+                $(document).off("keydown");
+            }
+        });
+
+        // Click tracking
+        $(document).on("click", function (e) {
+            if (!filterContainer.is(e.target) && filterContainer.has(e.target).length === 0) {
+                filterContainer.addClass('is-hidden');
+                $(document).off("click");
+                $(document).off("keydown");
+            }
+        });
+    }
+
+    filterContainer.toggleClass('is-hidden');
 }
 
-productsItems.on("click", '.pagination__item', handlePaginationClick);
-productsNav.on("click", '.products-nav__button', handleCategoryClick)
-orderButtons.on("click", handleOrderButtonClick)
-orderButton.on("click", showOrderButtons);
+productsItems.on("click", '.pagination__item, .load-more', handlePaginationClick);
+productsNav.on("click", '.products-nav__button', handleCategoryButtonClick);
+toolbarFilter.on("change", '.filter-wrapper__input', handleFilterChange)
+orderButtons.on("click", handleOrderButtonClick);
+orderButton.on("click", toggleOrderListVisibility);
+filterButton.on('click', toggleFilterListVisibility)
 
 $(document).ready(function () {
-    $('.products-nav__button:first').trigger("click")
-})
+    $('.products-nav__button:first').trigger("click");
+});

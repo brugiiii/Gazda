@@ -27,6 +27,8 @@
 }
 
 .load-more {
+  @include transition(fill, background-color, color);
+
   min-width: 12.375rem;
   max-width: fit-content;
   height: 2.5rem;
@@ -41,4 +43,29 @@
   fill: $white-color;
   background-color: $secondary-accent-color;
   color: $white-color;
+
+  &.loading {
+    & .load-more__icon {
+      animation: rotateAnimation 0.7s linear infinite;
+    }
+  }
+
+  &:disabled {
+    color: $secondary-text-color;
+    background-color: $fifth-bg-color;
+    fill: $secondary-text-color;
+  }
+}
+
+.load-more__icon {
+  transform-origin: 50% 50%;
+}
+
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
