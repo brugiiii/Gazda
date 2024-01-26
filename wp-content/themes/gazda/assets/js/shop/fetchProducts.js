@@ -35,7 +35,7 @@ export const fetchAndRenderProducts = (useSkeleton = true) => {
         type: 'post',
         data: {action: 'fetch_products', ...query},
         success: handleProductsFetchSuccess,
-        error: handleProductsFetchError
+        error:  (error) => console.log(error)
     });
 };
 
@@ -52,26 +52,27 @@ const handleProductsFetchSuccess = (response) => {
     if (paginationWrapper) {
         paginationContainer.removeClass('d-none');
         paginationWrapper.remove();
+
+        paginationContainer.html(paginationWrapper);
     }
 
     if (filterWrapper) {
         toolbarFilter.removeClass('d-none');
         filterWrapper.remove();
+
+
+        if(query.tags.length === 0) {
+            filterContainer.html(filterWrapper)
+        }
     }
 
     const remainingHTML = tempElement.innerHTML;
 
     productsList.html(remainingHTML);
-    paginationContainer.html(paginationWrapper);
-    filterContainer.html(filterWrapper)
 
     const lastPaginationItem = $('.pagination__item[data-page]:last');
 
     lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
-};
-
-const handleProductsFetchError = (error) => {
-    console.error(error);
 };
 
 const handleCategoryButtonClick = (event) => {
@@ -93,6 +94,7 @@ const handleCategoryButtonClick = (event) => {
     query.categories = categoryIds ? categoryIds.split(' ') : [$clickedButton.data('categoryId')];
     query.posts_per_page = initialPostsPerPage;
     query.page = 1;
+    query.tags = [];
 
     fetchAndRenderProducts();
 };
@@ -111,7 +113,7 @@ const handleFilterChange = (e) => {
         query.tags.splice(tagIndex, 1);
     }
 
-    console.log(query.tags);
+    fetchAndRenderProducts();
 }
 
 const handleLoadMoreClick = ($this) => {
@@ -199,6 +201,9 @@ const toggleOrderListVisibility = (event) => {
                 $(document).off("keydown");
             }
         });
+    } else {
+        $(document).off("keydown");
+        $(document).off("click")
     }
 
     orderList.toggleClass('is-hidden');
@@ -224,6 +229,9 @@ const toggleFilterListVisibility = (event) => {
                 $(document).off("keydown");
             }
         });
+    } else {
+        $(document).off("keydown");
+        $(document).off("click")
     }
 
     filterContainer.toggleClass('is-hidden');

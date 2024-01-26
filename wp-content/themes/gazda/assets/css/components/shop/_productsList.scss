@@ -3,20 +3,20 @@
 }
 
 .products-list__item {
-  aspect-ratio: 1 / calc(18.625 / 13.25);
-  flex-basis: calc((100% - 3.75rem) / 4);
-}
-
-.product-list__wrapper {
   @include transition(box-shadow);
 
-  min-height: 100%;
+  aspect-ratio: 1 / calc(18.625 / 13.25);
+  flex-basis: calc((100% - 3.75rem) / 4);
 
-  &:hover {
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
+  &:hover,
+  &:focus {
     & .quantity {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    & .product-list__wrapper {
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
   }
 }
@@ -49,8 +49,16 @@
 }
 
 .quantity {
-  display: none;
+  @include transition(opacity, visibility);
 
+  top: calc(100% - 0.5rem);
+
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.quantity-wrapper {
   gap: 1.5rem;
 
   padding: 0.31rem 0;

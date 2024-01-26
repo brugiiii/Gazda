@@ -165,7 +165,9 @@ var fetchAndRenderProducts = function fetchAndRenderProducts() {
       action: 'fetch_products'
     }, query),
     success: handleProductsFetchSuccess,
-    error: handleProductsFetchError
+    error: function error(_error) {
+      return console.log(_error);
+    }
   });
 };
 var handleProductsFetchSuccess = function handleProductsFetchSuccess(response) {
@@ -178,20 +180,19 @@ var handleProductsFetchSuccess = function handleProductsFetchSuccess(response) {
   if (paginationWrapper) {
     paginationContainer.removeClass('d-none');
     paginationWrapper.remove();
+    paginationContainer.html(paginationWrapper);
   }
   if (filterWrapper) {
     toolbarFilter.removeClass('d-none');
     filterWrapper.remove();
+    if (query.tags.length === 0) {
+      filterContainer.html(filterWrapper);
+    }
   }
   var remainingHTML = tempElement.innerHTML;
   productsList.html(remainingHTML);
-  paginationContainer.html(paginationWrapper);
-  filterContainer.html(filterWrapper);
   var lastPaginationItem = $('.pagination__item[data-page]:last');
   lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
-};
-var handleProductsFetchError = function handleProductsFetchError(error) {
-  console.error(error);
 };
 var handleCategoryButtonClick = function handleCategoryButtonClick(event) {
   var $clickedButton = $(event.currentTarget);
@@ -208,6 +209,7 @@ var handleCategoryButtonClick = function handleCategoryButtonClick(event) {
   query.categories = categoryIds ? categoryIds.split(' ') : [$clickedButton.data('categoryId')];
   query.posts_per_page = initialPostsPerPage;
   query.page = 1;
+  query.tags = [];
   fetchAndRenderProducts();
 };
 var handleFilterChange = function handleFilterChange(e) {
@@ -221,7 +223,7 @@ var handleFilterChange = function handleFilterChange(e) {
     // Якщо тег вже є в масиві, то видаляємо його
     query.tags.splice(tagIndex, 1);
   }
-  console.log(query.tags);
+  fetchAndRenderProducts();
 };
 var handleLoadMoreClick = function handleLoadMoreClick($this) {
   $this.addClass('loading');
@@ -294,6 +296,9 @@ var toggleOrderListVisibility = function toggleOrderListVisibility(event) {
         $(document).off("keydown");
       }
     });
+  } else {
+    $(document).off("keydown");
+    $(document).off("click");
   }
   orderList.toggleClass('is-hidden');
 };
@@ -316,6 +321,9 @@ var toggleFilterListVisibility = function toggleFilterListVisibility(event) {
         $(document).off("keydown");
       }
     });
+  } else {
+    $(document).off("keydown");
+    $(document).off("click");
   }
   filterContainer.toggleClass('is-hidden');
 };

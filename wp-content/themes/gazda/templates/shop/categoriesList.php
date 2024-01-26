@@ -19,41 +19,30 @@ if (count($categories) === 1) {
     $tags_query = new WP_Query($tags_args);
 
     // Перевірка, чи є хоча б один тег
-    $has_tags = false;
-
-    while ($tags_query->have_posts()) {
-        $tags_query->the_post();
-
-        // Отримання тегів для поточного поста
-        $post_tags = wp_get_post_terms(get_the_ID(), 'product_tag', array('fields' => 'ids'));
-
-        if (!empty($post_tags)) {
-            $has_tags = true;
-            break; // Якщо знайдено хоча б один тег, виходимо з циклу
-        }
-    }
-
-    // Виведення div тільки якщо є хоча б один тег
-    if ($has_tags) {
+    if ($tags_query->have_posts()) {
         ?>
         <div class="filter-wrapper">
             <?php
-            // Повторне перебирання для виведення тегів
-            $tags_query->rewind_posts();
+            // Масив для зберігання вже виведених тегів
+            $displayed_tags = array();
+
             while ($tags_query->have_posts()) {
                 $tags_query->the_post();
 
                 // Отримання тегів для поточного поста
                 $post_tags = wp_get_post_terms(get_the_ID(), 'product_tag', array('fields' => 'ids'));
 
-                // Виведення чекбоксів
+                // Виведення чекбоксів тільки для унікальних тегів
                 foreach ($post_tags as $tag_id) {
-                    ?>
-                    <label class="filter-wrapper__field d-flex align-items-center gap-2">
-                        <input class="filter-wrapper__input" type="checkbox" value="<?= esc_attr($tag_id); ?>">
-                        <?= esc_html(get_term($tag_id, 'product_tag')->name); ?>
-                    </label>
-                    <?php
+                    if (!in_array($tag_id, $displayed_tags)) {
+                        $displayed_tags[] = $tag_id; // Додаємо тег до вже виведених
+                        ?>
+                        <label class="filter-wrapper__field d-flex align-items-center gap-2">
+                            <input class="filter-wrapper__input" type="checkbox" value="<?= esc_attr($tag_id); ?>">
+                            <?= esc_html(get_term($tag_id, 'product_tag')->name); ?>
+                        </label>
+                        <?php
+                    }
                 }
             }
             ?>
