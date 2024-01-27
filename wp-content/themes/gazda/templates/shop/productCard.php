@@ -4,7 +4,7 @@ $thumbnail_id = $args['thumbnail_id'] ?? null;
 
 <li class="products-list__item position-relative">
     <div class="product-list__wrapper bg-white rounded-3 overflow-hidden h-100">
-        <a class="products-list__link d-block mb-1" href="<?= get_permalink(); ?>">
+        <a class="products-list__link d-block pb-1" href="<?= get_permalink(); ?>">
             <div class="products-list__thumb">
                 <?= $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'full', false, array('class' => '')) : wc_placeholder_img(array('class' => '')); ?>
             </div>
@@ -13,17 +13,27 @@ $thumbnail_id = $args['thumbnail_id'] ?? null;
                     <?php the_title(); ?>
                 </h3>
                 <span class="product-list__price d-block">
-                    <?= get_template_part('templates/price'); ?>
+                    <?= get_template_part('templates/shop/price'); ?>
                 </span>
             </div>
         </a>
         <div class="px-3">
-            <button class="product-list__button button-primary w-100 border-0 d-flex align-items-center justify-content-center gap-2"
+            <button class="product-list__button button-primary w-100 border-0 position-relative"
                     data-product-id="<?= get_the_ID(); ?>">
-                <svg class="product-list__icon" width="24" height="24">
-                    <use href="<?php get_image('sprite.svg#icon-shopping-cart'); ?>"></use>
-                </svg>
-                <?= translate_and_output('buy'); ?>
+                <span class="d-flex align-items-center justify-content-center gap-2">
+                    <svg class="product-list__icon" width="24" height="24">
+                        <use href="<?php get_image('sprite.svg#icon-shopping-cart'); ?>"></use>
+                    </svg>
+                    <?= translate_and_output('buy'); ?>
+                </span>
+                <span class="loader-container position-absolute top-50 start-50 translate-middle">
+                    <div class="loader">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                </span>
             </button>
         </div>
     </div>

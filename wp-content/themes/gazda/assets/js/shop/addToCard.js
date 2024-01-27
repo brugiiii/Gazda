@@ -9,10 +9,12 @@ $(document).ready(function () {
     $('.products-items').on('click', '.product-list__button', function () {
         const $this = $(this);
 
+        $this.attr('disabled', true)
+
         flyToCart($this);
 
         const productId = $this.data('product-id');
-        const quantity = $this.next('.quantity').find('.quantity__value').text();
+        const quantity = $this.closest('.products-list__item').find('.quantity__value').text();
 
         $.ajax({
             type: 'POST',
@@ -23,10 +25,9 @@ $(document).ready(function () {
                 quantity: quantity,
             },
             success: function (response) {
-                console.log(response);
-
-                // Оновити кількість унікальних товарів у кошику на сторінці
                 updateCartCount();
+
+                $this.attr('disabled', false);
             },
         });
     });
@@ -42,7 +43,6 @@ $(document).ready(function () {
             success: function (response) {
                 cartIcon.addClass('animate');
                 cartQuantity.text(response);
-
                 setTimeout(function () {
                     cartIcon.removeClass('animate');
                 }, 700);

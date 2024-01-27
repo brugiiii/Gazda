@@ -26,11 +26,11 @@
 }
 
 .product-list__title {
-  min-height: 2.5rem;
+  height: 2.5rem;
 
   font-size: 0.875rem;
-  line-height: 1.4;
-  letter-spacing: 0.01875rem;
+
+  overflow: hidden;
 
   color: $seventh-text-color;
 }
@@ -43,9 +43,37 @@
 }
 
 .product-list__button {
+  @include transition(background-color);
+
   height: 2.5rem;
 
   fill: $white-color;
+
+  & span {
+    @include transition(scale);
+  }
+
+  &:disabled {
+    background-color: $fifth-bg-color;
+
+    & span {
+      scale: 0;
+    }
+
+    & .loader-container {
+      scale: 1;
+    }
+  }
+
+  & .loader-container {
+    @include transition(scale);
+
+    scale: 0;
+  }
+
+  & .loader {
+    animation: spin 2s linear infinite;
+  }
 }
 
 .quantity {
@@ -71,10 +99,6 @@
   width: 1.875rem;
   height: 1.875rem;
 
-  font-size: 0.875rem;
-  line-height: 1.4;
-  letter-spacing: 0.01875rem;
-
   color: $third-text-color;
 }
 
@@ -82,8 +106,7 @@
   fill: $secondary-text-color;
 }
 
-.fly-cart{
+.fly-cart {
   z-index: 9999;
-  fliter: brightness(200%);
-  width:200px;
+  width: 200px;
 }

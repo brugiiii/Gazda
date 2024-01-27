@@ -1,11 +1,25 @@
 #shop {
   padding-bottom: 2.5rem;
+  
+  line-height: 1.4;
+  font-size: 0.875rem;
+  letter-spacing: 0.01875rem;
 
   @media screen and (min-width: 992px) {
     padding-top: 1.5rem;
   }
 
   color: $secondary-text-color;
+
+  & button {
+    letter-spacing: inherit;
+  }
+
+  & h2 {
+    font-size: 1.5rem;
+
+    color: $third-text-color;
+  }
 }
 
 .breadcrumb {
@@ -43,10 +57,6 @@
 .products-nav__button {
   @include hover(color inherit $third-text-color);
 
-  font-size: 0.875rem;
-  line-height: 1.4;
-  letter-spacing: 0.01875rem;
-
   &.is-active {
     color: $third-text-color;
   }
@@ -75,9 +85,8 @@
   border: 2px solid $fifth-bg-color;
   border-radius: $primary-radius;
 
-  font-size: 0.875rem;
-  line-height: 1.4;
-  letter-spacing: 0.01875rem;
+  
+  
 
   color: $third-text-color;
   background-color: $fourth-text-color;
@@ -105,9 +114,8 @@
   padding-left: 1.75rem;
   padding-right: 1.75rem;
 
-  font-size: 0.875rem;
-  line-height: 1.4;
-  letter-spacing: 0.01875rem;
+  
+  
 
   &:first-child {
     padding-top: 0.625rem;
@@ -130,9 +138,10 @@
 }
 
 .filter-wrapper__field {
-  font-size: 0.875rem;
-  line-height: 1.4;
-  letter-spacing: 0.01875rem;
+  white-space: nowrap;
+
+  
+  
 
   cursor: pointer;
 
@@ -147,6 +156,7 @@
   all: unset;
   
   display: inline-block;
+  flex-shrink: 0;
 
   width: 1.5rem;
   height: 1.5rem;

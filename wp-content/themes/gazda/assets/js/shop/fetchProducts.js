@@ -21,13 +21,14 @@ const query = {
     page: 1,
     categories: [],
     posts_per_page: initialPostsPerPage,
-    order: 'ASC',
+    order: 'DESC',
     tags: []
 };
 
 export const fetchAndRenderProducts = (useSkeleton = true) => {
     if (useSkeleton) {
         productsList.html(productsSkeleton);
+        paginationContainer.html('');
     }
 
     $.ajax({
@@ -75,6 +76,7 @@ const handleProductsFetchSuccess = (response) => {
     lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
 };
 
+// Actions
 const handleCategoryButtonClick = (event) => {
     const $clickedButton = $(event.currentTarget);
 
@@ -181,6 +183,7 @@ const handleOrderButtonClick = (event) => {
     fetchAndRenderProducts();
 };
 
+// Lists visibility
 const toggleOrderListVisibility = (event) => {
     event.stopPropagation();
 
@@ -237,6 +240,7 @@ const toggleFilterListVisibility = (event) => {
     filterContainer.toggleClass('is-hidden');
 }
 
+// Listeners
 productsItems.on("click", '.pagination__item, .load-more', handlePaginationClick);
 productsNav.on("click", '.products-nav__button', handleCategoryButtonClick);
 toolbarFilter.on("change", '.filter-wrapper__input', handleFilterChange)

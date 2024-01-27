@@ -47,7 +47,7 @@ function display_category_products($category_hierarchy)
                                             <?= get_the_title() ?>
                                         </h3>
                                         <span class="products-list__price d-md-none">
-                                            <?= get_template_part('templates/price'); ?>
+                                            <?= get_template_part('templates/price.php'); ?>
                                         </span>
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@ function display_category_products($category_hierarchy)
 
                                 <div class="d-flex flex-column justify-content-between">
                                     <span class="products-list__price d-none d-md-block">
-                                    <?= get_template_part('templates/price'); ?>
+                                    <?= get_template_part('templates/price.php'); ?>
                                     </span>
                                     <span class="products-list__favorite">
                                         <?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>

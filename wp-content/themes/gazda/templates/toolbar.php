@@ -1,5 +1,5 @@
 <?php
-$unique_items_count = count(WC()->cart->get_cart());
+$products_count = WC()->cart->get_cart_contents_count();
 ?>
 
 <div class="toolbar d-flex align-items-center gap-2 gap-xl-3">
@@ -25,8 +25,8 @@ $unique_items_count = count(WC()->cart->get_cart());
             </svg>
         </button>
 
-        <span class="card-quantity position-absolute top-0 start-0 text-danger <?= $unique_items_count === 0 ? 'is-hidden' : '' ?>">
-            <?= $unique_items_count; ?>
+        <span class="card-quantity position-absolute top-0 start-0 text-danger <?= $products_count === 0 ? 'is-hidden' : '' ?>">
+            <?= $products_count; ?>
         </span>
 
     </div>

@@ -2,7 +2,7 @@
 $categories = $_POST['categories'] ?? array();
 $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 12;
-$order = isset($_POST['order']) ? $_POST['order'] : 'ASC';
+$order = isset($_POST['order']) ? $_POST['order'] : 'DESC';
 $tags = $_POST['tags'] ?? array();
 
 // Захист від SQL-ін'єкцій
@@ -10,10 +10,10 @@ $categories = array_map('intval', $categories);
 $tags = array_map('sanitize_text_field', $tags);
 $page = intval($page);
 
-get_template_part('templates/shop/categoriesList', null, array('categories' => $categories));
+get_template_part('templates/shop/tagList', null, array('categories' => $categories));
 
 $args = array(
-    'post_type' => 'product',
+    'post_type' => array('product', 'product_variation'),
     'posts_per_page' => $posts_per_page,
     'paged' => $page,
     'order' => $order,

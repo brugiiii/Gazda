@@ -36,11 +36,11 @@ function si__get_products($groupMenuID = null)
     }
 }
 
-function si__get_product_categories()
+function si__get_products_ext()
 {
     global $base_url;
 
-    $url = $base_url . '/POSExternal/Get_TarifItems';
+    $url = $base_url . '/POSExternal/Get_TarifItemExt';
 
     $args = array(
         'body' => json_encode((object)[]),
@@ -53,41 +53,45 @@ function si__get_product_categories()
         return false;
     }
 
-    $body = wp_remote_retrieve_body($response);
-    $json_response = json_decode($body, true);
+    $json_response = json_decode(wp_remote_retrieve_body($response), true);
 
-    if (isset($json_response['Items']) && is_array($json_response['Items'])) {
-        $result = array();
+    if (isset($json_response['Groups']) && is_array($json_response['Groups'])) {
+        $all_objects = array();
 
-        foreach ($json_response['Items'] as $item) {
-            $result[$item['ID']] = $item['Name'];
+        foreach ($json_response['Groups'] as $group) {
+            if (isset($group['Items']) && is_array($group['Items'])) {
+                $all_objects = array_merge($all_objects, $group['Items']);
+            }
         }
 
-        return $result;
-    } else {
-        error_log('Invalid response format. Items key not found or not an array.');
-        return false;
+        return $all_objects;
     }
+
+    return false;
 }
 
 function si__process_products($groupMenuID = null)
 {
     $products = si__get_products($groupMenuID);
+    $products_ext = si__get_products_ext();
 
-    if (!$products) {
+    if (empty($products) || empty($products_ext)) {
         return false;
     }
 
-    $processedProducts = [];
+    $allProducts = array_merge($products, $products_ext);
 
-    foreach ($products as $product) {
-        $processedProducts[] = [
-            'ID' => $product['ID'],
-            'Name' => $product['Name'],
-            'Price' => $product['Price'],
-            'Code' => $product['Code']
+    $uniqueProducts = [];
+
+    foreach ($allProducts as $product) {
+        $uniqueProducts[$product['ID']] = [
+            'ID' => trim($product['ID']),
+            'Name' => trim($product['Name']),
+            'Price' => trim($product['Price']),
+            'Code' => trim($product['Code']),
+            'SaleStatus' => trim($product['SaleStatus'])
         ];
     }
 
-    return $processedProducts;
+    return $uniqueProducts;
 }

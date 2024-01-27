@@ -42,11 +42,6 @@
   &:active {
     background-color: $fourth-bg-color;
   }
-
-  &:disabled {
-    color: $secondary-text-color;
-    background-color: $fifth-bg-color;
-  }
 }
 
 .button-secondary {

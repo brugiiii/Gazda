@@ -15266,10 +15266,6 @@ img {
 .button-primary:active {
   background-color: #1F7A4D;
 }
-.button-primary:disabled {
-  color: #8A8D92;
-  background-color: #DFE0E1;
-}
 
 .button-secondary {
   padding: 0.5rem 1rem;

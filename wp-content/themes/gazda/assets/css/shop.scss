@@ -7,10 +7,13 @@
 
 //Vendors
 @import "vendors/skeleton";
+@import "vendors/loader";
 
 //Products
 @import "components/shop/productsList";
 @import "components/shop/productsSection";
+@import "components/shop/infoSection";
+@import "components/shop/faqSection";
 
 //Pagination
 @import "components/pagination";

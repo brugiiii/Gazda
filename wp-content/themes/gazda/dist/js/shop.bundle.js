@@ -18,7 +18,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_fill_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_fill_js__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var productsSkeleton = "\n    ".concat(Array(8).fill("\n            <li class=\"skeleton-list__item products-list__item\">\n            </li>").join(''), "\n");
+var productsSkeleton = "\n    ".concat(Array(12).fill("\n            <li class=\"skeleton-list__item products-list__item\">\n            </li>").join(''), "\n");
+
+/***/ }),
+
+/***/ "./assets/js/shop/accordeon.js":
+/*!*************************************!*\
+  !*** ./assets/js/shop/accordeon.js ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var iconToggle = $('.icon--toggle');
+iconToggle.on('click', function (e) {
+  $(this).toggleClass('toggle--horizontal');
+});
+$(document).ready(function () {
+  $('.faq-list__wrapper').on("click", function () {
+    var faqItem = $(this).parent('.faq-list__item');
+    var siblingsItem = faqItem.siblings('.faq-list__item');
+    var siblingsChildren = siblingsItem.children('.faq-list__text');
+    var siblingsChildrenQuestion = siblingsItem.children('.faq-list__wrapper');
+    var siblingsChildrenArrow = siblingsChildrenQuestion.find('.faq-list__icon');
+    $(this).next().slideToggle(500);
+    $(this).find('.faq-list__icon').toggleClass('rotated');
+    siblingsChildren.slideUp();
+    siblingsChildrenArrow.removeClass('rotated');
+  });
+});
 
 /***/ }),
 
@@ -45,9 +79,10 @@ var cartQuantity = $('.card-quantity');
 $(document).ready(function () {
   $('.products-items').on('click', '.product-list__button', function () {
     var $this = $(this);
+    $this.attr('disabled', true);
     (0,_flyToCard__WEBPACK_IMPORTED_MODULE_2__.flyToCart)($this);
     var productId = $this.data('product-id');
-    var quantity = $this.next('.quantity').find('.quantity__value').text();
+    var quantity = $this.closest('.products-list__item').find('.quantity__value').text();
     $.ajax({
       type: 'POST',
       url: ajax_url,
@@ -57,10 +92,8 @@ $(document).ready(function () {
         quantity: quantity
       },
       success: function success(response) {
-        console.log(response);
-
-        // Оновити кількість унікальних товарів у кошику на сторінці
         updateCartCount();
+        $this.attr('disabled', false);
       }
     });
   });
@@ -150,13 +183,14 @@ var query = {
   page: 1,
   categories: [],
   posts_per_page: initialPostsPerPage,
-  order: 'ASC',
+  order: 'DESC',
   tags: []
 };
 var fetchAndRenderProducts = function fetchAndRenderProducts() {
   var useSkeleton = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
   if (useSkeleton) {
     productsList.html(_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_10__.productsSkeleton);
+    paginationContainer.html('');
   }
   $.ajax({
     url: ajax_url,
@@ -194,6 +228,8 @@ var handleProductsFetchSuccess = function handleProductsFetchSuccess(response) {
   var lastPaginationItem = $('.pagination__item[data-page]:last');
   lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
 };
+
+// Actions
 var handleCategoryButtonClick = function handleCategoryButtonClick(event) {
   var $clickedButton = $(event.currentTarget);
   if ($clickedButton.hasClass("is-active")) {
@@ -277,6 +313,8 @@ var handleOrderButtonClick = function handleOrderButtonClick(event) {
   query.order = order;
   fetchAndRenderProducts();
 };
+
+// Lists visibility
 var toggleOrderListVisibility = function toggleOrderListVisibility(event) {
   event.stopPropagation();
   if (orderList.hasClass('is-hidden')) {
@@ -327,6 +365,8 @@ var toggleFilterListVisibility = function toggleFilterListVisibility(event) {
   }
   filterContainer.toggleClass('is-hidden');
 };
+
+// Listeners
 productsItems.on("click", '.pagination__item, .load-more', handlePaginationClick);
 productsNav.on("click", '.products-nav__button', handleCategoryButtonClick);
 toolbarFilter.on("change", '.filter-wrapper__input', handleFilterChange);
@@ -415,6 +455,21 @@ var handleQuantity = function handleQuantity(e) {
   updateQuantity(quantityValue, delta);
 };
 $('.products-items').on("click", ".quantity__button", handleQuantity);
+
+/***/ }),
+
+/***/ "./assets/js/shop/readMore.js":
+/*!************************************!*\
+  !*** ./assets/js/shop/readMore.js ***!
+  \************************************/
+/***/ (function() {
+
+var hiddenContent = $('.text-content__hidden');
+$('.text-content__button').on('click', function () {
+  $this = $(this);
+  $this.toggleClass('is-active');
+  hiddenContent.slideToggle();
+});
 
 /***/ }),
 
@@ -4587,7 +4642,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shop_productQuantity__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shop/productQuantity */ "./assets/js/shop/productQuantity.js");
 /* harmony import */ var _shop_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shop/updateCardQuantity */ "./assets/js/shop/updateCardQuantity.js");
 /* harmony import */ var _shop_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_shop_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _css_shop_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/shop.scss */ "./assets/css/shop.scss");
+/* harmony import */ var _shop_readMore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shop/readMore */ "./assets/js/shop/readMore.js");
+/* harmony import */ var _shop_readMore__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_shop_readMore__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _shop_accordeon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shop/accordeon */ "./assets/js/shop/accordeon.js");
+/* harmony import */ var _css_shop_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../css/shop.scss */ "./assets/css/shop.scss");
+
+
 
 
 

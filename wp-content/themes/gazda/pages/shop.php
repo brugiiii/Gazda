@@ -8,6 +8,8 @@ Template Name: Shop
 
 <main id="shop">
     <?= get_template_part('sections/shop/productsSection'); ?>
+    <?= get_template_part('sections/shop/infoSection'); ?>
+    <?= get_template_part('sections/shop/faqSection'); ?>
 </main>
 
 <?= get_footer(); ?>

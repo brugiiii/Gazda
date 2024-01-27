@@ -1,5 +1,5 @@
 export const productsSkeleton = `
-    ${Array(8)
+    ${Array(12)
     .fill(`
             <li class="skeleton-list__item products-list__item">
             </li>`)

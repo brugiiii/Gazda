@@ -1,0 +1,54 @@
+.info {
+  padding-top: 4.5rem;
+}
+
+.section-wrapper {
+  margin-left: 17rem;
+}
+
+.text-content {
+  & h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+.text-content__visible,
+.text-content__hidden{
+  & p {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+}
+
+.text-content__hidden {
+  display: none;
+
+  margin-top: 1rem;
+}
+
+.text-content__button {
+  min-width: 12.375rem;
+  height: 2.5rem;
+
+  border-radius: $primary-radius;
+  background-color: $secondary-accent-color;
+
+  &.is-active {
+    & .hide {
+      display: block;
+    }
+
+    & .show {
+      display: none;
+    }
+  }
+
+  & .hide {
+    display: none;
+  }
+}
