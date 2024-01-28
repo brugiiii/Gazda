@@ -16,7 +16,7 @@
   gap: 1.25rem;
 }
 @media screen and (max-width: 991px) {
-  #restaurant .navigation-mob__wrapper, #restaurant .menu-content__breadcrumb {
+  #restaurant .navigation-mob__wrapper, #restaurant .menu-content__breadcrumb, #restaurant .child-swiper {
     border-bottom: 1px solid #DFE0E1;
     background-color: #F5F5F5;
   }
@@ -35,9 +35,9 @@
   }
 }
 @media screen and (min-width: 992px) {
-  #restaurant .navigation, #restaurant .menu-content__breadcrumb {
+  #restaurant .navigation {
     position: sticky;
-    top: 1.5rem;
+    top: 4.25rem;
   }
 }
 #restaurant .navigation__title {
@@ -71,23 +71,31 @@
   margin-right: 0.625rem;
   fill: #8A8D92;
 }
-#restaurant .menu-content__breadcrumb {
+#restaurant .menu-breadcrumb {
   width: 100%;
-  padding: 0.75rem 1rem;
   font-size: 0.875rem;
   line-height: 1.4;
   letter-spacing: 0.01875rem;
 }
-@media screen and (min-width: 992px) {
-  #restaurant .menu-content__breadcrumb {
-    padding: 0.75rem;
-    margin-bottom: 1.25rem;
+@media screen and (max-width: 991px) {
+  #restaurant .menu-breadcrumb {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #DFE0E1;
+    background-color: #F5F5F5;
   }
 }
-#restaurant .menu-content__breadcrumb .menu-item {
+@media screen and (min-width: 992px) {
+  #restaurant .menu-breadcrumb {
+    position: sticky;
+    top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+#restaurant .menu-breadcrumb .menu-item {
   color: #1F252E;
 }
-#restaurant .navigation, #restaurant .menu-content > div {
+#restaurant .navigation, #restaurant .menu-content {
   border-radius: 0.5rem;
   background-color: #FFF;
 }
@@ -120,8 +128,28 @@
   line-height: 1.4;
   letter-spacing: 0.01875rem;
 }
+#restaurant .nav-list .nav-list__item .sub-menu .sub-menu__link::before {
+  content: "";
+  -webkit-transition: opacity 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out;
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 0.25rem);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  opacity: 0;
+  background-image: url(../images/icon_caret_right.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 #restaurant .nav-list .nav-list__item .sub-menu .sub-menu__link.active {
   color: #1F252E;
+}
+#restaurant .nav-list .nav-list__item .sub-menu .sub-menu__link.active::before {
+  opacity: 1;
 }
 #restaurant .nav-list .nav-list__item .sub-menu .sub-menu__icon {
   right: calc(100% + 0.25rem);
@@ -142,8 +170,7 @@
 }
 @media screen and (max-width: 991px) {
   #restaurant .products {
-    padding-top: clamp(10.418rem, 10.038rem + 1.69vw, 11.084rem);
-    margin-top: clamp(-9.646rem, -9.141rem - 0.82vw, -9.324rem);
+    scroll-margin-top: clamp(8.387rem, 8.203rem + 0.82vw, 8.709rem);
   }
 }
 #restaurant .products-title {

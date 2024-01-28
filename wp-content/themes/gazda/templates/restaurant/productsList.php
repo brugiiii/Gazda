@@ -15,7 +15,7 @@ function display_category_products($category_hierarchy)
 
         if ($query->have_posts()) {
             ?>
-            <section class="products" id="<?= esc_attr($category->slug) ?>">
+            <section class="products overflow-visible" id="<?= esc_attr($category->slug) ?>">
                 <h2 class="products-title"><?= esc_html($category->name) ?></h2>
                 <?php
                 $args = array(

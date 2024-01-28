@@ -83,7 +83,7 @@ var handleScroll = function handleScroll() {
   var top = $(window).scrollTop();
   sections.each(function (index, section) {
     var $section = $(section);
-    var offset = $section.offset().top;
+    var offset = $section.offset().top - parseInt($section.css('scroll-margin-top'), 10);
     var height = $section.outerHeight();
     var id = $section.prop('id');
     var linkToActive = $("#restaurant .nav-list a[href=\"#".concat(id, "\"]"));

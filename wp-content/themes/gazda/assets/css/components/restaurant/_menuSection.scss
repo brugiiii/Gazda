@@ -14,7 +14,8 @@
   }
 
   & .navigation-mob__wrapper,
-  & .menu-content__breadcrumb {
+  & .menu-content__breadcrumb,
+  & .child-swiper{
     @media screen and (max-width: 991px) {
       border-bottom: 1px solid $fifth-bg-color;
       background-color: $fourth-text-color;
@@ -33,11 +34,10 @@
     }
   }
 
-  & .navigation,
-  & .menu-content__breadcrumb {
+  & .navigation {
     @media screen and (min-width: 992px) {
       position: sticky;
-      top: 1.5rem;
+      top: 4.25rem;
     }
   }
 
@@ -77,18 +77,26 @@
     fill: $secondary-text-color;
   }
 
-  & .menu-content__breadcrumb {
+  & .menu-breadcrumb {
     width: 100%;
-
-    padding: 0.75rem 1rem;
 
     font-size: 0.875rem;
     line-height: calc(1.225 / 0.875);
     letter-spacing: 0.01875rem;
 
+    @media screen and (max-width: 991px) {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid $fifth-bg-color;
+
+      background-color: $fourth-text-color;
+    }
+
     @media screen and (min-width: 992px) {
-      padding: 0.75rem;
-      margin-bottom: 1.25rem;
+      position: sticky;
+      top: 1.5rem;
+
+      margin-bottom: 1.5rem;
     }
 
     & .menu-item {
@@ -97,7 +105,7 @@
   }
 
   & .navigation,
-  & .menu-content > div {
+  & .menu-content {
     border-radius: $fourth-radius;
     background-color: $white-color;
   }
@@ -146,8 +154,33 @@
         }
 
         & .sub-menu__link {
+          &::before {
+            content: '';
+
+            @include transition(opacity);
+
+            position: absolute;
+            top: 50%;
+            right: calc(100% + 0.25rem);
+            transform: translateY(-50%);
+
+            width: 1rem;
+            height: 1rem;
+
+            opacity: 0;
+
+            background-image: url(../images/icon_caret_right.svg);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+
           &.active {
             color: $third-text-color;
+
+            &::before {
+              opacity: 1;
+            }
           }
         }
 
@@ -171,8 +204,7 @@
 
   & .products {
     @media screen and (max-width: 991px) {
-      padding-top: clamp(10.418rem, 10.038rem + 1.69vw, 11.084rem);
-      margin-top: clamp(-9.646rem, -9.141rem - 0.82vw, -9.324rem);
+      scroll-margin-top: clamp(8.387rem, 8.203rem + 0.82vw, 8.709rem);
     }
 
     padding-top: clamp(1.09375rem, 0.898rem + 0.87vw, 1.4375rem);

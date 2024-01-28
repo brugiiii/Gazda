@@ -5,7 +5,7 @@ $number = get_field('number', 16);
 
 <footer class="footer">
     <div class="container">
-        <div class="d-lg-flex footer-content">
+        <div class="d-lg-flex justify-content-lg-between footer-content">
             <?php the_custom_logo(); ?>
             <span class="footer-content__socials d-lg-none d-block mb-3 text-center">
                 <?php translate_and_output('socials'); ?>
@@ -14,7 +14,7 @@ $number = get_field('number', 16);
                 <?php get_template_part('templates/socialsList'); ?>
             </div>
             <?php get_template_part('templates/navigation', null, array('location' => 'menu-footer')); ?>
-            <div class="ms-auto d-none d-lg-block">
+            <div class="d-none d-lg-block">
                 <?php get_template_part('templates/socialsList'); ?>
             </div>
         </div>
@@ -34,7 +34,7 @@ $number = get_field('number', 16);
             </div>
             <div class="footer-wrapper__item d-flex flex-column justify-content-lg-between alignitemscenter align-items-lg-start text-center text-lg-start order-2">
                 <span class="footer-wrapper__title">
-                    <?php translate_and_output('address'); ?>
+                    <?= translate_and_output('address'); ?>
                 </span>
                 <a class="footer-wrapper__link" target="<?php echo $address['target']; ?>"
                    href="<?php echo $address['url']; ?>">
@@ -43,7 +43,7 @@ $number = get_field('number', 16);
             </div>
             <div class="footer-wrapper__item d-flex flex-column justify-content-lg-between alignitemscenter align-items-lg-start text-center text-lg-start order-3">
                 <span class="footer-wrapper__title">
-                    <?php translate_and_output('number'); ?>
+                    <?= translate_and_output('number'); ?>
                 </span>
                 <a class="footer-wrapper__link"
                    href="<?php echo $number['url']; ?>">
@@ -52,7 +52,7 @@ $number = get_field('number', 16);
             </div>
             <div class="footer-wrapper__item alignitemscenter align-items-lg-start text-center text-lg-start order-1 order-lg-4">
                 <span class="footer-wrapper__title--mob mb-3 d-block text-center d-lg-none d-block">
-                    <?php translate_and_output('app'); ?>
+                    <?= translate_and_output('app'); ?>
                 </span>
                 <?php get_template_part('templates/appList'); ?>
             </div>

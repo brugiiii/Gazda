@@ -66,13 +66,12 @@ const handleSubMenu = (link) => {
     }
 };
 
-
 const handleScroll = () => {
     const top = $(window).scrollTop();
 
     sections.each((index, section) => {
         const $section = $(section);
-        const offset = $section.offset().top;
+        const offset = $section.offset().top - parseInt($section.css('scroll-margin-top'), 10);
         const height = $section.outerHeight();
         const id = $section.prop('id');
         const linkToActive = $(`#restaurant .nav-list a[href="#${id}"]`);

@@ -45,7 +45,7 @@ if ($menu_items) {
                                     $child_category = get_term($child_category_id, 'product_cat');
                                     $child_category_slug = $child_category->slug;
                                     ?>
-                                    <a class="sub-menu__link" href="#<?= $child_category_slug; ?>">
+                                    <a class="sub-menu__link position-relative" href="#<?= $child_category_slug; ?>">
                                         <?= esc_html($child->title); ?>
                                     </a>
                                 </li>
