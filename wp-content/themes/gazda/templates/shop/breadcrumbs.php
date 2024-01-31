@@ -11,8 +11,10 @@ $home_page = pll_get_post(16, $current_lang);
     <span>
                 <?= is_shop() ? woocommerce_page_title() : get_the_title(6386); ?>
             </span>
-    <?= get_template_part('helpers/separator'); ?>
-    <span class="current">
-                <?= translate_and_output('all_products'); ?>
-            </span>
+    <span class="d-none d-lg-inline">
+        <?= get_template_part('helpers/separator'); ?>
+    </span>
+    <span class="current d-none d-lg-inline">
+        <?= translate_and_output('all_products'); ?>
+    </span>
 </div>

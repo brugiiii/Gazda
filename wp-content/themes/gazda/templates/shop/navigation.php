@@ -1,4 +1,6 @@
 <?php
+$is_swiper = $args['is_swiper'] ?? false;
+
 $current_language = pll_current_language();
 $menu_name = ($current_language === 'uk') ? 'menu-shop' : 'menu-shop-eng';
 
@@ -19,9 +21,9 @@ if ($menu_id) {
 }
 ?>
 
-<ul class="products-nav">
-    <li class="products-nav__item">
-        <button class="products-nav__button d-block bg-transparent p-0 w-100 border-0 text-start" data-categories-ids="<?= implode(' ', $category_ids); ?>">
+<ul class="products-nav <?= $is_swiper ? 'swiper-wrapper' : ''; ?>">
+    <li class="products-nav__item <?= $is_swiper ? 'swiper-slide' : ''; ?>">
+        <button class="products-nav__button d-block border-0" data-categories-ids="<?= implode(' ', $category_ids); ?>">
             <?= translate_and_output('all_products'); ?>
         </button>
     </li>
@@ -29,8 +31,8 @@ if ($menu_id) {
     if (isset($category_ids) && isset($category_names)) {
         foreach (array_combine($category_ids, $category_names) as $category_id => $category_name) {
             ?>
-            <li class="products-nav__item">
-                <button class="products-nav__button d-block bg-transparent p-0 w-100 border-0 text-start" data-category-id="<?= esc_attr($category_id); ?>">
+            <li class="products-nav__item <?= $is_swiper ? 'swiper-slide' : ''; ?>">
+                <button class="products-nav__button d-block border-0" data-category-id="<?= esc_attr($category_id); ?>">
                     <?= esc_html($category_name); ?>
                 </button>
             </li>

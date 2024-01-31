@@ -10,7 +10,11 @@
   }
 
   &:not(:last-child) {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+
+    @media screen and (min-width: 992px) {
+      margin-bottom: 1rem;
+    }
   }
 }
 
@@ -19,12 +23,14 @@
 }
 
 .faq-list__title {
-  padding: 0.28rem 0;
-
   font-size: 1.125rem;
   line-height: 1.5;
 
   color: $third-text-color;
+
+  @media screen and (min-width: 992px) {
+    padding: 0.28rem 0;
+  }
 }
 
 .faq-list__icon {

@@ -1,17 +1,22 @@
 import {productsSkeleton} from "../helpers/productsSkeleton";
+import {categoriesSwiper} from "./swiper";
 
 const productsItems = $('.products-items');
 const productsList = $('.products-list');
 const paginationContainer = $('.pagination-container');
-const filterContainer = $('.filter-container')
+const filterContainer = $('.filter-container');
 const productsNav = $('.products-nav');
 const orderButtons = $('.order-list__button');
 const orderButton = $('.order-button');
 const orderButtonText = $('.order-button__text');
 const orderList = $('.order-list');
 const breadCrumbCurrent = $('.breadcrumb .current');
-const toolbarFilter = $('.toolbar-filter')
-const filterButton = $('.filter-button')
+const toolbarFilter = $('.toolbar-filter');
+const filterButton = $('.filter-button');
+const currentFilter = $('.current-filter');
+const toolbarTitle = $('.toolbar-wrapper__title');
+const orderSelect = $('select.toolbar-els__button');
+const selectContainer = $('.select-container');
 
 const initialPostsPerPage = 12;
 let loadMoreClickCount = 0;
@@ -36,7 +41,7 @@ export const fetchAndRenderProducts = (useSkeleton = true) => {
         type: 'post',
         data: {action: 'fetch_products', ...query},
         success: handleProductsFetchSuccess,
-        error:  (error) => console.log(error)
+        error: (error) => console.log(error)
     });
 };
 
@@ -46,6 +51,7 @@ const handleProductsFetchSuccess = (response) => {
 
     const paginationWrapper = tempElement.querySelector('.pagination-wrapper');
     const filterWrapper = tempElement.querySelector('.filter-wrapper');
+    const filterSelect = tempElement.querySelector('.filter-select');
 
     paginationContainer.addClass("d-none");
     toolbarFilter.addClass('d-none');
@@ -61,9 +67,16 @@ const handleProductsFetchSuccess = (response) => {
         toolbarFilter.removeClass('d-none');
         filterWrapper.remove();
 
-
-        if(query.tags.length === 0) {
+        if(query.tags.length === 0){
             filterContainer.html(filterWrapper)
+        }
+    }
+
+    if (filterSelect) {
+        filterSelect.remove();
+
+        if(query.tags.length === 0){
+            selectContainer.html(filterSelect);
         }
     }
 
@@ -84,17 +97,37 @@ const handleCategoryButtonClick = (event) => {
         return;
     }
 
+    const currentCategory = $clickedButton.text();
     const categoryIds = $clickedButton.data('categoriesIds');
-    const navItem = $clickedButton.closest('.products-nav__item');
-    const siblingButtons = navItem.siblings().find('.products-nav__button');
+    const activeButtons = $(`.products-nav__button:contains('${currentCategory}')`);
+    const siblingButtons = activeButtons.map(function () {
+        const navItem = $(this).closest('.products-nav__item');
+        return navItem.siblings().find('.products-nav__button');
+    });
 
-    $clickedButton.addClass('is-active');
-    siblingButtons.removeClass('is-active');
-    breadCrumbCurrent.text($clickedButton.text());
+    if ($clickedButton.closest('.swiper-slide').length === 0) {
+        const activeSlideIndex = activeButtons.map(function () {
+            return $(this).closest('.swiper-slide').index();
+        }).get().find(index => index >= 0);
+
+        categoriesSwiper.slideTo(activeSlideIndex)
+    }
+
+    siblingButtons.each(function () {
+        $(this).removeClass('is-active');
+    });
+
+    activeButtons.each(function () {
+        $(this).addClass('is-active');
+    });
+
+    breadCrumbCurrent.text(currentCategory);
+    toolbarTitle.text(currentCategory)
     loadMoreClickCount = 1;
 
     query.categories = categoryIds ? categoryIds.split(' ') : [$clickedButton.data('categoryId')];
     query.posts_per_page = initialPostsPerPage;
+    currentFilter.html('')
     query.page = 1;
     query.tags = [];
 
@@ -107,15 +140,39 @@ const handleFilterChange = (e) => {
 
     const tagIndex = query.tags.indexOf(tagId);
 
+    const {tags} = query;
+
     if (tagIndex === -1) {
         // Якщо тега немає в масиві, то додаємо його
-        query.tags.push(tagId);
+        tags.push(tagId);
+
+        currentFilter.append(`<button data-id="${tagId}">${$this.closest('label').text()}</button>`);
     } else {
         // Якщо тег вже є в масиві, то видаляємо його
-        query.tags.splice(tagIndex, 1);
+        tags.splice(tagIndex, 1);
+
+        currentFilter.find(`button[data-id="${tagId}"]`).remove();
     }
 
     fetchAndRenderProducts();
+}
+
+const handleSelectFilterChange = (e) => {
+    const $this = $(e.target);
+    const values = $this.val();
+
+    $('.filter-wrapper__input').each(function() {
+        const inputValue = $(this).val();
+        const isChecked = values && values.includes(inputValue);
+
+        if (isChecked && !$(this).prop('checked')) {
+            // Якщо елемент повинен бути вибраним і він не вибраний, викликаємо click
+            $(this).click();
+        } else if (!isChecked && $(this).prop('checked')) {
+            // Якщо елемент не повинен бути вибраним і він вибраний, викликаємо click
+            $(this).click();
+        }
+    });
 }
 
 const handleLoadMoreClick = ($this) => {
@@ -178,10 +235,39 @@ const handleOrderButtonClick = (event) => {
     $clickedButton.addClass("is-active").siblings().removeClass('is-active');
     orderButtonText.text($clickedButton.text());
     orderList.addClass('is-hidden');
+    orderSelect.val(order)
 
     query.order = order;
     fetchAndRenderProducts();
 };
+
+const handleOrderSelectChange = (event) => {
+    const $this = $(event.target);
+    const value = $this.val();
+    const orderButtonToActive = $(`.order-list__button[data-order="${value}"]`);
+    const selectedOptionText = $this.find(`option[value="${value}"]`).text();
+
+    orderButtonToActive.siblings().removeClass('is-active');
+    orderButtonToActive.addClass('is-active');
+    orderButtonText.text(selectedOptionText);
+
+    query.order = value;
+
+    fetchAndRenderProducts();
+}
+
+const handleRemoveFilter = (e) => {
+    const $this = $(e.currentTarget);
+    const {tags} = query;
+    const tagId = String($this.data('id'));
+    const tagIndex = tags.indexOf(tagId);
+
+    currentFilter.find(`button[data-id="${tagId}"]`).remove();
+    tags.splice(tagIndex, 1);
+    toolbarFilter.find(`input[value="${tagId}"]`).prop('checked', false);
+
+    fetchAndRenderProducts();
+}
 
 // Lists visibility
 const toggleOrderListVisibility = (event) => {
@@ -244,9 +330,12 @@ const toggleFilterListVisibility = (event) => {
 productsItems.on("click", '.pagination__item, .load-more', handlePaginationClick);
 productsNav.on("click", '.products-nav__button', handleCategoryButtonClick);
 toolbarFilter.on("change", '.filter-wrapper__input', handleFilterChange)
+orderSelect.on('change', handleOrderSelectChange)
 orderButtons.on("click", handleOrderButtonClick);
 orderButton.on("click", toggleOrderListVisibility);
 filterButton.on('click', toggleFilterListVisibility)
+currentFilter.on('click', 'button', handleRemoveFilter)
+selectContainer.on('change', 'select', handleSelectFilterChange);
 
 $(document).ready(function () {
     $('.products-nav__button:first').trigger("click");

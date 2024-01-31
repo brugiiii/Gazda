@@ -8,7 +8,7 @@ $thumbnail_id = $args['thumbnail_id'] ?? null;
             <div class="products-list__thumb">
                 <?= $thumbnail_id ? wp_get_attachment_image($thumbnail_id, 'full', false, array('class' => '')) : wc_placeholder_img(array('class' => '')); ?>
             </div>
-            <div class="px-3 pt-2">
+            <div class="px-2 px-lg-3 pt-2">
                 <h3 class="product-list__title mb-2">
                     <?php the_title(); ?>
                 </h3>
@@ -17,7 +17,7 @@ $thumbnail_id = $args['thumbnail_id'] ?? null;
                 </span>
             </div>
         </a>
-        <div class="px-3">
+        <div class="px-2 pb-2 px-lg-3 pb-lg-3">
             <button class="product-list__button button-primary w-100 border-0 position-relative"
                     data-product-id="<?= get_the_ID(); ?>">
                 <span class="d-flex align-items-center justify-content-center gap-2">

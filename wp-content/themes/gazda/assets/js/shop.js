@@ -4,5 +4,7 @@ import "./shop/productQuantity"
 import "./shop/updateCardQuantity"
 import "./shop/readMore"
 import "./shop/accordeon"
+import "./shop/swiper"
+import "./shop/popup"
 
 import "../css/shop.scss"

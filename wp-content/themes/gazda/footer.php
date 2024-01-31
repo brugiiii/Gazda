@@ -65,6 +65,8 @@ $number = get_field('number', 16);
     <img class="img-fluid" src="" alt="">
 </div>
 
+<?= get_template_part('templates/shop/categoriesMenu'); ?>
+
 <?php wp_footer(); ?>
 
 </body>

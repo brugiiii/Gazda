@@ -58,6 +58,18 @@ if (count($categories) === 1) {
                 }
                 ?>
             </div>
+
+            <select class="filter-select d-lg-none" multiple>
+                <?php
+                foreach ($displayed_tags as $tag_id) {
+                    ?>
+                    <option value="<?= esc_attr($tag_id); ?>">
+                        <?= esc_html(get_term($tag_id, 'product_tag')->name); ?>
+                    </option>
+                    <?php
+                }
+                ?>
+            </select>
             <?php
         }
 

@@ -1,5 +1,4 @@
 import Swiper from "swiper/bundle";
-
 export const parentSwiper = new Swiper('.parent-swiper', {
     slidesPerView: "auto",
     spaceBetween: 16,
