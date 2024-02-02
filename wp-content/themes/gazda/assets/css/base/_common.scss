@@ -26,12 +26,15 @@
 }
 
 .button-primary {
-  @include hover(color $white-color $white-color, background-color $accent-color $secondary-bg-color);
+  @include hover(background-color $accent-color $secondary-bg-color,);
 
   height: 3rem;
 
   padding: 0 0.44rem;
   border-radius: $primary-radius;
+
+  fill: $white-color;
+  color: $white-color;
 
   @media screen and (max-width: 991px) {
     height: 2.5rem;

@@ -29,6 +29,9 @@ $price = $product->get_price();
 
                 <?= get_template_part('templates/single-product/attributes'); ?>
 
+                <?= get_template_part('templates/single-product/buy'); ?>
+
+                <?= get_template_part('templates/single-product/features'); ?>
             </div>
         </div>
     </div>

@@ -93,6 +93,12 @@
   color: $seventh-text-color;
 }
 
+.hero-info ul.variations-list {
+  &:not(:last-child){
+    margin-bottom: 1.75rem;
+  }
+}
+
 .variations-list__label {
   cursor: pointer;
 }
@@ -118,4 +124,42 @@
 
   color: $seventh-text-color;
   background-color: $white-color;
+}
+
+.buy-wrapper {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.quantity {
+  padding: 0.75rem;
+  border-radius: $primary-radius;
+}
+
+.quantity__value {
+  margin: 0 1.4375rem;
+
+  color: $black-color;
+}
+
+.quantity__icon {
+  fill: $secondary-text-color;
+}
+
+.buy-button {
+  min-width: 14.25rem;
+}
+
+.features-list {
+  gap: 2.5rem;
+}
+
+.features-list__item {
+  gap: 0.9375rem;
+
+  flex-basis: calc((100% - 5rem / 3));
+}
+
+.features-list__text {
+  color: $third-text-color;
 }

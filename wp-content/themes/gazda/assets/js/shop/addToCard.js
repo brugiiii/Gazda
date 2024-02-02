@@ -1,6 +1,6 @@
 import {flyToCart} from "./flyToCard"
 
-const {ajax_url} = settings
+const {ajax_url} = settings;
 
 const cartIcon = $('#cart')
 const cartQuantity = $('.card-quantity')

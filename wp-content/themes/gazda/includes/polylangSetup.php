@@ -47,7 +47,11 @@ $strings_to_translate = array(
     'hide' => 'Приховати',
     'in_stock' => 'Є в наявності',
     'out_of_stock' => 'Не в наявності',
-    'size' => 'Розмір'
+    'size' => 'Розмір',
+    'amount' => 'кількість',
+    'features_bag_text' => 'фасуємо в день замовлення',
+    'features_camera_text' => 'фото з реальних зразків',
+    'features_truck_text' => 'безкоштовна доставка від 500 грн'
 );
 
 if (function_exists('pll_register_string')) {

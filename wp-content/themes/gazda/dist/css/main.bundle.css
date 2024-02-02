@@ -15243,15 +15243,13 @@ img {
 }
 
 .button-primary {
-  color: #FFF;
   background-color: #1F4C43;
-  -webkit-transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
-  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+  -webkit-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
   height: 3rem;
   padding: 0 0.44rem;
   border-radius: 0.75rem;
-}
-.button-primary:hover, .button-primary:focus {
+  fill: #FFF;
   color: #FFF;
 }
 .button-primary:hover, .button-primary:focus {

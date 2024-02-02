@@ -97,6 +97,10 @@
   color: #333;
 }
 
+.hero-info ul.variations-list:not(:last-child) {
+  margin-bottom: 1.75rem;
+}
+
 .variations-list__label {
   cursor: pointer;
 }
@@ -117,6 +121,43 @@
   border-radius: 0.5rem;
   color: #333;
   background-color: #FFF;
+}
+
+.buy-wrapper {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.quantity {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+}
+
+.quantity__value {
+  margin: 0 1.4375rem;
+  color: #000;
+}
+
+.quantity__icon {
+  fill: #8A8D92;
+}
+
+.buy-button {
+  min-width: 14.25rem;
+}
+
+.features-list {
+  gap: 2.5rem;
+}
+
+.features-list__item {
+  gap: 0.9375rem;
+  -ms-flex-preferred-size: calc(100% - 1.6666666667rem);
+      flex-basis: calc(100% - 1.6666666667rem);
+}
+
+.features-list__text {
+  color: #1F252E;
 }
 
 /*# sourceMappingURL=product.bundle.css.map*/
