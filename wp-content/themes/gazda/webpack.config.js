@@ -10,6 +10,7 @@ module.exports = {
     restaurant: "./assets/js/restaurant.js",
     home: "./assets/js/home.js",
     shop: "./assets/js/shop.js",
+    product: "./assets/js/single-product.js",
   },
   output: {
     filename: "js/[name].bundle.js",

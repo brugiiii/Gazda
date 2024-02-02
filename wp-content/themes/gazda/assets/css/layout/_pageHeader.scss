@@ -62,6 +62,13 @@
       gap: 2.5rem;
     }
 
+    & .current_page_parent,
+    & .current_page_item {
+      & a {
+        color: $third-text-color;
+      }
+    }
+
     & a {
       @include hover(color $secondary-text-color $third-text-color);
 
@@ -71,10 +78,6 @@
       text-transform: uppercase;
 
       color: $secondary-text-color;
-
-      &[aria-current="page"] {
-        color: $third-text-color;
-      }
     }
   }
 }

@@ -1,0 +1,18 @@
+@import "base/variables";
+@import "utils/mixins";
+
+#single-product{
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.01875rem;
+
+  color: $secondary-text-color;
+}
+
+@import "components/single-product/heroSection";
+
+
+

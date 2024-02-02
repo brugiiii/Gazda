@@ -44,7 +44,10 @@ $strings_to_translate = array(
     'recommended' => 'Ґазда рекомендує',
     'new' => 'Шось нове',
     'read_more' => 'Читати далі',
-    'hide' => 'Приховати'
+    'hide' => 'Приховати',
+    'in_stock' => 'Є в наявності',
+    'out_of_stock' => 'Не в наявності',
+    'size' => 'Розмір'
 );
 
 if (function_exists('pll_register_string')) {
