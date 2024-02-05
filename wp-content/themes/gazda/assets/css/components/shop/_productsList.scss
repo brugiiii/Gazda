@@ -66,37 +66,7 @@
 }
 
 .product-list__button {
-  @include transition(background-color);
-
   height: 2.5rem;
-
-  fill: $white-color;
-
-  & span {
-    @include transition(scale);
-  }
-
-  &:disabled {
-    background-color: $fifth-bg-color;
-
-    & span {
-      scale: 0;
-    }
-
-    & .loader-container {
-      scale: 1;
-    }
-  }
-
-  & .loader-container {
-    @include transition(scale);
-
-    scale: 0;
-  }
-
-  & .loader {
-    animation: spin 2s linear infinite;
-  }
 }
 
 .quantity {

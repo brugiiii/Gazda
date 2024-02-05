@@ -268,10 +268,3 @@ select.toolbar-els__button {
     z-index: -1;
   }
 }
-
-#cart {
-  &.animate {
-    animation-name: tada;
-    animation-duration: 0.8s;
-  }
-}

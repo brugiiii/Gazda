@@ -223,32 +223,7 @@
 }
 
 .product-list__button {
-  -webkit-transition: background-color 200ms ease-in-out;
-  transition: background-color 200ms ease-in-out;
   height: 2.5rem;
-  fill: #FFF;
-}
-.product-list__button span {
-  -webkit-transition: scale 200ms ease-in-out;
-  transition: scale 200ms ease-in-out;
-}
-.product-list__button:disabled {
-  background-color: #DFE0E1;
-}
-.product-list__button:disabled span {
-  scale: 0;
-}
-.product-list__button:disabled .loader-container {
-  scale: 1;
-}
-.product-list__button .loader-container {
-  -webkit-transition: scale 200ms ease-in-out;
-  transition: scale 200ms ease-in-out;
-  scale: 0;
-}
-.product-list__button .loader {
-  -webkit-animation: spin 2s linear infinite;
-          animation: spin 2s linear infinite;
 }
 
 .quantity {
@@ -544,13 +519,6 @@ select.toolbar-els__button {
   .filter-select {
     z-index: -1;
   }
-}
-
-#cart.animate {
-  -webkit-animation-name: tada;
-          animation-name: tada;
-  -webkit-animation-duration: 0.8s;
-          animation-duration: 0.8s;
 }
 
 .info {

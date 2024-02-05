@@ -1,8 +1,13 @@
-let itemList = $(".products").offset().left;
+let itemList = $("main").offset().left;
 let cartPos = $("#cart").offset().left;
 
 export const flyToCart = (button) => {
     let item = button.closest(".product-list__wrapper");
+
+    if(item.length === 0) {
+        item = $('.gallery-list__thumb').first();
+    }
+
     let img = item.find("img").attr("src");
     let itemX = item.offset().left - itemList;
     let itemY = item.offset().top;

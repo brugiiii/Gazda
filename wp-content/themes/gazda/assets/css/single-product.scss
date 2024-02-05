@@ -1,18 +1,16 @@
+
+//Base
 @import "base/variables";
+
+//Utils
+@import "utils/animations";
 @import "utils/mixins";
 
-#single-product{
-  padding-top: 1.5rem;
-  padding-bottom: 2.5rem;
+//Vendors
+@import "vendors/loader";
 
-  font-size: 0.875rem;
-  line-height: 1.4;
-  letter-spacing: 0.01875rem;
-
-  color: $secondary-text-color;
-}
-
+//Components
+@import "components/shop/productsList";
 @import "components/single-product/heroSection";
-
-
-
+@import "components/single-product/infoSection";
+@import "components/single-product/similarProductsSection";

@@ -167,13 +167,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _flyToCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./flyToCard */ "./assets/js/shop/flyToCard.js");
+/* harmony import */ var _updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./updateCardQuantity */ "./assets/js/shop/updateCardQuantity.js");
+
 
 
 
 var _settings = settings,
   ajax_url = _settings.ajax_url;
-var cartIcon = $('#cart');
-var cartQuantity = $('.card-quantity');
 $(document).ready(function () {
   $('.products-items').on('click', '.product-list__button', function () {
     var $this = $(this);
@@ -190,29 +190,12 @@ $(document).ready(function () {
         quantity: quantity
       },
       success: function success(response) {
-        updateCartCount();
+        (0,_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__.updateCartCount)();
         $this.attr('disabled', false);
       }
     });
   });
-  function updateCartCount() {
-    // Здійснюємо AJAX-запит, щоб отримати оновлену кількість унікальних товарів у кошику
-    $.ajax({
-      type: 'GET',
-      url: ajax_url,
-      data: {
-        action: 'get_cart_count' // Оновлене ім'я дії
-      },
-
-      success: function success(response) {
-        cartIcon.addClass('animate');
-        cartQuantity.text(response);
-        setTimeout(function () {
-          cartIcon.removeClass('animate');
-        }, 700);
-      }
-    });
-  }
+  (0,_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__.updateCartCount)();
 });
 
 /***/ }),
@@ -580,10 +563,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var itemList = $(".products").offset().left;
+var itemList = $("main").offset().left;
 var cartPos = $("#cart").offset().left;
 var flyToCart = function flyToCart(button) {
   var item = button.closest(".product-list__wrapper");
+  if (item.length === 0) {
+    item = $('.gallery-list__thumb').first();
+  }
   var img = item.find("img").attr("src");
   var itemX = item.offset().left - itemList;
   var itemY = item.offset().top;
@@ -643,6 +629,9 @@ categoriesBackdrop.on("click", '.products-nav__button', function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   handleQuantity: function() { return /* binding */ handleQuantity; }
+/* harmony export */ });
 /* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor.js */ "./node_modules/core-js/modules/es.number.constructor.js");
 /* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
@@ -708,9 +697,35 @@ var categoriesSwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["default"]
 /*!**********************************************!*\
   !*** ./assets/js/shop/updateCardQuantity.js ***!
   \**********************************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   updateCartCount: function() { return /* binding */ updateCartCount; }
+/* harmony export */ });
+var cartIcon = $('#cart');
+var cartQuantity = $('.card-quantity');
+var _settings = settings,
+  ajax_url = _settings.ajax_url;
+var updateCartCount = function updateCartCount() {
+  // Здійснюємо AJAX-запит, щоб отримати оновлену кількість унікальних товарів у кошику
+  $.ajax({
+    type: 'GET',
+    url: ajax_url,
+    data: {
+      action: 'get_cart_count' // Оновлене ім'я дії
+    },
 
+    success: function success(response) {
+      cartIcon.addClass('animate');
+      cartQuantity.text(response);
+      setTimeout(function () {
+        cartIcon.removeClass('animate');
+      }, 700);
+    }
+  });
+};
 
 /***/ }),
 
@@ -15828,7 +15843,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shop_addToCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shop/addToCard */ "./assets/js/shop/addToCard.js");
 /* harmony import */ var _shop_productQuantity__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shop/productQuantity */ "./assets/js/shop/productQuantity.js");
 /* harmony import */ var _shop_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shop/updateCardQuantity */ "./assets/js/shop/updateCardQuantity.js");
-/* harmony import */ var _shop_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_shop_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _shop_readMore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shop/readMore */ "./assets/js/shop/readMore.js");
 /* harmony import */ var _shop_readMore__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_shop_readMore__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _shop_accordeon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shop/accordeon */ "./assets/js/shop/accordeon.js");

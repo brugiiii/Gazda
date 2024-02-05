@@ -115,3 +115,10 @@
     min-width: 13.8125rem;
   }
 }
+
+#cart {
+  &.animate {
+    animation-name: tada;
+    animation-duration: 0.8s;
+  }
+}

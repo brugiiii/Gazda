@@ -49,9 +49,13 @@ $strings_to_translate = array(
     'out_of_stock' => 'Не в наявності',
     'size' => 'Розмір',
     'amount' => 'кількість',
+    'description' => 'ОПИС',
+    'reviews' => 'ВІДГУКИ',
+    'return' => 'ОБМІН ТА ПОВЕРНЕННЯ',
     'features_bag_text' => 'фасуємо в день замовлення',
     'features_camera_text' => 'фото з реальних зразків',
-    'features_truck_text' => 'безкоштовна доставка від 500 грн'
+    'features_truck_text' => 'безкоштовна доставка від 500 грн',
+    'similar_products' => 'СУМІЖНІ ТОВАРИ'
 );
 
 if (function_exists('pll_register_string')) {

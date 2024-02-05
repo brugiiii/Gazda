@@ -1,0 +1,41 @@
+.similar-products-section {
+  padding-top: 2.5rem;
+}
+
+.similar-products-swiper {
+  padding-bottom: 3.5rem;
+}
+
+.similar-products-title {
+  padding-bottom: 0.3125rem;
+  border-bottom: 3px solid $accent-color;
+
+  font-size: 1.125rem;
+  line-height: 1.5;
+
+  color: $seventh-text-color;
+}
+
+.similar-products-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.products-list__item{
+  flex-basis: initial;
+  box-sizing: border-box;
+}
+
+.product-list__button {
+  min-width: initial;
+}
+
+.ctrl-list {
+  gap: 0.44rem;
+  border-radius: $primary-radius;
+
+  background-color: $accent-color;
+}
+
+.ctrl-list__item {
+  fill: $white-color;
+}

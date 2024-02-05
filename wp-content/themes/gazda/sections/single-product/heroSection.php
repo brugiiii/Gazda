@@ -5,7 +5,7 @@ $short_description = $product->get_short_description();
 $price = $product->get_price();
 ?>
 
-<section class="section">
+<section class="section hero-section">
     <div class="container">
         <?= get_template_part('templates/single-product/breadcrumbs'); ?>
         <div class="d-lg-flex justify-content-between">

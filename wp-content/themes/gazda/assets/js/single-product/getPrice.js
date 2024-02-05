@@ -8,7 +8,7 @@ const getProductPrice = (e) => {
 
     const data = {
         action: 'get_product_price',
-        variations,
+        variations,  // Переконайтеся, що це масив слагів варіацій
         product_id
     }
 
@@ -18,9 +18,11 @@ const getProductPrice = (e) => {
         url: ajax_url,
         data,
         success: function (response) {
-
             console.log(response)
         },
+        error: function (error){
+            console.log(error)
+        }
     });
 };
 

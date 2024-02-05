@@ -14,3 +14,14 @@ const gallerySwiper = new Swiper('.product-swiper', {
         swiper: thumbsSwiper,
     },
 })
+
+const similarProductsSwiper = new Swiper(".similar-products-swiper", {
+    slidesPerView: 5,
+    spaceBetween: 30,
+    loop: true,
+    grabCursor: true,
+    navigation: {
+        nextEl: '.similar-products-wrapper .next',
+        prevEl: ".similar-products-wrapper .prev"
+    }
+})

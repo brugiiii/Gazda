@@ -1,8 +1,9 @@
 <?php
 $thumbnail_id = $args['thumbnail_id'] ?? null;
+$is_swiper = $args['is_swiper'] ?? false;
 ?>
 
-<li class="products-list__item position-relative">
+<li class="products-list__item position-relative <?= $is_swiper ? 'swiper-slide' : ''; ?>">
     <div class="product-list__wrapper bg-white rounded-3 overflow-hidden h-100">
         <a class="products-list__link d-block pb-1" href="<?= get_permalink(); ?>">
             <div class="products-list__thumb">
@@ -18,7 +19,7 @@ $thumbnail_id = $args['thumbnail_id'] ?? null;
             </div>
         </a>
         <div class="px-2 pb-2 px-lg-3 pb-lg-3">
-            <button class="product-list__button button-primary w-100 border-0 position-relative"
+            <button class="product-list__button buy-button button-primary w-100 border-0 position-relative"
                     data-product-id="<?= get_the_ID(); ?>">
                 <span class="d-flex align-items-center justify-content-center gap-2">
                     <svg class="product-list__icon" width="24" height="24">

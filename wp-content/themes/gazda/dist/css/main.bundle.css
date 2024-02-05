@@ -15309,6 +15309,29 @@ img {
   color: #1F252E;
 }
 
+.buy-button span {
+  -webkit-transition: scale 200ms ease-in-out;
+  transition: scale 200ms ease-in-out;
+}
+.buy-button:disabled {
+  background-color: #DFE0E1;
+}
+.buy-button:disabled span {
+  scale: 0;
+}
+.buy-button:disabled .loader-container {
+  scale: 1;
+}
+.buy-button .loader-container {
+  -webkit-transition: scale 200ms ease-in-out;
+  transition: scale 200ms ease-in-out;
+  scale: 0;
+}
+.buy-button .loader {
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
 .hamburger {
   padding: 0.703125rem 0.5625rem;
   display: -webkit-box;
@@ -15788,6 +15811,13 @@ img {
   .header-button {
     min-width: 13.8125rem;
   }
+}
+
+#cart.animate {
+  -webkit-animation-name: tada;
+          animation-name: tada;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
 }
 
 .footer {
