@@ -1,34 +1,27 @@
-import {flyToCart} from "./flyToCard"
-import {updateCartCount} from "./updateCardQuantity"
-
-const {ajax_url} = settings;
+import {flyToCart} from "./flyToCard";
+import {updateCartCount} from "./updateCardQuantity";
 
 $(document).ready(function () {
-    $('.products-items').on('click', '.product-list__button', function () {
+    $('.products-items').on('click', '.add_to_cart_button.product_type_simple', function () {
         const $this = $(this);
 
-        $this.attr('disabled', true)
+        // Відслідковування зміни класів
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === "class") {
+                    const classList = mutation.target.classList;
+                    if (classList.contains('added')) {
+                        updateCartCount();
+                        // Зняття слухача події після виклику updateCartCount
+                        observer.disconnect();
+                    }
+                }
+            });
+        });
+
+        // Спостерігання за змінами класів у елементі $this
+        observer.observe($this[0], { attributes: true });
 
         flyToCart($this);
-
-        const productId = $this.data('product-id');
-        const quantity = $this.closest('.products-list__item').find('.quantity__value').text();
-
-        $.ajax({
-            type: 'POST',
-            url: ajax_url,
-            data: {
-                action: 'add_to_cart',
-                product_id: productId,
-                quantity: quantity,
-            },
-            success: function (response) {
-                updateCartCount();
-
-                $this.attr('disabled', false);
-            },
-        });
     });
-
-    updateCartCount();
 });

@@ -100,7 +100,8 @@
     @include transition(scale);
   }
 
-  &:disabled {
+  &.loading {
+    pointer-events: none;
     background-color: $fifth-bg-color;
 
     & span {

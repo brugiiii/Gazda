@@ -6,7 +6,7 @@
   }
 }
 
-.products-list__item {
+.product {
   @include transition(box-shadow);
 
   flex-basis: calc((100% - 1rem) / 2);
@@ -36,11 +36,16 @@
   }
 }
 
-.products-list__thumb {
+.woocommerce-loop-product__link {
+  display: block;
+  padding-bottom: 0.25rem;
+}
+
+.product__thumb {
   height: clamp(8.5rem, 7.895rem + 2.69vw, 9.563rem);
 }
 
-.product-list__title {
+.woocommerce-loop-product__title {
   height: 2.5rem;
 
   font-size: 0.875rem;
@@ -50,7 +55,7 @@
   color: $seventh-text-color;
 }
 
-.product-list__price {
+.price {
   font-size: clamp(0.875rem, 0.661rem + 0.95vw, 1.25rem);
   line-height: 1.4;
 
@@ -65,7 +70,7 @@
   }
 }
 
-.product-list__button {
+.add_to_cart_button {
   height: 2.5rem;
 }
 
@@ -97,6 +102,11 @@
 
 .quantity__icon {
   fill: $secondary-text-color;
+}
+
+.star-rating,
+.added_to_cart{
+  display: none;
 }
 
 .fly-cart {

@@ -71,4 +71,3 @@ require_once get_template_directory() . '/includes/polylangSetup.php';
 require_once get_template_directory() . '/includes/customFunctions.php';
 
 require_once get_template_directory() . '/includes/uploadMimes.php';
-

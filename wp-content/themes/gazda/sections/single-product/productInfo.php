@@ -22,12 +22,13 @@
                 </button>
             </li>
         </ul>
-        
+
         <div class="content-wrapper">
             <div class="description">
                 <?= wpautop($product->get_description()); ?>
             </div>
         </div>
+
     </div>
 </section>
 

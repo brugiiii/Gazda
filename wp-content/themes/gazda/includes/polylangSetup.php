@@ -55,7 +55,8 @@ $strings_to_translate = array(
     'features_bag_text' => 'фасуємо в день замовлення',
     'features_camera_text' => 'фото з реальних зразків',
     'features_truck_text' => 'безкоштовна доставка від 500 грн',
-    'similar_products' => 'СУМІЖНІ ТОВАРИ'
+    'similar_products' => 'СУМІЖНІ ТОВАРИ',
+    'choose_options' => 'Оберіть опції'
 );
 
 if (function_exists('pll_register_string')) {

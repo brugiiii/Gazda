@@ -15313,13 +15313,14 @@ img {
   -webkit-transition: scale 200ms ease-in-out;
   transition: scale 200ms ease-in-out;
 }
-.buy-button:disabled {
+.buy-button.loading {
+  pointer-events: none;
   background-color: #DFE0E1;
 }
-.buy-button:disabled span {
+.buy-button.loading span {
   scale: 0;
 }
-.buy-button:disabled .loader-container {
+.buy-button.loading .loader-container {
   scale: 1;
 }
 .buy-button .loader-container {

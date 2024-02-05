@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?= get_header(); ?>
 
 <main id="single-product" data-product-id="<?= get_the_ID(); ?>">
     <?php
@@ -8,4 +8,4 @@
     ?>
 </main>
 
-<?php get_footer(); ?>
+<?= get_footer(); ?>

@@ -43,3 +43,19 @@ function get_image($name)
 {
     echo get_template_directory_uri() . "/assets/images/" . $name;
 }
+
+function custom_woocommerce_strings($translated_text, $text, $domain) {
+    switch ($text) {
+        case 'Add to cart':
+            $translated_text = translate_and_output('buy');
+            break;
+        case 'Choose options':
+            $translated_text = translate_and_output('choose_options');
+            break;
+    }
+    return $translated_text;
+}
+
+add_filter('gettext', 'custom_woocommerce_strings', 20, 3);
+
+

@@ -4,8 +4,8 @@
             <h2 class="similar-products-title px-2 pt-2 mb-0">
                 <?= translate_and_output('similar_products'); ?>
             </h2>
-            <?= get_template_part('templates/single-product/ctrl'); ?>
+            <?php get_template_part('templates/single-product/ctrl'); ?>
         </div>
-        <?= get_template_part('templates/single-product/similarProducts'); ?>
+        <?php get_template_part('templates/single-product/similarProducts'); ?>
     </div>
 </section>

@@ -18,7 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_fill_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_fill_js__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var productsSkeleton = "\n    ".concat(Array(12).fill("\n            <li class=\"skeleton-list__item products-list__item\">\n            </li>").join(''), "\n");
+var productsSkeleton = "\n    ".concat(Array(12).fill("\n            <li class=\"skeleton-list__item product\">\n            </li>").join(''), "\n");
 
 /***/ }),
 
@@ -162,40 +162,40 @@ $(document).ready(function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _flyToCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./flyToCard */ "./assets/js/shop/flyToCard.js");
 /* harmony import */ var _updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./updateCardQuantity */ "./assets/js/shop/updateCardQuantity.js");
 
 
 
 
-var _settings = settings,
-  ajax_url = _settings.ajax_url;
 $(document).ready(function () {
-  $('.products-items').on('click', '.product-list__button', function () {
+  $('.products-items').on('click', '.add_to_cart_button.product_type_simple', function () {
     var $this = $(this);
-    $this.attr('disabled', true);
-    (0,_flyToCard__WEBPACK_IMPORTED_MODULE_2__.flyToCart)($this);
-    var productId = $this.data('product-id');
-    var quantity = $this.closest('.products-list__item').find('.quantity__value').text();
-    $.ajax({
-      type: 'POST',
-      url: ajax_url,
-      data: {
-        action: 'add_to_cart',
-        product_id: productId,
-        quantity: quantity
-      },
-      success: function success(response) {
-        (0,_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__.updateCartCount)();
-        $this.attr('disabled', false);
-      }
+
+    // Відслідковування зміни класів
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.attributeName === "class") {
+          var classList = mutation.target.classList;
+          if (classList.contains('added')) {
+            (0,_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__.updateCartCount)();
+            // Зняття слухача події після виклику updateCartCount
+            observer.disconnect();
+          }
+        }
+      });
     });
+
+    // Спостерігання за змінами класів у елементі $this
+    observer.observe($this[0], {
+      attributes: true
+    });
+    (0,_flyToCard__WEBPACK_IMPORTED_MODULE_2__.flyToCart)($this);
   });
-  (0,_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__.updateCartCount)();
 });
 
 /***/ }),
@@ -632,25 +632,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   handleQuantity: function() { return /* binding */ handleQuantity; }
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor.js */ "./node_modules/core-js/modules/es.number.constructor.js");
-/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.number.constructor.js */ "./node_modules/core-js/modules/es.number.constructor.js");
+/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-var updateQuantity = function updateQuantity(value, delta) {
+var currentBuyButton = null;
+var updateQuantity = function updateQuantity(value, delta, $this) {
+  var buyButton = $this.closest('.product').find('.add_to_cart_button');
   var currentQuantity = Number(value.text());
   var newQuantity = Math.max(1, currentQuantity + delta);
   value.text(newQuantity);
+  if (!currentBuyButton) {
+    buyButton.attr('data-quantity', newQuantity);
+    currentBuyButton = buyButton;
+  } else {
+    // Використовуйте метод attr() для зміни значення дата-атрибута
+    currentBuyButton.attr('data-quantity', newQuantity);
+  }
 };
 var handleQuantity = function handleQuantity(e) {
   var $this = $(e.currentTarget);
   var quantityValue = $this.closest('.quantity').find('.quantity__value');
   var delta = $this.hasClass('increment') ? 1 : -1;
-  updateQuantity(quantityValue, delta);
+  updateQuantity(quantityValue, delta, $this);
 };
 $('.products-items').on("click", ".quantity__button", handleQuantity);
 

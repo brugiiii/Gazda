@@ -13,7 +13,7 @@
 
 </head>
 
-<body style="visibility: hidden">
+<body style="visibility: visible">
 
 <div class="wrapper">
     <header class="header position-relative">

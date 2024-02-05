@@ -28,7 +28,7 @@
     letter-spacing: inherit;
   }
 
-  & h2 {
+  & h2:not(.woocommerce-loop-product__title) {
     font-size: 1.5rem;
 
     color: $third-text-color;
