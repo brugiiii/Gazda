@@ -66,8 +66,3 @@ require_once get_template_directory() . '/includes/polylangSetup.php';
 require_once get_template_directory() . '/includes/customFunctions.php';
 
 require_once get_template_directory() . '/includes/uploadMimes.php';
-
-function remove_image_zoom_support() {
-    remove_theme_support( 'wc-product-gallery-zoom' );
-}
-add_action( 'wp', 'remove_image_zoom_support', 100 );

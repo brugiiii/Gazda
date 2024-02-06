@@ -1,11 +1,13 @@
-import {flyToCart} from "./flyToCard";
+import {flyToCart} from "../shop/flyToCard";
 
 const cartIcon = $('#cart')
 
 $(document).ready(function () {
-    $('.products-items').on('click', '.add_to_cart_button.product_type_simple', function () {
+    $('.buy-button').on('click', function () {
         const $this = $(this);
 
+        $this.removeClass('added');
+        
         // Відслідковування зміни класів
         const observer = new MutationObserver(function (mutations) {
             mutations.forEach(function (mutation) {

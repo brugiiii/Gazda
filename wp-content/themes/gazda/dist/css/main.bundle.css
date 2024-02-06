@@ -15847,6 +15847,9 @@ span.xoo-wsc-sc-count {
 .xoo-wsc-cart-trigger {
   padding: 0.375rem;
 }
+.xoo-wsc-cart-trigger:hover .xoo-wsc-icon-basket1::before {
+  background-image: url(../images/icon_shopping_cart_active.svg);
+}
 
 .xoo-wsc-sc-bkcont {
   all: unset !important;

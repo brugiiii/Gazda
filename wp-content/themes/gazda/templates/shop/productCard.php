@@ -1,7 +1,7 @@
 <?php
-$is_swiper = $args['is_swiper'] ?? false;
-
 $product = wc_get_product(get_the_ID());
+$is_swiper = $args['is_swiper'] ?? false;
+$is_variable = $product->is_type('variable');
 ?>
 
 <li <?php wc_product_class(array('position-relative', $is_swiper ? 'swiper-slide' : ''), $product); ?>>
@@ -52,19 +52,25 @@ $product = wc_get_product(get_the_ID());
         ?>
 
     </div>
-    <div class="quantity rounded-bottom-3 bg-white px-3 pb-3 position-absolute w-100 start-0 z-1">
-        <div class="quantity-wrapper d-flex align-items-center justify-content-center">
-            <button class="quantity__button bg-transparent border-0 p-0 decrement">
-                <svg class="quantity__icon" width="24" height="24">
-                    <use href="<?php get_image('sprite.svg#icon-minus'); ?>"></use>
-                </svg>
-            </button>
-            <span class="quantity__value d-flex align-items-center justify-content-center rounded-3 bg-white">1</span>
-            <button class="quantity__button bg-transparent border-0 p-0 increment">
-                <svg class="quantity__icon" width="24" height="24">
-                    <use href="<?php get_image('sprite.svg#icon-plus'); ?>"></use>
-                </svg>
-            </button>
+    <?php
+    if (!$is_variable) {
+        ?>
+        <div class="quantity rounded-bottom-3 bg-white px-3 pb-3 position-absolute w-100 start-0 z-1">
+            <div class="quantity-wrapper d-flex align-items-center justify-content-center">
+                <button class="quantity__button bg-transparent border-0 p-0 decrement">
+                    <svg class="quantity__icon" width="24" height="24">
+                        <use href="<?php get_image('sprite.svg#icon-minus'); ?>"></use>
+                    </svg>
+                </button>
+                <span class="quantity__value d-flex align-items-center justify-content-center rounded-3 bg-white">1</span>
+                <button class="quantity__button bg-transparent border-0 p-0 increment">
+                    <svg class="quantity__icon" width="24" height="24">
+                        <use href="<?php get_image('sprite.svg#icon-plus'); ?>"></use>
+                    </svg>
+                </button>
+            </div>
         </div>
-    </div>
+        <?php
+    }
+    ?>
 </li>

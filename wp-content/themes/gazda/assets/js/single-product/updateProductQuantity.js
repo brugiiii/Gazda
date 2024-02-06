@@ -20,9 +20,5 @@ $(document).ready(function () {
 
     $('.quantity__button').on('click', handleQuantityButtonClick);
 
-    const price = $('.woocommerce-variation');
-    const priceWrapper = $('.price-wrapper');
-
-    priceWrapper.append(price);
 })
 

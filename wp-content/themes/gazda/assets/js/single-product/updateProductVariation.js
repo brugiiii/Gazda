@@ -13,8 +13,8 @@ $(document).ready(function () {
         const variationsOption = $(`option[value="${value}"]`);
         const variationsSelect = variationsOption.closest('select');
 
-        variationsOption.change();
-        variationsSelect.val(value);
+        variationsOption.prop('selected', true);
+        variationsSelect.trigger('change');
     }
 
     $('.variations-list').on('change', '.variations-list__input', handleVariationChange);

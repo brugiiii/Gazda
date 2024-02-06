@@ -151,8 +151,8 @@ $loading_gallery_class = wc_string_to_bool( woo_variation_gallery()->get_option(
 					<?php do_action( 'woo_variation_product_gallery_slider_start', $product ); ?>
 
 					<?php if ( $has_post_thumbnail && wc_string_to_bool( woo_variation_gallery()->get_option( 'lightbox', 'yes' ) ) ): ?>
-						<a href="#" class="woo-variation-gallery-trigger woo-variation-gallery-trigger-position-<?php echo woo_variation_gallery()->get_option( 'zoom_position', 'top-right', 'woo_variation_gallery_zoom_position' ) ?>">
-							<span class="dashicons dashicons-search"></span>
+						<a href="#" class="h-100 w-100 bg-transparent rounded-0 top-0 end-0 woo-variation-gallery-trigger woo-variation-gallery-trigger-position-<?php echo woo_variation_gallery()->get_option( 'zoom_position', 'top-right', 'woo_variation_gallery_zoom_position' ) ?>">
+<!--							<span class="dashicons dashicons-search"></span>-->
 						</a>
 					<?php endif; ?>
 

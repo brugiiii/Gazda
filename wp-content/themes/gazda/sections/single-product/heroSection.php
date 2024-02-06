@@ -32,11 +32,9 @@ $is_variable = $product->is_type('variable');
                 if (!$is_variable) {
                     woocommerce_template_single_price();
                 } else {
-                    ?>
-                    <div class="price-wrapper"></div>
-                    <?php
                     get_template_part('templates/single-product/attributes');
                 }
+
                 if ($is_in_stock) {
                     ?>
                     <div class="d-flex align-items-center gap-3">
@@ -47,9 +45,9 @@ $is_variable = $product->is_type('variable');
                         ?>
                     </div>
                 <?php }
+                get_template_part('templates/single-product/features');
                 ?>
             </div>
         </div>
-
     </div>
 </section>

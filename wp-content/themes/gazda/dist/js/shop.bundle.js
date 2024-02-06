@@ -167,11 +167,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _flyToCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./flyToCard */ "./assets/js/shop/flyToCard.js");
-/* harmony import */ var _updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./updateCardQuantity */ "./assets/js/shop/updateCardQuantity.js");
 
 
 
-
+var cartIcon = $('#cart');
 $(document).ready(function () {
   $('.products-items').on('click', '.add_to_cart_button.product_type_simple', function () {
     var $this = $(this);
@@ -182,15 +181,15 @@ $(document).ready(function () {
         if (mutation.attributeName === "class") {
           var classList = mutation.target.classList;
           if (classList.contains('added')) {
-            (0,_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__.updateCartCount)();
-            // Зняття слухача події після виклику updateCartCount
+            cartIcon.addClass('animate');
+            setTimeout(function () {
+              cartIcon.removeClass('animate');
+            }, 700);
             observer.disconnect();
           }
         }
       });
     });
-
-    // Спостерігання за змінами класів у елементі $this
     observer.observe($this[0], {
       attributes: true
     });
@@ -568,7 +567,7 @@ var cartPos = $("#cart").offset().left;
 var flyToCart = function flyToCart(button) {
   var item = button.closest(".product-list__wrapper");
   if (item.length === 0) {
-    item = $('.gallery-list__thumb').first();
+    item = $('.wvg-single-gallery-image-container').first();
   }
   var img = item.find("img").attr("src");
   var itemX = item.offset().left - itemList;
@@ -703,42 +702,6 @@ var categoriesSwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["default"]
   allowTouchMove: true,
   slideToClickedSlide: true
 });
-
-/***/ }),
-
-/***/ "./assets/js/shop/updateCardQuantity.js":
-/*!**********************************************!*\
-  !*** ./assets/js/shop/updateCardQuantity.js ***!
-  \**********************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   updateCartCount: function() { return /* binding */ updateCartCount; }
-/* harmony export */ });
-var cartIcon = $('#cart');
-var cartQuantity = $('.card-quantity');
-var _settings = settings,
-  ajax_url = _settings.ajax_url;
-var updateCartCount = function updateCartCount() {
-  // Здійснюємо AJAX-запит, щоб отримати оновлену кількість унікальних товарів у кошику
-  $.ajax({
-    type: 'GET',
-    url: ajax_url,
-    data: {
-      action: 'get_cart_count' // Оновлене ім'я дії
-    },
-
-    success: function success(response) {
-      cartIcon.addClass('animate');
-      cartQuantity.text(response);
-      setTimeout(function () {
-        cartIcon.removeClass('animate');
-      }, 700);
-    }
-  });
-};
 
 /***/ }),
 
@@ -15855,14 +15818,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shop_fetchProducts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shop/fetchProducts */ "./assets/js/shop/fetchProducts.js");
 /* harmony import */ var _shop_addToCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shop/addToCard */ "./assets/js/shop/addToCard.js");
 /* harmony import */ var _shop_productQuantity__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shop/productQuantity */ "./assets/js/shop/productQuantity.js");
-/* harmony import */ var _shop_updateCardQuantity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shop/updateCardQuantity */ "./assets/js/shop/updateCardQuantity.js");
-/* harmony import */ var _shop_readMore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shop/readMore */ "./assets/js/shop/readMore.js");
-/* harmony import */ var _shop_readMore__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_shop_readMore__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _shop_accordeon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shop/accordeon */ "./assets/js/shop/accordeon.js");
-/* harmony import */ var _shop_swiper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./shop/swiper */ "./assets/js/shop/swiper.js");
-/* harmony import */ var _shop_popup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./shop/popup */ "./assets/js/shop/popup.js");
-/* harmony import */ var _css_shop_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../css/shop.scss */ "./assets/css/shop.scss");
-
+/* harmony import */ var _shop_readMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shop/readMore */ "./assets/js/shop/readMore.js");
+/* harmony import */ var _shop_readMore__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_shop_readMore__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _shop_accordeon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shop/accordeon */ "./assets/js/shop/accordeon.js");
+/* harmony import */ var _shop_swiper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shop/swiper */ "./assets/js/shop/swiper.js");
+/* harmony import */ var _shop_popup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./shop/popup */ "./assets/js/shop/popup.js");
+/* harmony import */ var _css_shop_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../css/shop.scss */ "./assets/css/shop.scss");
 
 
 

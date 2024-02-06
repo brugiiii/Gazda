@@ -1,6 +1,56 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./assets/js/shop/flyToCard.js":
+/*!*************************************!*\
+  !*** ./assets/js/shop/flyToCard.js ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   flyToCart: function() { return /* binding */ flyToCart; }
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var itemList = $("main").offset().left;
+var cartPos = $("#cart").offset().left;
+var flyToCart = function flyToCart(button) {
+  var item = button.closest(".product-list__wrapper");
+  if (item.length === 0) {
+    item = $('.wvg-single-gallery-image-container').first();
+  }
+  var img = item.find("img").attr("src");
+  var itemX = item.offset().left - itemList;
+  var itemY = item.offset().top;
+  TweenMax.killTweensOf('#show');
+  $("#show").css({
+    left: itemX,
+    top: itemY,
+    width: 200,
+    opacity: 1
+  }).find("img").attr("src", img);
+  TweenMax.to("#show", 0.8, {
+    left: cartPos - itemList,
+    top: $("#cart").offset().top,
+    width: 20,
+    onComplete: function onComplete() {}
+  });
+  TweenMax.to("#show", 0.3, {
+    css: {
+      opacity: 0
+    },
+    delay: 0.7
+  });
+};
+
+/***/ }),
+
 /***/ "./assets/js/shop/productQuantity.js":
 /*!*******************************************!*\
   !*** ./assets/js/shop/productQuantity.js ***!
@@ -46,6 +96,52 @@ var handleQuantity = function handleQuantity(e) {
   return updateQuantity(quantityValue, delta, $this);
 };
 $('.products-items').on("click", ".quantity__button", handleQuantity);
+
+/***/ }),
+
+/***/ "./assets/js/single-product/addToCart.js":
+/*!***********************************************!*\
+  !*** ./assets/js/single-product/addToCart.js ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _shop_flyToCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shop/flyToCard */ "./assets/js/shop/flyToCard.js");
+
+
+
+var cartIcon = $('#cart');
+$(document).ready(function () {
+  $('.buy-button').on('click', function () {
+    var $this = $(this);
+    $this.removeClass('added');
+
+    // Відслідковування зміни класів
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.attributeName === "class") {
+          var classList = mutation.target.classList;
+          if (classList.contains('added')) {
+            cartIcon.addClass('animate');
+            setTimeout(function () {
+              cartIcon.removeClass('animate');
+            }, 700);
+            observer.disconnect();
+          }
+        }
+      });
+    });
+    observer.observe($this[0], {
+      attributes: true
+    });
+    (0,_shop_flyToCard__WEBPACK_IMPORTED_MODULE_2__.flyToCart)($this);
+  });
+});
 
 /***/ }),
 
@@ -109,9 +205,6 @@ $(document).ready(function () {
     }
   };
   $('.quantity__button').on('click', handleQuantityButtonClick);
-  var price = $('.woocommerce-variation');
-  var priceWrapper = $('.price-wrapper');
-  priceWrapper.append(price);
 });
 
 /***/ }),
@@ -133,8 +226,8 @@ $(document).ready(function () {
     var value = $this.val();
     var variationsOption = $("option[value=\"".concat(value, "\"]"));
     var variationsSelect = variationsOption.closest('select');
-    variationsOption.change();
-    variationsSelect.val(value);
+    variationsOption.prop('selected', true);
+    variationsSelect.trigger('change');
   };
   $('.variations-list').on('change', '.variations-list__input', handleVariationChange);
 });
@@ -247,6 +340,29 @@ module.exports = function (argument) {
   if (isObject(argument)) return argument;
   throw new $TypeError($String(argument) + ' is not an object');
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/array-for-each.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/array-for-each.js ***!
+  \**********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var $forEach = (__webpack_require__(/*! ../internals/array-iteration */ "./node_modules/core-js/internals/array-iteration.js").forEach);
+var arrayMethodIsStrict = __webpack_require__(/*! ../internals/array-method-is-strict */ "./node_modules/core-js/internals/array-method-is-strict.js");
+
+var STRICT_METHOD = arrayMethodIsStrict('forEach');
+
+// `Array.prototype.forEach` method implementation
+// https://tc39.es/ecma262/#sec-array.prototype.foreach
+module.exports = !STRICT_METHOD ? function forEach(callbackfn /* , thisArg */) {
+  return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+// eslint-disable-next-line es/no-array-prototype-foreach -- safe
+} : [].forEach;
 
 
 /***/ }),
@@ -375,6 +491,27 @@ module.exports = {
   // `Array.prototype.filterReject` method
   // https://github.com/tc39/proposal-array-filtering
   filterReject: createMethod(7)
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/array-method-is-strict.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/core-js/internals/array-method-is-strict.js ***!
+  \******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
+
+module.exports = function (METHOD_NAME, argument) {
+  var method = [][METHOD_NAME];
+  return !!method && fails(function () {
+    // eslint-disable-next-line no-useless-call -- required for testing
+    method.call(null, argument || function () { return 1; }, 1);
+  });
 };
 
 
@@ -686,6 +823,72 @@ var EXISTS = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
   return EXISTS ? document.createElement(it) : {};
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/dom-iterables.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/dom-iterables.js ***!
+  \*********************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+// iterable DOM collections
+// flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
+module.exports = {
+  CSSRuleList: 0,
+  CSSStyleDeclaration: 0,
+  CSSValueList: 0,
+  ClientRectList: 0,
+  DOMRectList: 0,
+  DOMStringList: 0,
+  DOMTokenList: 1,
+  DataTransferItemList: 0,
+  FileList: 0,
+  HTMLAllCollection: 0,
+  HTMLCollection: 0,
+  HTMLFormElement: 0,
+  HTMLSelectElement: 0,
+  MediaList: 0,
+  MimeTypeArray: 0,
+  NamedNodeMap: 0,
+  NodeList: 1,
+  PaintRequestList: 0,
+  Plugin: 0,
+  PluginArray: 0,
+  SVGLengthList: 0,
+  SVGNumberList: 0,
+  SVGPathSegList: 0,
+  SVGPointList: 0,
+  SVGStringList: 0,
+  SVGTransformList: 0,
+  SourceBufferList: 0,
+  StyleSheetList: 0,
+  TextTrackCueList: 0,
+  TextTrackList: 0,
+  TouchList: 0
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/dom-token-list-prototype.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/core-js/internals/dom-token-list-prototype.js ***!
+  \********************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+// in old WebKit versions, `element.classList` is not an instance of global `DOMTokenList`
+var documentCreateElement = __webpack_require__(/*! ../internals/document-create-element */ "./node_modules/core-js/internals/document-create-element.js");
+
+var classList = documentCreateElement('span').classList;
+var DOMTokenListPrototype = classList && classList.constructor && classList.constructor.prototype;
+
+module.exports = DOMTokenListPrototype === Object.prototype ? undefined : DOMTokenListPrototype;
 
 
 /***/ }),
@@ -2814,6 +3017,40 @@ var toString = __webpack_require__(/*! ../internals/object-to-string */ "./node_
 if (!TO_STRING_TAG_SUPPORT) {
   defineBuiltIn(Object.prototype, 'toString', toString, { unsafe: true });
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/web.dom-collections.for-each.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/core-js/modules/web.dom-collections.for-each.js ***!
+  \**********************************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
+var DOMIterables = __webpack_require__(/*! ../internals/dom-iterables */ "./node_modules/core-js/internals/dom-iterables.js");
+var DOMTokenListPrototype = __webpack_require__(/*! ../internals/dom-token-list-prototype */ "./node_modules/core-js/internals/dom-token-list-prototype.js");
+var forEach = __webpack_require__(/*! ../internals/array-for-each */ "./node_modules/core-js/internals/array-for-each.js");
+var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js/internals/create-non-enumerable-property.js");
+
+var handlePrototype = function (CollectionPrototype) {
+  // some Chrome versions have non-configurable methods on DOMTokenList
+  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
+    createNonEnumerableProperty(CollectionPrototype, 'forEach', forEach);
+  } catch (error) {
+    CollectionPrototype.forEach = forEach;
+  }
+};
+
+for (var COLLECTION_NAME in DOMIterables) {
+  if (DOMIterables[COLLECTION_NAME]) {
+    handlePrototype(global[COLLECTION_NAME] && global[COLLECTION_NAME].prototype);
+  }
+}
+
+handlePrototype(DOMTokenListPrototype);
 
 
 /***/ }),
@@ -13174,7 +13411,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _single_product_updateProductQuantity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./single-product/updateProductQuantity */ "./assets/js/single-product/updateProductQuantity.js");
 /* harmony import */ var _single_product_updateProductVariation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./single-product/updateProductVariation */ "./assets/js/single-product/updateProductVariation.js");
 /* harmony import */ var _single_product_updateProductVariation__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_single_product_updateProductVariation__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _css_single_product_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/single-product.scss */ "./assets/css/single-product.scss");
+/* harmony import */ var _single_product_addToCart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./single-product/addToCart */ "./assets/js/single-product/addToCart.js");
+/* harmony import */ var _css_single_product_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/single-product.scss */ "./assets/css/single-product.scss");
+
 
 
 

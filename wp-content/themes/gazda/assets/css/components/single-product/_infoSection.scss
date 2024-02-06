@@ -1,3 +1,33 @@
+.tabs {
+  display: flex;
+  gap: 1rem;
+
+  margin-bottom: 1.5rem;
+
+  & li {
+    &.active {
+      & a {
+        border-bottom-color: $third-text-color;
+        color: $third-text-color;
+      }
+    }
+  }
+
+  & a {
+    @include hover(color $secondary-text-color $third-text-color, border-bottom-color transparent $third-text-color);
+
+    display: block;
+    padding: 0.5rem 0.5rem 0.3125rem 0.5rem;
+
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    line-height: 1.5;
+
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+  }
+}
+
 .buttons-list__button {
   @include transition(color);
 
@@ -32,36 +62,40 @@
   }
 }
 
-.content-wrapper {
-  margin-top: 1.5rem;
+.woocommerce-Tabs-panel--description {
+  & h2 {
+    margin-bottom: 0.5rem;
+
+    font-size: 1.125rem;
+    line-height: 1.5;
+
+    color: $third-text-color;
+  }
+
+  & p {
+    &:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+
+    list-style-type: disc;
+  }
 }
 
-.content-wrapper {
-  .description {
-    & h2 {
-      margin-bottom: 0.5rem;
 
-      font-size: 1.125rem;
-      line-height: 1.5;
+.stars {
+  & span {
+    a:hover,
+    a:focus {
 
-      color: $third-text-color;
-    }
-
-    & p {
-      &:not(:last-child){
-        margin-bottom: 1.25rem;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    & ul {
-      padding-left: 1.25rem;
-      margin-bottom: 1rem;
-
-      list-style-type: disc;
     }
   }
 }
