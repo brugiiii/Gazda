@@ -654,12 +654,16 @@ var updateQuantity = function updateQuantity(value, delta, $this) {
     // Використовуйте метод attr() для зміни значення дата-атрибута
     currentBuyButton.attr('data-quantity', newQuantity);
   }
+  return newQuantity;
 };
 var handleQuantity = function handleQuantity(e) {
   var $this = $(e.currentTarget);
   var quantityValue = $this.closest('.quantity').find('.quantity__value');
+  if (quantityValue.length === 0) {
+    quantityValue = $this.closest('.quantity-container').find('.quantity__value');
+  }
   var delta = $this.hasClass('increment') ? 1 : -1;
-  updateQuantity(quantityValue, delta, $this);
+  return updateQuantity(quantityValue, delta, $this);
 };
 $('.products-items').on("click", ".quantity__button", handleQuantity);
 

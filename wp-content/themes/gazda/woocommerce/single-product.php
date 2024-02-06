@@ -1,11 +1,9 @@
-<?= get_header(); ?>
+<?php get_header();
+$product = wc_get_product(get_the_ID());
+?>
 
-<main id="single-product" data-product-id="<?= get_the_ID(); ?>">
-    <?php
-    get_template_part('sections/single-product/heroSection');
-    get_template_part('sections/single-product/productInfo');
-    get_template_part('sections/single-product/similarProducts');
-    ?>
+<main id="single-product">
+    <?php get_template_part('sections/single-product/heroSection'); ?>
 </main>
 
-<?= get_footer(); ?>
+<?php get_footer(); ?>

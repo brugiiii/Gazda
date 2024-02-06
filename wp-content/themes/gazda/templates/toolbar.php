@@ -18,17 +18,7 @@ $products_count = WC()->cart->get_cart_contents_count();
         </a>
     </div>
     <div class="toolbar__item position-relative" id="cart">
-
-        <button class="toolbar__button header-card unset">
-            <svg class="header-icon" width="24" height="24">
-                <use href="<?php get_image('sprite.svg#icon-shopping-cart'); ?>"></use>
-            </svg>
-        </button>
-
-        <span class="card-quantity position-absolute top-0 start-0 text-danger <?= $products_count === 0 ? 'is-hidden' : '' ?>">
-            <?= $products_count; ?>
-        </span>
-
+        <?php echo do_shortcode('[xoo_wsc_cart]'); ?>
     </div>
     <div class="toolbar__item d-none d-sm-block">
         <button class="toolbar__switcher d-flex align-items-center gap-2 unset">

@@ -24,7 +24,7 @@ if ($product->is_type('variable')) {
                 <li class="variations-list__item">
                     <label class="variations-list__label">
                         <input class="variations-list__input" type="radio" name="<?= $attribute_term->taxonomy; ?>"
-                               value="<?= $attribute_term->term_taxonomy_id; ?>" <?= $is_default ? ' checked' : '' ?>>
+                               value="<?= $attribute_term->slug; ?>" <?= $is_default ? ' checked' : '' ?>>
                         <span class="variations-list__name d-inline-block px-3">
                             <?= $attribute_term->name; ?>
                         </span>

@@ -13,17 +13,17 @@ function enqueue_scripts_and_styles() {
     wp_enqueue_script('jquery');
     wp_enqueue_script('main', get_template_directory_uri() . '/dist/js/main.bundle.js', array('jquery'), null, true);
 
-    if (is_page(16) || is_page(23)) {
+    if (is_page_template('pages/home.php')) {
         wp_enqueue_script('home-js', get_template_directory_uri() . '/dist/js/home.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('home-style', get_template_directory_uri() . '/dist/css/home.bundle.css');
     }
 
-    if (is_page(34) || is_page(6384)) {
+    if (is_page_template('pages/restaurant.php')) {
         wp_enqueue_script('restaurant-js', get_template_directory_uri() . '/dist/js/restaurant.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('restaurant-style', get_template_directory_uri() . '/dist/css/restaurant.bundle.css');
     }
 
-    if (is_page(6386) || is_shop()) {
+    if (is_shop() || is_page_template('woocommerce/archive-product.php')) {
         wp_enqueue_script('shop-js', get_template_directory_uri() . '/dist/js/shop.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('shop-style', get_template_directory_uri() . '/dist/css/shop.bundle.css');
         wp_enqueue_script('tween-max', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js', array('jquery'), null, true);
@@ -33,11 +33,6 @@ function enqueue_scripts_and_styles() {
         wp_enqueue_script('product-js', get_template_directory_uri() . '/dist/js/product.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('product-style', get_template_directory_uri() . '/dist/css/product.bundle.css');
         wp_enqueue_script('tween-max', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js', array('jquery'), null, true);
-    }
-
-    if (class_exists('woocommerce')) {
-        wp_enqueue_script('wc-add-to-cart', plugins_url('woocommerce/assets/js/frontend/add-to-cart.min.js'), array('jquery'), null, true);
-        wp_localize_script('wc-add-to-cart', 'wc_add_to_cart_params', array('ajax_url' => admin_url('admin-ajax.php')));
     }
 
     $settings = array(
@@ -71,3 +66,8 @@ require_once get_template_directory() . '/includes/polylangSetup.php';
 require_once get_template_directory() . '/includes/customFunctions.php';
 
 require_once get_template_directory() . '/includes/uploadMimes.php';
+
+function remove_image_zoom_support() {
+    remove_theme_support( 'wc-product-gallery-zoom' );
+}
+add_action( 'wp', 'remove_image_zoom_support', 100 );

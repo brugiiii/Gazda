@@ -14,15 +14,21 @@ const updateQuantity = (value, delta, $this) => {
         // Використовуйте метод attr() для зміни значення дата-атрибута
         currentBuyButton.attr('data-quantity', newQuantity);
     }
-};
 
+    return newQuantity;
+};
 
 export const handleQuantity = (e) => {
     const $this = $(e.currentTarget);
-    const quantityValue = $this.closest('.quantity').find('.quantity__value');
+    let quantityValue = $this.closest('.quantity').find('.quantity__value');
+
+    if(quantityValue.length === 0){
+        quantityValue = $this.closest('.quantity-container').find('.quantity__value');
+    }
+
     const delta = $this.hasClass('increment') ? 1 : -1;
 
-    updateQuantity(quantityValue, delta, $this);
+    return updateQuantity(quantityValue, delta, $this);
 };
 
 $('.products-items').on("click", ".quantity__button", handleQuantity);

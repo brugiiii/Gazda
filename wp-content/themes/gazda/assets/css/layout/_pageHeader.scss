@@ -98,6 +98,8 @@
   padding: 0.375rem;
 }
 
+
+
 .toolbar__switcher {
   @include hover(fill $secondary-text-color $third-text-color, color $secondary-text-color $third-text-color);
 
@@ -121,4 +123,44 @@
     animation-name: tada;
     animation-duration: 0.8s;
   }
+}
+
+span.xoo-wsc-sc-count {
+  top: 0.19rem;
+  right: 0.19rem;
+
+  width: 1.125rem;
+  height: 1.125rem;
+
+  font-size: 0.75rem;
+
+  pointer-events: none;
+
+  background-color: $eleventh-bg-color;
+  color: $white-color;
+}
+
+.xoo-wsc-sc-subt {
+  display: none;
+}
+
+.xoo-wsc-icon-basket1 {
+  &::before{
+    content: '';
+
+    display: block;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    background-image: url(../images/icon_shopping_cart.svg);
+  }
+}
+
+.xoo-wsc-cart-trigger {
+   padding: 0.375rem;
+ }
+
+.xoo-wsc-sc-bkcont {
+  all: unset !important;
 }

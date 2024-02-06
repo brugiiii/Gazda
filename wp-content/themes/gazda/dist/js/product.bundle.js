@@ -1,55 +1,5 @@
 /******/ (function() { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
-
-/***/ "./assets/js/shop/flyToCard.js":
-/*!*************************************!*\
-  !*** ./assets/js/shop/flyToCard.js ***!
-  \*************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   flyToCart: function() { return /* binding */ flyToCart; }
-/* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
-
-
-var itemList = $("main").offset().left;
-var cartPos = $("#cart").offset().left;
-var flyToCart = function flyToCart(button) {
-  var item = button.closest(".product-list__wrapper");
-  if (item.length === 0) {
-    item = $('.gallery-list__thumb').first();
-  }
-  var img = item.find("img").attr("src");
-  var itemX = item.offset().left - itemList;
-  var itemY = item.offset().top;
-  TweenMax.killTweensOf('#show');
-  $("#show").css({
-    left: itemX,
-    top: itemY,
-    width: 200,
-    opacity: 1
-  }).find("img").attr("src", img);
-  TweenMax.to("#show", 0.8, {
-    left: cartPos - itemList,
-    top: $("#cart").offset().top,
-    width: 20,
-    onComplete: function onComplete() {}
-  });
-  TweenMax.to("#show", 0.3, {
-    css: {
-      opacity: 0
-    },
-    delay: 0.7
-  });
-};
-
-/***/ }),
 
 /***/ "./assets/js/shop/productQuantity.js":
 /*!*******************************************!*\
@@ -57,6 +7,7 @@ var flyToCart = function flyToCart(button) {
   \*******************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   handleQuantity: function() { return /* binding */ handleQuantity; }
@@ -83,213 +34,18 @@ var updateQuantity = function updateQuantity(value, delta, $this) {
     // Використовуйте метод attr() для зміни значення дата-атрибута
     currentBuyButton.attr('data-quantity', newQuantity);
   }
+  return newQuantity;
 };
 var handleQuantity = function handleQuantity(e) {
   var $this = $(e.currentTarget);
   var quantityValue = $this.closest('.quantity').find('.quantity__value');
+  if (quantityValue.length === 0) {
+    quantityValue = $this.closest('.quantity-container').find('.quantity__value');
+  }
   var delta = $this.hasClass('increment') ? 1 : -1;
-  updateQuantity(quantityValue, delta, $this);
+  return updateQuantity(quantityValue, delta, $this);
 };
 $('.products-items').on("click", ".quantity__button", handleQuantity);
-
-/***/ }),
-
-/***/ "./assets/js/shop/updateCardQuantity.js":
-/*!**********************************************!*\
-  !*** ./assets/js/shop/updateCardQuantity.js ***!
-  \**********************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   updateCartCount: function() { return /* binding */ updateCartCount; }
-/* harmony export */ });
-var cartIcon = $('#cart');
-var cartQuantity = $('.card-quantity');
-var _settings = settings,
-  ajax_url = _settings.ajax_url;
-var updateCartCount = function updateCartCount() {
-  // Здійснюємо AJAX-запит, щоб отримати оновлену кількість унікальних товарів у кошику
-  $.ajax({
-    type: 'GET',
-    url: ajax_url,
-    data: {
-      action: 'get_cart_count' // Оновлене ім'я дії
-    },
-
-    success: function success(response) {
-      cartIcon.addClass('animate');
-      cartQuantity.text(response);
-      setTimeout(function () {
-        cartIcon.removeClass('animate');
-      }, 700);
-    }
-  });
-};
-
-/***/ }),
-
-/***/ "./assets/js/single-product/addToCard.js":
-/*!***********************************************!*\
-  !*** ./assets/js/single-product/addToCard.js ***!
-  \***********************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _shop_productQuantity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shop/productQuantity */ "./assets/js/shop/productQuantity.js");
-/* harmony import */ var _shop_flyToCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shop/flyToCard */ "./assets/js/shop/flyToCard.js");
-/* harmony import */ var _shop_updateCardQuantity__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shop/updateCardQuantity */ "./assets/js/shop/updateCardQuantity.js");
-
-
-
-var _settings = settings,
-  ajax_url = _settings.ajax_url;
-var buyButton = $('.buy-button');
-var addToCard = function addToCard(e) {
-  var $this = $(e.currentTarget);
-  var product_id = $this.data('product-id');
-  $this.attr('disabled', true);
-  $.ajax({
-    type: 'POST',
-    url: ajax_url,
-    data: {
-      action: 'add_to_cart',
-      product_id: product_id
-    },
-    success: function success(response) {
-      $this.attr('disabled', false);
-      (0,_shop_updateCardQuantity__WEBPACK_IMPORTED_MODULE_2__.updateCartCount)();
-    },
-    error: function error(_error) {
-      console.log(_error);
-    }
-  });
-  (0,_shop_flyToCard__WEBPACK_IMPORTED_MODULE_1__.flyToCart)($this);
-};
-buyButton.on('click', addToCard);
-$('.quantity__button').on('click', function (e) {
-  return (0,_shop_productQuantity__WEBPACK_IMPORTED_MODULE_0__.handleQuantity)(e);
-});
-
-/***/ }),
-
-/***/ "./assets/js/single-product/getPrice.js":
-/*!**********************************************!*\
-  !*** ./assets/js/single-product/getPrice.js ***!
-  \**********************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
-/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_0__);
-
-var _settings = settings,
-  ajax_url = _settings.ajax_url;
-var product_id = $('main').data('product-id');
-var getProductPrice = function getProductPrice(e) {
-  var checkedVariations = $('.variations-list__input:checked');
-  var variations = checkedVariations.map(function () {
-    return $(this).val();
-  }).get();
-  var data = {
-    action: 'get_product_price',
-    variations: variations,
-    // Переконайтеся, що це масив слагів варіацій
-    product_id: product_id
-  };
-
-  // Виконання AJAX-запиту
-  $.ajax({
-    type: 'POST',
-    url: ajax_url,
-    data: data,
-    success: function success(response) {
-      console.log(response);
-    },
-    error: function error(_error) {
-      console.log(_error);
-    }
-  });
-};
-
-// Використання функції
-$('.hero-info').on('change', '.variations-list__input', getProductPrice);
-
-/***/ }),
-
-/***/ "./assets/js/single-product/getProductInfo.js":
-/*!****************************************************!*\
-  !*** ./assets/js/single-product/getProductInfo.js ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
-
-
-var _settings = settings,
-  ajax_url = _settings.ajax_url;
-var product_id = $('main').data('product-id');
-var contentWrapper = $('.content-wrapper');
-var buttonsList = $('.buttons-list');
-var getProductDescription = function getProductDescription() {
-  $.ajax({
-    type: 'POST',
-    url: ajax_url,
-    data: {
-      action: 'get_product_description',
-      product_id: product_id
-    },
-    success: function success(response) {
-      contentWrapper.html("<div class=\"description\">".concat(response, "</div>"));
-    },
-    error: function error(_error) {
-      console.log(_error);
-    }
-  });
-};
-var getProductReviews = function getProductReviews() {
-  $.ajax({
-    type: 'POST',
-    url: ajax_url,
-    data: {
-      action: 'get_product_reviews',
-      product_id: product_id
-    },
-    success: function success(response) {
-      contentWrapper.html("<div class=\"reviews\">".concat(response, "</div>"));
-    },
-    error: function error(_error2) {
-      console.log(_error2);
-    }
-  });
-};
-var getProductExchangeAndReturn = function getProductExchangeAndReturn() {};
-var handleInfoButtonClick = function handleInfoButtonClick(e) {
-  var $this = $(e.target);
-  if ($this.hasClass('is-active')) {
-    return;
-  }
-  var data = $(e.target).data('info');
-  var siblingButtons = $this.closest('.buttons-list__item').siblings().find('.buttons-list__button');
-  $this.addClass('is-active');
-  siblingButtons.removeClass('is-active');
-  switch (data) {
-    case 'description':
-      getProductDescription();
-      break;
-    case 'reviews':
-      getProductReviews();
-      break;
-    case 'exchange and return':
-      getProductExchangeAndReturn();
-      break;
-  }
-};
-buttonsList.on("click", '.buttons-list__button', handleInfoButtonClick);
 
 /***/ }),
 
@@ -299,6 +55,7 @@ buttonsList.on("click", '.buttons-list__button', handleInfoButtonClick);
   \********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper_bundle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper/bundle */ "./node_modules/swiper/swiper-bundle.mjs");
 
@@ -328,12 +85,69 @@ var similarProductsSwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["defa
 
 /***/ }),
 
+/***/ "./assets/js/single-product/updateProductQuantity.js":
+/*!***********************************************************!*\
+  !*** ./assets/js/single-product/updateProductQuantity.js ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _shop_productQuantity__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shop/productQuantity */ "./assets/js/shop/productQuantity.js");
+
+$(document).ready(function () {
+  var quantityInput = $('.quantity input');
+  var quantityValue = $('.quantity__value');
+  quantityValue.text(quantityInput.val());
+  var handleQuantityButtonClick = function handleQuantityButtonClick(e) {
+    var $this = $(e.currentTarget);
+    var newValue = (0,_shop_productQuantity__WEBPACK_IMPORTED_MODULE_0__.handleQuantity)(e);
+    if ($this.closest('.hero-section')) {
+      quantityInput.val(newValue);
+    } else {
+      (0,_shop_productQuantity__WEBPACK_IMPORTED_MODULE_0__.handleQuantity)(e);
+    }
+  };
+  $('.quantity__button').on('click', handleQuantityButtonClick);
+  var price = $('.woocommerce-variation');
+  var priceWrapper = $('.price-wrapper');
+  priceWrapper.append(price);
+});
+
+/***/ }),
+
+/***/ "./assets/js/single-product/updateProductVariation.js":
+/*!************************************************************!*\
+  !*** ./assets/js/single-product/updateProductVariation.js ***!
+  \************************************************************/
+/***/ (function() {
+
+$(document).ready(function () {
+  var selectedOptions = $('option[selected="selected"]');
+  selectedOptions.each(function (index, option) {
+    var optionValue = $(option).val();
+    $(".variations-list__input[value=\"".concat(optionValue, "\"]")).trigger("click");
+  });
+  var handleVariationChange = function handleVariationChange(e) {
+    var $this = $(e.target);
+    var value = $this.val();
+    var variationsOption = $("option[value=\"".concat(value, "\"]"));
+    var variationsSelect = variationsOption.closest('select');
+    variationsOption.change();
+    variationsSelect.val(value);
+  };
+  $('.variations-list').on('change', '.variations-list__input', handleVariationChange);
+});
+
+/***/ }),
+
 /***/ "./assets/css/single-product.scss":
 /*!****************************************!*\
   !*** ./assets/css/single-product.scss ***!
   \****************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -346,6 +160,7 @@ __webpack_require__.r(__webpack_exports__);
   \******************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
 var tryToString = __webpack_require__(/*! ../internals/try-to-string */ "./node_modules/core-js/internals/try-to-string.js");
@@ -367,6 +182,7 @@ module.exports = function (argument) {
   \****************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
 
@@ -387,6 +203,7 @@ module.exports = function (argument) {
   \**************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
 var create = __webpack_require__(/*! ../internals/object-create */ "./node_modules/core-js/internals/object-create.js");
@@ -418,6 +235,7 @@ module.exports = function (key) {
   \*****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
 
@@ -439,6 +257,7 @@ module.exports = function (argument) {
   \**********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ "./node_modules/core-js/internals/to-indexed-object.js");
 var toAbsoluteIndex = __webpack_require__(/*! ../internals/to-absolute-index */ "./node_modules/core-js/internals/to-absolute-index.js");
@@ -482,6 +301,7 @@ module.exports = {
   \***********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var bind = __webpack_require__(/*! ../internals/function-bind-context */ "./node_modules/core-js/internals/function-bind-context.js");
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
@@ -560,42 +380,13 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/array-method-has-species-support.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/core-js/internals/array-method-has-species-support.js ***!
-  \****************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-
-var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
-var V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ "./node_modules/core-js/internals/engine-v8-version.js");
-
-var SPECIES = wellKnownSymbol('species');
-
-module.exports = function (METHOD_NAME) {
-  // We can't use this feature detection in V8 since it causes
-  // deoptimization and serious performance degradation
-  // https://github.com/zloirock/core-js/issues/677
-  return V8_VERSION >= 51 || !fails(function () {
-    var array = [];
-    var constructor = array.constructor = {};
-    constructor[SPECIES] = function () {
-      return { foo: 1 };
-    };
-    return array[METHOD_NAME](Boolean).foo !== 1;
-  });
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/array-species-constructor.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/internals/array-species-constructor.js ***!
   \*********************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js/internals/is-array.js");
 var isConstructor = __webpack_require__(/*! ../internals/is-constructor */ "./node_modules/core-js/internals/is-constructor.js");
@@ -629,6 +420,7 @@ module.exports = function (originalArray) {
   \****************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var arraySpeciesConstructor = __webpack_require__(/*! ../internals/array-species-constructor */ "./node_modules/core-js/internals/array-species-constructor.js");
 
@@ -647,6 +439,7 @@ module.exports = function (originalArray, length) {
   \*******************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 
@@ -666,6 +459,7 @@ module.exports = function (it) {
   \***************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var TO_STRING_TAG_SUPPORT = __webpack_require__(/*! ../internals/to-string-tag-support */ "./node_modules/core-js/internals/to-string-tag-support.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
@@ -706,6 +500,7 @@ module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
   \***********************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "./node_modules/core-js/internals/has-own-property.js");
 var ownKeys = __webpack_require__(/*! ../internals/own-keys */ "./node_modules/core-js/internals/own-keys.js");
@@ -733,6 +528,7 @@ module.exports = function (target, source, exceptions) {
   \**************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
 var definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js");
@@ -754,6 +550,7 @@ module.exports = DESCRIPTORS ? function (object, key, value) {
   \**********************************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 module.exports = function (bitmap, value) {
   return {
@@ -773,6 +570,7 @@ module.exports = function (bitmap, value) {
   \***********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
 var definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js");
@@ -811,6 +609,7 @@ module.exports = function (O, key, value, options) {
   \******************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
 
@@ -834,6 +633,7 @@ module.exports = function (key, value) {
   \*******************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
 
@@ -852,6 +652,7 @@ module.exports = !fails(function () {
   \********************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 var documentAll = typeof document == 'object' && document.all;
 
@@ -873,6 +674,7 @@ module.exports = {
   \*******************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
 var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
@@ -894,6 +696,7 @@ module.exports = function (it) {
   \*************************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 module.exports = typeof navigator != 'undefined' && String(navigator.userAgent) || '';
 
@@ -906,6 +709,7 @@ module.exports = typeof navigator != 'undefined' && String(navigator.userAgent) 
   \*************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
 var userAgent = __webpack_require__(/*! ../internals/engine-user-agent */ "./node_modules/core-js/internals/engine-user-agent.js");
@@ -944,6 +748,7 @@ module.exports = version;
   \*********************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 // IE8- don't enum bug keys
 module.exports = [
@@ -965,6 +770,7 @@ module.exports = [
   \**************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
 var getOwnPropertyDescriptor = (__webpack_require__(/*! ../internals/object-get-own-property-descriptor */ "./node_modules/core-js/internals/object-get-own-property-descriptor.js").f);
@@ -1030,6 +836,7 @@ module.exports = function (options, source) {
   \*************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 module.exports = function (exec) {
   try {
@@ -1048,6 +855,7 @@ module.exports = function (exec) {
   \*****************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this-clause */ "./node_modules/core-js/internals/function-uncurry-this-clause.js");
 var aCallable = __webpack_require__(/*! ../internals/a-callable */ "./node_modules/core-js/internals/a-callable.js");
@@ -1072,6 +880,7 @@ module.exports = function (fn, that) {
   \****************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
 
@@ -1091,6 +900,7 @@ module.exports = !fails(function () {
   \*********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var NATIVE_BIND = __webpack_require__(/*! ../internals/function-bind-native */ "./node_modules/core-js/internals/function-bind-native.js");
 
@@ -1109,6 +919,7 @@ module.exports = NATIVE_BIND ? call.bind(call) : function () {
   \*********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
 var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "./node_modules/core-js/internals/has-own-property.js");
@@ -1137,6 +948,7 @@ module.exports = {
   \**************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 var aCallable = __webpack_require__(/*! ../internals/a-callable */ "./node_modules/core-js/internals/a-callable.js");
@@ -1157,6 +969,7 @@ module.exports = function (object, key, method) {
   \************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var classofRaw = __webpack_require__(/*! ../internals/classof-raw */ "./node_modules/core-js/internals/classof-raw.js");
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
@@ -1177,6 +990,7 @@ module.exports = function (fn) {
   \*****************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var NATIVE_BIND = __webpack_require__(/*! ../internals/function-bind-native */ "./node_modules/core-js/internals/function-bind-native.js");
 
@@ -1199,6 +1013,7 @@ module.exports = NATIVE_BIND ? uncurryThisWithBind : function (fn) {
   \********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
@@ -1220,6 +1035,7 @@ module.exports = function (namespace, method) {
   \******************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var aCallable = __webpack_require__(/*! ../internals/a-callable */ "./node_modules/core-js/internals/a-callable.js");
 var isNullOrUndefined = __webpack_require__(/*! ../internals/is-null-or-undefined */ "./node_modules/core-js/internals/is-null-or-undefined.js");
@@ -1240,6 +1056,7 @@ module.exports = function (V, P) {
   \**************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var check = function (it) {
   return it && it.Math === Math && it;
@@ -1266,6 +1083,7 @@ module.exports =
   \************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
@@ -1288,6 +1106,7 @@ module.exports = Object.hasOwn || function hasOwn(it, key) {
   \*******************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 module.exports = {};
 
@@ -1300,6 +1119,7 @@ module.exports = {};
   \************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "./node_modules/core-js/internals/get-built-in.js");
 
@@ -1314,6 +1134,7 @@ module.exports = getBuiltIn('document', 'documentElement');
   \**********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
@@ -1336,6 +1157,7 @@ module.exports = !DESCRIPTORS && !fails(function () {
   \**********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
@@ -1362,6 +1184,7 @@ module.exports = fails(function () {
   \***************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
 var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
@@ -1391,6 +1214,7 @@ module.exports = function ($this, dummy, Wrapper) {
   \**********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
@@ -1416,6 +1240,7 @@ module.exports = store.inspectSource;
   \**********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var NATIVE_WEAK_MAP = __webpack_require__(/*! ../internals/weak-map-basic-detection */ "./node_modules/core-js/internals/weak-map-basic-detection.js");
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
@@ -1497,6 +1322,7 @@ module.exports = {
   \****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var classof = __webpack_require__(/*! ../internals/classof-raw */ "./node_modules/core-js/internals/classof-raw.js");
 
@@ -1516,6 +1342,7 @@ module.exports = Array.isArray || function isArray(argument) {
   \*******************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var $documentAll = __webpack_require__(/*! ../internals/document-all */ "./node_modules/core-js/internals/document-all.js");
 
@@ -1538,6 +1365,7 @@ module.exports = $documentAll.IS_HTMLDDA ? function (argument) {
   \**********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
@@ -1601,6 +1429,7 @@ module.exports = !construct || fails(function () {
   \*****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
@@ -1634,6 +1463,7 @@ module.exports = isForced;
   \****************************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 // we can't use just `it == null` since of `document.all` special case
 // https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot-aec
@@ -1650,6 +1480,7 @@ module.exports = function (it) {
   \*****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
 var $documentAll = __webpack_require__(/*! ../internals/document-all */ "./node_modules/core-js/internals/document-all.js");
@@ -1671,6 +1502,7 @@ module.exports = $documentAll.IS_HTMLDDA ? function (it) {
   \***************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 module.exports = false;
 
@@ -1683,6 +1515,7 @@ module.exports = false;
   \*****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "./node_modules/core-js/internals/get-built-in.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
@@ -1707,6 +1540,7 @@ module.exports = USE_SYMBOL_AS_UID ? function (it) {
   \****************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js/internals/to-length.js");
 
@@ -1725,6 +1559,7 @@ module.exports = function (obj) {
   \*********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
@@ -1790,6 +1625,7 @@ Function.prototype.toString = makeBuiltIn(function toString() {
   \******************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 var ceil = Math.ceil;
 var floor = Math.floor;
@@ -1811,6 +1647,7 @@ module.exports = Math.trunc || function trunc(x) {
   \*********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 /* global ActiveXObject -- old IE, WSH */
 var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
@@ -1905,6 +1742,7 @@ module.exports = Object.create || function create(O, Properties) {
   \********************************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
 var V8_PROTOTYPE_DEFINE_BUG = __webpack_require__(/*! ../internals/v8-prototype-define-bug */ "./node_modules/core-js/internals/v8-prototype-define-bug.js");
@@ -1936,6 +1774,7 @@ exports.f = DESCRIPTORS && !V8_PROTOTYPE_DEFINE_BUG ? Object.defineProperties : 
   \******************************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
 var IE8_DOM_DEFINE = __webpack_require__(/*! ../internals/ie8-dom-define */ "./node_modules/core-js/internals/ie8-dom-define.js");
@@ -1990,6 +1829,7 @@ exports.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P
   \******************************************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
 var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
@@ -2023,6 +1863,7 @@ exports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDes
   \*************************************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
+"use strict";
 
 var internalObjectKeys = __webpack_require__(/*! ../internals/object-keys-internal */ "./node_modules/core-js/internals/object-keys-internal.js");
 var enumBugKeys = __webpack_require__(/*! ../internals/enum-bug-keys */ "./node_modules/core-js/internals/enum-bug-keys.js");
@@ -2045,6 +1886,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   \***************************************************************************/
 /***/ (function(__unused_webpack_module, exports) {
 
+"use strict";
 
 // eslint-disable-next-line es/no-object-getownpropertysymbols -- safe
 exports.f = Object.getOwnPropertySymbols;
@@ -2058,6 +1900,7 @@ exports.f = Object.getOwnPropertySymbols;
   \******************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 
@@ -2072,6 +1915,7 @@ module.exports = uncurryThis({}.isPrototypeOf);
   \****************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "./node_modules/core-js/internals/has-own-property.js");
@@ -2103,6 +1947,7 @@ module.exports = function (object, names) {
   \*******************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var internalObjectKeys = __webpack_require__(/*! ../internals/object-keys-internal */ "./node_modules/core-js/internals/object-keys-internal.js");
 var enumBugKeys = __webpack_require__(/*! ../internals/enum-bug-keys */ "./node_modules/core-js/internals/enum-bug-keys.js");
@@ -2123,6 +1968,7 @@ module.exports = Object.keys || function keys(O) {
   \*************************************************************************/
 /***/ (function(__unused_webpack_module, exports) {
 
+"use strict";
 
 var $propertyIsEnumerable = {}.propertyIsEnumerable;
 // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
@@ -2147,6 +1993,7 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
   \*******************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 /* eslint-disable no-proto -- safe */
 var uncurryThisAccessor = __webpack_require__(/*! ../internals/function-uncurry-this-accessor */ "./node_modules/core-js/internals/function-uncurry-this-accessor.js");
@@ -2184,6 +2031,7 @@ module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
   \************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var TO_STRING_TAG_SUPPORT = __webpack_require__(/*! ../internals/to-string-tag-support */ "./node_modules/core-js/internals/to-string-tag-support.js");
 var classof = __webpack_require__(/*! ../internals/classof */ "./node_modules/core-js/internals/classof.js");
@@ -2203,6 +2051,7 @@ module.exports = TO_STRING_TAG_SUPPORT ? {}.toString : function toString() {
   \*****************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
@@ -2229,6 +2078,7 @@ module.exports = function (input, pref) {
   \****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "./node_modules/core-js/internals/get-built-in.js");
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
@@ -2254,6 +2104,7 @@ module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
   \************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
 
@@ -2268,6 +2119,7 @@ module.exports = global;
   \********************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var isNullOrUndefined = __webpack_require__(/*! ../internals/is-null-or-undefined */ "./node_modules/core-js/internals/is-null-or-undefined.js");
 
@@ -2289,6 +2141,7 @@ module.exports = function (it) {
   \******************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var shared = __webpack_require__(/*! ../internals/shared */ "./node_modules/core-js/internals/shared.js");
 var uid = __webpack_require__(/*! ../internals/uid */ "./node_modules/core-js/internals/uid.js");
@@ -2308,6 +2161,7 @@ module.exports = function (key) {
   \********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
 var defineGlobalProperty = __webpack_require__(/*! ../internals/define-global-property */ "./node_modules/core-js/internals/define-global-property.js");
@@ -2326,6 +2180,7 @@ module.exports = store;
   \**************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "./node_modules/core-js/internals/is-pure.js");
 var store = __webpack_require__(/*! ../internals/shared-store */ "./node_modules/core-js/internals/shared-store.js");
@@ -2349,6 +2204,7 @@ var store = __webpack_require__(/*! ../internals/shared-store */ "./node_modules
   \*******************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
@@ -2390,6 +2246,7 @@ module.exports = {
   \************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 /* eslint-disable es/no-symbol -- required for testing */
 var V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ "./node_modules/core-js/internals/engine-v8-version.js");
@@ -2419,6 +2276,7 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
   \*************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 
@@ -2435,6 +2293,7 @@ module.exports = uncurryThis(1.0.valueOf);
   \*************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ "./node_modules/core-js/internals/to-integer-or-infinity.js");
 
@@ -2458,6 +2317,7 @@ module.exports = function (index, length) {
   \*************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 // toObject with fallback for non-array-like ES3 strings
 var IndexedObject = __webpack_require__(/*! ../internals/indexed-object */ "./node_modules/core-js/internals/indexed-object.js");
@@ -2476,6 +2336,7 @@ module.exports = function (it) {
   \******************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var trunc = __webpack_require__(/*! ../internals/math-trunc */ "./node_modules/core-js/internals/math-trunc.js");
 
@@ -2496,6 +2357,7 @@ module.exports = function (argument) {
   \*****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ "./node_modules/core-js/internals/to-integer-or-infinity.js");
 
@@ -2516,6 +2378,7 @@ module.exports = function (argument) {
   \*****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
 
@@ -2536,6 +2399,7 @@ module.exports = function (argument) {
   \********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
 var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
@@ -2572,6 +2436,7 @@ module.exports = function (input, pref) {
   \***********************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var toPrimitive = __webpack_require__(/*! ../internals/to-primitive */ "./node_modules/core-js/internals/to-primitive.js");
 var isSymbol = __webpack_require__(/*! ../internals/is-symbol */ "./node_modules/core-js/internals/is-symbol.js");
@@ -2592,6 +2457,7 @@ module.exports = function (argument) {
   \*****************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
 
@@ -2611,6 +2477,7 @@ module.exports = String(test) === '[object z]';
   \*****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var classof = __webpack_require__(/*! ../internals/classof */ "./node_modules/core-js/internals/classof.js");
 
@@ -2630,6 +2497,7 @@ module.exports = function (argument) {
   \*********************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 var $String = String;
 
@@ -2650,6 +2518,7 @@ module.exports = function (argument) {
   \***********************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
 
@@ -2670,6 +2539,7 @@ module.exports = function (key) {
   \*************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 /* eslint-disable es/no-symbol -- required for testing */
 var NATIVE_SYMBOL = __webpack_require__(/*! ../internals/symbol-constructor-detection */ "./node_modules/core-js/internals/symbol-constructor-detection.js");
@@ -2687,6 +2557,7 @@ module.exports = NATIVE_SYMBOL
   \*******************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
@@ -2710,6 +2581,7 @@ module.exports = DESCRIPTORS && fails(function () {
   \********************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
@@ -2727,6 +2599,7 @@ module.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap));
   \*************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
 var shared = __webpack_require__(/*! ../internals/shared */ "./node_modules/core-js/internals/shared.js");
@@ -2756,6 +2629,7 @@ module.exports = function (name) {
   \*******************************************************/
 /***/ (function(module) {
 
+"use strict";
 
 // a string of all valid unicode whitespaces
 module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' +
@@ -2770,6 +2644,7 @@ module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u
   \*******************************************************/
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
 var $find = (__webpack_require__(/*! ../internals/array-iteration */ "./node_modules/core-js/internals/array-iteration.js").find);
@@ -2796,37 +2671,13 @@ addToUnscopables(FIND);
 
 /***/ }),
 
-/***/ "./node_modules/core-js/modules/es.array.map.js":
-/*!******************************************************!*\
-  !*** ./node_modules/core-js/modules/es.array.map.js ***!
-  \******************************************************/
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var $map = (__webpack_require__(/*! ../internals/array-iteration */ "./node_modules/core-js/internals/array-iteration.js").map);
-var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
-
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('map');
-
-// `Array.prototype.map` method
-// https://tc39.es/ecma262/#sec-array.prototype.map
-// with adding support of @@species
-$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
-  map: function map(callbackfn /* , thisArg */) {
-    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/modules/es.number.constructor.js":
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es.number.constructor.js ***!
   \***************************************************************/
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
 var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "./node_modules/core-js/internals/is-pure.js");
@@ -2952,6 +2803,7 @@ if (FORCED || IS_PURE) copyConstructorProperties(path[NUMBER], NativeNumber);
   \*************************************************************/
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
+"use strict";
 
 var TO_STRING_TAG_SUPPORT = __webpack_require__(/*! ../internals/to-string-tag-support */ "./node_modules/core-js/internals/to-string-tag-support.js");
 var defineBuiltIn = __webpack_require__(/*! ../internals/define-built-in */ "./node_modules/core-js/internals/define-built-in.js");
@@ -2972,6 +2824,7 @@ if (!TO_STRING_TAG_SUPPORT) {
   \**********************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ A11y; }
@@ -3331,6 +3184,7 @@ function A11y(_ref) {
   \**************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Autoplay; }
@@ -3648,6 +3502,7 @@ function Autoplay(_ref) {
   \****************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Controller; }
@@ -3850,6 +3705,7 @@ function Controller(_ref) {
   \******************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ EffectCards; }
@@ -3994,6 +3850,7 @@ function EffectCards(_ref) {
   \**********************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ EffectCoverflow; }
@@ -4123,6 +3980,7 @@ function EffectCoverflow(_ref) {
   \*********************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ EffectCreative; }
@@ -4290,6 +4148,7 @@ function EffectCreative(_ref) {
   \*****************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ EffectCube; }
@@ -4482,6 +4341,7 @@ function EffectCube(_ref) {
   \*****************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ EffectFade; }
@@ -4566,6 +4426,7 @@ function EffectFade(_ref) {
   \*****************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ EffectFlip; }
@@ -4703,6 +4564,7 @@ function EffectFlip(_ref) {
   \***************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ freeMode; }
@@ -4955,6 +4817,7 @@ function freeMode(_ref) {
   \**********************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Grid; }
@@ -5124,6 +4987,7 @@ function Grid(_ref) {
   \*********************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ HashNavigation; }
@@ -5233,6 +5097,7 @@ function HashNavigation(_ref) {
   \*************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ History; }
@@ -5390,6 +5255,7 @@ function History(_ref) {
   \**************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Keyboard; }
@@ -5523,6 +5389,7 @@ function Keyboard(_ref) {
   \******************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Manipulation; }
@@ -5728,6 +5595,7 @@ function Manipulation(_ref) {
   \****************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Mousewheel; }
@@ -6137,6 +6005,7 @@ function Mousewheel(_ref) {
   \****************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Navigation; }
@@ -6343,6 +6212,7 @@ function Navigation(_ref) {
   \****************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Pagination; }
@@ -6804,6 +6674,7 @@ function Pagination(_ref) {
   \**************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Parallax; }
@@ -6943,6 +6814,7 @@ function Parallax(_ref) {
   \***************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Scrollbar; }
@@ -7315,6 +7187,7 @@ function Scrollbar(_ref) {
   \************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Thumb; }
@@ -7523,6 +7396,7 @@ function Thumb(_ref) {
   \*************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Virtual; }
@@ -7884,6 +7758,7 @@ function Virtual(_ref) {
   \**********************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Zoom; }
@@ -8491,6 +8366,7 @@ function Zoom(_ref) {
   \************************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   c: function() { return /* binding */ classesToSelector; }
@@ -8514,6 +8390,7 @@ function classesToSelector(classes) {
   \**********************************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   c: function() { return /* binding */ createElementIfNotDefined; }
@@ -8550,6 +8427,7 @@ function createElementIfNotDefined(swiper, originalParams, params, checkProps) {
   \******************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   c: function() { return /* binding */ createShadow; }
@@ -8579,6 +8457,7 @@ function createShadow(suffix, slideEl, side) {
   \****************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   e: function() { return /* binding */ effectInit; }
@@ -8651,6 +8530,7 @@ function effectInit(params) {
   \******************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   e: function() { return /* binding */ effectTarget; }
@@ -8678,6 +8558,7 @@ function effectTarget(effectParams, slideEl) {
   \**********************************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   e: function() { return /* binding */ effectVirtualTransitionEnd; }
@@ -8741,6 +8622,7 @@ function effectVirtualTransitionEnd(_ref) {
   \*******************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   a: function() { return /* binding */ getWindow; },
@@ -8901,6 +8783,7 @@ function getWindow() {
   \****************************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   S: function() { return /* binding */ Swiper; },
@@ -12798,6 +12681,7 @@ Swiper.use([Resize, Observer]);
   \**********************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   a: function() { return /* binding */ elementParents; },
@@ -13122,6 +13006,7 @@ function elementOuterSize(el, size, includeMargins) {
   \***********************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Swiper: function() { return /* reexport safe */ _shared_swiper_core_mjs__WEBPACK_IMPORTED_MODULE_0__.S; },
@@ -13278,18 +13163,18 @@ _shared_swiper_core_mjs__WEBPACK_IMPORTED_MODULE_0__.S.use(modules);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
+"use strict";
 /*!*************************************!*\
   !*** ./assets/js/single-product.js ***!
   \*************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _single_product_swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./single-product/swiper */ "./assets/js/single-product/swiper.js");
-/* harmony import */ var _single_product_getPrice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./single-product/getPrice */ "./assets/js/single-product/getPrice.js");
-/* harmony import */ var _single_product_getProductInfo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./single-product/getProductInfo */ "./assets/js/single-product/getProductInfo.js");
-/* harmony import */ var _single_product_addToCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./single-product/addToCard */ "./assets/js/single-product/addToCard.js");
-/* harmony import */ var _css_single_product_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/single-product.scss */ "./assets/css/single-product.scss");
-
+/* harmony import */ var _single_product_updateProductQuantity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./single-product/updateProductQuantity */ "./assets/js/single-product/updateProductQuantity.js");
+/* harmony import */ var _single_product_updateProductVariation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./single-product/updateProductVariation */ "./assets/js/single-product/updateProductVariation.js");
+/* harmony import */ var _single_product_updateProductVariation__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_single_product_updateProductVariation__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _css_single_product_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/single-product.scss */ "./assets/css/single-product.scss");
 
 
 

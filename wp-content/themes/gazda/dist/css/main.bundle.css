@@ -15087,7 +15087,7 @@ html, body {
 body {
   font-family: "Gazda Pro", sans-serif;
   line-height: normal;
-  color: #FFF;
+  color: black;
   background-color: #F6F6EE;
   overflow-x: hidden;
 }
@@ -15819,6 +15819,37 @@ img {
           animation-name: tada;
   -webkit-animation-duration: 0.8s;
           animation-duration: 0.8s;
+}
+
+span.xoo-wsc-sc-count {
+  top: 0.19rem;
+  right: 0.19rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  font-size: 0.75rem;
+  pointer-events: none;
+  background-color: #F2994A;
+  color: #FFF;
+}
+
+.xoo-wsc-sc-subt {
+  display: none;
+}
+
+.xoo-wsc-icon-basket1::before {
+  content: "";
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url(../images/icon_shopping_cart.svg);
+}
+
+.xoo-wsc-cart-trigger {
+  padding: 0.375rem;
+}
+
+.xoo-wsc-sc-bkcont {
+  all: unset !important;
 }
 
 .footer {

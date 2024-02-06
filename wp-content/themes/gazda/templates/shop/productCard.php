@@ -1,11 +1,10 @@
 <?php
-$thumbnail_id = $args['thumbnail_id'] ?? null;
 $is_swiper = $args['is_swiper'] ?? false;
 
 $product = wc_get_product(get_the_ID());
 ?>
 
-<li <?php wc_product_class('position-relative', $product); ?>>
+<li <?php wc_product_class(array('position-relative', $is_swiper ? 'swiper-slide' : ''), $product); ?>>
     <div class="product-list__wrapper bg-white rounded-3 overflow-hidden h-100">
         <?php
         /**

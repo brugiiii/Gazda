@@ -1,38 +1,55 @@
 <?php
 $product = wc_get_product(get_the_ID());
 $is_in_stock = $product->is_in_stock();
-$short_description = $product->get_short_description();
-$price = $product->get_price();
+$is_variable = $product->is_type('variable');
 ?>
 
 <section class="section hero-section">
     <div class="container">
         <?= get_template_part('templates/single-product/breadcrumbs'); ?>
-        <div class="d-lg-flex justify-content-between">
+
+        <div id="product-<?php the_ID(); ?>" <?php wc_product_class('d-flex justify-content-between', $product); ?>>
             <div class="hero-gallery">
-                <?= get_template_part('templates/single-product/gallery'); ?>
+                <?php
+                do_action('woocommerce_before_single_product');
+                /**
+                 * Hook: woocommerce_before_single_product_summary.
+                 *
+                 * @hooked woocommerce_show_product_sale_flash - 10
+                 * @hooked woocommerce_show_product_images - 20
+                 */
+                do_action('woocommerce_before_single_product_summary');
+                ?>
             </div>
-            <div class="hero-info">
-                <h1 class="hero-title mb-2">
-                    <?= the_title(); ?>
-                </h1>
+            <div class="summary entry-summary">
+                <?php
+                woocommerce_template_single_title();
 
-                <?= get_template_part('templates/single-product/is-in-stock', null, array('is_in_stock' => $is_in_stock)); ?>
+                get_template_part('templates/single-product/is-in-stock', null, array('is_in_stock' => $is_in_stock));
 
-                <div class="hero-description">
-                    <?= wpautop($short_description); ?>
-                </div>
+                woocommerce_template_single_excerpt();
 
-                <span class="hero-price d-block">
-                   <?= get_template_part('templates/single-product/price'); ?>
-                </span>
+                if (!$is_variable) {
+                    woocommerce_template_single_price();
+                } else {
+                    ?>
+                    <div class="price-wrapper"></div>
+                    <?php
+                    get_template_part('templates/single-product/attributes');
+                }
+                if ($is_in_stock) {
+                    ?>
+                    <div class="d-flex align-items-center gap-3">
+                        <?php
+                        get_template_part('templates/single-product/counter');
 
-                <?= get_template_part('templates/single-product/attributes'); ?>
-
-                <?= get_template_part('templates/single-product/buy'); ?>
-
-                <?= get_template_part('templates/single-product/features'); ?>
+                        woocommerce_template_single_add_to_cart();
+                        ?>
+                    </div>
+                <?php }
+                ?>
             </div>
         </div>
+
     </div>
 </section>
