@@ -506,6 +506,11 @@ table.variations {
   background-color: #1F252E;
 }
 
+.woocommerce-tabs {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #DFE0E1;
+}
+
 .woocommerce-Tabs-panel--description h2,
 .woocommerce-Tabs-panel--exchanges_and_returns h2 {
   margin-bottom: 0.5rem;
@@ -528,21 +533,48 @@ table.variations {
   list-style-type: disc;
 }
 
-.cr-count-row {
-  display: none !important;
-}
-
-.commentlist {
-  padding-bottom: 0 !important;
+#comments {
   margin-bottom: 1.5rem;
 }
+
 .commentlist li {
-  margin: 0 !important;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #DFE0E1;
 }
 .commentlist li:not(:last-child) {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.5rem;
 }
-.commentlist .comment-text {
+.commentlist li > p {
+  margin-bottom: 0.5rem;
+}
+.commentlist .meta {
+  margin-bottom: 0.5rem;
+  color: #1F252E;
+}
+.commentlist .meta .comment-author {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+.commentlist .meta .comment-date {
+  letter-spacing: 0.03125rem;
+}
+.commentlist .star {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-position: center;
+  background-size: contain;
+}
+.commentlist .star.star-filled {
+  background-image: url(../images/icon-star-filled.svg);
+}
+.commentlist .star.star-empty {
+  background-image: url(../images/icon-star-empty.svg);
+}
+
+#review_form_wrapper {
+  color: #1F252E;
+}
+#review_form_wrapper form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -550,45 +582,133 @@ table.variations {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding-bottom: 0.75rem !important;
-  border-bottom: 1px solid #DFE0E1 !important;
 }
-.commentlist .meta {
-  margin-bottom: 0.5rem;
+#review_form_wrapper .comment-form-author {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
 }
-.commentlist .meta .woocommerce-review__author {
-  font-size: 1.125rem !important;
-  font-weight: 400 !important;
-  line-height: 1.5;
-  color: #1F252E !important;
-}
-.commentlist .meta .woocommerce-review__published-date {
-  font-size: 0.875rem !important;
-  line-height: 1.4;
-  letter-spacing: 0.03125rem;
-  color: #1F252E !important;
-}
-.commentlist .crstar-rating {
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
-  margin: 0 !important;
-}
-.commentlist .description {
-  margin-bottom: 0.5rem;
+#review_form_wrapper .comment-form-email {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
 }
-.commentlist .description p {
-  margin: 0 !important;
+#review_form_wrapper .comment-form-comment {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+#review_form_wrapper .comment-form-rating {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+}
+#review_form_wrapper .form-submit {
+  -webkit-box-ordinal-group: 6;
+      -ms-flex-order: 5;
+          order: 5;
+}
+#review_form_wrapper .comment-notes, #review_form_wrapper .comment-form-cookies-consent {
+  display: none;
+}
+#review_form_wrapper .comment-reply-title {
+  display: block;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  padding: 0.5rem 0.5rem 0.3125rem 0.5rem;
+  border-bottom: 3px solid #1F4C43;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+#review_form_wrapper .comment-form-comment, #review_form_wrapper .comment-form-author, #review_form_wrapper .comment-form-email {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+#review_form_wrapper .comment-form-rating {
+  margin-bottom: 1rem;
+}
+#review_form_wrapper .stars {
+  margin-bottom: 0;
+}
+#review_form_wrapper .stars span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
+}
+#review_form_wrapper .stars a {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0;
+  background-size: contain;
+  background-position: center;
+  background-image: url(../images/icon-star-empty.svg);
+}
+#review_form_wrapper label {
+  margin-bottom: 0.25rem;
+}
+#review_form_wrapper .form-submit {
+  margin-bottom: 0;
+}
+#review_form_wrapper textarea, #review_form_wrapper input:not(input[type=submit]) {
+  padding: 0.625rem 0.75rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background-color: #FFF;
+}
+#review_form_wrapper textarea::-webkit-input-placeholder, #review_form_wrapper input:not(input[type=submit])::-webkit-input-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+#review_form_wrapper textarea::-moz-placeholder, #review_form_wrapper input:not(input[type=submit])::-moz-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+#review_form_wrapper textarea:-ms-input-placeholder, #review_form_wrapper input:not(input[type=submit]):-ms-input-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+#review_form_wrapper textarea::-ms-input-placeholder, #review_form_wrapper input:not(input[type=submit])::-ms-input-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+#review_form_wrapper textarea::placeholder, #review_form_wrapper input:not(input[type=submit])::placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+#review_form_wrapper input {
+  max-width: 20.5rem;
+  height: 2.5rem;
+}
+#review_form_wrapper textarea {
+  height: 5.5625rem;
+  resize: none;
+}
+#review_form_wrapper input.submit {
+  -webkit-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+  min-width: 13.8125rem;
+  height: 3rem;
+  border: 0;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  color: #FFF;
+  background-color: #1F4C43;
+}
+#review_form_wrapper input.submit:hover, #review_form_wrapper input.submit:focus {
+  background-color: #083921;
 }
 
 .similar-products-section {
-  padding-top: 2.5rem;
+  padding-top: 1.5rem;
 }
 
 .similar-products-swiper {
@@ -620,13 +740,25 @@ table.variations {
 }
 
 .ctrl-list {
-  gap: 0.44rem;
   border-radius: 0.75rem;
   background-color: #1F4C43;
 }
 
 .ctrl-list__item {
+  -webkit-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
   fill: #FFF;
+}
+.ctrl-list__item:hover {
+  background-color: #083921;
+}
+.ctrl-list__item.prev {
+  padding-right: 0.71875rem;
+  border-radius: 0.75rem 0 0 0.75rem;
+}
+.ctrl-list__item.next {
+  padding-left: 0.71875rem;
+  border-radius: 0 0.75rem 0.75rem 0;
 }
 
 /*# sourceMappingURL=product.bundle.css.map*/

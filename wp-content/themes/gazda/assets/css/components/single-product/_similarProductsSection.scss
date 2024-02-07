@@ -1,5 +1,5 @@
 .similar-products-section {
-  padding-top: 2.5rem;
+  padding-top: 1.5rem;
 }
 
 .similar-products-swiper {
@@ -30,12 +30,27 @@
 }
 
 .ctrl-list {
-  gap: 0.44rem;
   border-radius: $primary-radius;
 
   background-color: $accent-color;
 }
 
 .ctrl-list__item {
+  @include transition(background-color);
+
   fill: $white-color;
+
+  &:hover {
+    background-color: $secondary-bg-color;
+  }
+
+  &.prev {
+    padding-right: 0.71875rem;
+    border-radius: $primary-radius 0 0 $primary-radius;
+  }
+
+  &.next {
+    padding-left:  0.71875rem;
+    border-radius: 0 $primary-radius $primary-radius 0;
+  }
 }

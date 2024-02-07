@@ -56,7 +56,16 @@ $strings_to_translate = array(
     'features_camera_text' => 'фото з реальних зразків',
     'features_truck_text' => 'безкоштовна доставка від 500 грн',
     'similar_products' => 'СУМІЖНІ ТОВАРИ',
-    'choose_options' => 'Оберіть опції'
+    'choose_options' => 'Оберіть опції',
+    'you\'r_review' => 'Ваш відгук',
+    'rating' => 'Оцінка',
+    'no_reviews' => 'Відгуків немає, поки що.',
+    'leave_review' => 'НАПИСАТИ ВІДГУК',
+    'write_review' => 'Напишіть відгук',
+    'send_review' => 'Надіслати відгук',
+    'name' => 'Ім’я',
+    'write_your_name' => 'Напишіть своє ім’я',
+    'write_your_mail' => 'Напишіть свою пошту'
 );
 
 if (function_exists('pll_register_string')) {
