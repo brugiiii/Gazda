@@ -90,3 +90,67 @@
     list-style-type: disc;
   }
 }
+
+.cr-count-row {
+  display: none !important;
+}
+
+.commentlist {
+  padding-bottom: 0 !important;
+  margin-bottom: 1.5rem;
+
+  & li {
+    margin: 0 !important;
+
+    &:not(:last-child){
+      margin-bottom: 1.5rem !important;
+    }
+  }
+
+  & .comment-text {
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 0.75rem !important;
+    border-bottom: 1px solid $fifth-bg-color !important;
+  }
+
+  & .meta {
+    margin-bottom: 0.5rem;
+
+    order: 1;
+
+    & .woocommerce-review__author {
+      font-size: 1.125rem !important;
+      font-weight: 400 !important;
+      line-height: 1.5;
+
+      color: $third-text-color !important;
+    }
+
+    & .woocommerce-review__published-date {
+      font-size: 0.875rem !important;
+      line-height: 1.4;
+      letter-spacing: 0.03125rem;
+
+      color: $third-text-color !important;
+    }
+  }
+
+  & .crstar-rating {
+    order: 3;
+
+    margin: 0 !important;
+  }
+
+  & .description {
+    margin-bottom: 0.5rem;
+
+    order: 2;
+
+    & p {
+      margin: 0 !important;
+    }
+  }
+}
+
