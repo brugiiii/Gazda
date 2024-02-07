@@ -145,6 +145,23 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./assets/js/single-product/fiveStarRating.js":
+/*!****************************************************!*\
+  !*** ./assets/js/single-product/fiveStarRating.js ***!
+  \****************************************************/
+/***/ (function() {
+
+var handleStarClick = function handleStarClick(e) {
+  var $this = $(e.target);
+  var siblingStars = $this.siblings();
+  var previousStars = $this.prevAll('a');
+  siblingStars.removeClass('is-active');
+  previousStars.addClass('is-active');
+};
+$('.woocommerce-tabs').on('click', '.stars a', handleStarClick);
+
+/***/ }),
+
 /***/ "./assets/js/single-product/swiper.js":
 /*!********************************************!*\
   !*** ./assets/js/single-product/swiper.js ***!
@@ -13412,7 +13429,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _single_product_updateProductVariation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./single-product/updateProductVariation */ "./assets/js/single-product/updateProductVariation.js");
 /* harmony import */ var _single_product_updateProductVariation__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_single_product_updateProductVariation__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _single_product_addToCart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./single-product/addToCart */ "./assets/js/single-product/addToCart.js");
-/* harmony import */ var _css_single_product_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/single-product.scss */ "./assets/css/single-product.scss");
+/* harmony import */ var _single_product_fiveStarRating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./single-product/fiveStarRating */ "./assets/js/single-product/fiveStarRating.js");
+/* harmony import */ var _single_product_fiveStarRating__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_single_product_fiveStarRating__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _css_single_product_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../css/single-product.scss */ "./assets/css/single-product.scss");
+
 
 
 

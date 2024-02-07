@@ -641,16 +641,20 @@ table.variations {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.5rem;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin-left: -0.25rem;
 }
 #review_form_wrapper .stars a {
   display: inline-block;
-  width: 1.5rem;
+  width: 2rem;
   height: 1.5rem;
   font-size: 0;
-  background-size: contain;
+  background-size: 1.5rem 1.5rem;
   background-position: center;
-  background-image: url(../images/icon-star-empty.svg);
+  background-repeat: no-repeat;
+  padding: 0 0.25rem;
 }
 #review_form_wrapper label {
   margin-bottom: 0.25rem;
@@ -705,6 +709,20 @@ table.variations {
 }
 #review_form_wrapper input.submit:hover, #review_form_wrapper input.submit:focus {
   background-color: #083921;
+}
+
+.stars span a,
+.stars span a:hover ~ a {
+  background-image: url(../images/icon-star-empty.svg);
+}
+
+.stars span:hover a {
+  background-image: url(../images/icon-star-filled.svg);
+}
+
+.stars span a.active,
+.stars span a.is-active {
+  background-image: url(../images/icon-star-filled.svg) !important;
 }
 
 .similar-products-section {
