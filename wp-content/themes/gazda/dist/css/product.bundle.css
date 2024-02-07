@@ -513,19 +513,23 @@ table.variations {
   background-color: #1F252E;
 }
 
-.woocommerce-Tabs-panel--description h2 {
+.woocommerce-Tabs-panel--description h2,
+.woocommerce-Tabs-panel--exchanges_and_returns h2 {
   margin-bottom: 0.5rem;
   font-size: 1.125rem;
   line-height: 1.5;
   color: #1F252E;
 }
-.woocommerce-Tabs-panel--description p:not(:last-child) {
+.woocommerce-Tabs-panel--description p:not(:last-child),
+.woocommerce-Tabs-panel--exchanges_and_returns p:not(:last-child) {
   margin-bottom: 1.25rem;
 }
-.woocommerce-Tabs-panel--description p:last-child {
+.woocommerce-Tabs-panel--description p:last-child,
+.woocommerce-Tabs-panel--exchanges_and_returns p:last-child {
   margin-bottom: 0;
 }
-.woocommerce-Tabs-panel--description ul {
+.woocommerce-Tabs-panel--description ul,
+.woocommerce-Tabs-panel--exchanges_and_returns ul {
   padding-left: 1.25rem;
   margin-bottom: 1rem;
   list-style-type: disc;

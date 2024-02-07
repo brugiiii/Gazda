@@ -62,7 +62,8 @@
   }
 }
 
-.woocommerce-Tabs-panel--description {
+.woocommerce-Tabs-panel--description,
+.woocommerce-Tabs-panel--exchanges_and_returns {
   & h2 {
     margin-bottom: 0.5rem;
 
@@ -89,15 +90,3 @@
     list-style-type: disc;
   }
 }
-
-
-.stars {
-  & span {
-    a:hover,
-    a:focus {
-
-    }
-  }
-}
-
-
