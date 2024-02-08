@@ -123,3 +123,9 @@
     animation: spin 2s linear infinite;
   }
 }
+
+.fly-cart {
+  pointer-events: none;
+  z-index: 9999;
+  width: 200px;
+}

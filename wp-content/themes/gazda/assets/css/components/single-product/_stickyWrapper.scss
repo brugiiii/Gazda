@@ -1,0 +1,20 @@
+.sticky-wrapper {
+  background-color: $primary-bg-color;
+  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.10);
+
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+
+  & .woocommerce-variation,
+  & .quantity {
+    display: none !important;
+  }
+
+  & .variations_form {
+    max-width: fit-content;
+  }
+
+  & .buy-button {
+    min-width: 11.8125rem;
+  }
+}

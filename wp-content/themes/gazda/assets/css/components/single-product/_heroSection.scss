@@ -1,21 +1,58 @@
 #single-product {
-  padding-top: 1.5rem;
-
   font-size: 0.875rem;
   line-height: 1.4;
   letter-spacing: 0.01875rem;
 
   color: $secondary-text-color;
+
+  @media screen and (min-width: 992px) {
+    padding-top: 1.5rem;
+  }
 }
 
 .hero-section {
   padding-bottom: 2.5rem;
 
+  @media screen and (max-width: 991px) {
+    padding-bottom: 1.5rem;
+  }
+
+  & > .container {
+    @media screen and (max-width: 991px) {
+      padding: 0;
+    }
+
+    & > .container {
+      max-width: 100%;
+
+      @media screen and (min-width: 992px) {
+        display: contents;
+      }
+    }
+  }
+
   & .quantity-wrapper,
   & .quantity__value {
     all: unset;
   }
+}
 
+.breadcrumb {
+  margin-bottom: 1.5rem;
+
+  color: $eighth-text-color;
+
+  @media screen and (max-width: 991px) {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+
+    border-bottom: 1px solid $fifth-bg-color;
+    background-color: $fourth-text-color;
+  }
+}
+
+.hero-section,
+.sticky-wrapper {
   & .quantity-container {
     padding: 0.75rem;
     border-radius: $primary-radius;
@@ -30,15 +67,26 @@
   & .quantity__icon {
     fill: $secondary-text-color;
   }
-}
 
-.breadcrumb {
-  margin-bottom: 1.5rem;
+  & .buy-button {
+    height: 3rem;
 
-  color: $eighth-text-color;
+    @media screen and (max-width: 991px) {
+      width: 100%;
+      max-width: 11.8125rem;
+    }
+
+    @media screen and (min-width: 992px) and (max-width: 1439px) {
+      width: 100%;
+    }
+  }
 }
 
 .hero-gallery {
+  @media screen and (max-width: 991px) {
+    margin-bottom: 1.5rem;
+  }
+
   @media screen and (min-width: 992px) {
     width: 28.5rem;
   }
@@ -48,19 +96,8 @@
   }
 }
 
-.wvg-single-gallery-image-container {
-  @media screen and (min-width: 992px) {
-    aspect-ratio: 1 / calc(27.3125 / 28.5);
-  }
-
-  @media screen and (min-width: 1440px) {
-    aspect-ratio: 1 / calc(27.8125 / 29.0625);
-  }
-
-  & img {
-    width: 100% !important;
-    height: 100% !important;
-  }
+.woo-variation-gallery-wrapper {
+  min-height: initial !important;
 }
 
 .pswp__caption,
@@ -102,7 +139,13 @@ table.variations {
 }
 
 .summary {
-  max-width: 37.4375rem;
+  @media screen and (min-width: 992px) {
+    max-width: 28.5rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 37.4375rem;
+  }
 }
 
 .product_title {
@@ -111,6 +154,10 @@ table.variations {
   font-size: clamp(1.25rem, 0.823rem + 1.9vw, 2rem);
 
   color: $seventh-text-color;
+
+  @media screen and (max-width: 991px) {
+    line-height: 1.43;
+  }
 }
 
 .availability {
@@ -146,6 +193,28 @@ table.variations {
     text-transform: uppercase;
 
     color: $seventh-text-color;
+  }
+}
+
+:root {
+  @media screen and (max-width: 991px) {
+    --wvg-thumbnail-item-gap: 1.25rem !important;
+  }
+
+  @media screen and (min-width: 992px) {
+    --wvg-thumbnail-item-gap: 1.5rem !important;
+  }
+
+  @media screen and (min-width: 1440px) {
+    --wvg-thumbnail-item-gap: 1.6875rem !important;
+  }
+}
+
+.woo-variation-gallery-thumbnail-position-bottom-bottom .woo-variation-gallery-container .wvg-gallery-thumbnail-image {
+  width: calc(var(--thumb-wrapper-margin-remove) / 3) !important;
+
+  @media screen and (min-width: 576px) {
+    width: calc(var(--thumb-wrapper-margin-remove) / 4) !important;
   }
 }
 
@@ -222,10 +291,16 @@ table.variations {
   margin-bottom: 1.25rem;
 }
 
+.variations_form {
+  flex-grow: 1;
+}
+
 .buy-button {
   @include transition(background-color);
 
-  min-width: 14.25rem;
+  @media screen and (min-width: 992px) {
+    min-width: 14.25rem;
+  }
 
   & span {
     @include transition(scale);
@@ -256,15 +331,29 @@ table.variations {
 
 .features-list {
   margin-top: 1.25rem;
-  gap: 2.5rem;
+  gap: 1rem;
+
+  @media screen and (min-width: 576px) {
+    gap: 2.5rem;
+  }
 }
 
 .features-list__item {
   gap: 0.9375rem;
 
-  flex-basis: calc((100% - 5rem / 3));
+  flex-basis: calc((100% - 2rem) / 3);
+
+  @media screen and (min-width: 576px) {
+    flex-basis: calc((100% - 5rem / 3));
+  }
 }
 
 .features-list__text {
+  font-size: 0.75rem;
+
   color: $third-text-color;
+
+  @media screen and (min-width: 1440px) {
+    font-size: 0.875rem;
+  }
 }

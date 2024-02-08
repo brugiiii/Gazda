@@ -4,7 +4,7 @@ $home_page = pll_get_post(16, $current_lang);
 $product_categories = wc_get_product_terms(get_the_ID(), 'product_cat', array('orderby' => 'parent'));
 ?>
 
-<div class="breadcrumb">
+<div class="breadcrumb px-3 px-lg-0">
     <a href="<?= get_permalink($home_page); ?>">
         <?= get_the_title($home_page); ?>
     </a>

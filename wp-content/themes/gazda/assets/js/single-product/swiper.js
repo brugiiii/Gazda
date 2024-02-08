@@ -16,10 +16,25 @@ const gallerySwiper = new Swiper('.product-swiper', {
 })
 
 const similarProductsSwiper = new Swiper(".similar-products-swiper", {
-    slidesPerView: 5,
-    spaceBetween: 30,
+    slidesPerView: 2,
+    spaceBetween: 16,
     loop: true,
     grabCursor: true,
+    breakpoints: {
+        768: {
+            slidesPerView: 3,
+        },
+        992: {
+          slidesPerView: 4,
+        },
+        1200: {
+            slidesPerView: 5,
+        },
+        1440: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+        }
+    },
     navigation: {
         nextEl: '.similar-products-wrapper .next',
         prevEl: ".similar-products-wrapper .prev"

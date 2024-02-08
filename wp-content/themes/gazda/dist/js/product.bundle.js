@@ -186,14 +186,52 @@ var gallerySwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["default"]('.
   }
 });
 var similarProductsSwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["default"](".similar-products-swiper", {
-  slidesPerView: 5,
-  spaceBetween: 30,
+  slidesPerView: 2,
+  spaceBetween: 16,
   loop: true,
   grabCursor: true,
+  breakpoints: {
+    768: {
+      slidesPerView: 3
+    },
+    992: {
+      slidesPerView: 4
+    },
+    1200: {
+      slidesPerView: 5
+    },
+    1440: {
+      slidesPerView: 5,
+      spaceBetween: 30
+    }
+  },
   navigation: {
     nextEl: '.similar-products-wrapper .next',
     prevEl: ".similar-products-wrapper .prev"
   }
+});
+
+/***/ }),
+
+/***/ "./assets/js/single-product/tabsCarousel.js":
+/*!**************************************************!*\
+  !*** ./assets/js/single-product/tabsCarousel.js ***!
+  \**************************************************/
+/***/ (function() {
+
+var handleTabClick = function handleTabClick(event) {
+  var target = event.target;
+  var li = $(target).closest('li')[0];
+
+  // Прокрутка контейнера до обраного елементу
+  li.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'start'
+  });
+};
+$(document).ready(function () {
+  $('.tabs').on('click', 'li a', handleTabClick);
 });
 
 /***/ }),
@@ -13431,7 +13469,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _single_product_addToCart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./single-product/addToCart */ "./assets/js/single-product/addToCart.js");
 /* harmony import */ var _single_product_fiveStarRating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./single-product/fiveStarRating */ "./assets/js/single-product/fiveStarRating.js");
 /* harmony import */ var _single_product_fiveStarRating__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_single_product_fiveStarRating__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _css_single_product_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../css/single-product.scss */ "./assets/css/single-product.scss");
+/* harmony import */ var _single_product_tabsCarousel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./single-product/tabsCarousel */ "./assets/js/single-product/tabsCarousel.js");
+/* harmony import */ var _single_product_tabsCarousel__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_single_product_tabsCarousel__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _css_single_product_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../css/single-product.scss */ "./assets/css/single-product.scss");
+
 
 
 
