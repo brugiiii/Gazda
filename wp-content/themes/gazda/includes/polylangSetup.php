@@ -65,7 +65,8 @@ $strings_to_translate = array(
     'send_review' => 'Надіслати відгук',
     'name' => 'Ім’я',
     'write_your_name' => 'Напишіть своє ім’я',
-    'write_your_mail' => 'Напишіть свою пошту'
+    'write_your_mail' => 'Напишіть свою пошту',
+    'from' => 'Від'
 );
 
 if (function_exists('pll_register_string')) {

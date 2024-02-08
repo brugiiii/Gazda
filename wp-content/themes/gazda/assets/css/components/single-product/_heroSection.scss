@@ -160,8 +160,22 @@ table.variations {
   }
 }
 
+.price-wrapper {
+  margin-bottom: 1.25rem;
+
+  .woocommerce-variation-add-to-cart {
+    display: none;
+  }
+}
+
 .attributes {
   margin-bottom: 1.25rem;
+
+  & + div {
+    & .woocommerce-variation {
+      display: none !important;
+    }
+  }
 }
 
 .attributes-title {

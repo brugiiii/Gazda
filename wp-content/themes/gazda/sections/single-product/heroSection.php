@@ -32,6 +32,11 @@ $is_variable = $product->is_type('variable');
                 if (!$is_variable) {
                     woocommerce_template_single_price();
                 } else {
+                    ?>
+                    <div class="price-wrapper">
+                        <?php woocommerce_template_single_add_to_cart(); ?>
+                    </div>
+                    <?php
                     get_template_part('templates/single-product/attributes');
                 }
 

@@ -38,8 +38,10 @@ $is_variable = $product->is_type('variable');
              * @hooked woocommerce_template_loop_rating - 5
              * @hooked woocommerce_template_loop_price - 10
              */
-            do_action('woocommerce_after_shop_loop_item_title');
             ?>
+            <span class="price">
+                <?= $is_variable ? translate_and_output('from') . ' ' . wc_price($product->get_variation_price('min')) : $product->get_price_html(); ?>
+            </span>
         </div>
         <?php
         /**

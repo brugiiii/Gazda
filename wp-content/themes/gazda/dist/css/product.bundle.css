@@ -364,8 +364,18 @@ table.variations {
   color: #E5A83A;
 }
 
+.price-wrapper {
+  margin-bottom: 1.25rem;
+}
+.price-wrapper .woocommerce-variation-add-to-cart {
+  display: none;
+}
+
 .attributes {
   margin-bottom: 1.25rem;
+}
+.attributes + div .woocommerce-variation {
+  display: none !important;
 }
 
 .attributes-title {
