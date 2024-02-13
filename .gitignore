@@ -36,7 +36,6 @@ wp-config.php
 .DS_Store
 .idea/
 docker-compose.yml
-package.json
 
 # All plugins
 #

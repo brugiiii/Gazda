@@ -1,8 +1,10 @@
+<?php
+$page = $args['page'] ?? 'shop';
+?>
+
 <div class="products-toolbar py-lg-3">
     <div class="toolbar-wrapper d-md-flex align-items-md-center justify-content-md-between">
-        <h2 class="toolbar-wrapper__title mb-md-0">
-            <?= translate_and_output('all_products'); ?>
-        </h2>
+        <h2 class="toolbar-wrapper__title mb-md-0"></h2>
         <div class="toolbar-els d-flex">
             <div class="position-relative toolbar-filter d-none">
                 <button class="toolbar-els__button filter-button d-flex align-items-center" type="button">
@@ -46,13 +48,21 @@
     </div>
     <div class="current-filter d-flex gap-2 flex-wrap"></div>
 </div>
-<div class="nav-wrapper d-flex d-lg-none">
-    <button type="button" class="categories-button p-2 border-0 rounded-3">
-        <svg class="categories-button__icon" width="24" height="24">
-            <use href="<?php get_image('sprite.svg#icon-category'); ?>"></use>
-        </svg>
-    </button>
-    <div class="swiper categories-swiper pe-3">
-        <?= get_template_part('templates/shop/navigation', null, array('is_swiper' => true)); ?>
+
+<?php
+if ($page === 'shop') {
+    ?>
+    <div class="nav-wrapper d-flex d-lg-none">
+        <button type="button" class="categories-button p-2 border-0 rounded-3">
+            <svg class="categories-button__icon" width="24" height="24">
+                <use href="<?php get_image('sprite.svg#icon-category'); ?>"></use>
+            </svg>
+        </button>
+        <div class="swiper categories-swiper pe-3">
+            <?= get_template_part('templates/shop/navigation', null, array('is_swiper' => true)); ?>
+        </div>
     </div>
-</div>
+    <?php
+}
+?>
+

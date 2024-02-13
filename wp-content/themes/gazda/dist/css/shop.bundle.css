@@ -256,7 +256,7 @@
   height: 2.5rem;
 }
 
-#shop {
+#shop, #delivery {
   padding-bottom: 2.5rem;
   line-height: 1.4;
   font-size: 0.875rem;
@@ -264,26 +264,26 @@
   color: #8A8D92;
 }
 @media screen and (min-width: 992px) {
-  #shop {
+  #shop, #delivery {
     padding-top: 1.5rem;
   }
 }
 @media screen and (max-width: 991px) {
-  #shop .products > .container {
+  #shop .products > .container, #delivery .products > .container {
     max-width: none;
     max-width: initial;
     padding: 0;
   }
 }
 @media screen and (min-width: 992px) {
-  #shop .products > .container .container {
+  #shop .products > .container .container, #delivery .products > .container .container {
     display: contents;
   }
 }
-#shop button {
+#shop button, #delivery button {
   letter-spacing: inherit;
 }
-#shop h2:not(.woocommerce-loop-product__title) {
+#shop h2:not(.woocommerce-loop-product__title), #delivery h2:not(.woocommerce-loop-product__title) {
   font-size: 1.5rem;
   color: #1F252E;
 }
@@ -354,14 +354,27 @@
 }
 
 @media screen and (max-width: 991px) {
-  .nav-wrapper,
+  .nav-wrapper {
+    border-bottom: 1px solid #DFE0E1;
+    background-color: #F5F5F5;
+  }
+}
+@media screen and (min-width: 992px) {
+  .nav-wrapper {
+    background-color: #FFF;
+  }
+}
+
+.products-toolbar {
+  border-radius: 0.5rem;
+}
+@media screen and (max-width: 991px) {
   .products-toolbar {
     border-bottom: 1px solid #DFE0E1;
     background-color: #F5F5F5;
   }
 }
 @media screen and (min-width: 992px) {
-  .nav-wrapper,
   .products-toolbar {
     background-color: #FFF;
   }

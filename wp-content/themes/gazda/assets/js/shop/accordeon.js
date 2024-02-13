@@ -1,6 +1,5 @@
 const iconToggle = $('.icon--toggle');
 
-
 iconToggle.on('click', function(e) {
     $(this).toggleClass('toggle--horizontal');
 });

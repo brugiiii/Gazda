@@ -4,6 +4,7 @@ $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 12;
 $order = isset($_POST['order']) ? $_POST['order'] : 'DESC';
 $tags = $_POST['tags'] ?? array();
+$class = $_POST['class'] ?? 'shop';
 
 // Захист від SQL-ін'єкцій
 $categories = array_map('intval', $categories);
@@ -28,6 +29,13 @@ $args['tax_query'] = array(
         'terms' => $categories,
         'operator' => 'IN',
     ),
+);
+
+$args['tax_query'][] = array(
+    'taxonomy' => 'class',
+    'field' => 'slug',
+    'terms' => $class,
+    'operator' => 'IN',
 );
 
 if (!empty($tags) && count($categories) === 1) {

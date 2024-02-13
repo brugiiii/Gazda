@@ -1,9 +1,18 @@
 <ul class="faq-list mx-auto">
     <?php
+    $class_taxonomy = is_page_template('pages/delivery.php') ? 'delivery' : 'shop';
+
     $args = array(
         'post_type' => 'faq',
         'posts_per_page' => -1,
         'order' => 'ASC',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'class',
+                'field' => 'slug',
+                'terms' => $class_taxonomy,
+            ),
+        ),
     );
 
     $query = new WP_Query($args);

@@ -11,6 +11,7 @@ module.exports = {
     home: "./assets/js/home.js",
     shop: "./assets/js/shop.js",
     product: "./assets/js/single-product.js",
+    delivery: "./assets/js/delivery.js",
   },
   output: {
     filename: "js/[name].bundle.js",

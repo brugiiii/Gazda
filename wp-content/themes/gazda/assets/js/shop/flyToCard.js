@@ -1,6 +1,7 @@
 let itemList = $("main").offset().left;
 let cartPos = $("#cart").offset().left;
 
+
 export const flyToCart = (button) => {
     let item = button.closest(".product-list__wrapper");
 

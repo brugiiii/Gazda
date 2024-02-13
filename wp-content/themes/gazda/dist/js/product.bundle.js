@@ -81,7 +81,6 @@ var updateQuantity = function updateQuantity(value, delta, $this) {
     buyButton.attr('data-quantity', newQuantity);
     currentBuyButton = buyButton;
   } else {
-    // Використовуйте метод attr() для зміни значення дата-атрибута
     currentBuyButton.attr('data-quantity', newQuantity);
   }
   return newQuantity;
