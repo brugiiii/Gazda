@@ -58,9 +58,13 @@ if ($page === 'shop') {
                 <use href="<?php get_image('sprite.svg#icon-category'); ?>"></use>
             </svg>
         </button>
-        <div class="swiper categories-swiper pe-3">
-            <?= get_template_part('templates/shop/navigation', null, array('is_swiper' => true)); ?>
-        </div>
+        <?= get_template_part('templates/shop/navigation', null, array('is_swiper' => true)); ?>
+    </div>
+    <?php
+} else {
+    ?>
+    <div class="nav-wrapper px-0 d-lg-none">
+        <?= get_template_part('templates/shop/navigation', null, array('is_swiper' => true, 'page' => $page)); ?>
     </div>
     <?php
 }

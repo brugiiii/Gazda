@@ -1,20 +1,15 @@
 import {productsSkeleton} from "../helpers/productsSkeleton";
-// import {categoriesSwiper} from "./swiper";
 
 const productsItems = $('.products-items');
 const productsList = $('.products-list');
 const paginationContainer = $('.pagination-container');
 const filterContainer = $('.filter-container');
-const navList = $('.nav-wrapper .nav-list');
+const navWrapper = $('.nav-wrapper');
 const orderButtons = $('.order-list__button');
-const orderButton = $('.order-button');
 const orderButtonText = $('.order-button__text');
 const orderList = $('.order-list');
-const breadCrumbCurrent = $('.breadcrumb .current');
 const toolbarFilter = $('.toolbar-filter');
-const filterButton = $('.filter-button');
 const currentFilter = $('.current-filter');
-const toolbarTitle = $('.toolbar-wrapper__title');
 const orderSelect = $('select.toolbar-els__button');
 const selectContainer = $('.select-container');
 
@@ -68,7 +63,7 @@ const handleProductsFetchSuccess = (response) => {
         toolbarFilter.removeClass('d-none');
         filterWrapper.remove();
 
-        if(query.tags.length === 0){
+        if (query.tags.length === 0) {
             filterContainer.html(filterWrapper)
         }
     }
@@ -76,7 +71,7 @@ const handleProductsFetchSuccess = (response) => {
     if (filterSelect) {
         filterSelect.remove();
 
-        if(query.tags.length === 0){
+        if (query.tags.length === 0) {
             selectContainer.html(filterSelect);
         }
     }
@@ -98,37 +93,12 @@ const handleCategoryButtonClick = (event) => {
         return;
     }
 
-    const currentCategory = $clickedButton.text();
-    const categoryId = $clickedButton.data('categoryId');
-    const activeButtons = $(`.products-nav__button:contains('${currentCategory}')`);
-    const siblingButtons = activeButtons.map(function () {
-        const navItem = $(this).closest('.products-nav__item');
-        return navItem.siblings().find('.products-nav__button');
-    });
-
-    if ($clickedButton.closest('.swiper-slide').length === 0) {
-        const activeSlideIndex = activeButtons.map(function () {
-            return $(this).closest('.swiper-slide').index();
-        }).get().find(index => index >= 0);
-
-        // categoriesSwiper.slideTo(activeSlideIndex)
-    }
-
-    siblingButtons.each(function () {
-        $(this).removeClass('is-active');
-    });
-
-    activeButtons.each(function () {
-        $(this).addClass('is-active');
-    });
-
-    breadCrumbCurrent.text(currentCategory);
-    toolbarTitle.text(currentCategory)
     loadMoreClickCount = 1;
 
-    query.categories = [categoryId];
-    query.posts_per_page = initialPostsPerPage;
     currentFilter.html('')
+
+    query.categories = [$clickedButton.data('categoryId')];
+    query.posts_per_page = initialPostsPerPage;
     query.page = 1;
     query.tags = [];
 
@@ -162,7 +132,7 @@ const handleSelectFilterChange = (e) => {
     const $this = $(e.target);
     const values = $this.val();
 
-    $('.filter-wrapper__input').each(function() {
+    $('.filter-wrapper__input').each(function () {
         const inputValue = $(this).val();
         const isChecked = values && values.includes(inputValue);
 
@@ -270,74 +240,15 @@ const handleRemoveFilter = (e) => {
     fetchAndRenderProducts();
 }
 
-// Lists visibility
-const toggleOrderListVisibility = (event) => {
-    event.stopPropagation();
-
-    if (orderList.hasClass('is-hidden')) {
-        // Keyboard tracking
-        $(document).on("keydown", function (e) {
-            if (e.key === "Escape") {
-                orderList.addClass('is-hidden');
-                $(document).off("keydown");
-            }
-        });
-
-        // Click tracking
-        $(document).on("click", function (e) {
-            if (!orderList.is(e.target) && orderList.has(e.target).length === 0) {
-                orderList.addClass('is-hidden');
-                $(document).off("click");
-                $(document).off("keydown");
-            }
-        });
-    } else {
-        $(document).off("keydown");
-        $(document).off("click")
-    }
-
-    orderList.toggleClass('is-hidden');
-};
-
-const toggleFilterListVisibility = (event) => {
-    event.stopPropagation();
-
-    if (filterContainer.hasClass('is-hidden')) {
-        // Keyboard tracking
-        $(document).on("keydown", function (e) {
-            if (e.key === "Escape") {
-                filterContainer.addClass('is-hidden');
-                $(document).off("keydown");
-            }
-        });
-
-        // Click tracking
-        $(document).on("click", function (e) {
-            if (!filterContainer.is(e.target) && filterContainer.has(e.target).length === 0) {
-                filterContainer.addClass('is-hidden');
-                $(document).off("click");
-                $(document).off("keydown");
-            }
-        });
-    } else {
-        $(document).off("keydown");
-        $(document).off("click")
-    }
-
-    filterContainer.toggleClass('is-hidden');
-}
-
 // Listeners
 productsItems.on("click", '.pagination__item, .load-more', handlePaginationClick);
-navList.on("click", '.sub-menu__button', handleCategoryButtonClick);
+navWrapper.on("click", '.category-button', handleCategoryButtonClick);
 toolbarFilter.on("change", '.filter-wrapper__input', handleFilterChange)
 orderSelect.on('change', handleOrderSelectChange)
 orderButtons.on("click", handleOrderButtonClick);
-orderButton.on("click", toggleOrderListVisibility);
-filterButton.on('click', toggleFilterListVisibility)
 currentFilter.on('click', 'button', handleRemoveFilter)
 selectContainer.on('change', 'select', handleSelectFilterChange);
 
 $(document).ready(function () {
-    // $('.products-nav__button:first').trigger("click");
+    $('.nav-list__item:first .sub-menu .sub-menu__item:first button').trigger("click");
 });

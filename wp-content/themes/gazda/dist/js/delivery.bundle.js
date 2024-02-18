@@ -20,8 +20,7 @@ var handleNavListButtonClick = function handleNavListButtonClick(e) {
   var closestListItem = $this.closest('.nav-list__item');
   var subMenu = closestListItem.find('.sub-menu');
   if ($this.hasClass('is-active')) {
-    $this.removeClass('is-active');
-    subMenu.slideUp();
+    return;
   } else {
     var siblingsListItems = closestListItem.siblings();
     $('.nav-list__button').not($this).removeClass('is-active');
@@ -31,6 +30,81 @@ var handleNavListButtonClick = function handleNavListButtonClick(e) {
   }
 };
 $('.nav-wrapper').on('click', '.nav-list__button', handleNavListButtonClick);
+
+/***/ }),
+
+/***/ "./assets/js/delivery/categoryButtonsHandlers.js":
+/*!*******************************************************!*\
+  !*** ./assets/js/delivery/categoryButtonsHandlers.js ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var navWrapper = $('.nav-wrapper');
+var parentSwiperButtons = $('.parent-swiper__button');
+var breadCrumbCurrent = $('.breadcrumb .current');
+var toolbarTitle = $('.toolbar-wrapper__title');
+var handleParentButtonClick = function handleParentButtonClick(e) {
+  var $this = $(e.currentTarget);
+  if ($this.hasClass('is-active')) {
+    return;
+  }
+  $this[0].scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center'
+  });
+  var parentCategoryId = $this.data('parentCategoryId');
+  var activeChildSwiperButton = $(".child-swiper__button[data-parent-category-id=".concat(parentCategoryId, "]")).first();
+  $('.child-swiper.visible').removeClass('visible');
+  activeChildSwiperButton.closest('.child-swiper').addClass('visible');
+  activeChildSwiperButton.trigger('click');
+};
+var handleCategoryButtonClick = function handleCategoryButtonClick(event) {
+  var $clickedButton = $(event.target);
+  if ($clickedButton.hasClass("is-active")) {
+    return;
+  }
+  var categoryId = $clickedButton.data('categoryId');
+  var parentCategoryId = $clickedButton.data('parentCategoryId');
+  var currentCategory = $clickedButton.text();
+  var activeButtons = $("button[data-category-id=\"".concat(categoryId, "\"]"));
+  var inactiveButtons = $("button.is-active[data-category-id]:not([data-category-id=\"".concat(categoryId, "\"])"));
+  var activeParentButton = $("button.parent-swiper__button[data-parent-category-id=\"".concat(parentCategoryId, "\"]"));
+  var inactiveParentButton = $("button.is-active.parent-swiper__button").not(activeParentButton);
+  var scrollToViewOptions = {
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center'
+  };
+  activeParentButton[0].scrollIntoView(scrollToViewOptions);
+  $(".nav-wrapper .sub-menu__button[data-parent-category-id=\"".concat(parentCategoryId, "\"]")).closest('.nav-list__item').find('.nav-list__button').trigger('click');
+  if ($clickedButton.hasClass('child-swiper__button')) {
+    $clickedButton[0].scrollIntoView(scrollToViewOptions);
+  } else {
+    var closestChildSwiper = $(".child-swiper__button[data-category-id=\"".concat(categoryId, "\"]")).closest('.child-swiper');
+    if (!closestChildSwiper.hasClass('visible')) {
+      $('.child-swiper.visible').removeClass('visible');
+      closestChildSwiper.addClass('visible');
+    }
+    $("button.child-swiper__button[data-category-id=\"".concat(categoryId, "\"]"))[0].scrollIntoView(scrollToViewOptions);
+  }
+  activeButtons.addClass('is-active');
+  inactiveButtons.removeClass('is-active');
+  activeParentButton.addClass('is-active');
+  inactiveParentButton.removeClass('is-active');
+  breadCrumbCurrent.text(currentCategory);
+  toolbarTitle.text(currentCategory);
+};
+parentSwiperButtons.on('click', handleParentButtonClick);
+navWrapper.on("click", '.category-button', handleCategoryButtonClick);
 
 /***/ }),
 
@@ -58,22 +132,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors.js */ "./node_modules/core-js/modules/es.object.get-own-property-descriptors.js");
 /* harmony import */ var core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
-/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
-/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
-/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../helpers/productsSkeleton */ "./assets/js/helpers/productsSkeleton.js");
-
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../helpers/productsSkeleton */ "./assets/js/helpers/productsSkeleton.js");
 
 
 
@@ -90,22 +161,16 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 
-// import {categoriesSwiper} from "./swiper";
-
 var productsItems = $('.products-items');
 var productsList = $('.products-list');
 var paginationContainer = $('.pagination-container');
 var filterContainer = $('.filter-container');
-var navList = $('.nav-wrapper .nav-list');
+var navWrapper = $('.nav-wrapper');
 var orderButtons = $('.order-list__button');
-var orderButton = $('.order-button');
 var orderButtonText = $('.order-button__text');
 var orderList = $('.order-list');
-var breadCrumbCurrent = $('.breadcrumb .current');
 var toolbarFilter = $('.toolbar-filter');
-var filterButton = $('.filter-button');
 var currentFilter = $('.current-filter');
-var toolbarTitle = $('.toolbar-wrapper__title');
 var orderSelect = $('select.toolbar-els__button');
 var selectContainer = $('.select-container');
 var initialPostsPerPage = 12;
@@ -123,7 +188,7 @@ var query = {
 var fetchAndRenderProducts = function fetchAndRenderProducts() {
   var useSkeleton = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
   if (useSkeleton) {
-    productsList.html(_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_14__.productsSkeleton);
+    productsList.html(_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_13__.productsSkeleton);
     paginationContainer.html('');
   }
   $.ajax({
@@ -176,35 +241,10 @@ var handleCategoryButtonClick = function handleCategoryButtonClick(event) {
   if ($clickedButton.hasClass("is-active")) {
     return;
   }
-  var currentCategory = $clickedButton.text();
-  var categoryId = $clickedButton.data('categoryId');
-  var activeButtons = $(".products-nav__button:contains('".concat(currentCategory, "')"));
-  var siblingButtons = activeButtons.map(function () {
-    var navItem = $(this).closest('.products-nav__item');
-    return navItem.siblings().find('.products-nav__button');
-  });
-  if ($clickedButton.closest('.swiper-slide').length === 0) {
-    var activeSlideIndex = activeButtons.map(function () {
-      return $(this).closest('.swiper-slide').index();
-    }).get().find(function (index) {
-      return index >= 0;
-    });
-
-    // categoriesSwiper.slideTo(activeSlideIndex)
-  }
-
-  siblingButtons.each(function () {
-    $(this).removeClass('is-active');
-  });
-  activeButtons.each(function () {
-    $(this).addClass('is-active');
-  });
-  breadCrumbCurrent.text(currentCategory);
-  toolbarTitle.text(currentCategory);
   loadMoreClickCount = 1;
-  query.categories = [categoryId];
-  query.posts_per_page = initialPostsPerPage;
   currentFilter.html('');
+  query.categories = [$clickedButton.data('categoryId')];
+  query.posts_per_page = initialPostsPerPage;
   query.page = 1;
   query.tags = [];
   fetchAndRenderProducts();
@@ -315,70 +355,16 @@ var handleRemoveFilter = function handleRemoveFilter(e) {
   fetchAndRenderProducts();
 };
 
-// Lists visibility
-var toggleOrderListVisibility = function toggleOrderListVisibility(event) {
-  event.stopPropagation();
-  if (orderList.hasClass('is-hidden')) {
-    // Keyboard tracking
-    $(document).on("keydown", function (e) {
-      if (e.key === "Escape") {
-        orderList.addClass('is-hidden');
-        $(document).off("keydown");
-      }
-    });
-
-    // Click tracking
-    $(document).on("click", function (e) {
-      if (!orderList.is(e.target) && orderList.has(e.target).length === 0) {
-        orderList.addClass('is-hidden');
-        $(document).off("click");
-        $(document).off("keydown");
-      }
-    });
-  } else {
-    $(document).off("keydown");
-    $(document).off("click");
-  }
-  orderList.toggleClass('is-hidden');
-};
-var toggleFilterListVisibility = function toggleFilterListVisibility(event) {
-  event.stopPropagation();
-  if (filterContainer.hasClass('is-hidden')) {
-    // Keyboard tracking
-    $(document).on("keydown", function (e) {
-      if (e.key === "Escape") {
-        filterContainer.addClass('is-hidden');
-        $(document).off("keydown");
-      }
-    });
-
-    // Click tracking
-    $(document).on("click", function (e) {
-      if (!filterContainer.is(e.target) && filterContainer.has(e.target).length === 0) {
-        filterContainer.addClass('is-hidden');
-        $(document).off("click");
-        $(document).off("keydown");
-      }
-    });
-  } else {
-    $(document).off("keydown");
-    $(document).off("click");
-  }
-  filterContainer.toggleClass('is-hidden');
-};
-
 // Listeners
 productsItems.on("click", '.pagination__item, .load-more', handlePaginationClick);
-navList.on("click", '.sub-menu__button', handleCategoryButtonClick);
+navWrapper.on("click", '.category-button', handleCategoryButtonClick);
 toolbarFilter.on("change", '.filter-wrapper__input', handleFilterChange);
 orderSelect.on('change', handleOrderSelectChange);
 orderButtons.on("click", handleOrderButtonClick);
-orderButton.on("click", toggleOrderListVisibility);
-filterButton.on('click', toggleFilterListVisibility);
 currentFilter.on('click', 'button', handleRemoveFilter);
 selectContainer.on('change', 'select', handleSelectFilterChange);
 $(document).ready(function () {
-  // $('.products-nav__button:first').trigger("click");
+  $('.nav-list__item:first .sub-menu .sub-menu__item:first button').trigger("click");
 });
 
 /***/ }),
@@ -401,6 +387,104 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var productsSkeleton = "\n    ".concat(Array(12).fill("\n            <li class=\"skeleton-list__item product\">\n            </li>").join(''), "\n");
+
+/***/ }),
+
+/***/ "./assets/js/main/refs.js":
+/*!********************************!*\
+  !*** ./assets/js/main/refs.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var refs = {
+  bodyEl: $("body"),
+  burgerButton: $('.hamburger'),
+  burgerMenu: $('.burger'),
+  burgerLinks: $('.burger .nav-list > .menu-item-has-children > a')
+};
+/* harmony default export */ __webpack_exports__["default"] = (refs);
+
+/***/ }),
+
+/***/ "./assets/js/main/utils.js":
+/*!*********************************!*\
+  !*** ./assets/js/main/utils.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   disableBodyScroll: function() { return /* binding */ disableBodyScroll; },
+/* harmony export */   enableBodyScroll: function() { return /* binding */ enableBodyScroll; },
+/* harmony export */   hideBackdrop: function() { return /* binding */ hideBackdrop; },
+/* harmony export */   showBackdrop: function() { return /* binding */ showBackdrop; }
+/* harmony export */ });
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash.throttle */ "./node_modules/lodash.throttle/index.js");
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var wowjs_dist_wow_min__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! wowjs/dist/wow.min */ "./node_modules/wowjs/dist/wow.min.js");
+/* harmony import */ var wowjs_dist_wow_min__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(wowjs_dist_wow_min__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _refs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./refs */ "./assets/js/main/refs.js");
+
+
+
+var bodyEl = _refs__WEBPACK_IMPORTED_MODULE_2__["default"].bodyEl;
+var throttledHandleResize = lodash_throttle__WEBPACK_IMPORTED_MODULE_0___default()(handleResize, 200);
+var currentBackdrop = null;
+var showBackdrop = function showBackdrop(backdrop) {
+  var hideOnResize = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  if (!backdrop) {
+    return;
+  }
+  disableBodyScroll();
+  backdrop.removeClass("is-hidden");
+  backdrop.on("click", handleBackdropClick);
+  $(window).on("keydown", handleKeyDown);
+  currentBackdrop = backdrop;
+  if (hideOnResize) {
+    $(window).on("resize", throttledHandleResize);
+  }
+};
+var hideBackdrop = function hideBackdrop(backdrop) {
+  if (!backdrop) {
+    return;
+  }
+  enableBodyScroll();
+  backdrop.addClass("is-hidden");
+  backdrop.removeClass("click", handleBackdropClick);
+  $(window).off("keydown", handleKeyDown);
+  $(window).off("resize", throttledHandleResize);
+  currentBackdrop = null;
+};
+function handleBackdropClick(e) {
+  if (e.target === e.currentTarget) {
+    hideBackdrop(currentBackdrop);
+  }
+}
+function handleKeyDown(e) {
+  if (e.code === "Escape") {
+    hideBackdrop(currentBackdrop);
+  }
+}
+function handleResize() {
+  var _window = window,
+    innerWidth = _window.innerWidth;
+  if (innerWidth >= 992) {
+    hideBackdrop(currentBackdrop);
+  }
+}
+function enableBodyScroll() {
+  bodyEl.css("overflow-y", "scroll");
+}
+function disableBodyScroll() {
+  bodyEl.css("overflow-y", "hidden");
+}
+$("document").ready(function () {
+  bodyEl.css("visibility", "visible");
+  new wowjs_dist_wow_min__WEBPACK_IMPORTED_MODULE_1__.WOW().init();
+});
 
 /***/ }),
 
@@ -533,6 +617,96 @@ var flyToCart = function flyToCart(button) {
 
 /***/ }),
 
+/***/ "./assets/js/shop/listsVisibility.js":
+/*!*******************************************!*\
+  !*** ./assets/js/shop/listsVisibility.js ***!
+  \*******************************************/
+/***/ (function() {
+
+var orderButton = $('.order-button');
+var filterButton = $('.filter-button');
+var orderList = $('.order-list');
+var filterContainer = $('.filter-container');
+var toggleOrderListVisibility = function toggleOrderListVisibility(event) {
+  event.stopPropagation();
+  if (orderList.hasClass('is-hidden')) {
+    // Keyboard tracking
+    $(document).on("keydown", function (e) {
+      if (e.key === "Escape") {
+        orderList.addClass('is-hidden');
+        $(document).off("keydown");
+      }
+    });
+
+    // Click tracking
+    $(document).on("click", function (e) {
+      if (!orderList.is(e.target) && orderList.has(e.target).length === 0) {
+        orderList.addClass('is-hidden');
+        $(document).off("click");
+        $(document).off("keydown");
+      }
+    });
+  } else {
+    $(document).off("keydown");
+    $(document).off("click");
+  }
+  orderList.toggleClass('is-hidden');
+};
+var toggleFilterListVisibility = function toggleFilterListVisibility(event) {
+  event.stopPropagation();
+  if (filterContainer.hasClass('is-hidden')) {
+    // Keyboard tracking
+    $(document).on("keydown", function (e) {
+      if (e.key === "Escape") {
+        filterContainer.addClass('is-hidden');
+        $(document).off("keydown");
+      }
+    });
+
+    // Click tracking
+    $(document).on("click", function (e) {
+      if (!filterContainer.is(e.target) && filterContainer.has(e.target).length === 0) {
+        filterContainer.addClass('is-hidden');
+        $(document).off("click");
+        $(document).off("keydown");
+      }
+    });
+  } else {
+    $(document).off("keydown");
+    $(document).off("click");
+  }
+  filterContainer.toggleClass('is-hidden');
+};
+orderButton.on("click", toggleOrderListVisibility);
+filterButton.on('click', toggleFilterListVisibility);
+
+/***/ }),
+
+/***/ "./assets/js/shop/popup.js":
+/*!*********************************!*\
+  !*** ./assets/js/shop/popup.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _main_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../main/utils */ "./assets/js/main/utils.js");
+
+var categoriesBackdrop = $('#categories-menu');
+var categoriesButton = $('.categories-button');
+var hideCategoriesButton = $('.menu-button');
+categoriesButton.on("click", function () {
+  return (0,_main_utils__WEBPACK_IMPORTED_MODULE_0__.showBackdrop)(categoriesBackdrop, true);
+});
+hideCategoriesButton.on("click", function () {
+  return (0,_main_utils__WEBPACK_IMPORTED_MODULE_0__.hideBackdrop)(categoriesBackdrop);
+});
+categoriesBackdrop.on("click", '.products-nav__button, .category-button', function () {
+  return (0,_main_utils__WEBPACK_IMPORTED_MODULE_0__.hideBackdrop)(categoriesBackdrop);
+});
+
+/***/ }),
+
 /***/ "./assets/js/shop/productQuantity.js":
 /*!*******************************************!*\
   !*** ./assets/js/shop/productQuantity.js ***!
@@ -595,6 +769,455 @@ $('.text-content__button').on('click', function () {
 
 /***/ }),
 
+/***/ "./node_modules/lodash.throttle/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/lodash.throttle/index.js ***!
+  \***********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as the `TypeError` message for "Functions" methods. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
+
+/** Used to match leading and trailing whitespace. */
+var reTrim = /^\s+|\s+$/g;
+
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
+
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
+
+/** Built-in method references without a dependency on `root`. */
+var freeParseInt = parseInt;
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof __webpack_require__.g == 'object' && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max,
+    nativeMin = Math.min;
+
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => Logs the number of milliseconds it took for the deferred invocation.
+ */
+var now = function() {
+  return root.Date.now();
+};
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+function debounce(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  wait = toNumber(wait) || 0;
+  if (isObject(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+
+  function leadingEdge(time) {
+    // Reset any `maxWait` timer.
+    lastInvokeTime = time;
+    // Start the timer for the trailing edge.
+    timerId = setTimeout(timerExpired, wait);
+    // Invoke the leading edge.
+    return leading ? invokeFunc(time) : result;
+  }
+
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        result = wait - timeSinceLastCall;
+
+    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+  }
+
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime;
+
+    // Either this is the first call, activity has stopped and we're at the
+    // trailing edge, the system time has gone backwards and we're treating
+    // it as the trailing edge, or we've hit the `maxWait` limit.
+    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+  }
+
+  function timerExpired() {
+    var time = now();
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    }
+    // Restart the timer.
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+
+  function trailingEdge(time) {
+    timerId = undefined;
+
+    // Only invoke if we have `lastArgs` which means `func` has been
+    // debounced at least once.
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now());
+  }
+
+  function debounced() {
+    var time = now(),
+        isInvoking = shouldInvoke(time);
+
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+      if (maxing) {
+        // Handle invocations in a tight loop.
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
+      }
+    }
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
+    }
+    return result;
+  }
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
+
+/**
+ * Creates a throttled function that only invokes `func` at most once per
+ * every `wait` milliseconds. The throttled function comes with a `cancel`
+ * method to cancel delayed `func` invocations and a `flush` method to
+ * immediately invoke them. Provide `options` to indicate whether `func`
+ * should be invoked on the leading and/or trailing edge of the `wait`
+ * timeout. The `func` is invoked with the last arguments provided to the
+ * throttled function. Subsequent calls to the throttled function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the throttled function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.throttle` and `_.debounce`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to throttle.
+ * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=true]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // Avoid excessively updating the position while scrolling.
+ * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+ *
+ * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+ * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+ * jQuery(element).on('click', throttled);
+ *
+ * // Cancel the trailing throttled invocation.
+ * jQuery(window).on('popstate', throttled.cancel);
+ */
+function throttle(func, wait, options) {
+  var leading = true,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  if (isObject(options)) {
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+  return debounce(func, wait, {
+    'leading': leading,
+    'maxWait': wait,
+    'trailing': trailing
+  });
+}
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+}
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return NAN;
+  }
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
+
+module.exports = throttle;
+
+
+/***/ }),
+
 /***/ "./assets/css/delivery.scss":
 /*!**********************************!*\
   !*** ./assets/css/delivery.scss ***!
@@ -605,6 +1228,17 @@ $('.text-content__button').on('click', function () {
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "./node_modules/wowjs/dist/wow.min.js":
+/*!********************************************!*\
+  !*** ./node_modules/wowjs/dist/wow.min.js ***!
+  \********************************************/
+/***/ (function() {
+
+/*! WOW - v1.1.2 - 2016-04-08
+* Copyright (c) 2016 Matthieu Aussaguel;*/(function(){var a,b,c,d,e,f=function(a,b){return function(){return a.apply(b,arguments)}},g=[].indexOf||function(a){for(var b=0,c=this.length;c>b;b++)if(b in this&&this[b]===a)return b;return-1};b=function(){function a(){}return a.prototype.extend=function(a,b){var c,d;for(c in b)d=b[c],null==a[c]&&(a[c]=d);return a},a.prototype.isMobile=function(a){return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(a)},a.prototype.createEvent=function(a,b,c,d){var e;return null==b&&(b=!1),null==c&&(c=!1),null==d&&(d=null),null!=document.createEvent?(e=document.createEvent("CustomEvent"),e.initCustomEvent(a,b,c,d)):null!=document.createEventObject?(e=document.createEventObject(),e.eventType=a):e.eventName=a,e},a.prototype.emitEvent=function(a,b){return null!=a.dispatchEvent?a.dispatchEvent(b):b in(null!=a)?a[b]():"on"+b in(null!=a)?a["on"+b]():void 0},a.prototype.addEvent=function(a,b,c){return null!=a.addEventListener?a.addEventListener(b,c,!1):null!=a.attachEvent?a.attachEvent("on"+b,c):a[b]=c},a.prototype.removeEvent=function(a,b,c){return null!=a.removeEventListener?a.removeEventListener(b,c,!1):null!=a.detachEvent?a.detachEvent("on"+b,c):delete a[b]},a.prototype.innerHeight=function(){return"innerHeight"in window?window.innerHeight:document.documentElement.clientHeight},a}(),c=this.WeakMap||this.MozWeakMap||(c=function(){function a(){this.keys=[],this.values=[]}return a.prototype.get=function(a){var b,c,d,e,f;for(f=this.keys,b=d=0,e=f.length;e>d;b=++d)if(c=f[b],c===a)return this.values[b]},a.prototype.set=function(a,b){var c,d,e,f,g;for(g=this.keys,c=e=0,f=g.length;f>e;c=++e)if(d=g[c],d===a)return void(this.values[c]=b);return this.keys.push(a),this.values.push(b)},a}()),a=this.MutationObserver||this.WebkitMutationObserver||this.MozMutationObserver||(a=function(){function a(){"undefined"!=typeof console&&null!==console&&console.warn("MutationObserver is not supported by your browser."),"undefined"!=typeof console&&null!==console&&console.warn("WOW.js cannot detect dom mutations, please call .sync() after loading new content.")}return a.notSupported=!0,a.prototype.observe=function(){},a}()),d=this.getComputedStyle||function(a,b){return this.getPropertyValue=function(b){var c;return"float"===b&&(b="styleFloat"),e.test(b)&&b.replace(e,function(a,b){return b.toUpperCase()}),(null!=(c=a.currentStyle)?c[b]:void 0)||null},this},e=/(\-([a-z]){1})/g,this.WOW=function(){function e(a){null==a&&(a={}),this.scrollCallback=f(this.scrollCallback,this),this.scrollHandler=f(this.scrollHandler,this),this.resetAnimation=f(this.resetAnimation,this),this.start=f(this.start,this),this.scrolled=!0,this.config=this.util().extend(a,this.defaults),null!=a.scrollContainer&&(this.config.scrollContainer=document.querySelector(a.scrollContainer)),this.animationNameCache=new c,this.wowEvent=this.util().createEvent(this.config.boxClass)}return e.prototype.defaults={boxClass:"wow",animateClass:"animated",offset:0,mobile:!0,live:!0,callback:null,scrollContainer:null},e.prototype.init=function(){var a;return this.element=window.document.documentElement,"interactive"===(a=document.readyState)||"complete"===a?this.start():this.util().addEvent(document,"DOMContentLoaded",this.start),this.finished=[]},e.prototype.start=function(){var b,c,d,e;if(this.stopped=!1,this.boxes=function(){var a,c,d,e;for(d=this.element.querySelectorAll("."+this.config.boxClass),e=[],a=0,c=d.length;c>a;a++)b=d[a],e.push(b);return e}.call(this),this.all=function(){var a,c,d,e;for(d=this.boxes,e=[],a=0,c=d.length;c>a;a++)b=d[a],e.push(b);return e}.call(this),this.boxes.length)if(this.disabled())this.resetStyle();else for(e=this.boxes,c=0,d=e.length;d>c;c++)b=e[c],this.applyStyle(b,!0);return this.disabled()||(this.util().addEvent(this.config.scrollContainer||window,"scroll",this.scrollHandler),this.util().addEvent(window,"resize",this.scrollHandler),this.interval=setInterval(this.scrollCallback,50)),this.config.live?new a(function(a){return function(b){var c,d,e,f,g;for(g=[],c=0,d=b.length;d>c;c++)f=b[c],g.push(function(){var a,b,c,d;for(c=f.addedNodes||[],d=[],a=0,b=c.length;b>a;a++)e=c[a],d.push(this.doSync(e));return d}.call(a));return g}}(this)).observe(document.body,{childList:!0,subtree:!0}):void 0},e.prototype.stop=function(){return this.stopped=!0,this.util().removeEvent(this.config.scrollContainer||window,"scroll",this.scrollHandler),this.util().removeEvent(window,"resize",this.scrollHandler),null!=this.interval?clearInterval(this.interval):void 0},e.prototype.sync=function(b){return a.notSupported?this.doSync(this.element):void 0},e.prototype.doSync=function(a){var b,c,d,e,f;if(null==a&&(a=this.element),1===a.nodeType){for(a=a.parentNode||a,e=a.querySelectorAll("."+this.config.boxClass),f=[],c=0,d=e.length;d>c;c++)b=e[c],g.call(this.all,b)<0?(this.boxes.push(b),this.all.push(b),this.stopped||this.disabled()?this.resetStyle():this.applyStyle(b,!0),f.push(this.scrolled=!0)):f.push(void 0);return f}},e.prototype.show=function(a){return this.applyStyle(a),a.className=a.className+" "+this.config.animateClass,null!=this.config.callback&&this.config.callback(a),this.util().emitEvent(a,this.wowEvent),this.util().addEvent(a,"animationend",this.resetAnimation),this.util().addEvent(a,"oanimationend",this.resetAnimation),this.util().addEvent(a,"webkitAnimationEnd",this.resetAnimation),this.util().addEvent(a,"MSAnimationEnd",this.resetAnimation),a},e.prototype.applyStyle=function(a,b){var c,d,e;return d=a.getAttribute("data-wow-duration"),c=a.getAttribute("data-wow-delay"),e=a.getAttribute("data-wow-iteration"),this.animate(function(f){return function(){return f.customStyle(a,b,d,c,e)}}(this))},e.prototype.animate=function(){return"requestAnimationFrame"in window?function(a){return window.requestAnimationFrame(a)}:function(a){return a()}}(),e.prototype.resetStyle=function(){var a,b,c,d,e;for(d=this.boxes,e=[],b=0,c=d.length;c>b;b++)a=d[b],e.push(a.style.visibility="visible");return e},e.prototype.resetAnimation=function(a){var b;return a.type.toLowerCase().indexOf("animationend")>=0?(b=a.target||a.srcElement,b.className=b.className.replace(this.config.animateClass,"").trim()):void 0},e.prototype.customStyle=function(a,b,c,d,e){return b&&this.cacheAnimationName(a),a.style.visibility=b?"hidden":"visible",c&&this.vendorSet(a.style,{animationDuration:c}),d&&this.vendorSet(a.style,{animationDelay:d}),e&&this.vendorSet(a.style,{animationIterationCount:e}),this.vendorSet(a.style,{animationName:b?"none":this.cachedAnimationName(a)}),a},e.prototype.vendors=["moz","webkit"],e.prototype.vendorSet=function(a,b){var c,d,e,f;d=[];for(c in b)e=b[c],a[""+c]=e,d.push(function(){var b,d,g,h;for(g=this.vendors,h=[],b=0,d=g.length;d>b;b++)f=g[b],h.push(a[""+f+c.charAt(0).toUpperCase()+c.substr(1)]=e);return h}.call(this));return d},e.prototype.vendorCSS=function(a,b){var c,e,f,g,h,i;for(h=d(a),g=h.getPropertyCSSValue(b),f=this.vendors,c=0,e=f.length;e>c;c++)i=f[c],g=g||h.getPropertyCSSValue("-"+i+"-"+b);return g},e.prototype.animationName=function(a){var b;try{b=this.vendorCSS(a,"animation-name").cssText}catch(c){b=d(a).getPropertyValue("animation-name")}return"none"===b?"":b},e.prototype.cacheAnimationName=function(a){return this.animationNameCache.set(a,this.animationName(a))},e.prototype.cachedAnimationName=function(a){return this.animationNameCache.get(a)},e.prototype.scrollHandler=function(){return this.scrolled=!0},e.prototype.scrollCallback=function(){var a;return!this.scrolled||(this.scrolled=!1,this.boxes=function(){var b,c,d,e;for(d=this.boxes,e=[],b=0,c=d.length;c>b;b++)a=d[b],a&&(this.isVisible(a)?this.show(a):e.push(a));return e}.call(this),this.boxes.length||this.config.live)?void 0:this.stop()},e.prototype.offsetTop=function(a){for(var b;void 0===a.offsetTop;)a=a.parentNode;for(b=a.offsetTop;a=a.offsetParent;)b+=a.offsetTop;return b},e.prototype.isVisible=function(a){var b,c,d,e,f;return c=a.getAttribute("data-wow-offset")||this.config.offset,f=this.config.scrollContainer&&this.config.scrollContainer.scrollTop||window.pageYOffset,e=f+Math.min(this.element.clientHeight,this.util().innerHeight())-c,d=this.offsetTop(a),b=d+a.clientHeight,e>=d&&b>=f},e.prototype.util=function(){return null!=this._util?this._util:this._util=new b},e.prototype.disabled=function(){return!this.config.mobile&&this.util().isMobile(navigator.userAgent)},e}()}).call(this);
 
 /***/ }),
 
@@ -3917,32 +4551,6 @@ $({ target: 'Array', proto: true, forced: FORCED }, {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/modules/es.array.map.js":
-/*!******************************************************!*\
-  !*** ./node_modules/core-js/modules/es.array.map.js ***!
-  \******************************************************/
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var $map = (__webpack_require__(/*! ../internals/array-iteration */ "./node_modules/core-js/internals/array-iteration.js").map);
-var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
-
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('map');
-
-// `Array.prototype.map` method
-// https://tc39.es/ecma262/#sec-array.prototype.map
-// with adding support of @@species
-$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
-  map: function map(callbackfn /* , thisArg */) {
-    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/modules/es.array.splice.js":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.splice.js ***!
@@ -4988,7 +5596,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shop_productQuantity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shop/productQuantity */ "./assets/js/shop/productQuantity.js");
 /* harmony import */ var _delivery_categoriesMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./delivery/categoriesMenu */ "./assets/js/delivery/categoriesMenu.js");
 /* harmony import */ var _delivery_fetchProducts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./delivery/fetchProducts */ "./assets/js/delivery/fetchProducts.js");
-/* harmony import */ var _css_delivery_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../css/delivery.scss */ "./assets/css/delivery.scss");
+/* harmony import */ var _shop_listsVisibility__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./shop/listsVisibility */ "./assets/js/shop/listsVisibility.js");
+/* harmony import */ var _shop_listsVisibility__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_shop_listsVisibility__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _delivery_categoryButtonsHandlers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./delivery/categoryButtonsHandlers */ "./assets/js/delivery/categoryButtonsHandlers.js");
+/* harmony import */ var _shop_popup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./shop/popup */ "./assets/js/shop/popup.js");
+/* harmony import */ var _css_delivery_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../css/delivery.scss */ "./assets/css/delivery.scss");
+
+
+
 
 
 

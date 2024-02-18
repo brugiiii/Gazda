@@ -1474,27 +1474,25 @@ if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
             <?php
             echo $thumbnail;
 
-            if (is_page_template('pages/delivery.php')) {
-                if ($labels) : ?>
-                    <ul class="position-absolute tags-list d-flex flex-wrap gap-2 order-2 order-md-last">
-                        <?php
-                        $classMapping = [
-                            'own' => 'sprout',
-                            'kitchen' => 'kitchen',
-                            'recommended' => 'like',
-                            'new' => 'fire',
-                        ];
+            if ($labels) : ?>
+                <ul class="position-absolute tags-list flex-column gap-1">
+                    <?php
+                    $classMapping = [
+                        'own' => 'sprout',
+                        'kitchen' => 'kitchen',
+                        'recommended' => 'like',
+                        'new' => 'fire',
+                    ];
 
-                        foreach ($labels as $label) :
-                            $class = isset($classMapping[$label['value']]) ? $classMapping[$label['value']] : '';
-                            ?>
-                            <li class="tags-list__item d-flex gap-2 align-items-center px-2 py-1 rounded-3 <?= $class; ?>">
-                                <?= translate_and_output($label['value']); ?>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif;
-            }
+                    foreach ($labels as $label) :
+                        $class = isset($classMapping[$label['value']]) ? $classMapping[$label['value']] : '';
+                        ?>
+                        <li class="tags-list__item d-flex gap-2 align-items-center rounded-3 <?= $class; ?>">
+                            <?= translate_and_output($label['value']); ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif;
             ?>
         </div>
         <?php

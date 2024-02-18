@@ -1,3 +1,7 @@
+<?php
+$page = is_page_template('pages/delivery.php') ? 'delivery' : 'shop';
+?>
+
 <div class="backdrop is-hidden" id="categories-menu">
     <div class="menu p-3">
         <div class="menu-header d-flex align-items-start justify-content-between">
@@ -10,6 +14,8 @@
                 </svg>
             </button>
         </div>
-        <?= get_template_part('templates/shop/navigation'); ?>
+        <div class="nav-wrapper accordion mob">
+            <?= get_template_part('templates/shop/navigation', null, array('page' => $page)); ?>
+        </div>
     </div>
 </div>

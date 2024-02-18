@@ -221,8 +221,6 @@ var similarProductsSwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["defa
 var handleTabClick = function handleTabClick(event) {
   var target = event.target;
   var li = $(target).closest('li')[0];
-
-  // Прокрутка контейнера до обраного елементу
   li.scrollIntoView({
     behavior: 'smooth',
     block: 'nearest',

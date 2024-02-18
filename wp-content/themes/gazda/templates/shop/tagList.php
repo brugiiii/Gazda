@@ -43,7 +43,7 @@ if (count($categories) === 1) {
         }
 
         // Виведення <div class="filter-wrapper"> тільки якщо є хоча б один унікальний тег
-        if ($has_tags) {
+        if (count($displayed_tags) > 1) {
             ?>
             <div class="filter-wrapper">
                 <?php

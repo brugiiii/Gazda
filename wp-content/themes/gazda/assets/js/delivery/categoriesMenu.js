@@ -4,8 +4,7 @@ const handleNavListButtonClick = (e) => {
     const subMenu = closestListItem.find('.sub-menu');
 
     if ($this.hasClass('is-active')) {
-        $this.removeClass('is-active');
-        subMenu.slideUp();
+        return;
     } else {
         const siblingsListItems = closestListItem.siblings();
 

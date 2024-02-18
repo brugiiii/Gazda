@@ -6,4 +6,4 @@ const hideCategoriesButton = $('.menu-button');
 
 categoriesButton.on("click", () => showBackdrop(categoriesBackdrop, true));
 hideCategoriesButton.on("click", () => hideBackdrop(categoriesBackdrop));
-categoriesBackdrop.on("click", '.products-nav__button', () => hideBackdrop(categoriesBackdrop))
+categoriesBackdrop.on("click", '.products-nav__button, .category-button', () => hideBackdrop(categoriesBackdrop));

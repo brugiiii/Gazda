@@ -3,27 +3,3 @@
   stroke: $white-color;
   fill: $white-color;
 }
-
-.categories-swiper {
-  & .swiper-slide {
-    max-width: fit-content;
-
-    & .products-nav__button {
-      @include transition(color, background-color);
-
-      box-sizing: border-box;
-
-      height: 100%;
-
-      padding: 0 0.75rem;
-      border-radius: 0.5rem;
-
-      background-color: $white-color;
-
-      &.is-active {
-        color: $white-color;
-        background-color: $secondary-accent-color;
-      }
-    }
-  }
-}

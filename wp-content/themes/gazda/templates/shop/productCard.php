@@ -2,10 +2,11 @@
 $product = wc_get_product(get_the_ID());
 $is_swiper = $args['is_swiper'] ?? false;
 $is_variable = $product->is_type('variable');
+$ingredients = get_field('ingredients');
 ?>
 
 <li <?php wc_product_class(array('position-relative', $is_swiper ? 'swiper-slide' : ''), $product); ?>>
-    <div class="product-list__wrapper bg-white rounded-3 overflow-hidden h-100">
+    <div class="product-list__wrapper d-flex flex-column bg-white rounded-3 overflow-hidden h-100">
         <?php
         /**
          * Hook: woocommerce_before_shop_loop_item.
@@ -23,7 +24,7 @@ $is_variable = $product->is_type('variable');
         do_action('woocommerce_before_shop_loop_item_title');
 
         ?>
-        <div class="px-2 px-lg-3 pt-2">
+        <div class="d-flex flex-column flex-grow-1 px-2 px-lg-3 pt-2">
             <?php
             /**
              * Hook: woocommerce_shop_loop_item_title.
@@ -31,15 +32,16 @@ $is_variable = $product->is_type('variable');
              * @hooked woocommerce_template_loop_product_title - 10
              */
             do_action('woocommerce_shop_loop_item_title');
-
-            /**
-             * Hook: woocommerce_after_shop_loop_item_title.
-             *
-             * @hooked woocommerce_template_loop_rating - 5
-             * @hooked woocommerce_template_loop_price - 10
-             */
+            if($ingredients){
+                ?>
+                <p class="ingredients mb-2">
+                    <?= $ingredients; ?>
+                </p>
+            <?php
+            }
             ?>
-            <span class="price">
+
+            <span class="price mt-auto">
                 <?= $is_variable ? translate_and_output('from') . ' ' . wc_price($product->get_variation_price('min')) : $product->get_price_html(); ?>
             </span>
         </div>

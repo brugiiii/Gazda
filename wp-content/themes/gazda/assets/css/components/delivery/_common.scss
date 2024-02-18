@@ -1,76 +1,180 @@
-.nav-wrapper {
-  & .nav-list__item {
-    &:not(:last-child){
-      margin-bottom: 0.75rem;
-    }
+.products-wrapper {
+  & .parent-swiper,
+  & .child-swiper {
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
 
-    &:not(:first-child) {
-      & .sub-menu {
-        display: none;
-      }
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 
-  & .sub-menu {
-    margin-top: 0.75rem;
+  & .nav-wrapper > div:last-child,
+  & .child-swiper {
+    gap: 0.625rem;
   }
 
-  & .sub-menu__item {
-    &:not(:first-child) {
-      & .sub-menu__button {
-        padding-top: 0.375rem;
-      }
-    }
+  & .parent-swiper {
+    margin-bottom: 0.75rem;
+  }
 
-    &:not(:last-child) {
-      & .sub-menu__button {
-        padding-bottom: 0.375rem;
-      }
-    }
+  & .child-swiper {
+    display: none;
 
-    &:first-child {
-      & .sub-menu__button {
-        padding-top: 0;
-      }
-    }
-
-    &:last-child {
-      & .sub-menu__button {
-        padding-bottom: 0;
-      }
+    &.visible {
+      display: flex;
     }
   }
 
-  & .sub-menu__button {
-    display: block;
-
-    padding-left: 1.25rem;
+  & .parent-swiper__item,
+  & .child-swiper__item {
+    scroll-snap-align: center;
   }
 
-  & .nav-list__button {
-    font-size: 1.125rem;
-    line-height: 1.5;
+  & .parent-swiper__button,
+  & .child-swiper__button {
+    white-space: nowrap;
+
+    line-height: 1.4;
+    letter-spacing: 0.03125rem !important;
   }
 
-  & .nav-list__button,
-  & .sub-menu__button {
-    @include transition(color);
+  & .parent-swiper__button {
+    @include transition(border-bottom-color);
 
-    color: inherit;
+    padding-bottom: 0.3125rem;
+
+    color: $secondary-text-color;
+
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: transparent;
 
     &.is-active {
-      color: $third-text-color;
+      border-bottom-color: $accent-color;
     }
+  }
 
-    @media (hover: hover){
-      &:hover {
-        color: $third-text-color;
+  & .child-swiper__button {
+    @include transition(color, background-color);
+
+    padding: 0.625rem 0.75rem;
+
+    border-radius: $fourth-radius;
+
+    color: $third-text-color;
+    background-color: $white-color;
+
+    &.is-active {
+      background-color: $secondary-accent-color;
+      color: $white-color;
+    }
+  }
+}
+
+.nav-wrapper {
+  &.accordion {
+    & .nav-list__item {
+      &:not(:last-child) {
+        margin-bottom: 0.75rem;
+      }
+
+      &:not(:first-child) {
+        & .sub-menu {
+          display: none;
+        }
       }
     }
 
-    @media (hover: none){
-      &:is-active {
+    & .sub-menu {
+      margin-top: 0.75rem;
+    }
+
+    & .sub-menu__item {
+      &:not(:first-child) {
+        & .sub-menu__button {
+          padding-top: 0.375rem;
+        }
+      }
+
+      &:not(:last-child) {
+        & .sub-menu__button {
+          padding-bottom: 0.375rem;
+        }
+      }
+
+      &:first-child {
+        & .sub-menu__button {
+          padding-top: 0;
+        }
+      }
+
+      &:last-child {
+        & .sub-menu__button {
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    & .sub-menu__button {
+      display: block;
+
+      padding-left: 1.25rem;
+    }
+
+    & .nav-list__button {
+      font-size: 1.125rem;
+      line-height: 1.5;
+    }
+
+    & .nav-list__button,
+    & .sub-menu__button {
+      @include transition(color);
+
+      color: inherit;
+    }
+  }
+
+  &.desk {
+    & .nav-list__button,
+    & .sub-menu__button {
+      &.is-active {
         color: $third-text-color;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          color: $third-text-color;
+        }
+      }
+
+      @media (hover: none) {
+        &:active {
+          color: $third-text-color;
+        }
+      }
+    }
+  }
+
+  &.mob {
+    color: $secondary-text-color;
+
+    & .nav-list__button,
+    & .sub-menu__button {
+      &.is-active {
+        color: $white-color;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          color: $white-color;
+        }
+      }
+
+      @media (hover: none) {
+        &:active {
+          color: $white-color;
+        }
       }
     }
   }
