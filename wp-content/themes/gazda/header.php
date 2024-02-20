@@ -22,9 +22,9 @@
             <div class="header-wrapper d-flex align-items-center">
                 <button class="hamburger hamburger--collapse"
                         type="button">
-                  <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                  </span>
+                      <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                      </span>
                 </button>
 
                 <nav class="main-nav">
@@ -42,4 +42,5 @@
 
         </div>
         <?php get_template_part('templates/burger'); ?>
+        <?php get_template_part('templates/searchForm'); ?>
     </header>

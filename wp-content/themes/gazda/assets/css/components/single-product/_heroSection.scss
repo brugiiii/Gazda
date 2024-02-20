@@ -37,20 +37,6 @@
   }
 }
 
-.breadcrumb {
-  margin-bottom: 1.5rem;
-
-  color: $eighth-text-color;
-
-  @media screen and (max-width: 991px) {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-
-    border-bottom: 1px solid $fifth-bg-color;
-    background-color: $fourth-text-color;
-  }
-}
-
 .hero-section,
 .sticky-wrapper {
   & .quantity-container {

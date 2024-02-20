@@ -30,7 +30,7 @@ global $product;
         <svg class="product-list__icon" width="24" height="24">
             <use href="<?php get_image('sprite.svg#icon-shopping-cart'); ?>"></use>
         </svg>
-        <?php echo esc_html($product->add_to_cart_text()); ?>
+        <?= esc_html($product->add_to_cart_text()); ?>
     </span>
         <span class="loader-container position-absolute top-50 start-50 translate-middle">
         <div class="loader">

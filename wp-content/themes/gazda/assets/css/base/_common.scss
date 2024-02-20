@@ -86,9 +86,25 @@
 .breadcrumb {
   display: block;
 
+  margin-bottom: 0;
+
   font-size: 0.875rem;
   letter-spacing: 0.01875rem;
   line-height: 1.4;
+
+  color: $eighth-text-color;
+
+  @media screen and (max-width: 991px) {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+
+    border-bottom: 1px solid $fifth-bg-color;
+    background-color: $fourth-text-color;
+  }
+
+  @media screen and (min-width: 992px) {
+    margin-bottom: 1.5rem;
+  }
 
   & .current {
     color: $third-text-color;

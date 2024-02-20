@@ -8,27 +8,27 @@
 .burger-search {
   width: calc(100% - 2rem);
   margin: 0.75rem auto;
+}
 
-  & input {
-    width: 100%;
-    height: 2.5rem;
+.search-input {
+  width: 100%;
+  height: 2.5rem;
 
-    padding: 0 0 0 2.5rem;
-    border: none;
+  padding: 0 0 0 2.5rem;
+  border: none;
 
-    font-size: 0.875rem;
-    line-height: calc(1.225 / 0.875);
+  font-size: 0.875rem;
+  line-height: calc(1.225 / 0.875);
 
-    border-radius: 0.75rem;
-    background-color: $fourth-text-color;
+  border-radius: $primary-radius;
+  background-color: $fourth-text-color;
 
-    &::placeholder {
-      color: $fifth-text-color;
-    }
+  &::placeholder {
+    color: $fifth-text-color;
   }
 }
 
-.burger-search__icon {
+.search-icon {
   left: 0.62rem;
 
   fill: $fifth-text-color;
@@ -207,4 +207,15 @@
 
   color: $secondary-accent-color;
   fill: $secondary-accent-color;
+}
+
+.search-form {
+  &.hidden {
+    display: none;
+  }
+
+  padding: 0.75rem 0;
+
+  border-bottom: 1px solid $eighth-bg-color;
+  background-color: $seventh-bg-color;
 }

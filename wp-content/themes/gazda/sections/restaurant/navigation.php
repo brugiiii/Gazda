@@ -8,12 +8,12 @@ $menu_items_hierarchy = process_menu_items_hierarchy();
 ?>
 
 <div class="navigation-mob d-lg-none position-sticky top-0 mb-3">
-    <div class="menu-breadcrumb px-3 d-lg-none">
+    <div class="breadcrumb px-3">
         <?= get_the_title($post); ?>
-        /
+        <?= get_template_part('helpers/separator'); ?>
         <?= translate_and_output('menu'); ?>
-        /
-        <span class="menu-item"></span>
+        <?= get_template_part('helpers/separator'); ?>
+        <span class="menu-item current"></span>
     </div>
     <div class="navigation-mob__wrapper d-flex align-items-end ps-3 pt-1">
         <a class="wishlist-link align-items-center py-2 me-3 flex-shrink-0 <?= $wishlist_count == 0 ? 'is-hidden' : ''; ?>"

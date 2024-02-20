@@ -71,29 +71,12 @@
   margin-right: 0.625rem;
   fill: #8A8D92;
 }
-#restaurant .menu-breadcrumb {
-  width: 100%;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  letter-spacing: 0.01875rem;
-}
-@media screen and (max-width: 991px) {
-  #restaurant .menu-breadcrumb {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid #DFE0E1;
-    background-color: #F5F5F5;
-  }
-}
 @media screen and (min-width: 992px) {
-  #restaurant .menu-breadcrumb {
+  #restaurant .breadcrumb {
     position: sticky;
     top: 1.5rem;
     margin-bottom: 1.5rem;
   }
-}
-#restaurant .menu-breadcrumb .menu-item {
-  color: #1F252E;
 }
 #restaurant .navigation, #restaurant .menu-content {
   border-radius: 0.5rem;
@@ -162,8 +145,18 @@
   -webkit-transition: color 200ms ease-in-out;
   transition: color 200ms ease-in-out;
 }
-#restaurant .nav-list button:hover, #restaurant .nav-list button:focus, #restaurant .nav-list a:hover, #restaurant .nav-list a:focus {
-  color: #1F252E;
+@media (hover: hover) {
+  #restaurant .nav-list button:hover, #restaurant .nav-list a:hover {
+    color: #1F252E;
+  }
+  #restaurant .nav-list button:focus, #restaurant .nav-list a:focus {
+    color: #1F252E;
+  }
+}
+@media (hover: none) {
+  #restaurant .nav-list button:active, #restaurant .nav-list a:active {
+    color: #1F252E;
+  }
 }
 #restaurant .products {
   padding-top: clamp(1.09375rem, 0.898rem + 0.87vw, 1.4375rem);

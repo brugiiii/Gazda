@@ -20,7 +20,7 @@ function enqueue_scripts_and_styles()
     wp_enqueue_script('main', get_template_directory_uri() . '/dist/js/main.bundle.js', array('jquery'), null, true);
 
     // Conditional scripts and styles
-    if (is_shop() || is_page_template('woocommerce/archive-product.php') || is_page_template('pages/delivery.php') || is_singular('product')) {
+    if (is_shop() || is_page_template('woocommerce/archive-product.php') || is_page_template('pages/delivery.php') || is_page_template('pages/search.php') || is_singular('product')) {
         // Enqueue TweenMax for certain pages
         wp_enqueue_script('tween-max', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js', array('jquery'), '2.1.3', true);
     }
@@ -58,15 +58,23 @@ function enqueue_scripts_and_styles()
         wp_enqueue_style('product-style', get_template_directory_uri() . '/dist/css/product.bundle.css');
     }
 
+    if(is_page_template('pages/search.php')) {
+        wp_enqueue_script('search-js', get_template_directory_uri() . '/dist/js/search.bundle.js', array('jquery'), null, true);
+        wp_enqueue_style('search-style', get_template_directory_uri() . '/dist/css/search.bundle.css');
+    }
+
+    $current_lang = pll_current_language();
+
     // Localize main script
     $settings = array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'template_directory_url' => get_template_directory_uri(),
-        'wishlist' => translate_and_output('wishlist')
+        'wishlist' => translate_and_output('wishlist'),
+        'is_search_page' => is_page_template('pages/search.php') ? true : false,
+        'search_page_link' => $current_lang === 'uk' ? get_permalink(6613) : get_permalink(6615)
     );
     wp_localize_script('main', 'settings', $settings);
 }
-
 
 function theme_setup()
 {

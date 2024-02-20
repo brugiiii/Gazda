@@ -115,7 +115,7 @@ if ($page === 'shop') {
                                         <li class="sub-menu__item">
                                             <?php $child_category_id = get_post_meta($child->ID, '_menu_item_object_id', true);
                                             $child_category = get_term($child_category_id, 'product_cat'); ?>
-                                            <button class="sub-menu__button category-button bg-transparent border-0 position-relative pe-0 w-100 text-start"
+                                            <button class="sub-menu__button category-button d-flex align-items-center gap-1 px-0 border-0 text-start bg-transparent"
                                                     type="button" data-category-id="<?= $child_category_id; ?>"
                                                     data-parent-category-id="<?= $menu_item->object_id; ?>">
                                                 <?= esc_html($child->title); ?>

@@ -15,9 +15,6 @@ const reviewsSwiper = new Swiper(".reviews-swiper", {
     slidesPerView: 1,
     spaceBetween: 16,
     grabCursor: true,
-    pagination: {
-        el: "#home-reviews .swiper-pagination",
-    },
     keyboard: true,
 
     breakpoints: {
@@ -39,7 +36,7 @@ const gallerySwiper = new Swiper(".gallery-swiper", {
     spaceBetween: 30,
     grabCursor: true,
     pagination: {
-        el: "#gallery .swiper-pagination",
+        el: ".gallery .swiper-pagination",
     },
     breakpoints: {
         576: {

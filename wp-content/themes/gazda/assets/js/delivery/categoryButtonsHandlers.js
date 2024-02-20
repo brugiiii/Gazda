@@ -1,4 +1,3 @@
-const navWrapper = $('.nav-wrapper');
 const parentSwiperButtons = $('.parent-swiper__button')
 const breadCrumbCurrent = $('.breadcrumb .current');
 const toolbarTitle = $('.toolbar-wrapper__title');
@@ -21,13 +20,7 @@ const handleParentButtonClick = (e) => {
     activeChildSwiperButton.trigger('click');
 }
 
-const handleCategoryButtonClick = (event) => {
-    const $clickedButton = $(event.target);
-
-    if ($clickedButton.hasClass("is-active")) {
-        return;
-    }
-
+export const scrollToAndActivateCategory = ($clickedButton) => {
     const categoryId = $clickedButton.data('categoryId');
     const parentCategoryId = $clickedButton.data('parentCategoryId');
     const currentCategory = $clickedButton.text();
@@ -65,4 +58,3 @@ const handleCategoryButtonClick = (event) => {
 
 
 parentSwiperButtons.on('click', handleParentButtonClick)
-navWrapper.on("click", '.category-button', handleCategoryButtonClick);

@@ -1,83 +1,71 @@
 .products-list {
   gap: 1rem;
 
-  &.delivery {
-    & .tags-list {
-      top: 0.5rem;
-      right: 0.5rem;
+  & .tags-list {
+    top: 0.5rem;
+    right: 0.5rem;
 
-      display: flex;
-      align-items: flex-end;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  & .tags-list__item {
+    padding: 0.1875rem 0.4375rem;
+    border: 1px solid $accent-color;
+
+    font-size: 0.625rem;
+    line-height: normal;
+
+    color: $accent-color;
+    background-color: $white-color;
+
+    &::before {
+      content: '';
+
+      display: block;
+      width: 0.75rem;
+      height: 0.75rem;
+
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      @media screen and (min-width: 992px) {
+        width: 1rem;
+        height: 1rem;
+      }
     }
 
-    & .tags-list__item {
-      padding: 0.1875rem 0.4375rem;
-      border: 1px solid $accent-color;
-
-      font-size: 0.625rem;
-      line-height: normal;
-
-      color: $accent-color;
-      background-color: $white-color;
-
+    &.sprout {
       &::before {
-        content: '';
-
-        display: block;
-        width: 0.75rem;
-        height: 0.75rem;
-
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-
-        @media screen and (min-width: 992px) {
-          width: 1rem;
-          height: 1rem;
-        }
-      }
-
-      &.sprout {
-        &::before {
-          background-image: url(../images/sprout.svg);
-        }
-      }
-
-      &.kitchen {
-        &::before {
-          background-image: url(../images/kitchen.svg);
-        }
-      }
-
-      &.fire {
-        &::before {
-          background-image: url(../images/fire.svg);
-        }
-      }
-
-      &.like {
-        &::before {
-          background-image: url(../images/like.svg);
-        }
+        background-image: url(../images/sprout.svg);
       }
     }
 
-    & .ingredients {
-      font-size: 0.75rem;
-      line-height: normal;
+    &.kitchen {
+      &::before {
+        background-image: url(../images/kitchen.svg);
+      }
+    }
 
-      color: $secondary-text-color;
+    &.fire {
+      &::before {
+        background-image: url(../images/fire.svg);
+      }
+    }
+
+    &.like {
+      &::before {
+        background-image: url(../images/like.svg);
+      }
     }
   }
 
-  &.shop {
-    & .tags-list {
-      display: none;
-    }
+  & .ingredients {
+    font-size: 0.75rem;
+    line-height: normal;
 
-    & .ingredients {
-      display: none;
-    }
+    color: $secondary-text-color;
   }
 
   @media screen and (min-width: 1440px) {
@@ -115,7 +103,7 @@
   }
 
   & .star-rating,
-  & .added_to_cart{
+  & .added_to_cart {
     display: none;
   }
 

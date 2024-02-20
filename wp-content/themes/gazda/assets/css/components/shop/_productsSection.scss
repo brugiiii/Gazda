@@ -35,20 +35,6 @@
   }
 }
 
-.breadcrumb {
-  @media screen and (max-width: 991px) {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid $fifth-bg-color;
-    margin-bottom: 0;
-
-    background-color: $fourth-text-color;
-  }
-
-  @media screen and (min-width: 992px) {
-    margin-bottom: 1.5rem;
-  }
-}
-
 .products-wrapper {
   gap: 1.25rem;
 }

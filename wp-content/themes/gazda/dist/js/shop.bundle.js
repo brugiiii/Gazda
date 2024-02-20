@@ -18,7 +18,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_fill_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_fill_js__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var productsSkeleton = "\n    ".concat(Array(12).fill("\n            <li class=\"skeleton-list__item product\">\n            </li>").join(''), "\n");
+var productsSkeleton = function productsSkeleton() {
+  var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 12;
+  return "".concat(Array(count).fill("\n            <li class=\"skeleton-list__item product\">\n            </li>").join(''));
+};
 
 /***/ }),
 
@@ -34,7 +37,25 @@ var refs = {
   bodyEl: $("body"),
   burgerButton: $('.hamburger'),
   burgerMenu: $('.burger'),
-  burgerLinks: $('.burger .nav-list > .menu-item-has-children > a')
+  burgerLinks: $('.burger .nav-list > .menu-item-has-children > a'),
+  headerSearch: $('.header-search'),
+  searchForm: $('.search-form'),
+  searchInput: $('.search-input'),
+  orderButtons: $('.order-list__button'),
+  orderSelect: $('select.toolbar-els__button'),
+  productsList: $('.products-list'),
+  productsItems: $('.products-items'),
+  paginationContainer: $('.pagination-container'),
+  filterContainer: $('.filter-container'),
+  productsNav: $('.products-nav'),
+  toolbarFilter: $('.toolbar-filter'),
+  currentFilter: $('.current-filter'),
+  selectContainer: $('.select-container'),
+  navWrapper: $('.nav-wrapper'),
+  breadCrumbCurrent: $('.breadcrumb .current'),
+  toolbarTitle: $('.toolbar-wrapper__title'),
+  orderButtonText: $('.order-button__text'),
+  orderList: $('.order-list')
 };
 /* harmony default export */ __webpack_exports__["default"] = (refs);
 
@@ -207,40 +228,24 @@ $(document).ready(function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   fetchAndRenderProducts: function() { return /* binding */ fetchAndRenderProducts; }
-/* harmony export */ });
 /* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
 /* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
 /* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
 /* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptor.js */ "./node_modules/core-js/modules/es.object.get-own-property-descriptor.js");
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptor_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors.js */ "./node_modules/core-js/modules/es.object.get-own-property-descriptors.js");
-/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
-/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
-/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../helpers/productsSkeleton */ "./assets/js/helpers/productsSkeleton.js");
-
-
-
-
-
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptor.js */ "./node_modules/core-js/modules/es.object.get-own-property-descriptor.js");
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptor_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptor_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors.js */ "./node_modules/core-js/modules/es.object.get-own-property-descriptors.js");
+/* harmony import */ var core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helpers/productsSkeleton */ "./assets/js/helpers/productsSkeleton.js");
+/* harmony import */ var _main_refs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../main/refs */ "./assets/js/main/refs.js");
+/* harmony import */ var _productFunctions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./productFunctions */ "./assets/js/shop/productFunctions.js");
 
 
 
@@ -250,37 +255,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 
-var productsItems = $('.products-items');
-var productsList = $('.products-list');
-var paginationContainer = $('.pagination-container');
-var filterContainer = $('.filter-container');
-var productsNav = $('.products-nav');
-var orderButtons = $('.order-list__button');
-var orderButtonText = $('.order-button__text');
-var orderList = $('.order-list');
-var breadCrumbCurrent = $('.breadcrumb .current');
-var toolbarFilter = $('.toolbar-filter');
-var currentFilter = $('.current-filter');
-var toolbarTitle = $('.toolbar-wrapper__title');
-var orderSelect = $('select.toolbar-els__button');
-var selectContainer = $('.select-container');
-var initialPostsPerPage = 12;
-var loadMoreClickCount = 0;
+
+
+var orderButtons = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].orderButtons,
+  orderSelect = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].orderSelect,
+  productsList = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].productsList,
+  productsItems = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].productsItems,
+  paginationContainer = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].paginationContainer,
+  productsNav = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].productsNav,
+  toolbarFilter = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].toolbarFilter,
+  currentFilter = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].currentFilter,
+  selectContainer = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].selectContainer;
+var skeleton = (0,_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_8__.productsSkeleton)();
 var _settings = settings,
   ajax_url = _settings.ajax_url;
+var utils = {
+  loadMoreClickCount: 0,
+  initialPostsPerPage: 12
+};
 var query = {
   page: 1,
   categories: [],
-  posts_per_page: initialPostsPerPage,
+  posts_per_page: utils.initialPostsPerPage,
   order: 'DESC',
   tags: []
 };
 var fetchAndRenderProducts = function fetchAndRenderProducts() {
   var useSkeleton = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
   if (useSkeleton) {
-    productsList.html(_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_13__.productsSkeleton);
+    productsList.html(skeleton);
     paginationContainer.html('');
   }
   $.ajax({
@@ -289,201 +294,52 @@ var fetchAndRenderProducts = function fetchAndRenderProducts() {
     data: _objectSpread({
       action: 'fetch_products'
     }, query),
-    success: handleProductsFetchSuccess,
+    success: function success(res) {
+      return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleProductsFetchSuccess)(res, query);
+    },
     error: function error(_error) {
       return console.log(_error);
     }
   });
 };
-var handleProductsFetchSuccess = function handleProductsFetchSuccess(response) {
-  var tempElement = document.createElement('div');
-  tempElement.innerHTML = response;
-  var paginationWrapper = tempElement.querySelector('.pagination-wrapper');
-  var filterWrapper = tempElement.querySelector('.filter-wrapper');
-  var filterSelect = tempElement.querySelector('.filter-select');
-  paginationContainer.addClass("d-none");
-  toolbarFilter.addClass('d-none');
-  if (paginationWrapper) {
-    paginationContainer.removeClass('d-none');
-    paginationWrapper.remove();
-    paginationContainer.html(paginationWrapper);
-  }
-  if (filterWrapper) {
-    toolbarFilter.removeClass('d-none');
-    filterWrapper.remove();
-    if (query.tags.length === 0) {
-      filterContainer.html(filterWrapper);
-    }
-  }
-  if (filterSelect) {
-    filterSelect.remove();
-    if (query.tags.length === 0) {
-      selectContainer.html(filterSelect);
-    }
-  }
-  var remainingHTML = tempElement.innerHTML;
-  productsList.html(remainingHTML);
-  var lastPaginationItem = $('.pagination__item[data-page]:last');
-  lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
-};
-
-// Actions
 var handleCategoryButtonClick = function handleCategoryButtonClick(event) {
   var $clickedButton = $(event.currentTarget);
   if ($clickedButton.hasClass("is-active")) {
     return;
   }
-  var currentCategory = $clickedButton.text();
   var categoryId = $clickedButton.data('categoryId');
   var categoryIds;
   if (typeof categoryId === 'string') {
     categoryIds = categoryId.split(' ');
   }
-  var activeButtons = $(".products-nav__button[data-category-id=\"".concat(categoryId, "\"]"));
-  var inactiveButtons = $(".products-nav__button.is-active[data-category-id]:not([data-category-id=\"".concat(categoryId, "\"])"));
-  if ($clickedButton.hasClass('swiper-button-js')) {
-    $clickedButton[0].scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
-    });
-  } else {
-    $(".swiper-button-js[data-category-id=\"".concat(categoryId, "\"]"))[0].scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
-    });
-  }
-  inactiveButtons.each(function () {
-    $(this).removeClass('is-active');
-  });
-  activeButtons.each(function () {
-    $(this).addClass('is-active');
-  });
-  breadCrumbCurrent.text(currentCategory);
-  toolbarTitle.text(currentCategory);
-  loadMoreClickCount = 1;
+  utils.loadMoreClickCount = 1;
   query.categories = categoryIds ? categoryIds : [categoryId];
-  query.posts_per_page = initialPostsPerPage;
+  query.posts_per_page = utils.initialPostsPerPage;
   currentFilter.html('');
   query.page = 1;
   query.tags = [];
-  fetchAndRenderProducts();
-};
-var handleFilterChange = function handleFilterChange(e) {
-  var $this = $(e.currentTarget);
-  var tagId = $this.val();
-  var tagIndex = query.tags.indexOf(tagId);
-  var tags = query.tags;
-  if (tagIndex === -1) {
-    // Якщо тега немає в масиві, то додаємо його
-    tags.push(tagId);
-    currentFilter.append("<button data-id=\"".concat(tagId, "\">").concat($this.closest('label').text(), "</button>"));
-  } else {
-    // Якщо тег вже є в масиві, то видаляємо його
-    tags.splice(tagIndex, 1);
-    currentFilter.find("button[data-id=\"".concat(tagId, "\"]")).remove();
-  }
-  fetchAndRenderProducts();
-};
-var handleSelectFilterChange = function handleSelectFilterChange(e) {
-  var $this = $(e.target);
-  var values = $this.val();
-  $('.filter-wrapper__input').each(function () {
-    var inputValue = $(this).val();
-    var isChecked = values && values.includes(inputValue);
-    if (isChecked && !$(this).prop('checked')) {
-      // Якщо елемент повинен бути вибраним і він не вибраний, викликаємо click
-      $(this).click();
-    } else if (!isChecked && $(this).prop('checked')) {
-      // Якщо елемент не повинен бути вибраним і він вибраний, викликаємо click
-      $(this).click();
-    }
-  });
-};
-var handleLoadMoreClick = function handleLoadMoreClick($this) {
-  $this.addClass('loading');
-  $this.attr('disabled', true);
-  loadMoreClickCount += 1;
-  query.posts_per_page = initialPostsPerPage * loadMoreClickCount;
-  fetchAndRenderProducts(false);
-};
-var handlePaginationButtonClick = function handlePaginationButtonClick($clickedButton) {
-  if ($clickedButton.hasClass('current')) {
-    return;
-  }
-  var action = $clickedButton.data("action");
-  if (action) {
-    switch (action) {
-      case 'prev':
-        query.page -= 1;
-        break;
-      case 'next':
-        query.page += 1;
-        break;
-      case 'first':
-        query.page = 1;
-        break;
-      case 'last':
-        query.page = $clickedButton.data('last-page');
-        break;
-    }
-  } else {
-    query.page = $clickedButton.data("page");
-  }
-  fetchAndRenderProducts();
-};
-var handlePaginationClick = function handlePaginationClick(event) {
-  var $clickedButton = $(event.currentTarget);
-  if ($clickedButton.hasClass('load-more')) {
-    handleLoadMoreClick($clickedButton);
-  } else {
-    handlePaginationButtonClick($clickedButton);
-  }
-};
-var handleOrderButtonClick = function handleOrderButtonClick(event) {
-  var $clickedButton = $(event.currentTarget);
-  var order = $clickedButton.data("order");
-  if (query.order === order) {
-    return;
-  }
-  $clickedButton.addClass("is-active").siblings().removeClass('is-active');
-  orderButtonText.text($clickedButton.text());
-  orderList.addClass('is-hidden');
-  orderSelect.val(order);
-  query.order = order;
-  fetchAndRenderProducts();
-};
-var handleOrderSelectChange = function handleOrderSelectChange(event) {
-  var $this = $(event.target);
-  var value = $this.val();
-  var orderButtonToActive = $(".order-list__button[data-order=\"".concat(value, "\"]"));
-  var selectedOptionText = $this.find("option[value=\"".concat(value, "\"]")).text();
-  orderButtonToActive.siblings().removeClass('is-active');
-  orderButtonToActive.addClass('is-active');
-  orderButtonText.text(selectedOptionText);
-  query.order = value;
-  fetchAndRenderProducts();
-};
-var handleRemoveFilter = function handleRemoveFilter(e) {
-  var $this = $(e.currentTarget);
-  var tags = query.tags;
-  var tagId = String($this.data('id'));
-  var tagIndex = tags.indexOf(tagId);
-  currentFilter.find("button[data-id=\"".concat(tagId, "\"]")).remove();
-  tags.splice(tagIndex, 1);
-  toolbarFilter.find("input[value=\"".concat(tagId, "\"]")).prop('checked', false);
+  (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.scrollToAndActivateCategory)($clickedButton);
   fetchAndRenderProducts();
 };
 
 // Listeners
-productsItems.on("click", '.pagination__item, .load-more', handlePaginationClick);
 productsNav.on("click", '.products-nav__button', handleCategoryButtonClick);
-toolbarFilter.on("change", '.filter-wrapper__input', handleFilterChange);
-orderSelect.on('change', handleOrderSelectChange);
-orderButtons.on("click", handleOrderButtonClick);
-currentFilter.on('click', 'button', handleRemoveFilter);
-selectContainer.on('change', 'select', handleSelectFilterChange);
+productsItems.on("click", '.pagination__item, .load-more', function (e) {
+  return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handlePaginationClick)(e, query, utils, fetchAndRenderProducts);
+});
+toolbarFilter.on("change", '.filter-wrapper__input', function (e) {
+  return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleFilterChange)(e, query, fetchAndRenderProducts);
+});
+orderSelect.on('change', function (e) {
+  return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleOrderSelectChange)(e, query, fetchAndRenderProducts);
+});
+currentFilter.on('click', 'button', function (e) {
+  return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleRemoveFilter)(e, query, fetchAndRenderProducts);
+});
+selectContainer.on('change', 'select', _productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleSelectFilterChange);
+orderButtons.on("click", function (e) {
+  return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleOrderButtonClick)(e, query, fetchAndRenderProducts);
+});
 $(document).ready(function () {
   $('.products-nav__button:first').trigger("click");
 });
@@ -627,6 +483,227 @@ hideCategoriesButton.on("click", function () {
 categoriesBackdrop.on("click", '.products-nav__button, .category-button', function () {
   return (0,_main_utils__WEBPACK_IMPORTED_MODULE_0__.hideBackdrop)(categoriesBackdrop);
 });
+
+/***/ }),
+
+/***/ "./assets/js/shop/productFunctions.js":
+/*!********************************************!*\
+  !*** ./assets/js/shop/productFunctions.js ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   handleFilterChange: function() { return /* binding */ handleFilterChange; },
+/* harmony export */   handleLoadMoreClick: function() { return /* binding */ handleLoadMoreClick; },
+/* harmony export */   handleOrderButtonClick: function() { return /* binding */ handleOrderButtonClick; },
+/* harmony export */   handleOrderSelectChange: function() { return /* binding */ handleOrderSelectChange; },
+/* harmony export */   handlePaginationButtonClick: function() { return /* binding */ handlePaginationButtonClick; },
+/* harmony export */   handlePaginationClick: function() { return /* binding */ handlePaginationClick; },
+/* harmony export */   handleProductsFetchSuccess: function() { return /* binding */ handleProductsFetchSuccess; },
+/* harmony export */   handleRemoveFilter: function() { return /* binding */ handleRemoveFilter; },
+/* harmony export */   handleSelectFilterChange: function() { return /* binding */ handleSelectFilterChange; },
+/* harmony export */   scrollToAndActivateCategory: function() { return /* binding */ scrollToAndActivateCategory; }
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _main_refs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../main/refs */ "./assets/js/main/refs.js");
+
+
+
+
+
+
+
+var toolbarFilter = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].toolbarFilter,
+  orderSelect = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].orderSelect,
+  orderList = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].orderList,
+  paginationContainer = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].paginationContainer,
+  productsList = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].productsList,
+  selectContainer = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].selectContainer,
+  filterContainer = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].filterContainer,
+  breadCrumbCurrent = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].breadCrumbCurrent,
+  toolbarTitle = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].toolbarTitle,
+  currentFilter = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].currentFilter,
+  orderButtonText = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].orderButtonText;
+
+// Actions
+
+var handleProductsFetchSuccess = function handleProductsFetchSuccess(res, query) {
+  var tempElement = document.createElement('div');
+  tempElement.innerHTML = res;
+  var paginationWrapper = tempElement.querySelector('.pagination-wrapper');
+  var filterWrapper = tempElement.querySelector('.filter-wrapper');
+  var filterSelect = tempElement.querySelector('.filter-select');
+  paginationContainer.addClass("d-none");
+  toolbarFilter.addClass('d-none');
+  if (paginationWrapper) {
+    paginationContainer.removeClass('d-none');
+    paginationWrapper.remove();
+    paginationContainer.html(paginationWrapper);
+  }
+  if (filterWrapper) {
+    toolbarFilter.removeClass('d-none');
+    filterWrapper.remove();
+    if (query.tags.length === 0) {
+      filterContainer.html(filterWrapper);
+    }
+  }
+  if (filterSelect) {
+    filterSelect.remove();
+    if (query.tags.length === 0) {
+      selectContainer.html(filterSelect);
+    }
+  }
+  var remainingHTML = tempElement.innerHTML;
+  productsList.html(remainingHTML);
+  var lastPaginationItem = $('.pagination__item[data-page]:last');
+  lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
+};
+var scrollToAndActivateCategory = function scrollToAndActivateCategory($clickedButton) {
+  var currentCategory = $clickedButton.text();
+  var categoryId = $clickedButton.data('categoryId');
+  var activeButtons = $(".products-nav__button[data-category-id=\"".concat(categoryId, "\"]"));
+  var inactiveButtons = $(".products-nav__button.is-active[data-category-id]:not([data-category-id=\"".concat(categoryId, "\"])"));
+  if ($clickedButton.hasClass('swiper-button-js')) {
+    $clickedButton[0].scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center'
+    });
+  } else {
+    $(".swiper-button-js[data-category-id=\"".concat(categoryId, "\"]"))[0].scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center'
+    });
+  }
+  inactiveButtons.each(function () {
+    $(this).removeClass('is-active');
+  });
+  activeButtons.each(function () {
+    $(this).addClass('is-active');
+  });
+  breadCrumbCurrent.text(currentCategory);
+  toolbarTitle.text(currentCategory);
+  currentFilter.html('');
+};
+var handleOrderButtonClick = function handleOrderButtonClick(e, query, fetchProducts) {
+  var $clickedButton = $(e.currentTarget);
+  var order = $clickedButton.data("order");
+  if (query.order === order) {
+    return;
+  }
+  $clickedButton.addClass("is-active").siblings().removeClass('is-active');
+  orderButtonText.text($clickedButton.text());
+  orderList.addClass('is-hidden');
+  orderSelect.val(order);
+  query.order = order;
+  fetchProducts();
+};
+var handleOrderSelectChange = function handleOrderSelectChange(e, query, fetchProducts) {
+  var $this = $(e.target);
+  var value = $this.val();
+  var orderButtonToActive = $(".order-list__button[data-order=\"".concat(value, "\"]"));
+  var selectedOptionText = $this.find("option[value=\"".concat(value, "\"]")).text();
+  orderButtonToActive.siblings().removeClass('is-active');
+  orderButtonToActive.addClass('is-active');
+  orderButtonText.text(selectedOptionText);
+  query.order = value;
+  fetchProducts();
+};
+var handleFilterChange = function handleFilterChange(e, query, fetchProducts) {
+  var $this = $(e.currentTarget);
+  var tagId = $this.val();
+  var tagIndex = query.tags.indexOf(tagId);
+  var tags = query.tags;
+  if (tagIndex === -1) {
+    // Якщо тега немає в масиві, то додаємо його
+    tags.push(tagId);
+    currentFilter.append("<button data-id=\"".concat(tagId, "\">").concat($this.closest('label').text(), "</button>"));
+  } else {
+    // Якщо тег вже є в масиві, то видаляємо його
+    tags.splice(tagIndex, 1);
+    currentFilter.find("button[data-id=\"".concat(tagId, "\"]")).remove();
+  }
+  fetchProducts();
+};
+var handleSelectFilterChange = function handleSelectFilterChange(e) {
+  var $this = $(e.target);
+  var values = $this.val();
+  $('.filter-wrapper__input').each(function () {
+    var inputValue = $(this).val();
+    var isChecked = values && values.includes(inputValue);
+    if (isChecked && !$(this).prop('checked')) {
+      // Якщо елемент повинен бути вибраним і він не вибраний, викликаємо click
+      $(this).click();
+    } else if (!isChecked && $(this).prop('checked')) {
+      // Якщо елемент не повинен бути вибраним і він вибраний, викликаємо click
+      $(this).click();
+    }
+  });
+};
+var handleRemoveFilter = function handleRemoveFilter(e, query, fetchProducts) {
+  var $this = $(e.currentTarget);
+  var tags = query.tags;
+  var tagId = String($this.data('id'));
+  var tagIndex = tags.indexOf(tagId);
+  currentFilter.find("button[data-id=\"".concat(tagId, "\"]")).remove();
+  tags.splice(tagIndex, 1);
+  toolbarFilter.find("input[value=\"".concat(tagId, "\"]")).prop('checked', false);
+  fetchProducts();
+};
+var handleLoadMoreClick = function handleLoadMoreClick($this, query, utils, fetchProducts) {
+  $this.addClass('loading');
+  $this.attr('disabled', true);
+  utils.loadMoreClickCount += 1;
+  query.posts_per_page = utils.initialPostsPerPage * utils.loadMoreClickCount;
+  fetchProducts(false);
+};
+var handlePaginationButtonClick = function handlePaginationButtonClick($clickedButton, query, fetchProducts) {
+  if ($clickedButton.hasClass('current')) {
+    return;
+  }
+  var action = $clickedButton.data("action");
+  if (action) {
+    switch (action) {
+      case 'prev':
+        query.page -= 1;
+        break;
+      case 'next':
+        query.page += 1;
+        break;
+      case 'first':
+        query.page = 1;
+        break;
+      case 'last':
+        query.page = $clickedButton.data('last-page');
+        break;
+    }
+  } else {
+    query.page = $clickedButton.data("page");
+  }
+  fetchProducts();
+};
+var handlePaginationClick = function handlePaginationClick(e, query, utils, fetchProducts) {
+  var $clickedButton = $(e.currentTarget);
+  if ($clickedButton.hasClass('load-more')) {
+    handleLoadMoreClick($clickedButton, query, utils, fetchProducts);
+  } else {
+    handlePaginationButtonClick($clickedButton, query, fetchProducts);
+  }
+};
 
 /***/ }),
 

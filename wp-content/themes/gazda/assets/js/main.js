@@ -4,5 +4,6 @@ import "swiper/css/bundle";
 
 import "../js/main/utils"
 import "../js/main/burger"
+import "../js/main/searchForm"
 
 import "../css/main.scss";

@@ -2,10 +2,10 @@
     <div class="burger-wrapper">
 
         <label class="burger-search position-relative d-block d-sm-none">
-            <svg class="burger-search__icon position-absolute top-50 translate-middle-y" width="24" height="24">
+            <svg class="search-icon position-absolute top-50 translate-middle-y" width="24" height="24">
                 <use href="<?php get_image('sprite.svg#icon-search'); ?>"></use>
             </svg>
-            <input type="search" placeholder="Пошук">
+            <input class="search-input" type="search" placeholder="<?= translate_and_output('search'); ?>">
         </label>
 
         <?php get_template_part('templates/navigation', null, array('location' => 'menu-burger')); ?>

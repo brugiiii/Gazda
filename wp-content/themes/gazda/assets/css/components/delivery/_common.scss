@@ -117,9 +117,37 @@
     }
 
     & .sub-menu__button {
-      display: block;
+      &::before {
+        @include transition(opacity);
 
-      padding-left: 1.25rem;
+        content: '';
+
+        display: block;
+
+        width: 1rem;
+        height: 1rem;
+
+        opacity: 0;
+
+        background-image: url(../images/icon_caret_right.svg);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      &.is-active {
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
     }
 
     & .nav-list__button {
@@ -175,6 +203,12 @@
         &:active {
           color: $white-color;
         }
+      }
+    }
+
+    & .sub-menu__button {
+      &::before {
+        background-image: url(../images/icon_caret_right_white.svg);
       }
     }
   }

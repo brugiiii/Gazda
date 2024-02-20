@@ -9,12 +9,12 @@ $menu_items_hierarchy = process_menu_items_hierarchy();
 <section class="section menu overflow-visible">
     <?= get_template_part('sections/restaurant/navigation'); ?>
     <div class="container">
-        <div class="menu-breadcrumb d-none d-lg-block">
+        <div class="breadcrumb d-none d-lg-block">
             <?= get_the_title($post); ?>
-            /
+            <?= get_template_part('helpers/separator'); ?>
             <?= translate_and_output('menu'); ?>
-            /
-            <span class="menu-item"></span>
+            <?= get_template_part('helpers/separator'); ?>
+            <span class="menu-item current"></span>
         </div>
         <div class="d-lg-flex align-items-lg-start menu-wrapper">
             <div class="navigation px-3 pb-3 d-none d-lg-block">

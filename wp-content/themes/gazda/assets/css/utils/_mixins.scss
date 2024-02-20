@@ -28,8 +28,21 @@
       $transition-props: append($transition-props, $property);
 
       #{$property}: $start-value;
-      &:hover, &:focus {
-        #{$property}: $end-value;
+
+      @media (hover: hover) {
+        &:hover {
+          #{$property}: $end-value;
+        }
+
+        &:focus {
+          #{$property}: $end-value;
+        }
+      }
+
+      @media (hover: none) {
+        &:active {
+          #{$property}: $end-value;
+        }
       }
     }
   }

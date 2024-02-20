@@ -4,7 +4,9 @@ $page = $args['page'] ?? 'shop';
 
 <div class="products-toolbar py-lg-3">
     <div class="toolbar-wrapper d-md-flex align-items-md-center justify-content-md-between">
-        <h2 class="toolbar-wrapper__title mb-md-0"></h2>
+        <h2 class="toolbar-wrapper__title mb-md-0">
+            <?= $page === 'search' ? translate_and_output('search_results') : ''; ?>
+        </h2>
         <div class="toolbar-els d-flex">
             <div class="position-relative toolbar-filter d-none">
                 <button class="toolbar-els__button filter-button d-flex align-items-center" type="button">
@@ -61,7 +63,9 @@ if ($page === 'shop') {
         <?= get_template_part('templates/shop/navigation', null, array('is_swiper' => true)); ?>
     </div>
     <?php
-} else {
+}
+
+if ($page === 'delivery') {
     ?>
     <div class="nav-wrapper px-0 d-lg-none">
         <?= get_template_part('templates/shop/navigation', null, array('is_swiper' => true, 'page' => $page)); ?>

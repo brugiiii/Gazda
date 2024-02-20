@@ -3,24 +3,12 @@ add_action('wp_ajax_get_wishlist_count', 'get_wishlist_count_ajax');
 add_action('wp_ajax_nopriv_get_wishlist_count', 'get_wishlist_count_ajax');
 add_action('wp_ajax_fetch_products', 'fetch_products');
 add_action('wp_ajax_nopriv_fetch_products', 'fetch_products');
-add_action('wp_ajax_get_cart_count', 'get_cart_count_ajax');
-add_action('wp_ajax_nopriv_get_cart_count', 'get_cart_count_ajax');
-add_action('wp_ajax_get_product_price', 'get_product_price_ajax');
-add_action('wp_ajax_nopriv_get_product_price', 'get_product_price_ajax');
-add_action('wp_ajax_get_product_description', 'get_product_description_ajax');
-add_action('wp_ajax_nopriv_get_product_description', 'get_product_description_ajax');
-add_action('wp_ajax_get_product_reviews', 'get_product_reviews_ajax');
-add_action('wp_ajax_nopriv_get_product_reviews', 'get_product_reviews_ajax');
+add_action('wp_ajax_search_products', 'search_products_ajax');
+add_action('wp_ajax_nopriv_search_products', 'search_products_ajax');
 
 function fetch_products()
 {
     get_template_part('templates/shop/fetchProducts');
-}
-
-function get_cart_count_ajax()
-{
-    echo WC()->cart->get_cart_contents_count();
-    wp_die();
 }
 
 function get_wishlist_count_ajax()
@@ -30,31 +18,38 @@ function get_wishlist_count_ajax()
     wp_die();
 }
 
-function get_product_price_ajax()
+function search_products_ajax()
 {
-    $product_id = $_POST['product_id'];
-    $variations = $_POST['variations'];
-}
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        's' => isset($_POST['s']) ? $_POST['s'] : '',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'class',
+                'operator' => 'EXISTS',
+            ),
+        ),
+        'meta_key' => '_price',
+        'orderby' => 'meta_value_num',
+        'order' => isset($_POST['order']) ? $_POST['order'] : 'DESC',
+    );
 
-function get_product_description_ajax()
-{
-    $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
-    $product = wc_get_product($product_id);
+    $query = new WP_Query($args);
 
-    echo wpautop($product->get_description());
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $thumbnail_id = get_post_thumbnail_id(get_the_ID());
+            get_template_part('templates/shop/productCard', null, array('thumbnail_id' => $thumbnail_id));
+        }
+    } else {
+        ?>
+        <p class="no-results mb-0">
+            <?= translate_and_output('no_results'); ?>
+        </p>
+        <?php
+    }
 
     wp_die();
 }
-
-function get_product_reviews_ajax()
-{
-    $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
-    $product = wc_get_product($product_id);
-
-  echo 'reviews';
-
-    wp_die();
-}
-
-
-

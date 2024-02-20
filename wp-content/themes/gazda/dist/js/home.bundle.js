@@ -25,9 +25,6 @@ var reviewsSwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["default"](".
   slidesPerView: 1,
   spaceBetween: 16,
   grabCursor: true,
-  pagination: {
-    el: "#home-reviews .swiper-pagination"
-  },
   keyboard: true,
   breakpoints: {
     768: {
@@ -47,7 +44,7 @@ var gallerySwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["default"](".
   spaceBetween: 30,
   grabCursor: true,
   pagination: {
-    el: "#gallery .swiper-pagination"
+    el: ".gallery .swiper-pagination"
   },
   breakpoints: {
     576: {

@@ -2,15 +2,6 @@ import refs from "./refs";
 import throttle from "lodash.throttle";
 const { burgerMenu, burgerButton, burgerLinks } = refs;
 
-const handleWindowClick = (e) => {
-    if (e.target === burgerMenu) {
-        return;
-    }
-
-    burgerButton.toggleClass("is-active");
-    burgerMenu.slideToggle();
-};
-
 const handleBurgerClick = function (e) {
     const $this = $(e.currentTarget);
     $this.toggleClass("is-active");
@@ -28,7 +19,6 @@ const handleBurgerLinkClick = (e) => {
     subMenu.slideToggle();
     $this.toggleClass("is-active")
 }
-
 
 burgerButton.on("click", throttle(handleBurgerClick, 500));
 burgerLinks.on("click", handleBurgerLinkClick)

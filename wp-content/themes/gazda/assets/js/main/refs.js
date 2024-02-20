@@ -1,8 +1,26 @@
 const refs = {
-  bodyEl: $("body"),
-  burgerButton: $('.hamburger'),
-  burgerMenu: $('.burger'),
-  burgerLinks: $('.burger .nav-list > .menu-item-has-children > a')
+    bodyEl: $("body"),
+    burgerButton: $('.hamburger'),
+    burgerMenu: $('.burger'),
+    burgerLinks: $('.burger .nav-list > .menu-item-has-children > a'),
+    headerSearch: $('.header-search'),
+    searchForm: $('.search-form'),
+    searchInput: $('.search-input'),
+    orderButtons: $('.order-list__button'),
+    orderSelect: $('select.toolbar-els__button'),
+    productsList: $('.products-list'),
+    productsItems: $('.products-items'),
+    paginationContainer: $('.pagination-container'),
+    filterContainer: $('.filter-container'),
+    productsNav: $('.products-nav'),
+    toolbarFilter: $('.toolbar-filter'),
+    currentFilter: $('.current-filter'),
+    selectContainer: $('.select-container'),
+    navWrapper: $('.nav-wrapper'),
+    breadCrumbCurrent: $('.breadcrumb .current'),
+    toolbarTitle: $('.toolbar-wrapper__title'),
+    orderButtonText: $('.order-button__text'),
+    orderList: $('.order-list'),
 };
 
 export default refs;

@@ -117,8 +117,18 @@
   -webkit-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out;
 }
-#home .about-button:hover, #home .about-button:focus {
-  background-color: #000;
+@media (hover: hover) {
+  #home .about-button:hover {
+    background-color: #000;
+  }
+  #home .about-button:focus {
+    background-color: #000;
+  }
+}
+@media (hover: none) {
+  #home .about-button:active {
+    background-color: #000;
+  }
 }
 
 #home .shop {
@@ -182,8 +192,18 @@
   -webkit-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out;
 }
-#home .shop-button:hover, #home .shop-button:focus {
-  background-color: #083921;
+@media (hover: hover) {
+  #home .shop-button:hover {
+    background-color: #083921;
+  }
+  #home .shop-button:focus {
+    background-color: #083921;
+  }
+}
+@media (hover: none) {
+  #home .shop-button:active {
+    background-color: #083921;
+  }
 }
 @media screen and (max-width: 991px) {
   #home .shop-button {
@@ -546,8 +566,18 @@
   -webkit-transition: color 200ms ease-in-out;
   transition: color 200ms ease-in-out;
 }
-#home .sectors-list__link:hover, #home .sectors-list__link:focus {
-  color: #E5A83A;
+@media (hover: hover) {
+  #home .sectors-list__link:hover {
+    color: #E5A83A;
+  }
+  #home .sectors-list__link:focus {
+    color: #E5A83A;
+  }
+}
+@media (hover: none) {
+  #home .sectors-list__link:active {
+    color: #E5A83A;
+  }
 }
 @media screen and (min-width: 992px) {
   #home .sectors-list__link {

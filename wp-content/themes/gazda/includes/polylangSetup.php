@@ -66,7 +66,10 @@ $strings_to_translate = array(
     'name' => 'Ім’я',
     'write_your_name' => 'Напишіть своє ім’я',
     'write_your_mail' => 'Напишіть свою пошту',
-    'from' => 'Від'
+    'from' => 'Від',
+    'search' => 'Пошук',
+    'search_results' => 'результати пошуку: ',
+    'no_results' => 'Товарів, відповідних вашому запиту, не знайдено.'
 );
 
 if (function_exists('pll_register_string')) {
