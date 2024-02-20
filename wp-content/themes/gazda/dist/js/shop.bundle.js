@@ -228,6 +228,9 @@ $(document).ready(function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   fetchAndRenderProducts: function() { return /* binding */ fetchAndRenderProducts; }
+/* harmony export */ });
 /* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
 /* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
@@ -264,13 +267,13 @@ var orderButtons = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].orderButto
   productsList = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].productsList,
   productsItems = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].productsItems,
   paginationContainer = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].paginationContainer,
-  productsNav = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].productsNav,
   toolbarFilter = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].toolbarFilter,
   currentFilter = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].currentFilter,
-  selectContainer = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].selectContainer;
-var skeleton = (0,_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_8__.productsSkeleton)();
+  selectContainer = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].selectContainer,
+  navWrapper = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].navWrapper;
 var _settings = settings,
-  ajax_url = _settings.ajax_url;
+  ajax_url = _settings.ajax_url,
+  is_delivery_page = _settings.is_delivery_page;
 var utils = {
   loadMoreClickCount: 0,
   initialPostsPerPage: 12
@@ -280,11 +283,14 @@ var query = {
   categories: [],
   posts_per_page: utils.initialPostsPerPage,
   order: 'DESC',
-  tags: []
+  tags: [],
+  class: is_delivery_page ? 'delivery' : 'shop'
 };
 var fetchAndRenderProducts = function fetchAndRenderProducts() {
   var useSkeleton = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
   if (useSkeleton) {
+    var skeletonCount = window.innerWidth >= 992 ? window.innerWidth >= 1440 ? 12 : 9 : 6;
+    var skeleton = (0,_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_8__.productsSkeleton)(skeletonCount);
     productsList.html(skeleton);
     paginationContainer.html('');
   }
@@ -308,27 +314,20 @@ var handleCategoryButtonClick = function handleCategoryButtonClick(event) {
     return;
   }
   var categoryId = $clickedButton.data('categoryId');
-  var categoryIds;
-  if (typeof categoryId === 'string') {
-    categoryIds = categoryId.split(' ');
-  }
   utils.loadMoreClickCount = 1;
-  query.categories = categoryIds ? categoryIds : [categoryId];
+  query.categories = typeof categoryId === 'string' ? categoryId.split(', ') : [categoryId];
   query.posts_per_page = utils.initialPostsPerPage;
   currentFilter.html('');
   query.page = 1;
   query.tags = [];
-  (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.scrollToAndActivateCategory)($clickedButton);
+  is_delivery_page ? (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.deliveryPageScrollTo)($clickedButton) : (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.shopPageScrollTo)($clickedButton);
   fetchAndRenderProducts();
 };
 
 // Listeners
-productsNav.on("click", '.products-nav__button', handleCategoryButtonClick);
+navWrapper.on("click", '.category-button', handleCategoryButtonClick);
 productsItems.on("click", '.pagination__item, .load-more', function (e) {
   return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handlePaginationClick)(e, query, utils, fetchAndRenderProducts);
-});
-toolbarFilter.on("change", '.filter-wrapper__input', function (e) {
-  return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleFilterChange)(e, query, fetchAndRenderProducts);
 });
 orderSelect.on('change', function (e) {
   return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleOrderSelectChange)(e, query, fetchAndRenderProducts);
@@ -336,12 +335,15 @@ orderSelect.on('change', function (e) {
 currentFilter.on('click', 'button', function (e) {
   return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleRemoveFilter)(e, query, fetchAndRenderProducts);
 });
+toolbarFilter.on("change", '.filter-wrapper__input', function (e) {
+  return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleFilterChange)(e, query, fetchAndRenderProducts);
+});
 selectContainer.on('change', 'select', _productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleSelectFilterChange);
 orderButtons.on("click", function (e) {
   return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleOrderButtonClick)(e, query, fetchAndRenderProducts);
 });
 $(document).ready(function () {
-  $('.products-nav__button:first').trigger("click");
+  is_delivery_page ? $('.nav-list__item:first .sub-menu .sub-menu__item:first button').trigger("click") : $('.products-nav__button:first').trigger("click");
 });
 
 /***/ }),
@@ -495,6 +497,7 @@ categoriesBackdrop.on("click", '.products-nav__button, .category-button', functi
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   deliveryPageScrollTo: function() { return /* binding */ deliveryPageScrollTo; },
 /* harmony export */   handleFilterChange: function() { return /* binding */ handleFilterChange; },
 /* harmony export */   handleLoadMoreClick: function() { return /* binding */ handleLoadMoreClick; },
 /* harmony export */   handleOrderButtonClick: function() { return /* binding */ handleOrderButtonClick; },
@@ -504,7 +507,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   handleProductsFetchSuccess: function() { return /* binding */ handleProductsFetchSuccess; },
 /* harmony export */   handleRemoveFilter: function() { return /* binding */ handleRemoveFilter; },
 /* harmony export */   handleSelectFilterChange: function() { return /* binding */ handleSelectFilterChange; },
-/* harmony export */   scrollToAndActivateCategory: function() { return /* binding */ scrollToAndActivateCategory; }
+/* harmony export */   shopPageScrollTo: function() { return /* binding */ shopPageScrollTo; }
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -571,7 +574,39 @@ var handleProductsFetchSuccess = function handleProductsFetchSuccess(res, query)
   var lastPaginationItem = $('.pagination__item[data-page]:last');
   lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
 };
-var scrollToAndActivateCategory = function scrollToAndActivateCategory($clickedButton) {
+var deliveryPageScrollTo = function deliveryPageScrollTo($clickedButton) {
+  var categoryId = $clickedButton.data('categoryId');
+  var parentCategoryId = $clickedButton.data('parentCategoryId');
+  var currentCategory = $clickedButton.text();
+  var activeButtons = $("button[data-category-id=\"".concat(categoryId, "\"]"));
+  var inactiveButtons = $("button.is-active[data-category-id]:not([data-category-id=\"".concat(categoryId, "\"])"));
+  var activeParentButton = $("button.parent-swiper__button[data-parent-category-id=\"".concat(parentCategoryId, "\"]"));
+  var inactiveParentButton = $("button.is-active.parent-swiper__button").not(activeParentButton);
+  var scrollToViewOptions = {
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center'
+  };
+  activeParentButton[0].scrollIntoView(scrollToViewOptions);
+  $(".nav-wrapper .sub-menu__button[data-parent-category-id=\"".concat(parentCategoryId, "\"]")).closest('.nav-list__item').find('.nav-list__button').trigger('click');
+  if ($clickedButton.hasClass('child-swiper__button')) {
+    $clickedButton[0].scrollIntoView(scrollToViewOptions);
+  } else {
+    var closestChildSwiper = $(".child-swiper__button[data-category-id=\"".concat(categoryId, "\"]")).closest('.child-swiper');
+    if (!closestChildSwiper.hasClass('visible')) {
+      $('.child-swiper.visible').removeClass('visible');
+      closestChildSwiper.addClass('visible');
+    }
+    $("button.child-swiper__button[data-category-id=\"".concat(categoryId, "\"]"))[0].scrollIntoView(scrollToViewOptions);
+  }
+  activeButtons.addClass('is-active');
+  inactiveButtons.removeClass('is-active');
+  activeParentButton.addClass('is-active');
+  inactiveParentButton.removeClass('is-active');
+  breadCrumbCurrent.text(currentCategory);
+  toolbarTitle.text(currentCategory);
+};
+var shopPageScrollTo = function shopPageScrollTo($clickedButton) {
   var currentCategory = $clickedButton.text();
   var categoryId = $clickedButton.data('categoryId');
   var activeButtons = $(".products-nav__button[data-category-id=\"".concat(categoryId, "\"]"));

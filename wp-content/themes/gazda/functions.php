@@ -42,7 +42,7 @@ function enqueue_scripts_and_styles()
         wp_enqueue_style('shop-style', get_template_directory_uri() . '/dist/css/shop.bundle.css');
     }
 
-    if (is_shop() || is_page_template('woocommerce/archive-product.php')){
+    if (is_shop() || is_page_template('woocommerce/archive-product.php') || is_page_template('pages/delivery.php')){
         wp_enqueue_script('shop-js', get_template_directory_uri() . '/dist/js/shop.bundle.js', array('jquery'), null, true);
     }
 
@@ -71,6 +71,7 @@ function enqueue_scripts_and_styles()
         'template_directory_url' => get_template_directory_uri(),
         'wishlist' => translate_and_output('wishlist'),
         'is_search_page' => is_page_template('pages/search.php') ? true : false,
+        'is_delivery_page' => is_page_template('pages/delivery.php') ? true : false,
         'search_page_link' => $current_lang === 'uk' ? get_permalink(6613) : get_permalink(6615)
     );
     wp_localize_script('main', 'settings', $settings);

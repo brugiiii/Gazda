@@ -93,11 +93,6 @@
 .nav-wrapper.accordion .sub-menu__button.is-active::before {
   opacity: 1;
 }
-@media (hover: hover) {
-  .nav-wrapper.accordion .sub-menu__button:hover::before {
-    opacity: 1;
-  }
-}
 .nav-wrapper.accordion .nav-list__button {
   font-size: 1.125rem;
   line-height: 1.5;

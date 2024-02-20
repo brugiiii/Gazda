@@ -124,15 +124,22 @@ var headerSearch = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].headerSearch,
   searchInput = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].searchInput,
   orderButtons = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].orderButtons,
   orderSelect = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].orderSelect,
-  productsList = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].productsList;
+  productsList = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].productsList,
+  productsItems = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].productsItems;
 var _settings = settings,
   ajax_url = _settings.ajax_url,
   is_search_page = _settings.is_search_page,
   search_page_link = _settings.search_page_link;
+var utils = {
+  loadMoreClickCount: 1,
+  initialPostsPerPage: 10
+};
 var query = {
   action: 'search_products',
   s: '',
-  order: "DESC"
+  order: "DESC",
+  page: 1,
+  posts_per_page: utils.initialPostsPerPage
 };
 var handleHeaderSearchClick = function handleHeaderSearchClick(e) {
   if (!is_search_page) {
@@ -151,10 +158,13 @@ var handleInput = function handleInput(e) {
   }
 };
 var fetchProducts = function fetchProducts() {
+  var useSkeleton = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
   if (query.s) {
     var skeletonCount = window.innerWidth >= 992 ? window.innerWidth >= 1440 ? 10 : 8 : 6;
     var skeleton = (0,_helpers_productsSkeleton__WEBPACK_IMPORTED_MODULE_3__.productsSkeleton)(skeletonCount);
-    productsList.html(skeleton);
+    if (useSkeleton) {
+      productsList.html(skeleton);
+    }
     $.ajax({
       url: ajax_url,
       type: 'post',
@@ -177,6 +187,9 @@ orderButtons.on("click", function (e) {
 });
 orderSelect.on('change', function (e) {
   return (0,_shop_productFunctions__WEBPACK_IMPORTED_MODULE_2__.handleOrderSelectChange)(e, query, fetchProducts);
+});
+productsItems.on("click", '.pagination__item, .load-more', function (e) {
+  return (0,_shop_productFunctions__WEBPACK_IMPORTED_MODULE_2__.handlePaginationClick)(e, query, utils, fetchProducts);
 });
 $(document).ready(function () {
   var searchQuery = sessionStorage.getItem('searchQuery');
@@ -281,6 +294,7 @@ $("document").ready(function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   deliveryPageScrollTo: function() { return /* binding */ deliveryPageScrollTo; },
 /* harmony export */   handleFilterChange: function() { return /* binding */ handleFilterChange; },
 /* harmony export */   handleLoadMoreClick: function() { return /* binding */ handleLoadMoreClick; },
 /* harmony export */   handleOrderButtonClick: function() { return /* binding */ handleOrderButtonClick; },
@@ -290,7 +304,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   handleProductsFetchSuccess: function() { return /* binding */ handleProductsFetchSuccess; },
 /* harmony export */   handleRemoveFilter: function() { return /* binding */ handleRemoveFilter; },
 /* harmony export */   handleSelectFilterChange: function() { return /* binding */ handleSelectFilterChange; },
-/* harmony export */   scrollToAndActivateCategory: function() { return /* binding */ scrollToAndActivateCategory; }
+/* harmony export */   shopPageScrollTo: function() { return /* binding */ shopPageScrollTo; }
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -357,7 +371,39 @@ var handleProductsFetchSuccess = function handleProductsFetchSuccess(res, query)
   var lastPaginationItem = $('.pagination__item[data-page]:last');
   lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
 };
-var scrollToAndActivateCategory = function scrollToAndActivateCategory($clickedButton) {
+var deliveryPageScrollTo = function deliveryPageScrollTo($clickedButton) {
+  var categoryId = $clickedButton.data('categoryId');
+  var parentCategoryId = $clickedButton.data('parentCategoryId');
+  var currentCategory = $clickedButton.text();
+  var activeButtons = $("button[data-category-id=\"".concat(categoryId, "\"]"));
+  var inactiveButtons = $("button.is-active[data-category-id]:not([data-category-id=\"".concat(categoryId, "\"])"));
+  var activeParentButton = $("button.parent-swiper__button[data-parent-category-id=\"".concat(parentCategoryId, "\"]"));
+  var inactiveParentButton = $("button.is-active.parent-swiper__button").not(activeParentButton);
+  var scrollToViewOptions = {
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center'
+  };
+  activeParentButton[0].scrollIntoView(scrollToViewOptions);
+  $(".nav-wrapper .sub-menu__button[data-parent-category-id=\"".concat(parentCategoryId, "\"]")).closest('.nav-list__item').find('.nav-list__button').trigger('click');
+  if ($clickedButton.hasClass('child-swiper__button')) {
+    $clickedButton[0].scrollIntoView(scrollToViewOptions);
+  } else {
+    var closestChildSwiper = $(".child-swiper__button[data-category-id=\"".concat(categoryId, "\"]")).closest('.child-swiper');
+    if (!closestChildSwiper.hasClass('visible')) {
+      $('.child-swiper.visible').removeClass('visible');
+      closestChildSwiper.addClass('visible');
+    }
+    $("button.child-swiper__button[data-category-id=\"".concat(categoryId, "\"]"))[0].scrollIntoView(scrollToViewOptions);
+  }
+  activeButtons.addClass('is-active');
+  inactiveButtons.removeClass('is-active');
+  activeParentButton.addClass('is-active');
+  inactiveParentButton.removeClass('is-active');
+  breadCrumbCurrent.text(currentCategory);
+  toolbarTitle.text(currentCategory);
+};
+var shopPageScrollTo = function shopPageScrollTo($clickedButton) {
   var currentCategory = $clickedButton.text();
   var categoryId = $clickedButton.data('categoryId');
   var activeButtons = $(".products-nav__button[data-category-id=\"".concat(categoryId, "\"]"));

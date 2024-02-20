@@ -1,11 +1,4 @@
-import "./shop/readMore"
-import "./shop/accordeon"
-import "./shop/addToCard"
-import "./shop/productQuantity"
 import "./delivery/categoriesMenu"
-import "./delivery/fetchProducts"
-import "./shop/listsVisibility"
 import "./delivery/categoryButtonsHandlers"
-import "./shop/popup"
 
 import "../css/delivery.scss"

@@ -1,7 +1,8 @@
 import {productsSkeleton} from "../helpers/productsSkeleton";
 import refs from "../main/refs"
 import {
-    scrollToAndActivateCategory,
+    shopPageScrollTo,
+    deliveryPageScrollTo,
     handleOrderButtonClick,
     handleOrderSelectChange,
     handleFilterChange,
@@ -17,14 +18,14 @@ const {
     productsList,
     productsItems,
     paginationContainer,
-    productsNav,
     toolbarFilter,
     currentFilter,
-    selectContainer
+    selectContainer,
+    navWrapper
 } = refs;
 
-const skeleton = productsSkeleton();
-const {ajax_url} = settings;
+
+const {ajax_url, is_delivery_page} = settings;
 const utils = {
     loadMoreClickCount: 0,
     initialPostsPerPage: 12
@@ -35,10 +36,13 @@ const query = {
     posts_per_page: utils.initialPostsPerPage,
     order: 'DESC',
     tags: [],
+    class: is_delivery_page ? 'delivery' : 'shop'
 };
 
-const fetchAndRenderProducts = (useSkeleton = true) => {
+export const fetchAndRenderProducts = (useSkeleton = true) => {
     if (useSkeleton) {
+        const skeletonCount = window.innerWidth >= 992 ? window.innerWidth >= 1440 ? 12 : 9 : 6;
+        const skeleton = productsSkeleton(skeletonCount);
         productsList.html(skeleton);
         paginationContainer.html('');
     }
@@ -60,33 +64,28 @@ const handleCategoryButtonClick = (event) => {
     }
 
     const categoryId = $clickedButton.data('categoryId');
-    let categoryIds;
-
-    if (typeof categoryId === 'string') {
-        categoryIds = categoryId.split(' ');
-    }
 
     utils.loadMoreClickCount = 1;
 
-    query.categories = categoryIds ? categoryIds : [categoryId];
+    query.categories = typeof categoryId === 'string' ? categoryId.split(', ') : [categoryId];
     query.posts_per_page = utils.initialPostsPerPage;
     currentFilter.html('')
     query.page = 1;
     query.tags = [];
 
-    scrollToAndActivateCategory($clickedButton);
+    is_delivery_page ? deliveryPageScrollTo($clickedButton) : shopPageScrollTo($clickedButton)
     fetchAndRenderProducts();
 };
 
 // Listeners
-productsNav.on("click", '.products-nav__button', handleCategoryButtonClick);
+navWrapper.on("click", '.category-button', handleCategoryButtonClick);
 productsItems.on("click", '.pagination__item, .load-more', (e) => handlePaginationClick(e, query, utils, fetchAndRenderProducts));
-toolbarFilter.on("change", '.filter-wrapper__input', (e) => handleFilterChange(e, query, fetchAndRenderProducts))
 orderSelect.on('change', (e) => handleOrderSelectChange(e, query, fetchAndRenderProducts))
 currentFilter.on('click', 'button', (e) => handleRemoveFilter(e, query, fetchAndRenderProducts))
+toolbarFilter.on("change", '.filter-wrapper__input', (e) => handleFilterChange(e, query, fetchAndRenderProducts))
 selectContainer.on('change', 'select', handleSelectFilterChange);
 orderButtons.on("click", (e) => handleOrderButtonClick(e, query, fetchAndRenderProducts));
 
 $(document).ready(function () {
-    $('.products-nav__button:first').trigger("click");
+    is_delivery_page ? $('.nav-list__item:first .sub-menu .sub-menu__item:first button').trigger("click") : $('.products-nav__button:first').trigger("click");
 });

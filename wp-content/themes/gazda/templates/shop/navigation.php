@@ -16,15 +16,15 @@ if ($page === 'shop') {
     ?>
     <ul class="products-nav <?= $is_swiper ? 'd-flex pe-3 overflow-x-auto' : ''; ?>">
         <li class="products-nav__item">
-            <button class="products-nav__button d-block border-0 <?= $is_swiper ? 'h-100 swiper-button-js' : ''; ?>"
-                    data-category-id="<?= implode(' ', $category_ids); ?>">
+            <button class="products-nav__button category-button d-block border-0 <?= $is_swiper ? 'h-100 swiper-button-js' : ''; ?>"
+                    data-category-id="<?= implode(', ', $category_ids); ?>">
                 <?= translate_and_output('all_products'); ?>
             </button>
         </li>
         <?php if (!empty($category_ids) && !empty($category_names)) {
             foreach (array_combine($category_ids, $category_names) as $category_id => $category_name) { ?>
                 <li class="products-nav__item">
-                    <button class="products-nav__button d-block border-0 <?= $is_swiper ? 'h-100 swiper-button-js' : ''; ?>"
+                    <button class="products-nav__button category-button d-block border-0 <?= $is_swiper ? 'h-100 swiper-button-js' : ''; ?>"
                             data-category-id="<?= esc_attr($category_id); ?>">
                         <?= esc_html($category_name); ?>
                     </button>
@@ -43,7 +43,7 @@ if ($page === 'shop') {
                     if (!empty($children)) { ?>
                         <li class="parent-swiper__item">
                             <button type="button"
-                                    class="parent-swiper__button pt-2 px-2 border-top-0 border-end-0 border-start-0 text-uppercase bg-transparent"
+                                    class="parent-swiper__button category-button pt-2 px-2 border-top-0 border-end-0 border-start-0 text-uppercase bg-transparent"
                                     data-parent-category-id="<?= esc_attr($menu_item->object_id); ?>">
                                 <?= esc_html($menu_item->title); ?>
                             </button>

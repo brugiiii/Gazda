@@ -20,10 +20,15 @@ function get_wishlist_count_ajax()
 
 function search_products_ajax()
 {
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 10;
+    $search_term = isset($_POST['s']) ? $_POST['s'] : '';
+
     $args = array(
         'post_type' => 'product',
-        'posts_per_page' => -1,
-        's' => isset($_POST['s']) ? $_POST['s'] : '',
+        'posts_per_page' => $posts_per_page,
+        'paged' => $page,
+        's' => $search_term,
         'tax_query' => array(
             array(
                 'taxonomy' => 'class',
@@ -42,6 +47,12 @@ function search_products_ajax()
             $query->the_post();
             $thumbnail_id = get_post_thumbnail_id(get_the_ID());
             get_template_part('templates/shop/productCard', null, array('thumbnail_id' => $thumbnail_id));
+        }
+
+        if ($query->max_num_pages > 1) {
+            ?>
+            <?= get_template_part('templates/shop/paginationWrapper', null, array('page' => $page, 'query' => $query)); ?>
+            <?php
         }
     } else {
         ?>
