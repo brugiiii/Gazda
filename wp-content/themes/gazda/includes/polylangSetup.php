@@ -68,8 +68,10 @@ $strings_to_translate = array(
     'write_your_mail' => 'Напишіть свою пошту',
     'from' => 'Від',
     'search' => 'Пошук',
-    'search_results' => 'результати пошуку: ',
-    'no_results' => 'Товарів, відповідних вашому запиту, не знайдено.'
+    'search_results' => 'Результати пошуку: ',
+    'no_results' => 'Товарів, відповідних вашому запиту, не знайдено.',
+    'not_found' => 'Сторінку не знайдено',
+    'to_main' => 'На головну'
 );
 
 if (function_exists('pll_register_string')) {

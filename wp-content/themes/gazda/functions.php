@@ -52,6 +52,15 @@ function enqueue_scripts_and_styles()
         wp_enqueue_style('delivery-style', get_template_directory_uri() . '/dist/css/delivery.bundle.css');
     }
 
+    if (is_page_template('pages/informational.php') || is_page_template('pages/faq.php')) {
+        wp_enqueue_script('informational-js', get_template_directory_uri() . '/dist/js/informational.bundle.js', array('jquery'), null, true);
+        wp_enqueue_style('informational-style', get_template_directory_uri() . '/dist/css/informational.bundle.css');
+    }
+
+    if (is_404()) {
+        wp_enqueue_style('error-style', get_template_directory_uri() . '/dist/css/error.bundle.css');
+    }
+
     // Product page scripts and styles
     if (is_singular('product')) {
         wp_enqueue_script('product-js', get_template_directory_uri() . '/dist/js/product.bundle.js', array('jquery'), null, true);

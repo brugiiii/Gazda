@@ -15086,16 +15086,12 @@ html, body {
 
 body {
   font-family: "Gazda Pro", sans-serif;
-  line-height: normal;
-  color: #FFF;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.01875rem;
+  color: #8A8D92;
   background-color: #F6F6EE;
   overflow-x: hidden;
-}
-@media screen and (max-width: 991px) {
-  body {
-    font-size: 0.875rem;
-    line-height: 1.4;
-  }
 }
 
 main {
@@ -15820,7 +15816,7 @@ img {
     gap: 2.5rem;
   }
 }
-.header-wrapper .nav-list .current_page_parent a, .header-wrapper .nav-list .current_page_item a {
+.header-wrapper .nav-list .current_page_parent a, .header-wrapper .nav-list .current_page_item a, .header-wrapper .nav-list .current-page-ancestor a {
   color: #1F252E;
 }
 .header-wrapper .nav-list a {

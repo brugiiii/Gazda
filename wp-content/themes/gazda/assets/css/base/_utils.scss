@@ -11,17 +11,14 @@ html, body {
 
 body {
   font-family: 'Gazda Pro', sans-serif;
-  line-height: normal;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.01875rem;
 
-  color: $white-color;
+  color: $secondary-text-color;
   background-color: $primary-bg-color;
 
   overflow-x: hidden;
-
-  @media screen and (max-width: 991px){
-    font-size: 0.875rem;
-    line-height: 1.4;
-  }
 }
 
 main {

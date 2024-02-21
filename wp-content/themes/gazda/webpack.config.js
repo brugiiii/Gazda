@@ -12,7 +12,9 @@ module.exports = {
     shop: "./assets/js/shop.js",
     product: "./assets/js/single-product.js",
     delivery: "./assets/js/delivery.js",
-    search: "./assets/js/search.js"
+    search: "./assets/js/search.js",
+    informational: "./assets/js/informational.js",
+    error: "./assets/js/error.js"
   },
   output: {
     filename: "js/[name].bundle.js",

@@ -202,7 +202,6 @@
 .products-list .ingredients {
   font-size: 0.75rem;
   line-height: normal;
-  color: #8A8D92;
 }
 @media screen and (min-width: 1440px) {
   .products-list {
@@ -322,7 +321,6 @@
   line-height: 1.4;
   font-size: 0.875rem;
   letter-spacing: 0.01875rem;
-  color: #8A8D92;
 }
 @media screen and (min-width: 992px) {
   #shop, #delivery {
@@ -809,7 +807,7 @@ select.toolbar-els__button {
   text-align: center;
   line-height: 1.4;
   letter-spacing: 0.01875rem;
-  color: #8A8D92;
+  color: inherit;
   background-color: transparent;
 }
 #categories-menu .products-nav__button.is-active {

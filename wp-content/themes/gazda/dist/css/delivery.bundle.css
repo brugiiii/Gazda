@@ -35,10 +35,10 @@
   -webkit-transition: border-bottom-color 200ms ease-in-out;
   transition: border-bottom-color 200ms ease-in-out;
   padding-bottom: 0.3125rem;
-  color: #8A8D92;
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: transparent;
+  color: inherit;
 }
 .products-wrapper .parent-swiper__button.is-active {
   border-bottom-color: #1F4C43;
@@ -114,9 +114,6 @@
   .nav-wrapper.desk .nav-list__button:active, .nav-wrapper.desk .sub-menu__button:active {
     color: #1F252E;
   }
-}
-.nav-wrapper.mob {
-  color: #8A8D92;
 }
 .nav-wrapper.mob .nav-list__button.is-active, .nav-wrapper.mob .sub-menu__button.is-active {
   color: #FFF;

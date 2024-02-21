@@ -8,7 +8,7 @@ import {
 } from "../shop/productFunctions";
 import {productsSkeleton} from "../helpers/productsSkeleton";
 
-const {headerSearch, searchForm, searchInput, orderButtons, orderSelect, productsList, productsItems} = refs;
+const {headerSearch, searchForm, searchInput, orderButtons, orderSelect, productsList, productsItems, burgerMenu, burgerButton} = refs;
 const {ajax_url, is_search_page, search_page_link} = settings;
 const utils = {
     loadMoreClickCount: 1,
@@ -19,6 +19,11 @@ const handleHeaderSearchClick = (e) => {
     if (!is_search_page) {
         $(e.currentTarget).toggleClass('is-active');
         searchForm.slideToggle();
+
+        if(burgerMenu.is(':visible')){
+            burgerMenu.slideToggle();
+            burgerButton.toggleClass('is-active');
+        }
     }
 }
 
@@ -27,7 +32,9 @@ const handleInput = (e) => {
     sessionStorage.setItem('searchQuery', s);
 
     if (!is_search_page) {
-        window.location.href = search_page_link;
+        if(s) {
+            window.location.href = search_page_link;
+        }
     } else {
         query.s = s;
         fetchProducts();

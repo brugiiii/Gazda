@@ -44,11 +44,11 @@
 
     padding-bottom: 0.3125rem;
 
-    color: $secondary-text-color;
-
     border-bottom-style: solid;
     border-bottom-width: 3px;
     border-bottom-color: transparent;
+
+    color: inherit;
 
     &.is-active {
       border-bottom-color: $accent-color;
@@ -177,8 +177,6 @@
   }
 
   &.mob {
-    color: $secondary-text-color;
-
     & .nav-list__button,
     & .sub-menu__button {
       &.is-active {

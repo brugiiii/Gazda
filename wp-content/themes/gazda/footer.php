@@ -1,6 +1,7 @@
 <?php
 $address = get_field('address', 16);
 $number = get_field('number', 16);
+$current_lang = pll_current_language();
 ?>
 
 <footer class="footer">
@@ -8,7 +9,7 @@ $number = get_field('number', 16);
         <div class="d-lg-flex justify-content-lg-between footer-content">
             <?php the_custom_logo(); ?>
             <span class="footer-content__socials d-lg-none d-block mb-3 text-center">
-                <?php translate_and_output('socials'); ?>
+                <?= translate_and_output('socials'); ?>
             </span>
             <div class="d-lg-none">
                 <?php get_template_part('templates/socialsList'); ?>
@@ -21,14 +22,14 @@ $number = get_field('number', 16);
         <div class="footer-wrapper d-flex flex-column flex-lg-row justify-content-lg-between">
             <div class="footer-wrapper__item d-flex flex-column justify-content-lg-between align-items-center align-items-lg-start text-center text-lg-start order-4 order-lg-1">
                 <span class="footer-wrapper__title">
-                    <?php echo translate_and_output('copyright') . ' ' . get_bloginfo('name'); ?>
+                    <?= translate_and_output('copyright') . ' ' . get_bloginfo('name'); ?>
                 </span>
                 <div>
-                    <a class="footer-wrapper__link" href="">
-                        <?php echo translate_and_output('policy'); ?>
+                    <a class="footer-wrapper__link" href="<?= get_permalink(pll_get_post(6643, $current_lang)) ?>">
+                        <?= translate_and_output('policy'); ?>
                     </a>
-                    <a class="footer-wrapper__link" href="">
-                        <?php echo translate_and_output('cookies'); ?>
+                    <a class="footer-wrapper__link" href="<?= get_permalink(pll_get_post(6650, $current_lang)) ?>">
+                        <?= translate_and_output('cookies'); ?>
                     </a>
                 </div>
             </div>

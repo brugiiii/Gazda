@@ -63,7 +63,8 @@
     }
 
     & .current_page_parent,
-    & .current_page_item {
+    & .current_page_item,
+    & .current-page-ancestor {
       & a {
         color: $third-text-color;
       }

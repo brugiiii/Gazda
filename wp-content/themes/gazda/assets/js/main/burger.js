@@ -1,11 +1,16 @@
 import refs from "./refs";
 import throttle from "lodash.throttle";
-const { burgerMenu, burgerButton, burgerLinks } = refs;
+const { burgerMenu, burgerButton, burgerLinks, searchForm, headerSearch } = refs;
 
 const handleBurgerClick = function (e) {
     const $this = $(e.currentTarget);
     $this.toggleClass("is-active");
     burgerMenu.slideToggle();
+
+    if(searchForm.is(':visible')){
+        searchForm.slideToggle();
+        headerSearch.toggleClass('is-active')
+    }
 };
 
 const handleBurgerLinkClick = (e) => {

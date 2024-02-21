@@ -14,7 +14,7 @@ Template Name: Search
         </div>
         <div class="container">
             <div class="products-items">
-                <ul class="products-list d-flex flex-wrap search-page"></ul>
+                <ul class="products-list flex-wrap"></ul>
                 <div class="pagination-container"></div>
             </div>
         </div>

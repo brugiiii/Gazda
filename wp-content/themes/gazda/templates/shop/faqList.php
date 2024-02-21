@@ -1,6 +1,6 @@
 <ul class="faq-list mx-auto">
     <?php
-    $class_taxonomy = is_page_template('pages/delivery.php') ? 'delivery' : 'shop';
+    $class_taxonomy = is_page_template('pages/delivery.php') || (is_page() && $post->post_parent && get_page_template_slug(get_post_ancestors($post->ID)[0]) === 'pages/delivery.php') ? 'delivery' : 'shop';
 
     $args = array(
         'post_type' => 'faq',

@@ -1,0 +1,47 @@
+//Base
+@import "base/variables";
+
+//Components
+@import "components/shop/faqSection";
+
+main {
+  padding-bottom: 1.5rem;
+
+  @media screen and (min-width: 992px) {
+    padding-top: 1.5rem;
+  }
+}
+
+.section {
+  & .container {
+    &:first-child {
+      margin-bottom: 1.5rem;
+
+      @media screen and (max-width: 991px) {
+        padding: 0;
+        max-width: initial;
+      }
+    }
+
+    & p {
+      &:not(:last-of-type) {
+        margin-bottom: 1.25rem;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  & .breadcrumb {
+    margin-bottom: 0;
+  }
+
+  & h1 {
+    font-size: 1.5rem;
+    line-height: normal;
+
+    color: $third-text-color;
+  }
+}

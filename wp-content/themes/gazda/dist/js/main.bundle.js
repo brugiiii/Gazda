@@ -46,11 +46,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var burgerMenu = _refs__WEBPACK_IMPORTED_MODULE_2__["default"].burgerMenu,
   burgerButton = _refs__WEBPACK_IMPORTED_MODULE_2__["default"].burgerButton,
-  burgerLinks = _refs__WEBPACK_IMPORTED_MODULE_2__["default"].burgerLinks;
+  burgerLinks = _refs__WEBPACK_IMPORTED_MODULE_2__["default"].burgerLinks,
+  searchForm = _refs__WEBPACK_IMPORTED_MODULE_2__["default"].searchForm,
+  headerSearch = _refs__WEBPACK_IMPORTED_MODULE_2__["default"].headerSearch;
 var handleBurgerClick = function handleBurgerClick(e) {
   var $this = $(e.currentTarget);
   $this.toggleClass("is-active");
   burgerMenu.slideToggle();
+  if (searchForm.is(':visible')) {
+    searchForm.slideToggle();
+    headerSearch.toggleClass('is-active');
+  }
 };
 var handleBurgerLinkClick = function handleBurgerLinkClick(e) {
   var $this = $(e.currentTarget);
@@ -125,7 +131,9 @@ var headerSearch = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].headerSearch,
   orderButtons = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].orderButtons,
   orderSelect = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].orderSelect,
   productsList = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].productsList,
-  productsItems = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].productsItems;
+  productsItems = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].productsItems,
+  burgerMenu = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].burgerMenu,
+  burgerButton = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].burgerButton;
 var _settings = settings,
   ajax_url = _settings.ajax_url,
   is_search_page = _settings.is_search_page,
@@ -145,13 +153,19 @@ var handleHeaderSearchClick = function handleHeaderSearchClick(e) {
   if (!is_search_page) {
     $(e.currentTarget).toggleClass('is-active');
     searchForm.slideToggle();
+    if (burgerMenu.is(':visible')) {
+      burgerMenu.slideToggle();
+      burgerButton.toggleClass('is-active');
+    }
   }
 };
 var handleInput = function handleInput(e) {
   var s = $(e.currentTarget).val();
   sessionStorage.setItem('searchQuery', s);
   if (!is_search_page) {
-    window.location.href = search_page_link;
+    if (s) {
+      window.location.href = search_page_link;
+    }
   } else {
     query.s = s;
     fetchProducts();
