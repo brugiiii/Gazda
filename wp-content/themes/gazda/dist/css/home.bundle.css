@@ -141,12 +141,12 @@
   }
 }
 
-#home .shop {
+.shop {
   max-width: 120rem;
   background-color: #E5A83A;
 }
 @media screen and (min-width: 768px) {
-  #home .shop::after {
+  .shop::after {
     content: "";
     position: absolute;
     top: 0;
@@ -159,64 +159,68 @@
   }
 }
 @media screen and (max-width: 767px) {
-  #home .shop .container {
+  .shop .container {
     max-width: none;
     max-width: initial;
     padding: 0;
   }
 }
 @media screen and (min-width: 992px) {
-  #home .shop .container {
+  .shop .container {
     height: clamp(35.063rem, 16.379rem + 30.13vw, 43.5rem);
   }
 }
 @media screen and (max-width: 575px) {
-  #home .shop .container > .shop-thumb {
+  .shop .container > .shop-thumb {
     aspect-ratio: 1/0.6972222222;
   }
 }
 @media screen and (min-width: 576px) and (max-width: 767px) {
-  #home .shop .container > .shop-thumb {
+  .shop .container > .shop-thumb {
     height: 25.099375rem;
   }
 }
-#home .shop-content {
+
+.shop-content {
   max-width: clamp(22.5rem, 22.215rem + 1.27vw, 23rem);
   padding: clamp(1.5rem, -0.265rem + 7.84vw, 3.5rem) 1rem 6.85rem;
 }
 @media screen and (min-width: 768px) {
-  #home .shop-content {
+  .shop-content {
     padding: 3.5rem 0;
   }
 }
-#home .shop-content .shop-thumb {
+.shop-content .shop-thumb {
   aspect-ratio: 1/0.865470852;
   max-width: clamp(6.313rem, 1.969rem + 19.3vw, 13.938rem);
   margin-bottom: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
 }
-#home .shop-title, #home .shop-text {
+
+.shop-title,
+.shop-text {
   margin-bottom: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
 }
-#home .shop-button {
+
+.shop-button {
   background-color: #1F4C43;
   -webkit-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out;
 }
 @media (hover: hover) {
-  #home .shop-button:hover {
+  .shop-button:hover {
     background-color: #083921;
   }
-  #home .shop-button:focus {
+  .shop-button:focus {
     background-color: #083921;
   }
 }
 @media (hover: none) {
-  #home .shop-button:active {
+  .shop-button:active {
     background-color: #083921;
   }
 }
 @media screen and (max-width: 991px) {
-  #home .shop-button {
+  .shop-button {
     padding: 0.5rem 1rem;
   }
 }

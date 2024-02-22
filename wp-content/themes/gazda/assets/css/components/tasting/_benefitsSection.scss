@@ -1,0 +1,115 @@
+.benefits {
+  max-width: 120rem;
+
+  background-color: $accent-color;
+
+  &.with_image {
+    &::after {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      display: inline-block;
+
+      height: 100%;
+
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      @media screen and (min-width: 992px) {
+        width: clamp(31.25rem, -6.627rem + 59.18vw, 46.638rem);
+      }
+
+      @media screen and (min-width: 1440px) {
+        width: clamp(46.375rem, 1.375rem + 50vw, 61.375rem);
+      }
+    }
+
+    & ul {
+      @media screen and (min-width: 992px) {
+        padding-bottom: 1.75rem;
+      }
+
+      & li {
+        @extend %styled-list-item;
+
+        letter-spacing: 0.03125rem;
+
+        &:not(:last-child) {
+          margin-bottom: 1.25rem;
+        }
+      }
+    }
+
+    & .benefits-content {
+      @media screen and (min-width: 992px) {
+        max-width: clamp(28.5rem, 24.192rem + 6.73vw, 30.25rem);
+      }
+    }
+  }
+
+  &.without_image {
+    & ul {
+      display: flex;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+
+      gap: 2.8125rem;
+
+      @media screen and (min-width: 992px) {
+        gap: initial;
+      }
+
+      @media screen and (min-width: 1200px) {
+        gap: 2.81rem;
+      }
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      & li {
+        scroll-snap-align: start;
+        flex-basis: 14.625rem;
+        flex-shrink: 0;
+
+        & h3 {
+          margin-bottom: 1.125rem;
+
+          font-size: 1.125rem;
+          line-height: 1.5;
+        }
+
+        & p {
+          margin-bottom: 0;
+
+          font-weight: 300;
+        }
+      }
+    }
+
+    & .benefits-content {
+      padding-top: 4.44rem;
+      padding-bottom: 4.44rem;
+
+      @media screen and (min-width: 992px) {
+        padding-bottom: 4.06rem;
+      }
+
+    }
+  }
+}
+
+.benefits-title {
+  margin-bottom: clamp(0.625rem, -0.836rem + 6.49vw, 3.19rem);
+}
+
+.benefits-content {
+  @media screen and (min-width: 992px) {
+    padding: 5.25rem 0;
+  }
+}

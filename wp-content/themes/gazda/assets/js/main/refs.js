@@ -2,7 +2,7 @@ const refs = {
     bodyEl: $("body"),
     burgerButton: $('.hamburger'),
     burgerMenu: $('.burger'),
-    burgerLinks: $('.burger .nav-list > .menu-item-has-children > a'),
+    burgerLinks: $('.burger .nav-list > .menu-item-has-children'),
     headerSearch: $('.header-search'),
     searchForm: $('.search-form'),
     searchInput: $('.search-input'),

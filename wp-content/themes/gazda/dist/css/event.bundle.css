@@ -1,0 +1,397 @@
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/css/event.scss ***!
+  \**************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+.button-secondary {
+  all: unset;
+  min-width: clamp(13.375rem, 13.126rem + 1.11vw, 13.813rem);
+  padding: clamp(0.625rem, 0.503rem + 0.54vw, 0.84rem);
+  font-size: clamp(0.875rem, 0.804rem + 0.32vw, 1rem);
+  border-radius: 0.75rem;
+  background-color: #E5A83A;
+  cursor: pointer;
+}
+@media screen and (max-width: 991px) {
+  .button-secondary {
+    line-height: 1.4;
+    letter-spacing: 0.03125rem;
+  }
+}
+
+.title {
+  font-size: 2rem;
+}
+@media screen and (min-width: 992px) {
+  .title {
+    text-transform: uppercase;
+  }
+}
+
+.benefits.with_image ul li, .about-content ul:last-of-type li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
+}
+.benefits.with_image ul li::before, .about-content ul:last-of-type li::before {
+  content: "•";
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.hero {
+  height: 100dvh;
+  padding-top: 6.78rem;
+  line-height: normal;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #FFF;
+}
+@media screen and (min-width: 992px) {
+  .hero {
+    height: 44.5rem;
+    padding-top: 1.94rem;
+  }
+}
+
+.breadcrumb {
+  color: #8A8D92;
+}
+@media screen and (min-width: 992px) {
+  .breadcrumb {
+    margin-bottom: 9.41rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .breadcrumb .current {
+    color: #FFF;
+  }
+}
+
+.hero-title {
+  margin-bottom: 0.9375rem;
+  font-size: 3rem;
+}
+
+.hero-text {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.about {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+@media screen and (min-width: 992px) {
+  .about {
+    padding-top: 10.375rem;
+    padding-bottom: 10.375rem;
+  }
+}
+
+.about-wrapper {
+  border-radius: 1rem;
+}
+
+@media screen and (max-width: 991px) {
+  .about-thumb {
+    height: 14.125rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .about-thumb {
+    width: 51.71%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .about-thumb {
+    width: 61.69%;
+  }
+}
+
+.about-content {
+  padding: 1rem;
+  background-color: #FFF;
+}
+@media screen and (min-width: 992px) {
+  .about-content {
+    padding: 2.5rem;
+  }
+}
+.about-content ul:last-of-type {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.03125rem;
+}
+.about-content ul:last-of-type li {
+  color: #8A8D92;
+}
+.about-content p {
+  letter-spacing: 0.03125rem;
+}
+.about-content p:not(:last-of-type) {
+  margin-bottom: 1.25rem;
+}
+.about-content p:last-of-type {
+  margin-bottom: 0;
+}
+
+.about-title {
+  color: #1F252E;
+}
+
+.data-list {
+  gap: 0.5rem;
+}
+@media screen and (min-width: 992px) {
+  .data-list {
+    gap: 0.75rem;
+  }
+}
+
+.data-list__item {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  letter-spacing: 0.03125rem;
+  color: #FFF;
+  background-color: #1F4C43;
+}
+@media screen and (min-width: 992px) {
+  .data-list__item {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+}
+.data-list__item::before {
+  content: "";
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+@media screen and (min-width: 992px) {
+  .data-list__item::before {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+.data-list__item.peoples::before {
+  background-image: url(../images/icon_users.svg);
+}
+.data-list__item.area::before {
+  background-image: url(../images/icon_size.svg);
+}
+.data-list__item.parking::before {
+  background-image: url(../images/icon_parking.svg);
+}
+
+.price-wrapper {
+  margin-top: 1.5rem;
+}
+@media screen and (min-width: 992px) {
+  .price-wrapper {
+    margin-top: 2rem;
+  }
+}
+
+.price-wrapper__cost {
+  font-size: clamp(1.125rem, 0.911rem + 0.95vw, 1.5rem);
+  line-height: 1.5;
+  color: #1F252E;
+}
+@media screen and (min-width: 992px) {
+  .price-wrapper__cost {
+    text-transform: uppercase;
+    line-height: normal;
+  }
+}
+.price-wrapper__cost span {
+  color: #8A8D92;
+}
+
+@media screen and (max-width: 575px) {
+  .price-wrapper__link {
+    min-width: 0;
+    min-width: initial;
+  }
+}
+
+.benefits {
+  max-width: 120rem;
+  background-color: #1F4C43;
+}
+.benefits.with_image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media screen and (min-width: 992px) {
+  .benefits.with_image::after {
+    width: clamp(31.25rem, -6.627rem + 59.18vw, 46.638rem);
+  }
+}
+@media screen and (min-width: 1440px) {
+  .benefits.with_image::after {
+    width: clamp(46.375rem, 1.375rem + 50vw, 61.375rem);
+  }
+}
+@media screen and (min-width: 992px) {
+  .benefits.with_image ul {
+    padding-bottom: 1.75rem;
+  }
+}
+.benefits.with_image ul li {
+  letter-spacing: 0.03125rem;
+}
+.benefits.with_image ul li:not(:last-child) {
+  margin-bottom: 1.25rem;
+}
+@media screen and (min-width: 992px) {
+  .benefits.with_image .benefits-content {
+    max-width: clamp(28.5rem, 24.192rem + 6.73vw, 30.25rem);
+  }
+}
+.benefits.without_image ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+  gap: 2.8125rem;
+}
+@media screen and (min-width: 992px) {
+  .benefits.without_image ul {
+    gap: initial;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .benefits.without_image ul {
+    gap: 2.81rem;
+  }
+}
+.benefits.without_image ul::-webkit-scrollbar {
+  display: none;
+}
+.benefits.without_image ul li {
+  scroll-snap-align: start;
+  -ms-flex-preferred-size: 14.625rem;
+      flex-basis: 14.625rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+.benefits.without_image ul li h3 {
+  margin-bottom: 1.125rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+.benefits.without_image ul li p {
+  margin-bottom: 0;
+  font-weight: 300;
+}
+.benefits.without_image .benefits-content {
+  padding-top: 4.44rem;
+  padding-bottom: 4.44rem;
+}
+@media screen and (min-width: 992px) {
+  .benefits.without_image .benefits-content {
+    padding-bottom: 4.06rem;
+  }
+}
+
+.benefits-title {
+  margin-bottom: clamp(0.625rem, -0.836rem + 6.49vw, 3.19rem);
+}
+
+@media screen and (min-width: 992px) {
+  .benefits-content {
+    padding: 5.25rem 0;
+  }
+}
+
+.cta {
+  padding: clamp(6.5rem, 5.432rem + 4.75vw, 8.375rem) 0;
+}
+
+.cta-title {
+  margin-bottom: 2rem;
+  color: #1F252E;
+}
+
+.form-wrapper {
+  max-width: 28.4375rem;
+}
+
+.cta-form__field:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+.cta-form__field:last-of-type {
+  margin-bottom: 2rem;
+}
+.cta-form__field:not(:has(.cta-form__input[required])) .cta-form__title::after {
+  content: "";
+}
+
+.cta-form__title {
+  letter-spacing: 0.03125rem;
+  color: #1F252E;
+}
+.cta-form__title::after {
+  content: "*";
+  color: #E5A83A;
+}
+
+.cta-form__input {
+  height: 2.5rem;
+}
+
+.cta-form__textarea {
+  resize: none;
+  height: 5.125rem;
+}
+
+.cta-form__input,
+.cta-form__textarea {
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.75rem;
+}
+.cta-form__input::-webkit-input-placeholder, .cta-form__textarea::-webkit-input-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+.cta-form__input::-moz-placeholder, .cta-form__textarea::-moz-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+.cta-form__input:-ms-input-placeholder, .cta-form__textarea:-ms-input-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+.cta-form__input::-ms-input-placeholder, .cta-form__textarea::-ms-input-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+.cta-form__input::placeholder,
+.cta-form__textarea::placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+
+.cta-form__button {
+  height: 3rem;
+  font-size: 1rem;
+  line-height: normal;
+}
+
+/*# sourceMappingURL=event.bundle.css.map*/

@@ -57,6 +57,11 @@ function enqueue_scripts_and_styles()
         wp_enqueue_style('informational-style', get_template_directory_uri() . '/dist/css/informational.bundle.css');
     }
 
+    if (is_page_template('pages/event.php')) {
+        wp_enqueue_script('event-js', get_template_directory_uri() . '/dist/js/event.bundle.js', array('jquery'), null, true);
+        wp_enqueue_style('event-style', get_template_directory_uri() . '/dist/css/event.bundle.css');
+    }
+
     if (is_404()) {
         wp_enqueue_style('error-style', get_template_directory_uri() . '/dist/css/error.bundle.css');
     }

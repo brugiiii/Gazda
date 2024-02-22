@@ -14,7 +14,7 @@ $current_lang = pll_current_language();
             <div class="d-lg-none">
                 <?php get_template_part('templates/socialsList'); ?>
             </div>
-            <?php get_template_part('templates/navigation', null, array('location' => 'menu-footer')); ?>
+            <?= get_template_part('templates/navigation', null, array('location' => 'menu-footer')); ?>
             <div class="d-none d-lg-block">
                 <?php get_template_part('templates/socialsList'); ?>
             </div>

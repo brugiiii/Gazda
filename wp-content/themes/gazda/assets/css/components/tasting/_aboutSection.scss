@@ -1,0 +1,159 @@
+.about {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  @media screen and (min-width: 992px) {
+    padding-top: 10.375rem;
+    padding-bottom: 10.375rem;
+  }
+}
+
+.about-wrapper {
+  border-radius: $secondary-radius;
+}
+
+.about-thumb {
+  @media screen and (max-width: 991px) {
+    height: 14.125rem;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 51.71%;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 61.69%;
+  }
+}
+
+.about-content {
+  padding: 1rem;
+
+  background-color: $white-color;
+
+  @media screen and (min-width: 992px) {
+    padding: 2.5rem;
+  }
+
+  & ul {
+    &:last-of-type {
+      font-size: 0.875rem;
+      line-height: 1.4;
+      letter-spacing: 0.03125rem;
+
+      & li {
+        @extend %styled-list-item;
+
+        color: $secondary-text-color;
+      }
+    }
+  }
+
+  & p {
+    letter-spacing: 0.03125rem;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1.25rem;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+
+.about-title {
+  color: $third-text-color;
+}
+
+.data-list {
+  gap: 0.5rem;
+
+  @media screen and (min-width: 992px) {
+    gap: 0.75rem;
+  }
+}
+
+.data-list__item {
+  padding: 0.375rem 0.75rem;
+  border-radius: $fourth-radius;
+
+  letter-spacing: 0.03125rem;
+
+  color: $white-color;
+  background-color: $accent-color;
+
+  @media screen and (min-width: 992px) {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  &::before {
+    content: '';
+
+    flex-shrink: 0;
+
+    width: 1rem;
+    height: 1rem;
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    @media screen and (min-width: 992px) {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &.peoples {
+    &::before {
+      background-image: url(../images/icon_users.svg);
+    }
+  }
+
+  &.area {
+    &::before {
+      background-image: url(../images/icon_size.svg);
+    }
+  }
+
+  &.parking {
+    &::before {
+      background-image: url(../images/icon_parking.svg);
+    }
+  }
+}
+
+.price-wrapper {
+  margin-top: 1.5rem;
+
+  @media screen and (min-width: 992px) {
+    margin-top: 2rem;
+  }
+}
+
+.price-wrapper__cost {
+  font-size: clamp(1.125rem, 0.911rem + 0.95vw, 1.5rem);
+  line-height: 1.5;
+
+  color: $third-text-color;
+
+  @media screen and (min-width: 992px) {
+    text-transform: uppercase;
+
+    line-height: normal;
+  }
+
+  & span {
+    color: $secondary-text-color;
+  }
+}
+
+.price-wrapper__link {
+  @media screen and (max-width: 575px) {
+    min-width: initial;
+  }
+}

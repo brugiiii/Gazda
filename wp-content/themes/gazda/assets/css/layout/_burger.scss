@@ -66,18 +66,12 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-        }
 
-        &.is-active {
-          &::after {
-            transform: rotate(180deg);
-          }
+          pointer-events: none;
         }
 
         &::after {
           @media screen and (max-width: 1439px) {
-            @include transition(transform);
-
             content: '';
             display: inline-block;
 
@@ -88,6 +82,16 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+
+            transition: transform 400ms ease-in-out;
+          }
+        }
+      }
+
+      &.is-active {
+        & > a {
+          &::after {
+            transform: rotateX(180deg);
           }
         }
       }

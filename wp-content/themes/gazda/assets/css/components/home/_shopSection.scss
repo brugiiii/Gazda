@@ -1,73 +1,71 @@
-#home {
-  & .shop {
-    max-width: 120rem;
-    background-color: $secondary-accent-color;
+.shop {
+  max-width: 120rem;
+  background-color: $secondary-accent-color;
 
-    @media screen and (min-width: 768px) {
-      &::after {
-        content: '';
+  @media screen and (min-width: 768px) {
+    &::after {
+      content: '';
 
-        position: absolute;
-        top: 0;
-        right: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
 
-        height: 100%;
-        width: clamp(20.375rem, -10.458rem + 64.24vw, 66.625rem);
+      height: 100%;
+      width: clamp(20.375rem, -10.458rem + 64.24vw, 66.625rem);
 
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-    }
-
-    & .container {
-      @media screen and (max-width: 767px) {
-        max-width: initial;
-        padding: 0;
-      }
-
-      @media screen and (min-width: 992px) {
-        height: clamp(35.063rem, 16.379rem + 30.13vw, 43.5rem);
-      }
-
-      & > .shop-thumb {
-        @media screen and (max-width: 575px) {
-          aspect-ratio: 1 / calc(15.6875 / 22.5);
-        }
-
-        @media screen and (min-width: 576px) and (max-width: 767px) {
-          height: 25.099375rem;
-        }
-      }
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 
-  & .shop-content {
-    max-width: clamp(22.5rem, 22.215rem + 1.27vw, 23rem);
-    padding: clamp(1.5rem, -0.265rem + 7.84vw, 3.5rem) 1rem 6.85rem;
-
-    @media screen and (min-width: 768px) {
-      padding: 3.5rem 0;
+  & .container {
+    @media screen and (max-width: 767px) {
+      max-width: initial;
+      padding: 0;
     }
 
-    & .shop-thumb {
-      aspect-ratio: 1 / calc(12.0625 / 13.9375);
-      max-width: clamp(6.313rem, 1.969rem + 19.3vw, 13.938rem);
-      margin-bottom: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
+    @media screen and (min-width: 992px) {
+      height: clamp(35.063rem, 16.379rem + 30.13vw, 43.5rem);
+    }
+
+    & > .shop-thumb {
+      @media screen and (max-width: 575px) {
+        aspect-ratio: 1 / calc(15.6875 / 22.5);
+      }
+
+      @media screen and (min-width: 576px) and (max-width: 767px) {
+        height: 25.099375rem;
+      }
     }
   }
+}
 
-  & .shop-title,
-  & .shop-text {
+.shop-content {
+  max-width: clamp(22.5rem, 22.215rem + 1.27vw, 23rem);
+  padding: clamp(1.5rem, -0.265rem + 7.84vw, 3.5rem) 1rem 6.85rem;
+
+  @media screen and (min-width: 768px) {
+    padding: 3.5rem 0;
+  }
+
+  & .shop-thumb {
+    aspect-ratio: 1 / calc(12.0625 / 13.9375);
+    max-width: clamp(6.313rem, 1.969rem + 19.3vw, 13.938rem);
     margin-bottom: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
   }
+}
+
+.shop-title,
+.shop-text {
+  margin-bottom: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
+}
 
 
-  & .shop-button {
-    @include hover(background-color $accent-color $secondary-bg-color);
+.shop-button {
+  @include hover(background-color $accent-color $secondary-bg-color);
 
-    @media screen and (max-width: 991px) {
-      padding: 0.5rem 1rem;
-    }
+  @media screen and (max-width: 991px) {
+    padding: 0.5rem 1rem;
   }
 }

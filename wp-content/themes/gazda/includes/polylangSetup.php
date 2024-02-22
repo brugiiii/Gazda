@@ -66,12 +66,23 @@ $strings_to_translate = array(
     'name' => 'Ім’я',
     'write_your_name' => 'Напишіть своє ім’я',
     'write_your_mail' => 'Напишіть свою пошту',
+    'write_company_name' => 'Напишіть назву компанії',
+    'write_date_and_time' => 'Напишіть дату та час візиту',
+    'write_quests_count' => 'Вкажіть кількість гостей',
+    'write_your_message' => 'Напишіть своє повідомлення',
+    'choose_event' => 'Оберіть подію',
     'from' => 'Від',
     'search' => 'Пошук',
     'search_results' => 'Результати пошуку: ',
     'no_results' => 'Товарів, відповідних вашому запиту, не знайдено.',
     'not_found' => 'Сторінку не знайдено',
-    'to_main' => 'На головну'
+    'to_main' => 'На головну',
+    'cost' => 'Вартість',
+    'send' => 'Надіслати',
+    'company_name' => 'Назва компанії',
+    'date_and_time' => 'Дата та час візиту',
+    'guests_count' => 'Кількість гостей',
+    'message' => 'Ваше повідомлення',
 );
 
 if (function_exists('pll_register_string')) {

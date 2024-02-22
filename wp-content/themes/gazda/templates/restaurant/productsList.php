@@ -35,6 +35,8 @@ function display_category_products($category_hierarchy)
                             $ingredients = get_field('ingredients');
                             $allergens_ua = get_field('allergens_ua');
                             $allergens_eng = get_field('allergens_eng');
+                            $allergens_language = get_field('allergens_language');
+                            $allergens = $allergens_language === 'ua' ? $allergens_ua : $allergens_eng;
                             $labels = get_field('label');
                             ?>
                             <li class="products-list__item d-md-flex gap-3 py-3">
@@ -64,39 +66,22 @@ function display_category_products($category_hierarchy)
                                                 </span>
                                             <?php endif; ?>
 
-                                            <?php if ($allergens_ua) : ?>
+                                            <?php if ($allergens) : ?>
                                                 <?php
-                                                $allergens_length = count($allergens_ua);
+                                                $allergens_length = count($allergens);
                                                 $counter = 1;
                                                 ?>
                                                 <span class="d-block">
                                                     <?php
                                                     echo translate_and_output('allergens') . ': ';
-                                                    foreach ($allergens_ua as $allergen) :
+                                                    foreach ($allergens as $allergen) :
                                                         echo $allergen['label'];
                                                         if ($counter < $allergens_length) {
                                                             echo ', ';
                                                         }
                                                         $counter++;
                                                     endforeach;
-                                                    ?>
-                                                </span>
-                                            <?php elseif ($allergens_eng) : ?>
-                                                <?php
-                                                $allergens_length = count($allergens_eng);
-                                                $counter = 1;
-                                                ?>
-                                                <span class="d-block">
-                                                    <?php
-                                                    echo translate_and_output('allergens') . ': ';
-                                                    foreach ($allergens_eng as $allergen) :
-                                                        echo $allergen['label'];
-                                                        if ($counter < $allergens_length) {
-                                                            echo ', ';
-                                                        }
-                                                        $counter++;
-                                                    endforeach;
-                                                    ?>
+//                                                    ?>
                                                 </span>
                                             <?php endif; ?>
                                         </div>

@@ -14,11 +14,15 @@ const handleBurgerClick = function (e) {
 };
 
 const handleBurgerLinkClick = (e) => {
+    if(window.innerWidth >= 1440){
+        return;
+    }
+
     const $this = $(e.currentTarget);
-    const subMenu = $this.next('.sub-menu');
+    const subMenu = $this.find('.sub-menu');
     const activeOtherBurgerLink = burgerLinks.not($this).filter('.is-active');
 
-    activeOtherBurgerLink.next('.sub-menu').slideToggle();
+    activeOtherBurgerLink.find('.sub-menu').slideToggle();
     activeOtherBurgerLink.removeClass('is-active');
 
     subMenu.slideToggle();
