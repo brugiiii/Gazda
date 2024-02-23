@@ -2,11 +2,12 @@
 $gradient = get_field('hero_gradient');
 ?>
 
-<section class="hero">
-    <div class="container">
+<section class="hero position-relative d-flex flex-column d-lg-block">
+    <?= get_template_part('templates/informational/breadcrumbs'); ?>
+    <div class="container my-auto my-lg-0">
         <?= get_template_part('templates/informational/breadcrumbs'); ?>
 
-        <h1 class="hero-title mb-lg-1 text-uppercase">
+        <h1 class="hero-title mb-lg-1">
             <?= the_field('hero_title'); ?>
         </h1>
         <p class="hero-text">

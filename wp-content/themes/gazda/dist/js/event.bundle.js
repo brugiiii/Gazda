@@ -16,9 +16,88 @@ $(document).ready(function () {
   inputmask__WEBPACK_IMPORTED_MODULE_0___default()({
     mask: '+380 (999) 999 99 99',
     greedy: false,
-    placeholder: '_'
+    placeholder: 'X'
   }).mask($('#phone'));
 });
+
+/***/ }),
+
+/***/ "./assets/js/event/select.js":
+/*!***********************************!*\
+  !*** ./assets/js/event/select.js ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _main_refs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../main/refs */ "./assets/js/main/refs.js");
+
+var selectButton = _main_refs__WEBPACK_IMPORTED_MODULE_0__["default"].selectButton,
+  optionsList = _main_refs__WEBPACK_IMPORTED_MODULE_0__["default"].optionsList,
+  optionsButtons = _main_refs__WEBPACK_IMPORTED_MODULE_0__["default"].optionsButtons,
+  eventInput = _main_refs__WEBPACK_IMPORTED_MODULE_0__["default"].eventInput;
+var handleSelectClick = function handleSelectClick(e) {
+  toggleSelectVisibility();
+};
+var handleOptionClick = function handleOptionClick(e) {
+  var $this = $(e.currentTarget);
+  if ($this.hasClass('is-active')) {
+    toggleSelectVisibility();
+    return;
+  }
+  var activeOption = $('.options-list__button.is-active');
+  var value = $this.text();
+  selectButton.text(value);
+  eventInput.val(value);
+  activeOption.removeClass('is-active');
+  $this.addClass('is-active');
+  toggleSelectVisibility();
+};
+var toggleSelectVisibility = function toggleSelectVisibility() {
+  optionsList.toggleClass('is-hidden');
+};
+selectButton.on('click', handleSelectClick);
+optionsButtons.on('click', handleOptionClick);
+
+/***/ }),
+
+/***/ "./assets/js/main/refs.js":
+/*!********************************!*\
+  !*** ./assets/js/main/refs.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var refs = {
+  bodyEl: $("body"),
+  burgerButton: $('.hamburger'),
+  burgerMenu: $('.burger'),
+  burgerLinks: $('.burger .nav-list > .menu-item-has-children'),
+  headerSearch: $('.header-search'),
+  searchForm: $('.search-form'),
+  searchInput: $('.search-input'),
+  orderButtons: $('.order-list__button'),
+  orderSelect: $('select.toolbar-els__button'),
+  productsList: $('.products-list'),
+  productsItems: $('.products-items'),
+  paginationContainer: $('.pagination-container'),
+  filterContainer: $('.filter-container'),
+  productsNav: $('.products-nav'),
+  toolbarFilter: $('.toolbar-filter'),
+  currentFilter: $('.current-filter'),
+  selectContainer: $('.select-container'),
+  navWrapper: $('.nav-wrapper'),
+  breadCrumbCurrent: $('.breadcrumb .current'),
+  toolbarTitle: $('.toolbar-wrapper__title'),
+  orderButtonText: $('.order-button__text'),
+  orderList: $('.order-list'),
+  selectButton: $('.select-button-js'),
+  optionsList: $('.options-list'),
+  optionsButtons: $('.options-list__button'),
+  eventInput: $('input[name="event"]')
+};
+/* harmony default export */ __webpack_exports__["default"] = (refs);
 
 /***/ }),
 
@@ -3370,7 +3449,9 @@ var __webpack_exports__ = {};
   \****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_inputMask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./event/inputMask */ "./assets/js/event/inputMask.js");
-/* harmony import */ var _css_event_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/event.scss */ "./assets/css/event.scss");
+/* harmony import */ var _event_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event/select */ "./assets/js/event/select.js");
+/* harmony import */ var _css_event_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/event.scss */ "./assets/css/event.scss");
+
 
 
 }();

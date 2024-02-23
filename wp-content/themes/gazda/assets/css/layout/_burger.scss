@@ -61,13 +61,15 @@
     }
 
     & > .menu-item-has-children {
+      @media screen and (max-width: 1439px) {
+        cursor: pointer;
+      }
+
       & > a {
         @media screen and (max-width: 1439px) {
           display: flex;
           align-items: center;
           justify-content: space-between;
-
-          pointer-events: none;
         }
 
         &::after {

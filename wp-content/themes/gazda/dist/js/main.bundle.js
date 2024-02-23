@@ -108,7 +108,11 @@ var refs = {
   breadCrumbCurrent: $('.breadcrumb .current'),
   toolbarTitle: $('.toolbar-wrapper__title'),
   orderButtonText: $('.order-button__text'),
-  orderList: $('.order-list')
+  orderList: $('.order-list'),
+  selectButton: $('.select-button-js'),
+  optionsList: $('.options-list'),
+  optionsButtons: $('.options-list__button'),
+  eventInput: $('input[name="event"]')
 };
 /* harmony default export */ __webpack_exports__["default"] = (refs);
 

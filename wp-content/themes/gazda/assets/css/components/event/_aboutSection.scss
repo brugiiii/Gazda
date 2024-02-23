@@ -13,11 +13,11 @@
 }
 
 .about-thumb {
-  @media screen and (max-width: 991px) {
+  @media screen and (max-width: 767px) {
     height: 14.125rem;
   }
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: 768px) {
     width: 51.71%;
   }
 
@@ -45,6 +45,12 @@
         @extend %styled-list-item;
 
         color: $secondary-text-color;
+
+        & br {
+          @media screen and (max-width: 991px) {
+            display: none;
+          }
+        }
       }
     }
   }
@@ -61,8 +67,6 @@
     }
   }
 }
-
-
 
 .about-title {
   color: $third-text-color;

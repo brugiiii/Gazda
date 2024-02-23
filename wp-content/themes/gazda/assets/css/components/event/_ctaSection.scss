@@ -66,3 +66,52 @@
   font-size: 1rem;
   line-height: normal;
 }
+
+.options-list {
+  @include transition(opacity, visibility);
+
+  top: calc(100% + 0.25rem);
+
+  border-radius: $secondary-radius;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.options-list__item {
+  &:first-child {
+    & .options-list__button {
+      padding-top: 0.75rem;
+    }
+  }
+
+  &:last-child {
+    & .options-list__button {
+      padding-bottom: 0.75rem;
+    }
+  }
+
+  &:not(:last-child){
+    & .options-list__button {
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  &:not(:first-child){
+    & .options-list__button {
+      padding-top: 0.5rem;
+    }
+  }
+}
+
+.options-list__button {
+  @include hover(color $third-text-color $white-color, background-color $white-color $accent-color);
+
+  &.is-active {
+    color: $white-color;
+    background-color: $accent-color;
+  }
+}

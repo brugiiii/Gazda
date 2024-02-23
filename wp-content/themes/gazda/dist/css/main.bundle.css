@@ -15583,6 +15583,11 @@ img {
   }
 }
 @media screen and (max-width: 1439px) {
+  .burger .nav-list > .menu-item-has-children {
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 1439px) {
   .burger .nav-list > .menu-item-has-children > a {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -15593,7 +15598,6 @@ img {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    pointer-events: none;
   }
 }
 @media screen and (max-width: 1439px) {

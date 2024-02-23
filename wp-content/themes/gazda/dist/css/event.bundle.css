@@ -41,7 +41,6 @@
 
 .hero {
   height: 100dvh;
-  padding-top: 6.78rem;
   line-height: normal;
   background-position: center;
   background-size: cover;
@@ -52,6 +51,16 @@
   .hero {
     height: 44.5rem;
     padding-top: 1.94rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .hero > .breadcrumb {
+    display: none;
+  }
+}
+@media screen and (max-width: 991px) {
+  .hero .container .breadcrumb {
+    display: none;
   }
 }
 
@@ -71,12 +80,24 @@
 
 .hero-title {
   margin-bottom: 0.9375rem;
-  font-size: 3rem;
+  font-size: clamp(1.938rem, 1.332rem + 2.69vw, 3rem);
+}
+@media screen and (min-width: 992px) {
+  .hero-title {
+    text-transform: uppercase;
+  }
 }
 
 .hero-text {
   margin-bottom: 1.5rem;
   font-size: 1rem;
+}
+
+@media screen and (max-width: 991px) {
+  .hero-title br,
+  .hero-text br {
+    display: none;
+  }
 }
 
 .about {
@@ -94,12 +115,12 @@
   border-radius: 1rem;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 767px) {
   .about-thumb {
     height: 14.125rem;
   }
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
   .about-thumb {
     width: 51.71%;
   }
@@ -126,6 +147,11 @@
 }
 .about-content ul:last-of-type li {
   color: #8A8D92;
+}
+@media screen and (max-width: 991px) {
+  .about-content ul:last-of-type li br {
+    display: none;
+  }
 }
 .about-content p {
   letter-spacing: 0.03125rem;
@@ -235,6 +261,11 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+@media screen and (min-width: 768px) {
+  .benefits.with_image::after {
+    width: 49.4%;
+  }
+}
 @media screen and (min-width: 992px) {
   .benefits.with_image::after {
     width: clamp(31.25rem, -6.627rem + 59.18vw, 46.638rem);
@@ -255,6 +286,15 @@
 }
 .benefits.with_image ul li:not(:last-child) {
   margin-bottom: 1.25rem;
+}
+.benefits.with_image .benefits-content {
+  padding-top: clamp(2rem, 0.149rem + 8.23vw, 5.25rem);
+  padding-bottom: clamp(2rem, 0.149rem + 8.23vw, 5.25rem);
+}
+@media screen and (min-width: 768px) {
+  .benefits.with_image .benefits-content {
+    max-width: 48.72%;
+  }
 }
 @media screen and (min-width: 992px) {
   .benefits.with_image .benefits-content {
@@ -301,7 +341,7 @@
   font-weight: 300;
 }
 .benefits.without_image .benefits-content {
-  padding-top: 4.44rem;
+  padding-top: clamp(4.44rem, 3.979rem + 2.05vw, 5.25rem);
   padding-bottom: 4.44rem;
 }
 @media screen and (min-width: 992px) {
@@ -310,14 +350,12 @@
   }
 }
 
-.benefits-title {
-  margin-bottom: clamp(0.625rem, -0.836rem + 6.49vw, 3.19rem);
+.benefits-thumb {
+  height: 14.25rem;
 }
 
-@media screen and (min-width: 992px) {
-  .benefits-content {
-    padding: 5.25rem 0;
-  }
+.benefits-title {
+  margin-bottom: clamp(0.625rem, -0.836rem + 6.49vw, 3.19rem);
 }
 
 .cta {
@@ -392,6 +430,69 @@
   height: 3rem;
   font-size: 1rem;
   line-height: normal;
+}
+
+.options-list {
+  -webkit-transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+  top: calc(100% + 0.25rem);
+  border-radius: 1rem;
+  -webkit-box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+          box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+}
+.options-list.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.options-list__item:first-child .options-list__button {
+  padding-top: 0.75rem;
+}
+.options-list__item:last-child .options-list__button {
+  padding-bottom: 0.75rem;
+}
+.options-list__item:not(:last-child) .options-list__button {
+  padding-bottom: 0.5rem;
+}
+.options-list__item:not(:first-child) .options-list__button {
+  padding-top: 0.5rem;
+}
+
+.options-list__button {
+  color: #1F252E;
+  background-color: #FFF;
+  -webkit-transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+@media (hover: hover) {
+  .options-list__button:hover {
+    color: #FFF;
+  }
+  .options-list__button:focus {
+    color: #FFF;
+  }
+}
+@media (hover: none) {
+  .options-list__button:active {
+    color: #FFF;
+  }
+}
+@media (hover: hover) {
+  .options-list__button:hover {
+    background-color: #1F4C43;
+  }
+  .options-list__button:focus {
+    background-color: #1F4C43;
+  }
+}
+@media (hover: none) {
+  .options-list__button:active {
+    background-color: #1F4C43;
+  }
+}
+.options-list__button.is-active {
+  color: #FFF;
+  background-color: #1F4C43;
 }
 
 /*# sourceMappingURL=event.bundle.css.map*/

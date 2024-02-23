@@ -19,6 +19,10 @@
       background-size: cover;
       background-repeat: no-repeat;
 
+      @media screen and (min-width: 768px) {
+        width: 49.4%;
+      }
+
       @media screen and (min-width: 992px) {
         width: clamp(31.25rem, -6.627rem + 59.18vw, 46.638rem);
       }
@@ -45,6 +49,13 @@
     }
 
     & .benefits-content {
+      padding-top: clamp(2rem, 0.149rem + 8.23vw, 5.25rem);
+      padding-bottom: clamp(2rem, 0.149rem + 8.23vw, 5.25rem);
+
+      @media screen and (min-width: 768px) {
+        max-width: 48.72%;
+      }
+
       @media screen and (min-width: 992px) {
         max-width: clamp(28.5rem, 24.192rem + 6.73vw, 30.25rem);
       }
@@ -93,23 +104,20 @@
     }
 
     & .benefits-content {
-      padding-top: 4.44rem;
+      padding-top: clamp(4.44rem, 3.979rem + 2.05vw, 5.25rem);
       padding-bottom: 4.44rem;
 
       @media screen and (min-width: 992px) {
         padding-bottom: 4.06rem;
       }
-
     }
   }
 }
 
-.benefits-title {
-  margin-bottom: clamp(0.625rem, -0.836rem + 6.49vw, 3.19rem);
+.benefits-thumb {
+  height: 14.25rem;
 }
 
-.benefits-content {
-  @media screen and (min-width: 992px) {
-    padding: 5.25rem 0;
-  }
+.benefits-title {
+  margin-bottom: clamp(0.625rem, -0.836rem + 6.49vw, 3.19rem);
 }

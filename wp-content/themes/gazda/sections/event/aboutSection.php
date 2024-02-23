@@ -9,7 +9,7 @@ $button = get_field('about_button');
 
 <section class="about">
     <div class="container">
-        <div class="about-wrapper d-lg-flex overflow-hidden">
+        <div class="about-wrapper d-md-flex overflow-hidden">
             <div class="about-thumb flex-grow-1 flex-shrink-0">
                 <?= wp_get_attachment_image($image_id, 'full', false, array('class' => '')); ?>
             </div>

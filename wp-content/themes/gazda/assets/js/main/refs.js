@@ -21,6 +21,10 @@ const refs = {
     toolbarTitle: $('.toolbar-wrapper__title'),
     orderButtonText: $('.order-button__text'),
     orderList: $('.order-list'),
+    selectButton: $('.select-button-js'),
+    optionsList: $('.options-list'),
+    optionsButtons: $('.options-list__button'),
+    eventInput: $('input[name="event"]')
 };
 
 export default refs;
