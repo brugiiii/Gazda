@@ -53,12 +53,7 @@
   max-width: 52.81rem;
 }
 #home .hero-list__title {
-  font-size: 2.125rem;
-}
-@media screen and (min-width: 992px) {
-  #home .hero-list__title {
-    font-size: 3.8125rem;
-  }
+  font-size: clamp(2rem, 0.968rem + 4.59vw, 3.813rem);
 }
 #home .hero-list__text {
   width: 86.568%;

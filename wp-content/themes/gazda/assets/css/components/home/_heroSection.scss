@@ -54,11 +54,7 @@
   }
 
   & .hero-list__title {
-    font-size: 2.125rem;
-
-    @media screen and (min-width: 992px) {
-      font-size: 3.8125rem;
-    }
+    font-size: clamp(2rem, 0.968rem + 4.59vw, 3.813rem);
   }
 
   & .hero-list__text {
