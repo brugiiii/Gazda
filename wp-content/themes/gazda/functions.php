@@ -91,7 +91,8 @@ function enqueue_scripts_and_styles()
         'wishlist' => translate_and_output('wishlist'),
         'is_search_page' => is_page_template('pages/search.php') ? true : false,
         'is_delivery_page' => is_page_template('pages/delivery.php') ? true : false,
-        'search_page_link' => $current_lang === 'uk' ? get_permalink(6613) : get_permalink(6615)
+        'search_page_link' => get_permalink(pll_get_post(6613, $current_lang)),
+        'account_page_link' => get_permalink(pll_get_post(6840, $current_lang))
     );
     wp_localize_script('main', 'settings', $settings);
 }

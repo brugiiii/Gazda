@@ -1,5 +1,6 @@
 <?php
 $products_count = WC()->cart->get_cart_contents_count();
+$is_logged_in =  is_user_logged_in();
 ?>
 
 <div class="toolbar d-flex align-items-center gap-2 gap-xl-3">
@@ -11,14 +12,15 @@ $products_count = WC()->cart->get_cart_contents_count();
         </button>
     </div>
     <div class="toolbar__item d-none d-sm-block">
-        <a class="toolbar__button d-inline-block" href="">
-            <svg class="header-icon" width="24" height="24">
-                <use href="<?php get_image('sprite.svg#icon-user'); ?>"></use>
-            </svg>
-        </a>
+        <?= $is_logged_in ? '<a href="' . get_permalink(pll_get_post(6840, pll_current_language())) . '" class="toolbar__button d-inline-block">' : '<button type="button" class="toolbar__button d-inline-block border-0 bg-transparent auth-button-js">'; ?>
+        <svg class="header-icon" width="24" height="24">
+            <use href="<?php get_image('sprite.svg#icon-user'); ?>"></use>
+        </svg>
+        <?= $is_logged_in ? '</a>' : '</button>'; ?>
+
     </div>
     <div class="toolbar__item position-relative" id="cart">
-        <?php echo do_shortcode('[xoo_wsc_cart]'); ?>
+        <?= do_shortcode('[xoo_wsc_cart]'); ?>
     </div>
     <div class="toolbar__item d-none d-sm-block">
         <button class="toolbar__switcher d-flex align-items-center gap-2 unset">

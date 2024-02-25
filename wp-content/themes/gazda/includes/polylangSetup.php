@@ -13,7 +13,7 @@ function translate_and_output($string_key, $group = 'Main Page')
 
 $strings_to_translate = array(
     'reserve' => 'Резерв столу',
-    'signin' => 'Увійти',
+    'sign_in' => 'Увійти',
     'go_over' => "Перейти",
     'view_products' => 'Переглянути товари',
     'copyright' => '&#169;2022',
@@ -83,7 +83,18 @@ $strings_to_translate = array(
     'date_and_time' => 'Дата та час візиту',
     'guests_count' => 'Кількість гостей',
     'message' => 'Ваше повідомлення',
-    'out_contacts' => 'Наші контакти'
+    'out_contacts' => 'Наші контакти',
+    'still_not_registered' => 'Досі не зареєструвались?',
+    'create_account' => 'Створити акаунт',
+    'already_registered' => 'Вже зареєстровані?',
+    'login' => 'Логін',
+    'password' => 'Пароль',
+    'write_your_login' => 'Введіть свій логін',
+    'write_your_email' => 'Введіть свій email',
+    'write_your_password' => 'Введіть свій пароль',
+    'login_or_email' =>  'Логін чи email',
+    'sign_in_to_account' => 'Увійти до аккаунту',
+    'write_login_or_email' => 'Введіть свій логін чи email',
 );
 
 if (function_exists('pll_register_string')) {

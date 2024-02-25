@@ -46,7 +46,7 @@ function handleBackdropClick(e) {
 }
 
 function handleKeyDown(e) {
-  if (e.code === "Escape") {
+  if (e.key === "Escape") {
     hideBackdrop(currentBackdrop);
   }
 }

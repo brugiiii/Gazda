@@ -95,7 +95,13 @@ var refs = {
   selectButton: $('.select-button-js'),
   optionsList: $('.options-list'),
   optionsButtons: $('.options-list__button'),
-  eventInput: $('input[name="event"]')
+  eventInput: $('input[name="event"]'),
+  authBackdrop: $('#auth'),
+  authButton: $('.auth-button-js'),
+  registerForm: $('#register-form'),
+  loginForm: $('#login-form'),
+  authModal: $('.auth'),
+  formSwitcher: $('.form-switcher')
 };
 /* harmony default export */ __webpack_exports__["default"] = (refs);
 

@@ -66,7 +66,13 @@ $current_lang = pll_current_language();
     <img class="img-fluid" src="" alt="">
 </div>
 
-<?= get_template_part('templates/shop/categoriesMenu'); ?>
+<?php
+get_template_part('templates/shop/categoriesMenu');
+
+if(!is_user_logged_in()){
+    get_template_part('templates/authModal');
+}
+?>
 
 <?php wp_footer(); ?>
 

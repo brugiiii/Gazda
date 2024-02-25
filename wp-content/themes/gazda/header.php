@@ -31,9 +31,11 @@
                     <?php get_template_part('templates/navigation', null, array('location' => 'menu-header')); ?>
                 </nav>
 
-                <?php the_custom_logo(); ?>
+                <?php
+                the_custom_logo();
 
-                <?php get_template_part('templates/toolbar'); ?>
+                get_template_part('templates/toolbar');
+                ?>
 
                 <button class="button-primary header-button border-0 ms-2 ms-xl-3">
                     <?= translate_and_output('reserve'); ?>
@@ -41,6 +43,8 @@
             </div>
 
         </div>
-        <?php get_template_part('templates/burger'); ?>
-        <?php get_template_part('templates/searchForm'); ?>
+        <?php
+        get_template_part('templates/burger');
+        get_template_part('templates/searchForm');
+        ?>
     </header>
