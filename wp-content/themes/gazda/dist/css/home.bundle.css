@@ -479,6 +479,9 @@
     gap: 2rem;
   }
 }
+#home .contacts-thumb > p {
+  display: contents;
+}
 @media screen and (max-width: 575px) {
   #home .contacts-thumb {
     aspect-ratio: 1/0.65;

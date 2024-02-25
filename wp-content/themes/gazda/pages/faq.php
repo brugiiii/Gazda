@@ -9,13 +9,13 @@ Template Name: FAQ
 <main>
     <section class="section">
         <div class="container">
-            <?= get_template_part('templates/informational/breadcrumbs'); ?>
+            <?= get_template_part('templates/breadcrumbs'); ?>
         </div>
         <div class="container">
             <h1 class="mb-3 text-uppercase">
                 <?= the_title(); ?>
             </h1>
-            <?= get_template_part('templates/shop/faqList'); ?>
+            <?= get_template_part('templates/faqList'); ?>
         </div>
     </section>
 </main>

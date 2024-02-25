@@ -33,6 +33,10 @@
   }
 
   & .contacts-thumb {
+    & > p {
+      display: contents;
+    }
+
     @media screen and (max-width: 575px) {
       aspect-ratio: 1 / calc(14.625 / 22.5);
     }

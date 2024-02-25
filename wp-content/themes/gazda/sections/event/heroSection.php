@@ -3,9 +3,9 @@ $gradient = get_field('hero_gradient');
 ?>
 
 <section class="hero position-relative d-flex flex-column d-lg-block">
-    <?= get_template_part('templates/informational/breadcrumbs'); ?>
+    <?= get_template_part('templates/breadcrumbs'); ?>
     <div class="container my-auto my-lg-0">
-        <?= get_template_part('templates/informational/breadcrumbs'); ?>
+        <?= get_template_part('templates/breadcrumbs'); ?>
 
         <h1 class="hero-title mb-lg-1">
             <?= the_field('hero_title'); ?>

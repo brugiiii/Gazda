@@ -62,6 +62,11 @@ function enqueue_scripts_and_styles()
         wp_enqueue_style('event-style', get_template_directory_uri() . '/dist/css/event.bundle.css');
     }
 
+    if (is_page_template('pages/contacts.php')) {
+        wp_enqueue_script('contacts-js', get_template_directory_uri() . '/dist/js/contacts.bundle.js', array('jquery'), null, true);
+        wp_enqueue_style('contacts-style', get_template_directory_uri() . '/dist/css/contacts.bundle.css');
+    }
+
     if (is_404()) {
         wp_enqueue_style('error-style', get_template_directory_uri() . '/dist/css/error.bundle.css');
     }

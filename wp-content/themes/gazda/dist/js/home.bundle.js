@@ -18,7 +18,6 @@ var heroSwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["default"](".her
     nextEl: ".hero-wrapper .next",
     prevEl: ".hero-wrapper .prev"
   },
-  loop: true,
   autoHeight: true
 });
 var reviewsSwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["default"](".reviews-swiper", {

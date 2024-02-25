@@ -1,26 +1,6 @@
 <?php
 $current_lang = pll_current_language();
 $contacts_bg = get_field('contacts_bg');
-$sectors = array(
-    array(
-        'title' => get_field('contacts_sectors_title_first'),
-        'name' => get_field('contacts_sectors_name_first'),
-        'address' => get_field('contacts_sectors_address_first'),
-        'number' => get_field('contacts_sectors_number_first')
-    ),
-    array(
-        'title' => get_field('contacts_sectors_title_second'),
-        'name' => get_field('contacts_sectors_name_second'),
-        'address' => get_field('contacts_sectors_address_second'),
-        'number' => get_field('contacts_sectors_number_second')
-    ),
-    array(
-        'title' => get_field('contacts_sectors_title_third'),
-        'name' => get_field('contacts_sectors_name_third'),
-        'address' => get_field('contacts_sectors_address_third'),
-        'number' => get_field('contacts_sectors_number_third')
-    )
-);
 ?>
 
 <div class="contacts-thumb d-lg-none overflow-hidden">
@@ -30,34 +10,16 @@ $sectors = array(
     <div class="container p-lg-0">
         <div class="contacts-wrapper d-lg-flex">
             <div class="contacts-thumb d-none d-lg-block flex-shrink-0 overflow-hidden align-self-lg-start">
-                <?php the_field('contacts_map'); ?>
+                <?= the_field('map'); ?>
             </div>
             <div class="d-flex flex-column justify-content-lg-between">
                 <h2 class="contacts-title mb-0 section-title text-center text-lg-start">
-                    <?php the_field('contacts_title'); ?>
+                    <?= translate_and_output('out_contacts'); ?>
                 </h2>
                 <div class="contacts-content ">
-                    <ul class="sectors-list d-flex flex-column flex-sm-row flex-sm-wrap">
-                        <?php foreach ($sectors as $sector) : ?>
-                            <li class="sectors-list__item d-flex flex-column">
-                                <h3 class="sectors-list__title">
-                                    <?php echo $sector['title']; ?>
-                                </h3>
-                                <span class="sectors-list__name">
-                                    <?php echo $sector['name']; ?>
-                                </span>
-                                <a class="sectors-list__link" target="<?php echo $sector['address']['target']; ?>"
-                                   href="<?php echo $sector['address']['url']; ?>">
-                                    <?php echo $sector['address']['title']; ?>
-                                </a>
-                                <a class="sectors-list__link" href="<?php echo $sector['number']['url']; ?>">
-                                    <?php echo $sector['number']['title']; ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <?= get_template_part('templates/sectorsList'); ?>
                     <span class="contacts-content__schedule d-lg-none d-inline-block">
-                        <?php the_field('schedule', pll_get_post(16, $current_lang)); ?>
+                        <?= the_field('schedule', pll_get_post(16, $current_lang)); ?>
                     </span>
                 </div>
             </div>

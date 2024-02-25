@@ -83,6 +83,7 @@ $strings_to_translate = array(
     'date_and_time' => 'Дата та час візиту',
     'guests_count' => 'Кількість гостей',
     'message' => 'Ваше повідомлення',
+    'out_contacts' => 'Наші контакти'
 );
 
 if (function_exists('pll_register_string')) {

@@ -7,7 +7,6 @@ const heroSwiper = new Swiper(".hero-swiper", {
         nextEl: ".hero-wrapper .next",
         prevEl: ".hero-wrapper .prev",
     },
-    loop: true,
     autoHeight: true
 });
 
