@@ -1,14 +1,24 @@
 import debounce from "lodash.debounce";
 import refs from "./refs";
+import {productsSkeleton} from "../helpers/productsSkeleton";
 import {
     handleOrderButtonClick,
     handleOrderSelectChange,
     handlePaginationClick,
     handleProductsFetchSuccess
 } from "../shop/productFunctions";
-import {productsSkeleton} from "../helpers/productsSkeleton";
 
-const {headerSearch, searchForm, searchInput, orderButtons, orderSelect, productsList, productsItems, burgerMenu, burgerButton} = refs;
+const {
+    headerSearch,
+    searchForm,
+    searchInput,
+    orderButtons,
+    orderSelect,
+    productsList,
+    productsItems,
+    burgerMenu,
+    burgerButton
+} = refs;
 const {ajax_url, is_search_page, search_page_link} = settings;
 const utils = {
     loadMoreClickCount: 1,
@@ -20,7 +30,7 @@ const handleHeaderSearchClick = (e) => {
         $(e.currentTarget).toggleClass('is-active');
         searchForm.slideToggle();
 
-        if(burgerMenu.is(':visible')){
+        if (burgerMenu.is(':visible')) {
             burgerMenu.slideToggle();
             burgerButton.toggleClass('is-active');
         }
@@ -31,33 +41,34 @@ const handleInput = (e) => {
     const s = $(e.currentTarget).val();
     sessionStorage.setItem('searchQuery', s);
 
-    if (!is_search_page) {
-        if(s) {
+    if (s) {
+        if (!is_search_page) {
             window.location.href = search_page_link;
+        } else {
+            if (burgerMenu.is(':visible')) burgerMenu.slideToggle() && burgerButton.toggleClass('is-active');
+
+            query.s = s;
+            fetchProducts();
         }
-    } else {
-        query.s = s;
-        fetchProducts();
     }
 }
 
+
 const fetchProducts = (useSkeleton = true) => {
-    if (query.s) {
-        const skeletonCount = window.innerWidth >= 992 ? window.innerWidth >= 1440 ? 10 : 8 : 6;
-        const skeleton = productsSkeleton(skeletonCount);
+    const skeletonCount = window.innerWidth >= 992 ? window.innerWidth >= 1440 ? 10 : 8 : 6;
+    const skeleton = productsSkeleton(skeletonCount);
 
-        if(useSkeleton){
-            productsList.html(skeleton);
-        }
-
-        $.ajax({
-            url: ajax_url,
-            type: 'post',
-            data: query,
-            success: (res) => handleProductsFetchSuccess(res, query),
-            error: (error) => console.log(error)
-        });
+    if (useSkeleton) {
+        productsList.html(skeleton);
     }
+
+    $.ajax({
+        url: ajax_url,
+        type: 'post',
+        data: query,
+        success: (res) => handleProductsFetchSuccess(res, query),
+        error: (error) => console.log(error)
+    });
 }
 
 // Listeners

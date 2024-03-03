@@ -1,5 +1,5 @@
 .auth {
-  max-width: clamp(20.5rem, 17.652rem + 12.66vw, 25.5rem);
+  width: clamp(20.5rem, 17.652rem + 12.66vw, 25.5rem);
   padding: 2.5rem clamp(1rem, 0.146rem + 3.8vw, 2.5rem) 1.5rem;
   gap: clamp(1rem, 0.146rem + 3.8vw, 2.5rem);
 
@@ -36,11 +36,6 @@
 }
 
 .auth-form__input {
-  height: 2.5rem;
-
-  padding: 0.625rem 0.75rem;
-  border-radius: $primary-radius;
-
   background-color: $fourth-text-color;
 
   &::placeholder {
@@ -50,18 +45,6 @@
 
 .auth-form__button {
   height: 3rem;
-
-  &:disabled {
-    background-color: $fifth-bg-color;
-    
-    & > span {
-      scale: 0;
-    }
-
-    & .loader-container {
-      scale: 1;
-    }
-  }
 }
 
 .loader-container {

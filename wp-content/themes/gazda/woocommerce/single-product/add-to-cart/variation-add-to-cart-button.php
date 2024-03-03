@@ -35,14 +35,7 @@ global $product;
                 </svg>
                 <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
             </span>
-        <span class="loader-container position-absolute top-50 start-50 translate-middle">
-                <div class="loader">
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                </div>
-            </span>
+            <?= get_template_part('templates/loader'); ?>
     </button>
 
     <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>

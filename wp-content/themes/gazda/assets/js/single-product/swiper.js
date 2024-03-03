@@ -20,6 +20,7 @@ const similarProductsSwiper = new Swiper(".similar-products-swiper", {
     spaceBetween: 16,
     loop: true,
     grabCursor: true,
+    autoHeight: true,
     breakpoints: {
         768: {
             slidesPerView: 3,

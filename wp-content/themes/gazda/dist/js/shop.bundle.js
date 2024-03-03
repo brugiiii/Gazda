@@ -65,7 +65,13 @@ var refs = {
   registerForm: $('#register-form'),
   loginForm: $('#login-form'),
   authModal: $('.auth'),
-  formSwitcher: $('.form-switcher')
+  formSwitcher: $('.form-switcher'),
+  accountNav: $('#account .nav-list'),
+  personalForm: $('.personal-form'),
+  passwordForm: $('.password-form'),
+  passVisibilityButton: $('.form-field__button'),
+  orderListButtons: $('.orders-list__button'),
+  orderInfoWrapper: $('.order-info')
 };
 /* harmony default export */ __webpack_exports__["default"] = (refs);
 
@@ -380,7 +386,7 @@ var cartPos = $("#cart").offset().left;
 var flyToCart = function flyToCart(button) {
   var item = button.closest(".product-list__wrapper");
   if (item.length === 0) {
-    item = $('.wvg-single-gallery-image-container').first();
+    item = $('.slick-current .wvg-single-gallery-image-container');
   }
   var img = item.find("img").attr("src");
   var itemX = item.offset().left - itemList;

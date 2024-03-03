@@ -31,32 +31,9 @@
 }
 
 .cta-form__title {
-  letter-spacing: 0.03125rem;
-  color: $third-text-color;
-
   &::after {
     content: '*';
     color: $secondary-accent-color;
-  }
-}
-
-.cta-form__input {
-  height: 2.5rem;
-}
-
-.cta-form__textarea {
-  resize: none;
-  height: 5.125rem;
-}
-
-.cta-form__input,
-.cta-form__textarea {
-  padding: 0.625rem 0.75rem;
-  border-radius: $primary-radius;
-
-  &::placeholder {
-    font-weight: 300;
-    color: $fifth-text-color;
   }
 }
 

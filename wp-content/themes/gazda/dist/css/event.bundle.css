@@ -405,49 +405,9 @@
   content: "";
 }
 
-.cta-form__title {
-  letter-spacing: 0.03125rem;
-  color: #1F252E;
-}
 .cta-form__title::after {
   content: "*";
   color: #E5A83A;
-}
-
-.cta-form__input {
-  height: 2.5rem;
-}
-
-.cta-form__textarea {
-  resize: none;
-  height: 5.125rem;
-}
-
-.cta-form__input,
-.cta-form__textarea {
-  padding: 0.625rem 0.75rem;
-  border-radius: 0.75rem;
-}
-.cta-form__input::-webkit-input-placeholder, .cta-form__textarea::-webkit-input-placeholder {
-  font-weight: 300;
-  color: #C0C2C4;
-}
-.cta-form__input::-moz-placeholder, .cta-form__textarea::-moz-placeholder {
-  font-weight: 300;
-  color: #C0C2C4;
-}
-.cta-form__input:-ms-input-placeholder, .cta-form__textarea:-ms-input-placeholder {
-  font-weight: 300;
-  color: #C0C2C4;
-}
-.cta-form__input::-ms-input-placeholder, .cta-form__textarea::-ms-input-placeholder {
-  font-weight: 300;
-  color: #C0C2C4;
-}
-.cta-form__input::placeholder,
-.cta-form__textarea::placeholder {
-  font-weight: 300;
-  color: #C0C2C4;
 }
 
 .cta-form__button {

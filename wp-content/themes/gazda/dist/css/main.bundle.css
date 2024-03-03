@@ -15030,6 +15030,100 @@ button.swiper-pagination-bullet {
   overflow: hidden;
 }
 
+/*!*******************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/toastify-js/src/toastify.css ***!
+  \*******************************************************************************************************************************************************************/
+/*!
+ * Toastify js 1.12.0
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2018 Varun A P
+ */
+
+.toastify {
+    padding: 12px 20px;
+    color: #ffffff;
+    display: inline-block;
+    -webkit-box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+            box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+    background: linear-gradient(135deg, #73a5ff, #5477f5);
+    position: fixed;
+    opacity: 0;
+    -webkit-transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    max-width: calc(50% - 20px);
+    z-index: 2147483647;
+}
+
+.toastify.on {
+    opacity: 1;
+}
+
+.toast-close {
+    background: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    opacity: 0.4;
+    padding: 0 5px;
+}
+
+.toastify-right {
+    right: 15px;
+}
+
+.toastify-left {
+    left: 15px;
+}
+
+.toastify-top {
+    top: -150px;
+}
+
+.toastify-bottom {
+    bottom: -150px;
+}
+
+.toastify-rounded {
+    border-radius: 25px;
+}
+
+.toastify-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin: -7px 5px;
+    border-radius: 2px;
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: -webkit-fit-content;
+    max-width: fit-content;
+    max-width: -moz-fit-content;
+}
+
+@media only screen and (max-width: 360px) {
+    .toastify-right, .toastify-left {
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        max-width: -webkit-fit-content;
+        max-width: -moz-fit-content;
+        max-width: fit-content;
+    }
+}
+
 /*!*************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/css/main.scss ***!
   \*************************************************************************************************************************************************************************************/
@@ -15270,6 +15364,15 @@ img {
 .button-primary:active {
   background-color: #1F7A4D;
 }
+.button-primary:disabled {
+  background-color: #DFE0E1;
+}
+.button-primary:disabled > span {
+  scale: 0;
+}
+.button-primary:disabled .loader-container {
+  scale: 1;
+}
 
 .button-secondary {
   padding: 0.5rem 1rem;
@@ -15359,6 +15462,49 @@ img {
   pointer-events: none;
   z-index: 9999;
   width: 200px;
+}
+
+textarea {
+  resize: none;
+  height: 5.125rem;
+}
+
+input {
+  height: 2.5rem;
+}
+
+input,
+textarea,
+.select-button-js {
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.75rem;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder, .select-button-js::-webkit-input-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+input::-moz-placeholder, textarea::-moz-placeholder, .select-button-js::-moz-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder, .select-button-js:-ms-input-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+input::-ms-input-placeholder, textarea::-ms-input-placeholder, .select-button-js::-ms-input-placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+input::placeholder,
+textarea::placeholder,
+.select-button-js::placeholder {
+  font-weight: 300;
+  color: #C0C2C4;
+}
+
+.form-title {
+  letter-spacing: 0.03125rem;
+  color: #1F252E;
 }
 
 .hamburger {
@@ -15579,6 +15725,38 @@ img {
             transform: scale(1) rotate(360deg);
   }
 }
+.toastify {
+  padding: 1rem 1.875rem;
+  border-radius: 0.875rem;
+  text-align: center;
+  -webkit-box-shadow: 0 0.25rem 0.25rem rgba(31, 37, 46, 0.1019607843);
+          box-shadow: 0 0.25rem 0.25rem rgba(31, 37, 46, 0.1019607843);
+  overflow: hidden;
+  background-image: none;
+  background-image: initial;
+  background-color: #FFF;
+  color: #303338;
+}
+@media screen and (min-width: 992px) {
+  .toastify {
+    width: 22.5rem;
+  }
+}
+.toastify.error::before {
+  background-color: #EB5757;
+}
+.toastify.success::before {
+  background-color: #1F4C43;
+}
+.toastify::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.375rem;
+  height: 100%;
+}
+
 @media screen and (min-width: 1440px) {
   .burger-wrapper {
     display: -webkit-box;
@@ -15827,7 +16005,7 @@ img {
 }
 
 .auth {
-  max-width: clamp(20.5rem, 17.652rem + 12.66vw, 25.5rem);
+  width: clamp(20.5rem, 17.652rem + 12.66vw, 25.5rem);
   padding: 2.5rem clamp(1rem, 0.146rem + 3.8vw, 2.5rem) 1.5rem;
   gap: clamp(1rem, 0.146rem + 3.8vw, 2.5rem);
 }
@@ -15855,9 +16033,6 @@ img {
 }
 
 .auth-form__input {
-  height: 2.5rem;
-  padding: 0.625rem 0.75rem;
-  border-radius: 0.75rem;
   background-color: #F5F5F5;
 }
 .auth-form__input::-webkit-input-placeholder {
@@ -15878,15 +16053,6 @@ img {
 
 .auth-form__button {
   height: 3rem;
-}
-.auth-form__button:disabled {
-  background-color: #DFE0E1;
-}
-.auth-form__button:disabled > span {
-  scale: 0;
-}
-.auth-form__button:disabled .loader-container {
-  scale: 1;
 }
 
 .loader-container {
@@ -16076,7 +16242,8 @@ img {
   color: #8A8D92;
   -webkit-transition: fill 200ms ease-in-out, color 200ms ease-in-out;
   transition: fill 200ms ease-in-out, color 200ms ease-in-out;
-  padding: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 @media (hover: hover) {
   .toolbar__switcher:hover {
@@ -16102,6 +16269,11 @@ img {
 @media (hover: none) {
   .toolbar__switcher:active {
     color: #1F252E;
+  }
+}
+@media screen and (min-width: 576px) {
+  .toolbar__switcher {
+    padding: 0.75rem;
   }
 }
 

@@ -37,7 +37,7 @@
                 get_template_part('templates/toolbar');
                 ?>
 
-                <button class="button-primary header-button border-0 ms-2 ms-xl-3">
+                <button class="button-primary header-button border-0 ms-auto ms-sm-2 ms-xl-3">
                     <?= translate_and_output('reserve'); ?>
                 </button>
             </div>

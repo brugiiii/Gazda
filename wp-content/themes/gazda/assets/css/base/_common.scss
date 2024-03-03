@@ -45,6 +45,18 @@
   &:active {
     background-color: $fourth-bg-color;
   }
+
+  &:disabled {
+    background-color: $fifth-bg-color;
+
+    & > span {
+      scale: 0;
+    }
+
+    & .loader-container {
+      scale: 1;
+    }
+  }
 }
 
 .button-secondary {
@@ -134,4 +146,30 @@
   pointer-events: none;
   z-index: 9999;
   width: 200px;
+}
+
+textarea {
+  resize: none;
+  height: 5.125rem;
+}
+
+input {
+  height: 2.5rem;
+}
+
+input,
+textarea,
+.select-button-js{
+  padding: 0.625rem 0.75rem;
+  border-radius: $primary-radius;
+
+  &::placeholder {
+    font-weight: 300;
+    color: $fifth-text-color;
+  }
+}
+
+.form-title {
+  letter-spacing: 0.03125rem;
+  color: $third-text-color;
 }

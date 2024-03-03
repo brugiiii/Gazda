@@ -10,7 +10,7 @@ $related_products = array_map('wc_get_product', $related_product_ids);
 ?>
 
 <div class="swiper similar-products-swiper">
-    <ul class="swiper-wrapper">
+    <ul class="swiper-wrapper align-items-stretch">
         <?php
         foreach ($related_products as $related_product) {
             // Встановлюємо глобальні дані $post для використання в шаблоні

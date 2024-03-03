@@ -16,7 +16,8 @@ module.exports = {
     informational: "./assets/js/informational.js",
     error: "./assets/js/error.js",
     event: "./assets/js/event.js",
-    contacts: "./assets/js/contacts.js"
+    contacts: "./assets/js/contacts.js",
+    account: "./assets/js/account.js"
   },
   output: {
     filename: "js/[name].bundle.js",

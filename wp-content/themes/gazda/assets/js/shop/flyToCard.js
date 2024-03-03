@@ -6,7 +6,7 @@ export const flyToCart = (button) => {
     let item = button.closest(".product-list__wrapper");
 
     if(item.length === 0) {
-        item = $('.wvg-single-gallery-image-container').first();
+        item = $('.slick-current .wvg-single-gallery-image-container');
     }
 
     let img = item.find("img").attr("src");

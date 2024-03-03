@@ -30,7 +30,13 @@ const refs = {
     registerForm: $('#register-form'),
     loginForm: $('#login-form'),
     authModal: $('.auth'),
-    formSwitcher: $('.form-switcher')
+    formSwitcher: $('.form-switcher'),
+    accountNav: $('#account .nav-list'),
+    personalForm: $('.personal-form'),
+    passwordForm: $('.password-form'),
+    passVisibilityButton: $('.form-field__button'),
+    orderListButtons: $('.orders-list__button'),
+    orderInfoWrapper: $('.order-info')
 };
 
 export default refs;

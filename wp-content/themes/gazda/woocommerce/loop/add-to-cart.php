@@ -26,19 +26,12 @@ global $product;
     <a href="<?php echo esc_url($product->add_to_cart_url()); ?>"
        data-quantity="<?php echo esc_attr(isset($args['quantity']) ? $args['quantity'] : 1); ?>"
        class="<?php echo esc_attr(isset($args['class']) ? $args['class'] : 'button'); ?> position-relative button-primary d-block buy-button" <?php echo isset($args['attributes']) ? wc_implode_html_attributes($args['attributes']) : ''; ?>>
-    <span class="d-flex align-items-center justify-content-center gap-2 h-100">
-        <svg class="product-list__icon" width="24" height="24">
-            <use href="<?php get_image('sprite.svg#icon-shopping-cart'); ?>"></use>
-        </svg>
-        <?= esc_html($product->add_to_cart_text()); ?>
-    </span>
-        <div class="loader-container position-absolute top-50 start-50 translate-middle">
-            <div class="loader">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-            </div>
-        </div>
+        <span class="d-flex align-items-center justify-content-center gap-2 h-100">
+            <svg class="product-list__icon" width="24" height="24">
+                <use href="<?php get_image('sprite.svg#icon-shopping-cart'); ?>"></use>
+            </svg>
+            <?= esc_html($product->add_to_cart_text()); ?>
+        </span>
+        <?= get_template_part('templates/loader'); ?>
     </a>
 </div>

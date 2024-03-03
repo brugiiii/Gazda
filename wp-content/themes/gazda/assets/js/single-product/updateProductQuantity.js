@@ -1,6 +1,5 @@
 import {handleQuantity} from "../shop/productQuantity"
 
-
 $(document).ready(function () {
     const quantityInput = $('.quantity input');
     const quantityValue = $('.quantity__value');

@@ -29,7 +29,7 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                     if (in_array('select', $form_fields)) {
                         ?>
                         <label class="cta-form__field position-relative d-flex flex-column">
-                        <span class="cta-form__title mb-1 d-flex ">
+                        <span class="cta-form__title form-title mb-1 d-flex ">
                             <?= the_field('select_title'); ?>
                         </span>
                             <button class="cta-form__input bg-white border-0 text-start select-button-js"
@@ -53,7 +53,7 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                     if (in_array('company_name', $form_fields)) {
                         ?>
                         <label class="cta-form__field d-flex flex-column">
-                        <span class="cta-form__title mb-1 d-flex ">
+                        <span class="cta-form__title form-title mb-1 d-flex ">
                             <?= translate_and_output('company_name'); ?>
                         </span>
                             <input class="cta-form__input border-0" type="text"
@@ -65,7 +65,7 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                     if (in_array('name', $form_fields)) {
                         ?>
                         <label class="cta-form__field d-flex flex-column">
-                        <span class="cta-form__title mb-1 d-flex ">
+                        <span class="cta-form__title form-title mb-1 d-flex ">
                             <?= translate_and_output('name'); ?>
                         </span>
                             <input class="cta-form__input border-0" name="name" type="text"
@@ -76,18 +76,18 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                     if (in_array('phone', $form_fields)) {
                         ?>
                         <label class="cta-form__field d-flex flex-column">
-                        <span class="cta-form__title mb-1 d-flex ">
+                        <span class="cta-form__title form-title mb-1 d-flex ">
                             <?= translate_and_output('number'); ?>
                         </span>
                             <input class="cta-form__input border-0" id="phone" name="phone" type="tel" inputmode="tel"
-                                   placeholder="+380 (XXX) XXX XX XX" <?= in_array('phone', $required_fields) ? 'required' : ''; ?>>
+                                   placeholder="+380 (XX) XXX XX XX" <?= in_array('phone', $required_fields) ? 'required' : ''; ?>>
                         </label>
                         <?php
                     }
                     if (in_array('email', $form_fields)) {
                         ?>
                         <label class="cta-form__field d-flex flex-column">
-                        <span class="cta-form__title mb-1 d-flex ">
+                        <span class="cta-form__title form-title mb-1 d-flex ">
                             Email
                         </span>
                             <input class="cta-form__input border-0" name="email" type="email" inputmode="email"
@@ -98,7 +98,7 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                     if (in_array('date_and_time', $form_fields)) {
                         ?>
                         <label class="cta-form__field d-flex flex-column">
-                        <span class="cta-form__title mb-1 d-flex ">
+                        <span class="cta-form__title form-title mb-1 d-flex ">
                             <?= translate_and_output('date_and_time'); ?>
                         </span>
                             <input class="cta-form__input border-0" name="date" type="datetime-local"
@@ -110,7 +110,7 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                     if (in_array('number_of_guests', $form_fields)) {
                         ?>
                         <label class="cta-form__field d-flex flex-column">
-                        <span class="cta-form__title mb-1 d-flex ">
+                        <span class="cta-form__title form-title mb-1 d-flex ">
                             <?= translate_and_output('guests_count'); ?>
                         </span>
                             <input class="cta-form__input border-0" name="quests_count" type="number"
@@ -122,7 +122,7 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                     if (in_array('message', $form_fields)) {
                         ?>
                         <label class="cta-form__field d-flex flex-column">
-                        <span class="cta-form__title mb-1 d-flex ">
+                        <span class="cta-form__title form-title mb-1 d-flex ">
                             <?= translate_and_output('message'); ?>
                         </span>
                             <textarea class="cta-form__textarea border-0" name="message"

@@ -106,7 +106,12 @@
 .toolbar__switcher {
   @include hover(fill $secondary-text-color $third-text-color, color $secondary-text-color $third-text-color);
 
-  padding: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  @media screen and (min-width: 576px) {
+    padding: 0.75rem;
+  }
 }
 
 .header-button {

@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 
 $(document).ready(function () {
   inputmask__WEBPACK_IMPORTED_MODULE_0___default()({
-    mask: '+380 (999) 999 99 99',
+    mask: '+380 (99) 999 99 99',
     greedy: false,
     placeholder: 'X'
   }).mask($('#phone'));
@@ -101,7 +101,13 @@ var refs = {
   registerForm: $('#register-form'),
   loginForm: $('#login-form'),
   authModal: $('.auth'),
-  formSwitcher: $('.form-switcher')
+  formSwitcher: $('.form-switcher'),
+  accountNav: $('#account .nav-list'),
+  personalForm: $('.personal-form'),
+  passwordForm: $('.password-form'),
+  passVisibilityButton: $('.form-field__button'),
+  orderListButtons: $('.orders-list__button'),
+  orderInfoWrapper: $('.order-info')
 };
 /* harmony default export */ __webpack_exports__["default"] = (refs);
 

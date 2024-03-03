@@ -23,7 +23,7 @@ var cartPos = $("#cart").offset().left;
 var flyToCart = function flyToCart(button) {
   var item = button.closest(".product-list__wrapper");
   if (item.length === 0) {
-    item = $('.wvg-single-gallery-image-container').first();
+    item = $('.slick-current .wvg-single-gallery-image-container');
   }
   var img = item.find("img").attr("src");
   var itemX = item.offset().left - itemList;
@@ -189,6 +189,7 @@ var similarProductsSwiper = new swiper_bundle__WEBPACK_IMPORTED_MODULE_0__["defa
   spaceBetween: 16,
   loop: true,
   grabCursor: true,
+  autoHeight: true,
   breakpoints: {
     768: {
       slidesPerView: 3

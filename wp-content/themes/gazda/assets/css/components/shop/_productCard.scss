@@ -1,6 +1,12 @@
 .products-list {
   gap: 1rem;
 
+  @media screen and (min-width: 1440px) {
+    gap: 1.25rem;
+  }
+}
+
+.product-list__wrapper {
   & .tags-list {
     top: 0.5rem;
     right: 0.5rem;
@@ -64,10 +70,6 @@
   & .ingredients {
     font-size: 0.75rem;
     line-height: normal;
-  }
-
-  @media screen and (min-width: 1440px) {
-    gap: 1.25rem;
   }
 }
 

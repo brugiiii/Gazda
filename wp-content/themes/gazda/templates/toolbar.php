@@ -3,7 +3,7 @@ $products_count = WC()->cart->get_cart_contents_count();
 $is_logged_in =  is_user_logged_in();
 ?>
 
-<div class="toolbar d-flex align-items-center gap-2 gap-xl-3">
+<div class="toolbar d-flex flex-row-reverse flex-sm-row align-items-center gap-1 gap-sm-2 gap-xl-3">
     <div class="toolbar__item d-none d-sm-block">
         <button type="button" class="toolbar__button header-search unset">
             <svg class="header-icon" width="24" height="24">
@@ -17,13 +17,12 @@ $is_logged_in =  is_user_logged_in();
             <use href="<?php get_image('sprite.svg#icon-user'); ?>"></use>
         </svg>
         <?= $is_logged_in ? '</a>' : '</button>'; ?>
-
     </div>
     <div class="toolbar__item position-relative" id="cart">
         <?= do_shortcode('[xoo_wsc_cart]'); ?>
     </div>
-    <div class="toolbar__item d-none d-sm-block">
-        <button class="toolbar__switcher d-flex align-items-center gap-2 unset">
+    <div class="toolbar__item">
+        <button class="toolbar__switcher d-flex align-items-center gap-1 gap-sm-2 unset">
             <?php get_template_part('templates/languageSwitcher'); ?>
             <svg class="header-icon" width="24" height="24">
                 <use href="<?php get_image('sprite.svg#icon-caret-down'); ?>"></use>
