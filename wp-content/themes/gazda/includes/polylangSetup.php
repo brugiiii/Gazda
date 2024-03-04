@@ -113,7 +113,12 @@ $strings_to_translate = array(
     'products' => 'товарів',
     'product' => 'товар',
     'back' => 'Назад',
-    'no_orders' => 'Ще не було зроблено жодного замовлення.'
+    'no_orders' => 'Ще не було зроблено жодного замовлення.',
+    'sum' => 'Сума',
+    'total_sum' => 'Загальна сума',
+    'discount' => 'Знижка',
+    'shipping' => 'Доставка',
+    'amount_paid' => 'Сума до сплати'
 );
 
 if (function_exists('pll_register_string')) {

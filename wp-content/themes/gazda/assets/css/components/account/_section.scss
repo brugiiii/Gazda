@@ -69,7 +69,7 @@
 
   letter-spacing: normal;
 
-  &:disabled{
+  &:disabled {
     opacity: 0.7;
   }
 }
@@ -103,14 +103,10 @@
   line-height: 1.295;
 }
 
-.products-wrapper:not(:last-of-type) {
-  margin-bottom: 1rem;
-}
-
 .products-list__item {
   border-bottom: 1px solid $fourth-text-color;
 
-  &:not(:last-child){
+  &:not(:last-child) {
     margin-bottom: 0.5rem;
   }
 }
@@ -137,4 +133,29 @@
   line-height: calc(1.6875 / 1.125);
 
   color: $secondary-accent-color;
+}
+
+.total-price {
+  font-size: 1.125rem;
+  line-height: calc(1.6875 / 1.125);
+}
+
+.total-price__item {
+  color: $secondary-text-color;
+}
+
+.price-details {
+  border: 1px solid $accent-color;
+  background-color: $fourth-text-color;
+}
+
+.price-details__item {
+  color: $secondary-text-color;
+}
+
+.price-details__field {
+  &:last-child {
+    font-size: 1.125rem;
+    line-height: calc(1.6875 / 1.125);
+  }
 }
