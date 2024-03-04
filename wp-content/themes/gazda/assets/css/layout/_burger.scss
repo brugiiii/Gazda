@@ -66,6 +66,8 @@
       }
 
       & > a {
+        pointer-events: none;
+
         @media screen and (max-width: 1439px) {
           display: flex;
           align-items: center;

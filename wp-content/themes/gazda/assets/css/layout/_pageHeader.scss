@@ -65,8 +65,56 @@
     & .current_page_parent,
     & .current_page_item,
     & .current-page-ancestor {
-      & a {
+      & > a {
         color: $third-text-color;
+      }
+    }
+
+    & > li {
+      position: relative;
+
+      & > a {
+        padding: 1.09rem 0;
+
+        text-transform: uppercase;
+      }
+    }
+
+    & .menu-item-has-children {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      
+      cursor: pointer;
+      
+      &:after {
+        content: '';
+
+        flex-shrink: 0;
+
+        width: 1rem;
+        height: 1rem;
+
+        transition: transform 400ms $timing-function;
+
+        background-size: contain;
+        background-position: center;
+        background-image: url(../images/icon_caret_down_accent.svg);
+      }
+
+      &.is-active {
+        & > .sub-menu {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        &:after {
+          transform: rotateX(180deg);
+        }
+      }
+
+      & > a {
+        pointer-events: none;
       }
     }
 
@@ -74,11 +122,53 @@
       @include hover(color $secondary-text-color $third-text-color);
 
       display: inline-block;
-      padding: 1.09rem 0;
-
-      text-transform: uppercase;
 
       color: $secondary-text-color;
+    }
+
+    & .sub-menu {
+      @include transition(opacity, visibility);
+
+      position: absolute;
+      top: calc(100% - 0.4375rem);
+      left: -1.25rem;
+      z-index: 2;
+
+      min-width: 9.9375rem;
+
+      border-radius: 0.5rem;
+
+      opacity: 0;
+      visibility: hidden;
+      box-shadow: 0 4px 16px #00000014;
+      background-color: $fourth-text-color;
+
+      & li {
+        & a {
+          width: 100%;
+
+          padding-left: 1.25rem;
+          padding-right: 1.25rem;
+        }
+
+        &:first-child {
+          & a {
+            padding-top: 0.75rem;
+            padding-bottom: 0.5rem;
+          }
+        }
+
+        &:not(:first-child){
+          & a {
+            padding-top: 0.5rem;
+            padding-bottom: 0.75rem;
+          }
+        }
+      }
+
+      & a {
+        padding: 0.75rem;
+      }
     }
   }
 }

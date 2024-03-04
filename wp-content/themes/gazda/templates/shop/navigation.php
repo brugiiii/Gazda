@@ -2,7 +2,7 @@
 $is_swiper = $args['is_swiper'] ?? false;
 $page = $args['page'] ?? 'shop';
 $current_language = pll_current_language();
-$menu_name = ($page === 'shop' ? ($current_language === 'uk' ? 'menu-shop' : 'menu-shop-eng') : ($current_language === 'uk' ? 'menu-delivery' : 'menu-delivery-eng'));
+$menu_name = ($page === 'shop' ? 'menu-shop' : 'menu-delivery');
 $menu_items = wp_get_nav_menu_items(get_nav_menu_locations()[$menu_name] ?? null);
 
 if ($page === 'shop') {

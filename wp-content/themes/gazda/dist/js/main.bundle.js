@@ -232,6 +232,23 @@ burgerLinks.on("click", handleBurgerLinkClick);
 
 /***/ }),
 
+/***/ "./assets/js/main/header.js":
+/*!**********************************!*\
+  !*** ./assets/js/main/header.js ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _refs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./refs */ "./assets/js/main/refs.js");
+
+var headerLink = _refs__WEBPACK_IMPORTED_MODULE_0__["default"].headerLink;
+headerLink.on('click', function (e) {
+  return $(e.currentTarget).toggleClass('is-active');
+});
+
+/***/ }),
+
 /***/ "./assets/js/main/popup.js":
 /*!*********************************!*\
   !*** ./assets/js/main/popup.js ***!
@@ -298,7 +315,8 @@ var refs = {
   passwordForm: $('.password-form'),
   passVisibilityButton: $('.form-field__button'),
   orderListButtons: $('.orders-list__button'),
-  orderInfoWrapper: $('.order-info')
+  orderInfoWrapper: $('.order-info'),
+  headerLink: $('.header .menu-item-has-children')
 };
 /* harmony default export */ __webpack_exports__["default"] = (refs);
 
@@ -6160,7 +6178,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_searchForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./main/searchForm */ "./assets/js/main/searchForm.js");
 /* harmony import */ var _main_popup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./main/popup */ "./assets/js/main/popup.js");
 /* harmony import */ var _main_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./main/auth */ "./assets/js/main/auth.js");
-/* harmony import */ var _css_main_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../css/main.scss */ "./assets/css/main.scss");
+/* harmony import */ var _main_header__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./main/header */ "./assets/js/main/header.js");
+/* harmony import */ var _css_main_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../css/main.scss */ "./assets/css/main.scss");
+
 
 
 

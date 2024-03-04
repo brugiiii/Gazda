@@ -8,7 +8,7 @@ $current_lang = pll_current_language();
     <div class="container">
         <div class="d-lg-flex justify-content-lg-between footer-content">
             <?php the_custom_logo(); ?>
-            <span class="footer-content__socials d-lg-none d-block mb-3 text-center">
+            <span class="footer-content__socials fs-6 text-white d-lg-none d-block mb-3 text-center">
                 <?= translate_and_output('socials'); ?>
             </span>
             <div class="d-lg-none">
@@ -52,7 +52,7 @@ $current_lang = pll_current_language();
                 </a>
             </div>
             <div class="footer-wrapper__item alignitemscenter align-items-lg-start text-center text-lg-start order-1 order-lg-4">
-                <span class="footer-wrapper__title--mob mb-3 d-block text-center d-lg-none d-block">
+                <span class="footer-wrapper__title--mob text-white mb-3 d-block text-center d-lg-none d-block">
                     <?= translate_and_output('app'); ?>
                 </span>
                 <?php get_template_part('templates/appList'); ?>

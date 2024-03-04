@@ -115,7 +115,7 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                         </span>
                             <input class="cta-form__input border-0" name="quests_count" type="number"
                                    placeholder="<?= translate_and_output('write_quests_count'); ?>" min="1" max="150"
-                                <?= in_array('guests_count', $required_fields) ? 'required' : ''; ?>>
+                                <?= in_array('number_of_guests', $required_fields) ? 'required' : ''; ?>>
                         </label>
                         <?php
                     }
@@ -125,7 +125,7 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                         <span class="cta-form__title form-title mb-1 d-flex ">
                             <?= translate_and_output('message'); ?>
                         </span>
-                            <textarea class="cta-form__textarea border-0" name="message"
+                            <textarea class="cta-form__input cta-form__textarea border-0" name="message"
                                       placeholder="<?= translate_and_output('write_your_message'); ?>" <?= in_array('message', $required_fields) ? 'required' : ''; ?>></textarea>
                         </label>
                         <?php

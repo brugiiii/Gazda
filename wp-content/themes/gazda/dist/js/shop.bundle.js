@@ -71,7 +71,8 @@ var refs = {
   passwordForm: $('.password-form'),
   passVisibilityButton: $('.form-field__button'),
   orderListButtons: $('.orders-list__button'),
-  orderInfoWrapper: $('.order-info')
+  orderInfoWrapper: $('.order-info'),
+  headerLink: $('.header .menu-item-has-children')
 };
 /* harmony default export */ __webpack_exports__["default"] = (refs);
 
