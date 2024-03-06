@@ -15,28 +15,28 @@
   }
 
   & .about-thumb {
-    aspect-ratio: 1 / calc(13.6875 / 20.5);
-
     border-radius: $secondary-radius $secondary-radius 0 0;
 
+    @media screen and (max-width: 991px) {
+      aspect-ratio: 1 / calc(13.6875 / 20.5);
+    }
+
     @media screen and (min-width: 992px) {
-      aspect-ratio: 1 / calc(33.1875 / 28.5);
       max-width: 28.5rem;
 
       border-radius: $secondary-radius;
     }
 
-    @media screen and (min-width: 1200px){
-      aspect-ratio: 1 / calc(531 / 696);
-      max-width: 58.9831%;
+    @media screen and (min-width: 1200px) {
+      max-width: 49.06%;
     }
   }
 
   & .about-content {
-    padding: 1rem clamp(1rem, -0.282rem + 5.7vw, 3.25rem) 1rem clamp(1rem, -0.424rem + 6.33vw, 3.5rem);
+    padding: 1rem clamp(1rem, 0.288rem + 3.16vw, 2.25rem) 1rem clamp(1rem, 0.288rem + 3.16vw, 2.25rem);
 
     @media screen and (min-width: 1440px) {
-      padding: 0 3.5rem;
+      padding: 2.25rem 2.25rem 2.25rem 2.5rem;
     }
 
     & p {

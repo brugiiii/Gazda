@@ -108,7 +108,8 @@ function theme_setup()
     show_admin_bar(false);
     register_nav_menu('menu-header', 'Main menu');
     register_nav_menu('menu-footer', 'Footer menu');
-    register_nav_menu('menu-burger', 'Burger menu');
+    register_nav_menu('menu-burger-desktop', 'Burger menu desktop');
+    register_nav_menu('menu-burger-mobile', 'Burger menu mobile');
     register_nav_menu('menu-restaurant', 'Restaurant menu');
     register_nav_menu('menu-shop', 'Shop menu');
     register_nav_menu('menu-delivery', 'Delivery menu');

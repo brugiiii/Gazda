@@ -22,11 +22,6 @@ $is_logged_in =  is_user_logged_in();
         <?= do_shortcode('[xoo_wsc_cart]'); ?>
     </div>
     <div class="toolbar__item">
-        <button class="toolbar__switcher d-flex align-items-center gap-1 gap-sm-2 unset">
-            <?php get_template_part('templates/languageSwitcher'); ?>
-            <svg class="header-icon" width="24" height="24">
-                <use href="<?php get_image('sprite.svg#icon-caret-down'); ?>"></use>
-            </svg>
-        </button>
+        <?= get_template_part('templates/languageSwitcher'); ?>
     </div>
 </div>

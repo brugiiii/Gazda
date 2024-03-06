@@ -11,7 +11,7 @@
       right: 0;
 
       height: 100%;
-      width: clamp(20.375rem, -10.458rem + 64.24vw, 66.625rem);
+      width: 42.63%;
 
       background-size: cover;
       background-repeat: no-repeat;
@@ -25,39 +25,43 @@
       padding: 0;
     }
 
-    @media screen and (min-width: 992px) {
-      height: clamp(35.063rem, 16.379rem + 30.13vw, 43.5rem);
-    }
-
     & > .shop-thumb {
-      @media screen and (max-width: 575px) {
-        aspect-ratio: 1 / calc(15.6875 / 22.5);
-      }
-
-      @media screen and (min-width: 576px) and (max-width: 767px) {
-        height: 25.099375rem;
+      @media screen and (max-width: 767px) {
+        height: clamp(15.688rem, 0.167rem + 68.98vw, 25rem);
       }
     }
   }
 }
 
 .shop-content {
-  max-width: clamp(22.5rem, 22.215rem + 1.27vw, 23rem);
-  padding: clamp(1.5rem, -0.265rem + 7.84vw, 3.5rem) 1rem 6.85rem;
+  padding: 1.5rem 1rem 6.875rem;
 
   @media screen and (min-width: 768px) {
-    padding: 3.5rem 0;
+    width: clamp(22.5rem, 15.612rem + 14.35vw, 24.5rem);
+    padding: 4.1875rem 0 4.3125rem;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: clamp(22.5rem, 5.357rem + 35.71vw, 37.5rem);
   }
 
   & .shop-thumb {
-    aspect-ratio: 1 / calc(12.0625 / 13.9375);
-    max-width: clamp(6.313rem, 1.969rem + 19.3vw, 13.938rem);
-    margin-bottom: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
+    aspect-ratio: 1 / 1;
+    max-width: clamp(6.313rem, 4.07rem + 9.97vw, 10.25rem);
+  }
+
+  & p {
+    &:not(:last-of-type) {
+      margin-bottom: 1.25rem;
+    }
+
+    &:last-of-type {
+      margin-bottom: 2.25rem;
+    }
   }
 }
 
-.shop-title,
-.shop-text {
+.shop-title {
   margin-bottom: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
 }
 
@@ -65,7 +69,10 @@
 .shop-button {
   @include hover(background-color $accent-color $secondary-bg-color);
 
+  max-width: 22.5rem;
+
   @media screen and (max-width: 991px) {
+    max-width: 23.25rem;
     padding: 0.5rem 1rem;
   }
 }

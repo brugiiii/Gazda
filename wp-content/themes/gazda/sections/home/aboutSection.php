@@ -4,7 +4,7 @@ $image_id = get_field('about_image');
 
 <section class="about">
     <div class="container">
-        <div class="about-wrapper d-flex flex-column flex-lg-row">
+        <div class="about-wrapper d-flex flex-column flex-lg-row align-items-lg-stretch">
             <div class="about-thumb overflow-hidden flex-lg-shrink-0">
                 <?= wp_get_attachment_image($image_id, 'full', false, array('class' => 'about-thumb__image')); ?>
             </div>

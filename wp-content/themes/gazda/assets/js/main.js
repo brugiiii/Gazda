@@ -7,6 +7,5 @@ import "./main/burger"
 import "./main/searchForm"
 import "./main/popup"
 import "./main/auth"
-import "./main/header"
 
 import "../css/main.scss";

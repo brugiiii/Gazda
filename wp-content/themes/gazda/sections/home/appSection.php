@@ -5,12 +5,7 @@
                 <h2 class="app-title section-title">
                     <?php the_field('app_title'); ?>
                 </h2>
-                <p class="app-text">
-                    <?php the_field('app_text'); ?>
-                </p>
-                <p class="app-text mb-3">
-                    <?php the_field('app_text_second'); ?>
-                </p>
+                <?php the_field('app_text'); ?>
                 <?php get_template_part('templates/appList'); ?>
             </div>
         </div>
