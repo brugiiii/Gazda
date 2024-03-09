@@ -1,34 +1,41 @@
 import refs from "../main/refs"
 
-const {selectButton, optionsList, optionsButtons, eventInput} = refs;
+const {selectButton, optionsButtons} = refs;
 
 const handleSelectClick = (e) => {
-    toggleSelectVisibility()
+    const $this = $(e.currentTarget)
+    const previousActiveButton = $('.select-button-js.is-active')
+
+    if ($this.hasClass('is-active')) return $this.removeClass('is-active')
+
+    previousActiveButton.removeClass('is-active')
+    $this.toggleClass("is-active");
 }
 
 const handleOptionClick = (e) => {
     const $this = $(e.currentTarget);
+    const activeButton = $('.select-button-js.is-active');
 
     if ($this.hasClass('is-active')) {
-        toggleSelectVisibility();
-
-        return;
+        return activeButton.removeClass('is-active')
     }
 
-    const activeOption = $('.options-list__button.is-active')
-    const value = $this.text();
+    const closestWrapper = $this.closest('.options-list__item');
+    const siblingsWrappers = closestWrapper.siblings();
+    const previousActiveOption = siblingsWrappers.find('.options-list__button.is-active');
 
-    selectButton.text(value)
-    eventInput.val(value);
+    previousActiveOption.removeClass('is-active');
+    $this.addClass('is-active');
 
-    activeOption.removeClass('is-active')
-    $this.addClass('is-active')
+    const value = $this.text().trim();
+    const closestField = $this.closest('.cta-form__field');
+    const fieldItem = closestField.find('.cta-form__item')
+    const fieldInput = closestField.find('input')
 
-    toggleSelectVisibility();
-}
+    fieldItem.text(value)
+    fieldInput.val(value);
 
-const toggleSelectVisibility = () => {
-    optionsList.toggleClass('is-hidden');
+    activeButton.removeClass('is-active')
 }
 
 selectButton.on('click', handleSelectClick)

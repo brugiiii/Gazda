@@ -1,5 +1,4 @@
 import throttle from "lodash.throttle";
-import { WOW } from "wowjs/dist/wow.min";
 import refs from "./refs";
 
 const { bodyEl } = refs;
@@ -69,6 +68,4 @@ export function disableBodyScroll() {
 
 $("document").ready(function () {
   bodyEl.css("visibility", "visible");
-
-  new WOW().init();
 });

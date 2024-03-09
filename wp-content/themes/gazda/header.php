@@ -18,33 +18,20 @@
 <div class="wrapper">
     <header class="header position-relative">
         <div class="container">
-
             <div class="header-wrapper d-flex align-items-center">
-                <button class="hamburger hamburger--collapse"
-                        type="button">
-                      <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
-                      </span>
-                </button>
-
-                <nav class="main-nav">
-                    <?php get_template_part('templates/navigation', null, array('location' => 'menu-header')); ?>
-                </nav>
-
                 <?php
-                the_custom_logo();
-
-                get_template_part('templates/toolbar');
+                if (is_page_template('pages/team.php')) {
+                    get_template_part('templates/team/header');
+                } else {
+                    get_template_part('templates/defaultHeader');
+                }
                 ?>
-
-                <button class="button-primary header-button border-0 ms-auto ms-sm-2 ms-xl-3">
-                    <?= translate_and_output('reserve'); ?>
-                </button>
             </div>
-
         </div>
         <?php
-        get_template_part('templates/burger');
-        get_template_part('templates/searchForm');
+        if (!is_page_template('pages/team.php')) {
+            get_template_part('templates/burger');
+            get_template_part('templates/searchForm');
+        }
         ?>
     </header>

@@ -15,14 +15,14 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
 
 <section class="cta" id="cta">
     <div class="container">
-        <h2 class="cta-title title py-2 text-center">
+        <h2 class="cta-title title py-2 text-center ">
             <?= the_field('cta_title'); ?>
         </h2>
         <div class="form-wrapper mx-auto">
             <?php
             if ($form_fields) {
                 ?>
-                <form id="cta-form" class="cta-form d-flex flex-column"
+                <form id="cta-form" class="cta-form d-flex flex-column mb-3"
                       action="<?= admin_url('admin-ajax.php'); ?>"
                       method="post">
                     <?php
@@ -32,9 +32,14 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                         <span class="cta-form__title form-title mb-1 d-flex ">
                             <?= the_field('select_title'); ?>
                         </span>
-                            <button class="cta-form__input bg-white border-0 text-start select-button-js"
+                            <button class="cta-form__input d-flex align-items-center justify-content-between py-2 bg-white border-0 text-start select-button-js"
                                     type="button" <?= in_array('select', $required_fields) ? 'required' : ''; ?>>
-                                <?= $select_options[0]; ?>
+                                <span class="cta-form__item">
+                                    <?= $select_options[0]; ?>
+                                </span>
+                                <svg class="cta-form___icon" width="24" height="24">
+                                    <use href="<?php get_image('sprite.svg#icon-caret-down'); ?>"></use>
+                                </svg>
                             </button>
                             <input hidden type="text" name="event" value="<?= $select_options[0]; ?>"/>
                             <ul class="options-list position-absolute start-0 w-100 overflow-hidden is-hidden">
@@ -135,6 +140,9 @@ $maxDateTime = $maxDateTime->modify('+1 year')->format('Y-m-d\TH:i');
                         <?= translate_and_output('send'); ?>
                     </button>
                 </form>
+                <p class="form-wrapper__text text-center">
+                    <?= translate_and_output('legal'); ?>
+                </p>
                 <?php
             }
             ?>

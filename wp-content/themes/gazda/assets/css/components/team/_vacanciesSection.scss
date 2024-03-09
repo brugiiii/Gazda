@@ -1,0 +1,72 @@
+.vacancies {
+  padding: clamp(6rem, 1.443rem + 20.25vw, 14rem) 0 clamp(3.688rem, -2.187rem + 26.11vw, 14rem) 0;
+
+  background-image: url(../images/vacancies-bg.svg);
+  background-position: bottom;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 575px) {
+    background-size: auto calc(100% + clamp(6rem, 1.443rem + 20.25vw, 14rem));
+  }
+
+  @media screen and (max-width: 991px) {
+    background-position: center;
+  }
+}
+
+.vacancies-list {
+  gap: 1rem;
+
+  @media screen and (min-width: 992px) {
+    column-gap: 1.5rem;
+    row-gap: 2.5rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    column-gap: 2.5rem;
+  }
+}
+
+.vacancies-list__item {
+  flex-basis: calc((100% - 1rem) / 2);
+  height: clamp(9rem, 6.935rem + 9.18vw, 12.625rem);
+
+  padding: clamp(1rem, 0.715rem + 1.27vw, 1.5rem) 0 clamp(1rem, 0.715rem + 1.27vw, 1.5rem) clamp(0.75rem, 0.038rem + 3.16vw, 2rem);
+
+  color: $third-text-color;
+
+  @media screen and (min-width: 992px) {
+    flex-basis: calc((100% - 4.5rem) / 4);
+  }
+
+  @media screen and (min-width: 1440px) {
+    flex-basis: calc((100% - 7.5rem) / 4);
+  }
+
+  background-color: $fourth-text-color;
+}
+
+.vacancies-list__position {
+  font-size: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
+  line-height: calc(23.71 / 16);
+
+  @media screen and (min-width: 992px) {
+    line-height: calc(35.57 / 24);
+  }
+}
+
+.vacancies-list__salary {
+  font-size: clamp(1rem, 0.858rem + 0.63vw, 1.25rem);
+  line-height: calc(23.71 / 16);
+
+  @media screen and (min-width: 992px) {
+    line-height: calc(29.64 / 20);
+  }
+}
+
+.vacancies-list__details {
+  fill: $team-accent-color;
+  color: $team-accent-color;
+
+  padding: clamp(0.5rem, 0.358rem + 0.63vw, 0.75rem) 0;
+}

@@ -24,7 +24,6 @@ const refs = {
     selectButton: $('.select-button-js'),
     optionsList: $('.options-list'),
     optionsButtons: $('.options-list__button'),
-    eventInput: $('input[name="event"]'),
     authBackdrop: $('#auth'),
     authButton: $('.auth-button-js'),
     registerForm: $('#register-form'),
@@ -38,6 +37,11 @@ const refs = {
     orderListButtons: $('.orders-list__button'),
     orderInfoWrapper: $('.order-info'),
     headerLink: $('.header .menu-item-has-children'),
+    vacanciesButtons: $('.vacancies-list__button'),
+    formModalInput: $('#form-modal input[name="title"]'),
+    formModal: $('#form-modal'),
+    formModalTitle: $('.form-modal__title'),
+    hideFormModalButton: $('.form-modal__close')
 };
 
 export default refs;

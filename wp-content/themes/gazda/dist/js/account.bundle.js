@@ -294,7 +294,7 @@ $(document).ready(function () {
     mask: '+380 (99) 999 99 99',
     greedy: false,
     placeholder: 'X'
-  }).mask($('#phone'));
+  }).mask($('input[type="tel"]'));
 });
 
 /***/ }),
@@ -333,7 +333,6 @@ var refs = {
   selectButton: $('.select-button-js'),
   optionsList: $('.options-list'),
   optionsButtons: $('.options-list__button'),
-  eventInput: $('input[name="event"]'),
   authBackdrop: $('#auth'),
   authButton: $('.auth-button-js'),
   registerForm: $('#register-form'),
@@ -346,7 +345,12 @@ var refs = {
   passVisibilityButton: $('.form-field__button'),
   orderListButtons: $('.orders-list__button'),
   orderInfoWrapper: $('.order-info'),
-  headerLink: $('.header .menu-item-has-children')
+  headerLink: $('.header .menu-item-has-children'),
+  vacanciesButtons: $('.vacancies-list__button'),
+  formModalInput: $('#form-modal input[name="title"]'),
+  formModal: $('#form-modal'),
+  formModalTitle: $('.form-modal__title'),
+  hideFormModalButton: $('.form-modal__close')
 };
 /* harmony default export */ __webpack_exports__["default"] = (refs);
 

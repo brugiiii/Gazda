@@ -13,11 +13,14 @@ function enqueue_scripts_and_styles()
     // Register jQuery Migrate
     wp_register_script('jquery-migrate', '//code.jquery.com/jquery-migrate-1.2.1.min.js', array('jquery'), '1.2.1', false);
 
-    // Enqueue main stylesheet
-    wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/main.bundle.css');
+    // Not team page
+    if (!is_page_template('pages/team.php')) {
+        // Enqueue main stylesheet
+        wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/main.bundle.css');
 
-    // Enqueue main script
-    wp_enqueue_script('main', get_template_directory_uri() . '/dist/js/main.bundle.js', array('jquery'), null, true);
+        // Enqueue main script
+        wp_enqueue_script('main', get_template_directory_uri() . '/dist/js/main.bundle.js', array('jquery'), null, true);
+    }
 
     // Conditional scripts and styles
     if (is_shop() || is_page_template('woocommerce/archive-product.php') || is_page_template('pages/delivery.php') || is_page_template('pages/search.php') || is_singular('product')) {
@@ -42,7 +45,7 @@ function enqueue_scripts_and_styles()
         wp_enqueue_style('shop-style', get_template_directory_uri() . '/dist/css/shop.bundle.css');
     }
 
-    if (is_shop() || is_page_template('woocommerce/archive-product.php') || is_page_template('pages/delivery.php')){
+    if (is_shop() || is_page_template('woocommerce/archive-product.php') || is_page_template('pages/delivery.php')) {
         wp_enqueue_script('shop-js', get_template_directory_uri() . '/dist/js/shop.bundle.js', array('jquery'), null, true);
     }
 
@@ -82,9 +85,16 @@ function enqueue_scripts_and_styles()
         wp_enqueue_style('product-style', get_template_directory_uri() . '/dist/css/product.bundle.css');
     }
 
-    if(is_page_template('pages/search.php')) {
+    // Search page scripts and styles
+    if (is_page_template('pages/search.php')) {
         wp_enqueue_script('search-js', get_template_directory_uri() . '/dist/js/search.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('search-style', get_template_directory_uri() . '/dist/css/search.bundle.css');
+    }
+
+    // Team page scripts and styles
+    if (is_page_template('pages/team.php')) {
+        wp_enqueue_style('team-style', get_template_directory_uri() . '/dist/css/team.bundle.css');
+        wp_enqueue_script('team-js', get_template_directory_uri() . '/dist/js/team.bundle.js', array('jquery'), null, true);
     }
 
     $current_lang = pll_current_language();

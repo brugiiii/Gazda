@@ -1,0 +1,53 @@
+#cta {
+  padding: 4.5rem 0;
+
+  background-image: url(../images/arrow.svg);
+  background-repeat: no-repeat;
+  background-position: top 12.9375rem left calc(50% - 624px);
+}
+
+.cta-title {
+  margin-bottom: 0.625rem;
+}
+
+.cta-text {
+  margin-bottom: 2.5rem;
+}
+
+.cta-wrapper {
+  max-width: 32.4375rem;
+  padding: clamp(0rem, -1.139rem + 5.06vw, 2rem);
+}
+
+.cta-form__title {
+  &::after {
+    color: $team-accent-color;
+  }
+}
+
+.options-list {
+  padding: 0.6875rem 0;
+}
+
+.options-list__button {
+  padding: 0.3125rem 0.75rem !important;
+}
+
+.options-list__button {
+  @include hover(color $third-text-color $white-color, background-color $white-color $team-accent-color);
+
+  &.is-active {
+    color: $white-color;
+    background-color: $team-accent-color;
+  }
+}
+
+.cta-button {
+  min-width: 13.8125rem;
+
+  padding: 0.75rem;
+  border-radius: $primary-radius;
+
+  color: $white-color;
+  background-color: $team-accent-color;
+}

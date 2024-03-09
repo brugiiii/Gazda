@@ -5,5 +5,5 @@ $(document).ready(function(){
         mask: '+380 (99) 999 99 99',
         greedy: false,
         placeholder: 'X',
-    }).mask($('#phone'));
+    }).mask($('input[type="tel"]'));
 });
