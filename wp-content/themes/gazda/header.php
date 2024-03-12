@@ -30,8 +30,8 @@
         </div>
         <?php
         if (!is_page_template('pages/team.php')) {
-            get_template_part('templates/burger');
             get_template_part('templates/searchForm');
+            get_template_part('templates/burger');
         }
         ?>
     </header>

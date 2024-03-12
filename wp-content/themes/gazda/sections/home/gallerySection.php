@@ -1,11 +1,13 @@
 <?php
-$gallery = get_field('gallery_list');
+$current_lang = pll_current_language();
+$home_post = pll_get_post(16, $current_lang);
+$gallery = get_field('gallery_list', $home_post);
 ?>
 
 <section class="gallery">
     <div class="container">
         <h2 class="gallery-title section-title">
-            <?php the_field('gallery_title'); ?>
+            <?php the_field('gallery_title', $home_post); ?>
         </h2>
     </div>
     <div class="swiper gallery-swiper">

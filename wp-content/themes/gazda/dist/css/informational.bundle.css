@@ -1,2 +1,100 @@
-.faq{padding-top:3rem}.faq-list__item:not(:first-child) .faq-list__text{display:none}.faq-list__item:not(:last-child){margin-bottom:1.5rem}@media screen and (min-width:992px){.faq-list__item:not(:last-child){margin-bottom:1rem}}.faq-list__wrapper{cursor:pointer}.faq-list__title{color:#1f252e;font-size:1.125rem;line-height:1.5}@media screen and (min-width:992px){.faq-list__title{padding:.28rem 0}}.faq-list__icon{cursor:pointer;display:inline-block;padding:.75rem;position:relative}.faq-list__icon:before{-webkit-transition:-webkit-transform .3s ease-in-out;transition:-webkit-transform .3s ease-in-out;transition:transform .3s ease-in-out;transition:transform .3s ease-in-out,-webkit-transform .3s ease-in-out}.faq-list__icon:after{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.faq-list__icon:after,.faq-list__icon:before{background-color:#1f4c43;content:"";display:inline-block;height:1.125rem;left:11px;position:absolute;top:3px;width:2px}.faq-list__icon.rotated:before{-webkit-transform:rotate(90deg);transform:rotate(90deg)}main{padding-bottom:1.5rem}@media screen and (min-width:992px){main{padding-top:1.5rem}}.section .container:first-child{margin-bottom:1.5rem}@media screen and (max-width:991px){.section .container:first-child{max-width:none;padding:0}}.section .container p:not(:last-of-type){margin-bottom:1.25rem}.section .breadcrumb,.section .container p:last-of-type{margin-bottom:0}.section h1{color:#1f252e;font-size:1.5rem;line-height:normal}
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/css/informational.scss ***!
+  \**********************************************************************************************************************************************************************************************/
+.faq {
+  padding-top: 3rem;
+}
+
+.faq-list__item:not(:first-child) .faq-list__text {
+  display: none;
+}
+.faq-list__item:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+@media screen and (min-width: 992px) {
+  .faq-list__item:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.faq-list__wrapper {
+  cursor: pointer;
+}
+
+.faq-list__title {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: #1F252E;
+}
+@media screen and (min-width: 992px) {
+  .faq-list__title {
+    padding: 0.28rem 0;
+  }
+}
+
+.faq-list__icon {
+  position: relative;
+  display: inline-block;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.faq-list__icon::before {
+  -webkit-transition: -webkit-transform 300ms ease-in-out;
+  transition: -webkit-transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+}
+.faq-list__icon::after {
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
+}
+.faq-list__icon::after, .faq-list__icon::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 11px;
+  display: inline-block;
+  width: 2px;
+  height: 1.125rem;
+  background-color: #1F4C43;
+}
+.faq-list__icon.rotated::before {
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
+}
+
+main {
+  padding-bottom: 1.5rem;
+}
+@media screen and (min-width: 992px) {
+  main {
+    padding-top: 1.5rem;
+  }
+}
+
+.section .container:first-child {
+  margin-bottom: 1.5rem;
+}
+@media screen and (max-width: 991px) {
+  .section .container:first-child {
+    padding: 0;
+    max-width: none;
+    max-width: initial;
+  }
+}
+.section .container p:not(:last-of-type) {
+  margin-bottom: 1.25rem;
+}
+.section .container p:last-of-type {
+  margin-bottom: 0;
+}
+.section .breadcrumb {
+  margin-bottom: 0;
+}
+.section h1 {
+  font-size: 1.5rem;
+  line-height: normal;
+  color: #1F252E;
+}
+
 /*# sourceMappingURL=informational.bundle.css.map*/

@@ -1,0 +1,57 @@
+.hero {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  & > .breadcrumb {
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+  }
+
+  & .container {
+    height: clamp(38.25rem, 33.408rem + 21.52vw, 46.75rem);
+
+    & .breadcrumb {
+      position: absolute;
+      top: 1.5rem;
+
+      margin-bottom: 0rem;
+
+      @media screen and (max-width: 991px) {
+        display: none;
+      }
+
+      & .current {
+        color: $white-color;
+      }
+    }
+  }
+}
+
+.hero-title {
+  font-size: clamp(2rem, 1.43rem + 2.53vw, 3rem);
+  line-height: calc(41.44 / 32);
+  
+  @media screen and (min-width: 992px) {
+    line-height: calc(62.16 / 48);
+    text-transform: uppercase;
+  }
+}
+
+.hero-text {
+  font-size: clamp(0.875rem, 0.804rem + 0.32vw, 1rem);
+  line-height: calc(19.6 / 14);
+  letter-spacing: 0.03125rem;
+
+  @media screen and (min-width: 992px) {
+    line-height: calc(20.72 / 16);
+    letter-spacing: normal;
+  }
+
+  & br {
+    @media screen and (max-width: 991px) {
+      display: none;
+    }
+  }
+}

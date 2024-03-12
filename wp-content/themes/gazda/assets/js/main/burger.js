@@ -11,6 +11,10 @@ const handleBurgerClick = function (e) {
         searchForm.slideToggle();
         headerSearch.toggleClass('is-active')
     }
+
+    if(burgerMenu.is(':visible') && is_search_page){
+        searchForm.slideToggle();
+    }
 };
 
 const handleBurgerLinkClick = (e) => {
