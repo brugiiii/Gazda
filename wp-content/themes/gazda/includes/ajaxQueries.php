@@ -15,7 +15,8 @@ add_action('wp_ajax_change_password', 'change_password_ajax');
 add_action('wp_ajax_nopriv_change_password', 'change_password_ajax');
 add_action('wp_ajax_get_order_info', 'get_order_info_ajax');
 add_action('wp_ajax_nopriv_get_order_info', 'get_order_info_ajax');
-
+add_action('wp_ajax_send_mail', 'send_mail');
+add_action('wp_ajax_nopriv_send_mail', 'send_mail');
 function fetch_products()
 {
     get_template_part('templates/shop/fetchProducts');
@@ -208,4 +209,21 @@ function get_order_info_ajax()
     get_template_part('templates/account/orderInfo');
 }
 
+function send_mail() {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $id = sanitize_text_field($_POST['id']);
+        $data = $_POST['formData'];
 
+        if (is_array($data)) {
+            foreach ($data as &$field) {
+                foreach ($field as &$value) {
+                    $value = wp_kses_post($value);
+                }
+            }
+        }
+
+        send_telegram_message($id, $data);
+    }
+
+    wp_die();
+}

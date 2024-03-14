@@ -19,7 +19,8 @@ module.exports = {
     contacts: "./assets/js/contacts.js",
     account: "./assets/js/account.js",
     team: "./assets/js/team.js",
-    about: "./assets/js/about.js"
+    about: "./assets/js/about.js",
+    loyalty: "./assets/js/loyalty.js"
   },
   output: {
     filename: "js/[name].bundle.js",

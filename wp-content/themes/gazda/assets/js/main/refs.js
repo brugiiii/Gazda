@@ -41,7 +41,8 @@ const refs = {
     formModalInput: $('#form-modal input[name="title"]'),
     formModal: $('#form-modal'),
     formModalTitle: $('.form-modal__title'),
-    hideFormModalButton: $('.form-modal__close')
+    hideFormModalButton: $('.form-modal__close'),
+    submitForm: $('.form-js')
 };
 
 export default refs;

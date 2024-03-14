@@ -67,6 +67,11 @@ function enqueue_scripts_and_styles()
         wp_enqueue_style('contacts-style', get_template_directory_uri() . '/dist/css/contacts.bundle.css');
     }
 
+    if (is_page_template('pages/loyalty.php')) {
+        wp_enqueue_script('loyalty-js', get_template_directory_uri() . '/dist/js/loyalty.bundle.js', array('jquery'), null, true);
+        wp_enqueue_style('loyalty-style', get_template_directory_uri() . '/dist/css/loyalty.bundle.css');
+    }
+
     if (is_page_template('pages/about.php')) {
         wp_enqueue_script('about-js', get_template_directory_uri() . '/dist/js/about.bundle.js', array('jquery'), null, true);
         wp_enqueue_style('about-style', get_template_directory_uri() . '/dist/css/about.bundle.css');

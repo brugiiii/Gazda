@@ -120,7 +120,8 @@ $strings_to_translate = array(
     'shipping' => 'Доставка',
     'amount_paid' => 'Сума до сплати',
     'legal' => 'Вся отримана інформація повністю конфіденційна і не розголошується третім особам',
-    'basket' => 'Кошик'
+    'basket' => 'Кошик',
+    'to_order' => 'Замовити'
 );
 
 if (function_exists('pll_register_string')) {

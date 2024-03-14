@@ -13,33 +13,32 @@
  */
 
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
 }
 
-extract( Xoo_Wsc_Template_Args::cart_header() );
+extract(Xoo_Wsc_Template_Args::cart_header());
 
 ?>
 
 <div class="xoo-wsch-top">
 
-	<?php if( $showNotifications ): ?>
-		<?php xoo_wsc_cart()->print_notices_html( 'cart' ); ?>
-	<?php endif; ?>
+    <?php if ($showNotifications): ?>
+        <?php xoo_wsc_cart()->print_notices_html('cart'); ?>
+    <?php endif; ?>
 
-	<?php if( $showBasket ): ?>
-		<div class="xoo-wsch-basket">
-			<span class="xoo-wscb-icon xoo-wsc-icon-bag2"></span>
-			<span class="xoo-wscb-count"><?php echo xoo_wsc_cart()->get_cart_count() ?></span>
-		</div>
-	<?php endif; ?>
+    <?php if ($heading): ?>
+        <span class="xoo-wsch-text">
+            <?= translate_and_output('basket'); ?>
+        </span>
+    <?php endif; ?>
 
-	<?php if( $heading ): ?>
-		<span class="xoo-wsch-text"><?php echo $heading ?></span>
-	<?php endif; ?>
-
-	<?php if( $showCloseIcon ): ?>
-		<span class="xoo-wsch-close <?php echo $close_icon ?>"></span>
-	<?php endif; ?>
+    <?php if ($showCloseIcon): ?>
+        <span class="xoo-wsch-close">
+            <svg class="" width="24" height="24">
+                <use href="<?php get_image('sprite.svg#icon-close'); ?>"></use>
+            </svg>
+        </span>
+    <?php endif; ?>
 
 </div>
