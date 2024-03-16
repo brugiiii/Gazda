@@ -50,10 +50,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors.js */ "./node_modules/core-js/modules/es.object.get-own-property-descriptors.js");
 /* harmony import */ var core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_own_property_descriptors_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var toastify_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! toastify-js */ "./node_modules/toastify-js/src/toastify.js");
-/* harmony import */ var toastify_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(toastify_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var toastify_js_src_toastify_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! toastify-js/src/toastify.css */ "./node_modules/toastify-js/src/toastify.css");
-/* harmony import */ var _refs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./refs */ "./assets/js/main/refs.js");
+/* harmony import */ var _refs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./refs */ "./assets/js/main/refs.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils */ "./assets/js/main/utils.js");
 
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -67,11 +65,10 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 
 
 
-
-var registerForm = _refs__WEBPACK_IMPORTED_MODULE_11__["default"].registerForm,
-  loginForm = _refs__WEBPACK_IMPORTED_MODULE_11__["default"].loginForm,
-  authModal = _refs__WEBPACK_IMPORTED_MODULE_11__["default"].authModal,
-  formSwitcher = _refs__WEBPACK_IMPORTED_MODULE_11__["default"].formSwitcher;
+var registerForm = _refs__WEBPACK_IMPORTED_MODULE_9__["default"].registerForm,
+  loginForm = _refs__WEBPACK_IMPORTED_MODULE_9__["default"].loginForm,
+  authModal = _refs__WEBPACK_IMPORTED_MODULE_9__["default"].authModal,
+  formSwitcher = _refs__WEBPACK_IMPORTED_MODULE_9__["default"].formSwitcher;
 var _settings = settings,
   account_page_link = _settings.account_page_link,
   ajax_url = _settings.ajax_url;
@@ -98,24 +95,10 @@ var handleRegisterFormSubmit = function handleRegisterFormSubmit(e) {
     success: function success(res) {
       formButton.attr('disabled', false);
       if (res.success) {
-        toastify_js__WEBPACK_IMPORTED_MODULE_9___default()({
-          text: res.data,
-          duration: 4000,
-          gravity: "top",
-          position: "right",
-          stopOnFocus: true,
-          className: 'success'
-        }).showToast();
+        (0,_utils__WEBPACK_IMPORTED_MODULE_10__.showToastMessage)(res.data, "success");
         window.location.href = account_page_link;
       } else {
-        toastify_js__WEBPACK_IMPORTED_MODULE_9___default()({
-          text: res.data,
-          duration: 4000,
-          gravity: "top",
-          position: "right",
-          stopOnFocus: true,
-          className: 'error'
-        }).showToast();
+        (0,_utils__WEBPACK_IMPORTED_MODULE_10__.showToastMessage)(res.data, "error");
       }
     },
     error: function error(_error) {
@@ -144,24 +127,10 @@ var handleLoginFormSubmit = function handleLoginFormSubmit(e) {
     success: function success(res) {
       formButton.attr('disabled', false);
       if (res.success) {
-        toastify_js__WEBPACK_IMPORTED_MODULE_9___default()({
-          text: res.data,
-          duration: 4000,
-          gravity: "top",
-          position: "right",
-          stopOnFocus: true,
-          className: 'success'
-        }).showToast();
+        (0,_utils__WEBPACK_IMPORTED_MODULE_10__.showToastMessage)(res.data, "success");
         window.location.href = account_page_link;
       } else {
-        toastify_js__WEBPACK_IMPORTED_MODULE_9___default()({
-          text: res.data,
-          duration: 4000,
-          gravity: "top",
-          position: "right",
-          stopOnFocus: true,
-          className: 'error'
-        }).showToast();
+        (0,_utils__WEBPACK_IMPORTED_MODULE_10__.showToastMessage)(res.data, "error");
       }
     },
     error: function error(_error2) {
@@ -284,7 +253,6 @@ var refs = {
   toolbarTitle: $('.toolbar-wrapper__title'),
   orderButtonText: $('.order-button__text'),
   orderList: $('.order-list'),
-  selectButton: $('.select-button-js'),
   optionsList: $('.options-list'),
   optionsButtons: $('.options-list__button'),
   authBackdrop: $('#auth'),
@@ -301,9 +269,9 @@ var refs = {
   orderInfoWrapper: $('.order-info'),
   headerLink: $('.header .menu-item-has-children'),
   vacanciesButtons: $('.vacancies-list__button'),
-  formModalInput: $('#form-modal input[name="title"]'),
   formModal: $('#form-modal'),
   formModalTitle: $('.form-modal__title'),
+  formModalForm: $('#form-modal form'),
   hideFormModalButton: $('.form-modal__close'),
   submitForm: $('.form-js')
 };
@@ -433,15 +401,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   disableBodyScroll: function() { return /* binding */ disableBodyScroll; },
 /* harmony export */   enableBodyScroll: function() { return /* binding */ enableBodyScroll; },
 /* harmony export */   hideBackdrop: function() { return /* binding */ hideBackdrop; },
-/* harmony export */   showBackdrop: function() { return /* binding */ showBackdrop; }
+/* harmony export */   showBackdrop: function() { return /* binding */ showBackdrop; },
+/* harmony export */   showToastMessage: function() { return /* binding */ showToastMessage; }
 /* harmony export */ });
-/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash.throttle */ "./node_modules/lodash.throttle/index.js");
-/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _refs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./refs */ "./assets/js/main/refs.js");
+/* harmony import */ var toastify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! toastify-js */ "./node_modules/toastify-js/src/toastify.js");
+/* harmony import */ var toastify_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(toastify_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var toastify_js_src_toastify_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! toastify-js/src/toastify.css */ "./node_modules/toastify-js/src/toastify.css");
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash.throttle */ "./node_modules/lodash.throttle/index.js");
+/* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _refs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./refs */ "./assets/js/main/refs.js");
 
 
-var bodyEl = _refs__WEBPACK_IMPORTED_MODULE_1__["default"].bodyEl;
-var throttledHandleResize = lodash_throttle__WEBPACK_IMPORTED_MODULE_0___default()(handleResize, 200);
+
+
+var bodyEl = _refs__WEBPACK_IMPORTED_MODULE_3__["default"].bodyEl;
+var throttledHandleResize = lodash_throttle__WEBPACK_IMPORTED_MODULE_2___default()(handleResize, 200);
 var currentBackdrop = null;
 var showBackdrop = function showBackdrop(backdrop) {
   var hideOnResize = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
@@ -490,6 +464,16 @@ function enableBodyScroll() {
 }
 function disableBodyScroll() {
   bodyEl.css("overflow-y", "hidden");
+}
+function showToastMessage($message, $class) {
+  toastify_js__WEBPACK_IMPORTED_MODULE_0___default()({
+    text: $message,
+    duration: 7000,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: true,
+    className: $class
+  }).showToast();
 }
 $("document").ready(function () {
   bodyEl.css("visibility", "visible");

@@ -211,7 +211,7 @@ function get_order_info_ajax()
 
 function send_mail() {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id = sanitize_text_field($_POST['id']);
+        $form_title = sanitize_text_field($_POST['formTitle']);
         $data = $_POST['formData'];
 
         if (is_array($data)) {
@@ -222,8 +222,15 @@ function send_mail() {
             }
         }
 
-        send_telegram_message($id, $data);
+        $message = send_telegram_message($form_title, $data);
+
+        if($message->ok === true){
+            wp_send_json_success(translate_and_output('thank_you_letter'));
+        } else {
+            wp_send_json_error('Server error');
+        }
     }
 
     wp_die();
 }
+

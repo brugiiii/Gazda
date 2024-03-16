@@ -45,18 +45,6 @@
   &:active {
     background-color: $fourth-bg-color;
   }
-
-  &:disabled {
-    background-color: $fifth-bg-color;
-
-    & > span {
-      scale: 0;
-    }
-
-    & .loader-container {
-      scale: 1;
-    }
-  }
 }
 
 .button-secondary {
@@ -123,12 +111,13 @@
   }
 }
 
-.buy-button {
+.button-loading {
   & span {
     @include transition(scale);
   }
 
-  &.loading {
+  &.loading,
+  &:disabled {
     pointer-events: none;
     background-color: $fifth-bg-color;
 

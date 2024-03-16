@@ -1,5 +1,9 @@
 .cta {
   padding: clamp(6.5rem, 5.432rem + 4.75vw, 8.375rem) 0;
+
+  background-image: url(../images/wave.webp), url(../images/cloud.webp);
+  background-repeat: no-repeat;
+  background-position: top 20rem left calc(50% - 40.625rem), top 2.6875rem right calc(50% - 28.125rem);
 }
 
 .cta-title {
@@ -30,6 +34,12 @@
   }
 }
 
+.cta-form__input {
+  &.select {
+    cursor: pointer;
+  }
+}
+
 .cta-form__title {
   &::after {
     content: '*';
@@ -44,16 +54,16 @@
   line-height: normal;
 }
 
-.select-button-js {
-  &:not(.is-active) {
+.select {
+  &:not(:focus) {
     & ~ .options-list {
       opacity: 0;
       visibility: hidden;
     }
   }
 
-  &.is-active {
-    & .cta-form___icon {
+  &:focus {
+    & ~ .cta-form___icon {
       transform: rotateX(180deg);
     }
   }
@@ -61,6 +71,9 @@
 
 .cta-form___icon {
   transition: transform 300ms $timing-function;
+
+  right: 0.625rem;
+  bottom: 0.5rem;
 }
 
 .options-list {
@@ -105,8 +118,4 @@
     color: $white-color;
     background-color: $accent-color;
   }
-}
-
-.form-wrapper__text {
-  color: $fifth-text-color;
 }

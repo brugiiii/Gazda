@@ -1,5 +1,5 @@
 import refs from "./refs"
-import {showBackdrop, hideBackdrop} from "./utils"
+import {showBackdrop} from "./utils"
 
 const {authBackdrop, authButton} = refs;
 

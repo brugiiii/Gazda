@@ -26,18 +26,11 @@ $post = pll_get_post(16, pll_current_language())
                     <input class="auth-form__input border-0" type="password" name="password"
                            autocomplete="current-password" placeholder="<?= translate_and_output('write_your_password'); ?>" required>
                 </label>
-                <button class="auth-form__button button-primary position-relative border-0 fs-6" type="submit">
+                <button class="auth-form__button button-primary position-relative border-0 fs-6 button-loading" type="submit">
                     <span class="d-inline-block">
                         <?= translate_and_output('sign_in_to_account'); ?>
                     </span>
-                    <div class="loader-container position-absolute top-50 start-50 translate-middle">
-                        <div class="loader">
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                        </div>
-                    </div>
+                   <?= get_template_part('templates/loader'); ?>
                 </button>
             </form>
             <p class="register-text text-center mb-0">
@@ -78,18 +71,11 @@ $post = pll_get_post(16, pll_current_language())
                 <p class="auth-terms text-center">
                     <?= the_field('registration_terms', $post); ?>
                 </p>
-                <button class="auth-form__button button-primary position-relative border-0 fs-6" type="submit">
+                <button class="auth-form__button button-primary position-relative border-0 fs-6 button-loading" type="submit">
                     <span class="d-inline-block">
                         <?= translate_and_output('create_account'); ?>
                     </span>
-                    <div class="loader-container position-absolute top-50 start-50 translate-middle">
-                        <div class="loader">
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                        </div>
-                    </div>
+                    <?= get_template_part('templates/loader'); ?>
                 </button>
             </form>
             <p class="register-text text-center mb-0">

@@ -9,8 +9,8 @@
         </div>
         <h2 class="form-modal__title fw-semibold text-uppercase text-center"></h2>
         <p class="form-modal__text text-uppercase text-center text-white">
-            <?= the_field('cta_title', 6955); ?>
+            <?= the_field('cta_title'); ?>
         </p>
-        <?= get_template_part('templates/team/ctaForm', null, array('is_modal' => true)); ?>
+        <?= get_template_part('templates/ctaForm', null, array("is_modal" => true)); ?>
     </div>
 </div>

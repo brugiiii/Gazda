@@ -16,7 +16,7 @@ $text = get_field('cta_text');
                 </p>
                 <?php
             }
-            get_template_part('templates/team/ctaForm');
+            get_template_part('templates/ctaForm');
             ?>
         </div>
     </div>

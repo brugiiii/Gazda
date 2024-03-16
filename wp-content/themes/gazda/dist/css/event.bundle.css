@@ -1,3 +1,97 @@
+/*!*******************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/toastify-js/src/toastify.css ***!
+  \*******************************************************************************************************************************************************************/
+/*!
+ * Toastify js 1.12.0
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2018 Varun A P
+ */
+
+.toastify {
+    padding: 12px 20px;
+    color: #ffffff;
+    display: inline-block;
+    -webkit-box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+            box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+    background: linear-gradient(135deg, #73a5ff, #5477f5);
+    position: fixed;
+    opacity: 0;
+    -webkit-transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    max-width: calc(50% - 20px);
+    z-index: 2147483647;
+}
+
+.toastify.on {
+    opacity: 1;
+}
+
+.toast-close {
+    background: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    opacity: 0.4;
+    padding: 0 5px;
+}
+
+.toastify-right {
+    right: 15px;
+}
+
+.toastify-left {
+    left: 15px;
+}
+
+.toastify-top {
+    top: -150px;
+}
+
+.toastify-bottom {
+    bottom: -150px;
+}
+
+.toastify-rounded {
+    border-radius: 25px;
+}
+
+.toastify-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin: -7px 5px;
+    border-radius: 2px;
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: -webkit-fit-content;
+    max-width: fit-content;
+    max-width: -moz-fit-content;
+}
+
+@media only screen and (max-width: 360px) {
+    .toastify-right, .toastify-left {
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        max-width: -webkit-fit-content;
+        max-width: -moz-fit-content;
+        max-width: fit-content;
+    }
+}
+
 /*!**************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/css/event.scss ***!
   \**************************************************************************************************************************************************************************************/
@@ -384,6 +478,9 @@
 
 .cta {
   padding: clamp(6.5rem, 5.432rem + 4.75vw, 8.375rem) 0;
+  background-image: url(../images/wave.webp), url(../images/cloud.webp);
+  background-repeat: no-repeat;
+  background-position: top 20rem left calc(50% - 40.625rem), top 2.6875rem right calc(50% - 28.125rem);
 }
 
 .cta-title {
@@ -405,6 +502,10 @@
   content: "";
 }
 
+.cta-form__input.select {
+  cursor: pointer;
+}
+
 .cta-form__title::after {
   content: "*";
   color: #E5A83A;
@@ -416,11 +517,11 @@
   line-height: normal;
 }
 
-.select-button-js:not(.is-active) ~ .options-list {
+.select:not(:focus) ~ .options-list {
   opacity: 0;
   visibility: hidden;
 }
-.select-button-js.is-active .cta-form___icon {
+.select:focus ~ .cta-form___icon {
   -webkit-transform: rotateX(180deg);
           transform: rotateX(180deg);
 }
@@ -430,6 +531,8 @@
   transition: -webkit-transform 300ms ease-in-out;
   transition: transform 300ms ease-in-out;
   transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+  right: 0.625rem;
+  bottom: 0.5rem;
 }
 
 .options-list {
@@ -489,10 +592,6 @@
 .options-list__button.is-active {
   color: #FFF;
   background-color: #1F4C43;
-}
-
-.form-wrapper__text {
-  color: #C0C2C4;
 }
 
 /*# sourceMappingURL=event.bundle.css.map*/

@@ -11,3 +11,7 @@ body {
     line-height: calc(23.71 / 16);
   }
 }
+
+.loader .circle {
+  background-color: $team-accent-color;
+}

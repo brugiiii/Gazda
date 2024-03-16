@@ -1,7 +1,7 @@
 import refs from "../main/refs"
 import {showBackdrop, hideBackdrop} from "../main/utils"
 
-const {vacanciesButtons, formModalInput, formModal, formModalTitle, hideFormModalButton} = refs
+const {vacanciesButtons, formModalForm, formModal, formModalTitle, hideFormModalButton} = refs
 
 const handleVacancyButtonClick = (e) => {
     const $this = $(e.currentTarget);
@@ -9,7 +9,7 @@ const handleVacancyButtonClick = (e) => {
     const title = $this.data('title').trim();
     const position = $this.data('position').trim()
 
-    formModalInput.val(title)
+    formModalForm.data("title", title)
     formModalTitle.text(position)
 
     showBackdrop(formModal)

@@ -46,7 +46,8 @@ function get_image($name)
     echo get_template_directory_uri() . "/assets/images/" . $name;
 }
 
-function custom_woocommerce_strings($translated_text, $text, $domain) {
+function custom_woocommerce_strings($translated_text, $text, $domain)
+{
     switch ($text) {
         case 'Add to cart':
             $translated_text = translate_and_output('buy');
@@ -58,7 +59,8 @@ function custom_woocommerce_strings($translated_text, $text, $domain) {
     return $translated_text;
 }
 
-function send_email_message($id, $data) {
+function send_email_message($id, $data)
+{
     $to = get_option('admin_email');
     $subject = 'Form Submission';
 
@@ -77,38 +79,39 @@ function send_email_message($id, $data) {
     wp_mail($to, $subject, $message, $headers);
 }
 
-function send_telegram_message($id, $data) {
+function send_telegram_message($form_title, $data)
+{
     $telegram_bot_token = '6834342727:AAE8GVJwjHycxtqnxZzGXtvauRMxWuy_0Ro';
     $chat_id = '-4117221606';
-    // Перевірка, чи є дані та чи вони масивом
+
     if (!empty($data) && is_array($data)) {
-        $telegram_message = "Нове повідомлення з сайту:\n\n";
+        $telegram_message = "<b>$form_title:\n\n</b>";
 
-        if ($id === 'loyalty') {
-            $telegram_message = "Сертифікат!\n\n";
-        }
-
-        // Додавання кожної пари назви та значення у повідомлення
         foreach ($data as $field) {
-            // Додаємо назву та значення поля
-            $telegram_message .= "<b>" . $field['name'] . ":</b> " . $field['value'] . "\n";
+            $value = $field['value'];
+
+            if (!$value) continue;
+
+            $telegram_message .= "<b>" . $field['name'] . ":</b> " . $value . ";" . "\n";
         }
     }
 
-    // Відправлення повідомлення у Телеграм за допомогою cURL
     $url = "https://api.telegram.org/bot$telegram_bot_token/sendMessage";
     $data = array('chat_id' => $chat_id, 'text' => $telegram_message, 'parse_mode' => 'HTML');
 
     $options = array(
         'http' => array(
-            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method'  => 'POST',
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
             'content' => http_build_query($data),
         ),
     );
 
-    $context  = stream_context_create($options);
+    $context = stream_context_create($options);
     $result = file_get_contents($url, false, $context);
+    $data = json_decode($result);
+
+    return $data;
 }
 
 

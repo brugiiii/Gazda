@@ -1,6 +1,5 @@
-import Toastify from 'toastify-js'
-import "toastify-js/src/toastify.css"
 import refs from "./refs"
+import {showToastMessage} from "./utils"
 
 const {registerForm, loginForm, authModal, formSwitcher} = refs;
 const {account_page_link, ajax_url} = settings
@@ -33,25 +32,10 @@ const handleRegisterFormSubmit = (e) => {
             formButton.attr('disabled', false);
 
             if (res.success) {
-                Toastify({
-                    text: res.data,
-                    duration: 4000,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    className: 'success'
-                }).showToast();
-
+                showToastMessage(res.data, "success")
                 window.location.href = account_page_link;
             } else {
-                Toastify({
-                    text: res.data,
-                    duration: 4000,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    className: 'error'
-                }).showToast();
+                showToastMessage(res.data, "error")
             }
         },
         error: (error) => console.log("error: ", error)
@@ -83,25 +67,10 @@ const handleLoginFormSubmit = (e) => {
             formButton.attr('disabled', false);
 
             if (res.success) {
-                Toastify({
-                    text: res.data,
-                    duration: 4000,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    className: 'success'
-                }).showToast();
-
+                showToastMessage(res.data, "success")
                 window.location.href = account_page_link;
             } else {
-                Toastify({
-                    text: res.data,
-                    duration: 4000,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    className: 'error'
-                }).showToast();
+                showToastMessage(res.data, "error")
             }
         },
         error: (error) => console.log("error: ", error)

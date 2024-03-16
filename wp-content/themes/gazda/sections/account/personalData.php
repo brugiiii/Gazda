@@ -51,7 +51,7 @@ $phone = $current_wc_user->get_billing_phone();
                    placeholder="+380 (XX) XXX XX XX">
         </label>
 
-        <button type="submit" class="button-primary position-relative border-0 fs-6">
+        <button type="submit" class="button-primary position-relative border-0 fs-6 button-loading">
             <span class="d-inline-block">
                 <?= translate_and_output('save_changes'); ?>
             </span>

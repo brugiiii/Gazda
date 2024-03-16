@@ -4,28 +4,38 @@
   background-image: url(../images/arrow.svg);
   background-repeat: no-repeat;
   background-position: top 12.9375rem left calc(50% - 624px);
+
+  & .form-wrapper {
+    max-width: 32.4375rem;
+    padding: 0 clamp(0rem, -1.139rem + 5.06vw, 2rem) clamp(0rem, -1.139rem + 5.06vw, 2rem);
+  }
 }
 
 .cta-title {
+  text-transform: uppercase;
+  
+  padding-top: clamp(0rem, -1.139rem + 5.06vw, 2rem);
   margin-bottom: 0.625rem;
+
+  color: $white-color;
 }
 
 .cta-text {
   margin-bottom: 2.5rem;
-}
 
-.cta-wrapper {
-  max-width: 32.4375rem;
-  padding: clamp(0rem, -1.139rem + 5.06vw, 2rem);
+  color: $white-color;
 }
 
 .cta-form__title {
+  color: $white-color;
+
   &::after {
     color: $team-accent-color;
   }
 }
 
 .options-list {
+  background-color: $white-color;
   padding: 0.6875rem 0;
 }
 
@@ -42,12 +52,11 @@
   }
 }
 
-.cta-button {
+.cta-form__button {
+  @include hover(color $white-color $team-accent-color, background-color $team-accent-color $white-color);
+
   min-width: 13.8125rem;
 
   padding: 0.75rem;
   border-radius: $primary-radius;
-
-  color: $white-color;
-  background-color: $team-accent-color;
 }

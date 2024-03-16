@@ -10,7 +10,7 @@ Template Name: Event
     <?= get_template_part('sections/event/heroSection'); ?>
     <?= get_template_part('sections/event/aboutSection'); ?>
     <?= get_template_part('sections/event/benefitsSection'); ?>
-    <?= get_template_part('sections/event/ctaSection'); ?>
+    <?= get_template_part('sections/ctaSection'); ?>
 </main>
 
 <?php get_footer(); ?>

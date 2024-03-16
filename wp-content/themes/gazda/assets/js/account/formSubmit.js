@@ -1,5 +1,5 @@
 import refs from "../main/refs"
-import Toastify from "toastify-js";
+import {showToastMessage} from "../main/utils"
 
 const {personalForm, passwordForm} = refs;
 const {ajax_url} = settings;
@@ -34,24 +34,9 @@ const handlePersonalFormSubmit = (e) => {
             formButton.attr('disabled', false);
 
             if (res.success) {
-                Toastify({
-                    text: res.data,
-                    duration: 4000,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    className: 'success'
-                }).showToast();
-
+                showToastMessage(res.data, "success")
             } else {
-                Toastify({
-                    text: res.data,
-                    duration: 4000,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    className: 'error'
-                }).showToast();
+                showToastMessage(res.data, "error")
             }
         },
         error: (error) => console.log("error: ", error)
@@ -68,17 +53,7 @@ const handlePasswordFormSubmit = (e) => {
     const newPassword = formData.get('new-password');
     const repeatNewPassword = formData.get('repeat-new-password');
 
-    if(newPassword !== repeatNewPassword){
-        Toastify({
-            text: 'Паролі не співпадають. Будь ласка, спробуйте ще раз.',
-            duration: 4000,
-            gravity: "top",
-            position: "right",
-            stopOnFocus: true,
-            className: 'error'
-        }).showToast();
-        return
-    }
+    if (newPassword !== repeatNewPassword) return showToastMessage("Паролі не співпадають. Будь ласка, спробуйте ще раз.", "error")
 
     const query = {
         old_password: oldPassword,
@@ -97,24 +72,9 @@ const handlePasswordFormSubmit = (e) => {
             formButton.attr('disabled', false);
 
             if (res.success) {
-                Toastify({
-                    text: res.data,
-                    duration: 4000,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    className: 'success'
-                }).showToast();
-
+                showToastMessage(res.data, "success")
             } else {
-                Toastify({
-                    text: res.data,
-                    duration: 4000,
-                    gravity: "top",
-                    position: "right",
-                    stopOnFocus: true,
-                    className: 'error'
-                }).showToast();
+                showToastMessage(res.data, "error")
             }
         },
         error: (error) => console.log("error: ", error)

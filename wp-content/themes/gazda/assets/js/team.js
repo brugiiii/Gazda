@@ -5,5 +5,6 @@ import "./main/utils"
 import "./event/select"
 import "./event/inputMask"
 import "./team/popup"
+import "./event/formSubmit"
 
 import "../css/team.scss"

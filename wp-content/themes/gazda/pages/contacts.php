@@ -9,7 +9,7 @@ Template Name: Contacts
 <main id="contacts">
     <?php
     get_template_part('sections/contacts/heroSection');
-    get_template_part('sections/event/ctaSection');
+    get_template_part('sections/ctaSection');
     ?>
 </main>
 

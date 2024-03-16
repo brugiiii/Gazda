@@ -117,6 +117,7 @@ function enqueue_scripts_and_styles()
         'account_page_link' => get_permalink(pll_get_post(6840, $current_lang))
     );
     wp_localize_script('main', 'settings', $settings);
+    wp_localize_script('team-js', 'settings', $settings);
 }
 
 function theme_setup()

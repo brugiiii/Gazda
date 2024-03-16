@@ -15360,15 +15360,6 @@ img {
 .button-primary:active {
   background-color: #1F7A4D;
 }
-.button-primary:disabled {
-  background-color: #DFE0E1;
-}
-.button-primary:disabled > span {
-  scale: 0;
-}
-.button-primary:disabled .loader-container {
-  scale: 1;
-}
 
 .button-secondary {
   padding: 0.5rem 1rem;
@@ -15439,18 +15430,18 @@ img {
   color: #1F252E;
 }
 
-.buy-button span {
+.button-loading span {
   -webkit-transition: scale 200ms ease-in-out;
   transition: scale 200ms ease-in-out;
 }
-.buy-button.loading {
+.button-loading.loading, .button-loading:disabled {
   pointer-events: none;
   background-color: #DFE0E1;
 }
-.buy-button.loading span {
+.button-loading.loading span, .button-loading:disabled span {
   scale: 0;
 }
-.buy-button.loading .loader-container {
+.button-loading.loading .loader-container, .button-loading:disabled .loader-container {
   scale: 1;
 }
 

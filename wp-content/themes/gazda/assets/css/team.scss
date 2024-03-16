@@ -7,9 +7,11 @@
 @import "base/utils";
 @import "base/common";
 
-
+//Vendors
+@import "vendors/loader";
 
 //Layout
+@import "layout/toastify";
 @import "layout/pageHeaderTeam";
 @import "layout/pageFooterTeam";
 

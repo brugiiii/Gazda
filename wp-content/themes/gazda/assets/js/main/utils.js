@@ -1,3 +1,5 @@
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css"
 import throttle from "lodash.throttle";
 import refs from "./refs";
 
@@ -64,6 +66,17 @@ export function enableBodyScroll() {
 
 export function disableBodyScroll() {
   bodyEl.css("overflow-y", "hidden");
+}
+
+export function showToastMessage($message, $class){
+  Toastify({
+    text: $message,
+    duration: 7000,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: true,
+    className: $class
+  }).showToast();
 }
 
 $("document").ready(function () {

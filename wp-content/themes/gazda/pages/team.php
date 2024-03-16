@@ -10,7 +10,7 @@ Template Name: Mykhailov`s Team
     <?=
     get_template_part('sections/team/heroSection');
     get_template_part('sections/team/vacanciesSection');
-    get_template_part('sections/team/ctaSection');
+    get_template_part('sections/ctaSection');
     ?>
 </main>
 

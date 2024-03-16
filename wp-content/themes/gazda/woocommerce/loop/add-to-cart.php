@@ -25,7 +25,7 @@ global $product;
 <div class="px-2 px-lg-3 pb-2 pb-lg-3">
     <a href="<?php echo esc_url($product->add_to_cart_url()); ?>"
        data-quantity="<?php echo esc_attr(isset($args['quantity']) ? $args['quantity'] : 1); ?>"
-       class="<?php echo esc_attr(isset($args['class']) ? $args['class'] : 'button'); ?> position-relative button-primary d-block buy-button" <?php echo isset($args['attributes']) ? wc_implode_html_attributes($args['attributes']) : ''; ?>>
+       class="<?php echo esc_attr(isset($args['class']) ? $args['class'] : 'button'); ?> position-relative button-primary d-block buy-button button-loading" <?php echo isset($args['attributes']) ? wc_implode_html_attributes($args['attributes']) : ''; ?>>
         <span class="d-flex align-items-center justify-content-center gap-2 h-100">
             <svg class="product-list__icon" width="24" height="24">
                 <use href="<?php get_image('sprite.svg#icon-shopping-cart'); ?>"></use>

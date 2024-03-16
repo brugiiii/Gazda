@@ -52,7 +52,7 @@
                    placeholder="<?= translate_and_output('write_new_password'); ?>" required min="6">
         </label>
 
-        <button type="submit" class="button-primary position-relative border-0 fs-6">
+        <button type="submit" class="button-primary position-relative border-0 fs-6  button-loading">
             <span class="d-inline-block">
                 <?= translate_and_output('save_changes'); ?>
             </span>

@@ -21,7 +21,6 @@ const refs = {
     toolbarTitle: $('.toolbar-wrapper__title'),
     orderButtonText: $('.order-button__text'),
     orderList: $('.order-list'),
-    selectButton: $('.select-button-js'),
     optionsList: $('.options-list'),
     optionsButtons: $('.options-list__button'),
     authBackdrop: $('#auth'),
@@ -38,9 +37,9 @@ const refs = {
     orderInfoWrapper: $('.order-info'),
     headerLink: $('.header .menu-item-has-children'),
     vacanciesButtons: $('.vacancies-list__button'),
-    formModalInput: $('#form-modal input[name="title"]'),
     formModal: $('#form-modal'),
     formModalTitle: $('.form-modal__title'),
+    formModalForm: $('#form-modal form'),
     hideFormModalButton: $('.form-modal__close'),
     submitForm: $('.form-js')
 };

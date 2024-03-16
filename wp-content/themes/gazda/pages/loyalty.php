@@ -9,7 +9,7 @@ Template Name: Loyalty
 <main id="loyalty">
     <?=
     get_template_part('sections/about/heroSection');
-    get_template_part('sections/loyalty/ctaSection');
+    get_template_part('sections/ctaSection');
     ?>
 </main>
 
