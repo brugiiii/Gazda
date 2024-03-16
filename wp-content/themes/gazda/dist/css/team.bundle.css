@@ -14648,7 +14648,7 @@ textarea::placeholder,
             transform: scale(1) rotate(360deg);
   }
 }
-.toastify {
+body .toastify {
   padding: 1rem 1.875rem;
   border-radius: 0.875rem;
   text-align: center;
@@ -14661,17 +14661,17 @@ textarea::placeholder,
   color: #303338;
 }
 @media screen and (min-width: 992px) {
-  .toastify {
+  body .toastify {
     width: 22.5rem;
   }
 }
-.toastify.error::before {
+body .toastify.error::before {
   background-color: #EB5757;
 }
-.toastify.success::before {
+body .toastify.success::before {
   background-color: #1F4C43;
 }
-.toastify::before {
+body .toastify::before {
   content: "";
   position: absolute;
   top: 0;

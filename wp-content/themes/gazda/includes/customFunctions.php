@@ -114,5 +114,42 @@ function send_telegram_message($form_title, $data)
     return $data;
 }
 
+function send_bitrix24_message($form_title, $data)
+{
+    $bitrix24_api_url = 'https://your-bitrix24-domain/rest/';
+    $access_token = 'your-access-token';
 
+    if (!empty($data) && is_array($data)) {
+        $message = $form_title . ":\n\n";
+
+        foreach ($data as $field) {
+            $value = $field['value'];
+
+            if (!$value) continue;
+
+            $message .= $field['name'] . ": " . $value . "\n";
+        }
+    }
+
+    $url = $bitrix24_api_url . 'im.message.add';
+    $params = array(
+        'ACCESS_TOKEN' => $access_token,
+        'CHAT_ID' => 'chat-id', // Replace 'chat-id' with the actual chat ID in Bitrix24
+        'MESSAGE' => $message,
+    );
+
+    $options = array(
+        'http' => array(
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($params),
+        ),
+    );
+
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    $data = json_decode($result);
+
+    return $data;
+}
 
