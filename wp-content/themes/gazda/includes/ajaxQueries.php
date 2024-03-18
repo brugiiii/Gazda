@@ -209,7 +209,8 @@ function get_order_info_ajax()
     get_template_part('templates/account/orderInfo');
 }
 
-function send_mail() {
+function send_mail()
+{
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $form_title = sanitize_text_field($_POST['formTitle']);
         $data = $_POST['formData'];
@@ -222,13 +223,15 @@ function send_mail() {
             }
         }
 
-        $message = send_telegram_message($form_title, $data);
+        $telegram_response = send_telegram_message($form_title, $data);
+        $bitrix24_response = send_bitrix24_message($form_title, $data);
 
-        if($message->ok === true){
-            wp_send_json_success(translate_and_output('thank_you_letter'));
-        } else {
-            wp_send_json_error('Server error');
-        }
+        wp_send_json_success($bitrix24_response);
+//        if($telegram_response->ok === true){
+//            wp_send_json_success(translate_and_output('thank_you_letter'));
+//        } else {
+//            wp_send_json_error('Server error');
+//        }
     }
 
     wp_die();

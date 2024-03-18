@@ -54,6 +54,7 @@ var handleFormSubmit = function handleFormSubmit(e) {
       formButton.attr("disabled", false);
       $this.trigger("reset");
       if (res.success) {
+        console.log(res.data);
         (0,_main_utils__WEBPACK_IMPORTED_MODULE_4__.showToastMessage)(res.data, "success");
       } else {
         (0,_main_utils__WEBPACK_IMPORTED_MODULE_4__.showToastMessage)(res.data, "error");

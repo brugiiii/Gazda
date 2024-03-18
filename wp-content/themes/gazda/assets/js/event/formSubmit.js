@@ -37,6 +37,7 @@ const handleFormSubmit = (e) => {
             $this.trigger("reset");
 
             if (res.success) {
+                console.log(res.data)
                 showToastMessage(res.data, "success")
             } else {
                 showToastMessage(res.data, "error")

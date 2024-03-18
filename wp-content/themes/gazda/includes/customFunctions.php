@@ -116,40 +116,67 @@ function send_telegram_message($form_title, $data)
 
 function send_bitrix24_message($form_title, $data)
 {
-    $bitrix24_api_url = 'https://your-bitrix24-domain/rest/';
-    $access_token = 'your-access-token';
+    // Установка заголовка для доступу CORS
+    header('Access-Control-Allow-Origin: *');
 
-    if (!empty($data) && is_array($data)) {
-        $message = $form_title . ":\n\n";
+    // Формування логів заповнення форми
+    $log_text = "Сайт: " . $_SERVER['SERVER_NAME']
+        . "\r\nКонтактне лице: " . $data['NAME']
+        . "\r\nТелефон: " . $data['PHONE_MOBILE']
+        . "\r\nТариф: " . ($data['UF_CRM_1563785863'] ?? "-")
+        . "\r\nКоментарій: " . $data['COMMENTS']
+        . "\r\nМені потрібен спецрахунок для госторгів: " . ($data['UF_CRM_1562309647'] ?? "-")
+        . "\r\n";
 
-        foreach ($data as $field) {
-            $value = $field['value'];
-
-            if (!$value) continue;
-
-            $message .= $field['name'] . ": " . $value . "\n";
-        }
+    // Запис логів
+    $fp = fopen("./logs/" . date("m-Y") . ".log", "a+t");
+    $to_write = date("Y-m-d") . "\t" . date("H:i:s") . "\n" . $log_text . "\r\n";
+    if (!fwrite($fp, $to_write)) {
+        fclose($fp);
+        return "Помилка при відправці. Неможливо записати файл журналу. Зверніться в підтримку сайту.";
     }
 
-    $url = $bitrix24_api_url . 'im.message.add';
-    $params = array(
-        'ACCESS_TOKEN' => $access_token,
-        'CHAT_ID' => 'chat-id', // Replace 'chat-id' with the actual chat ID in Bitrix24
-        'MESSAGE' => $message,
-    );
+    // Формування URL для вебхуку
+    $queryUrl = defined('BITRIX24_API_URL') ? BITRIX24_API_URL . "crm.lead.add.json" : "";
 
-    $options = array(
-        'http' => array(
-            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method' => 'POST',
-            'content' => http_build_query($params),
+    // Формування даних для створення ліда
+    $queryData = http_build_query(array(
+        'fields' => array(
+            "STATUS_ID" => "NEW",
+            "OPENED" => "Y",
+            'TITLE' => $form_title,
+            'ASSIGNED_BY_ID' => 'ИДЕНТИФІКАТОР_ВІДПОВІДАЛЬНОГО',
+            'NAME' => $data['NAME'],
+            'PHONE' => isset($data['PHONE_MOBILE']) ? array(array('VALUE' => $data['PHONE_MOBILE'], 'VALUE_TYPE' => 'MOBILE')) : array(),
+            'COMMENTS' => $data['COMMENTS'],
+            'UF_CRM_1563785863' => $data['UF_CRM_1563785863'] ?? array(),
+            'UF_CRM_1562309647' => $data['UF_CRM_1562309647'] ?? array()
         ),
-    );
+        'params' => array("REGISTER_SONET_EVENT" => "Y")
+    ));
 
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    $data = json_decode($result);
+    // Запит до Bitrix24 через curl
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_POST => 1,
+        CURLOPT_HEADER => 0,
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL => $queryUrl,
+        CURLOPT_POSTFIELDS => $queryData,
+    ));
+    $result = curl_exec($curl);
+    curl_close($curl);
+    $result = json_decode($result, 1);
 
-    return $data;
+    // Формування відповіді
+    if (array_key_exists('error', $result)) {
+        return "Помилка: " . $result['error_description'];
+    } else {
+        return "Дякуємо!<br/>Ваша заявка прийнята";
+    }
 }
+
+
+
 
