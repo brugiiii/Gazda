@@ -224,14 +224,12 @@ function send_mail()
         }
 
         $telegram_response = send_telegram_message($form_title, $data);
-        $bitrix24_response = send_bitrix24_message($form_title, $data);
 
-        wp_send_json_success($bitrix24_response);
-//        if($telegram_response->ok === true){
-//            wp_send_json_success(translate_and_output('thank_you_letter'));
-//        } else {
-//            wp_send_json_error('Server error');
-//        }
+        if($telegram_response->ok === true){
+            wp_send_json_success(translate_and_output('thank_you_letter'));
+        } else {
+            wp_send_json_error('Server error');
+        }
     }
 
     wp_die();
