@@ -1,0 +1,12 @@
+//Utils
+@import "base/variables";
+@import "utils/mixins";
+
+//Home
+@import 'components/home/heroSection';
+@import "components/home/aboutSection";
+@import "components/home/shopSection";
+@import "components/home/reviewsSection";
+@import "components/home/appSection";
+@import "components/home/gallerySection";
+@import "components/home/contactsSection";

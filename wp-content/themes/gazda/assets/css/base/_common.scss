@@ -1,0 +1,164 @@
+.container {
+  @media screen and (max-width: 575px) {
+    padding: 0 1rem;
+    max-width: 540px;
+  }
+
+  @media screen and (min-width: 1024px){
+    max-width: 64rem;
+
+    padding: 0 2.75rem;
+  }
+
+  @media screen and (min-width: 1200px){
+    max-width: 1140px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 90rem;
+    padding: 0 8.125rem;
+  }
+}
+
+.section-title {
+  font-size: clamp(2.125rem, 1.911rem + 0.95vw, 2.5rem);
+  text-transform: uppercase;
+}
+
+.button-primary {
+  @include hover(background-color $accent-color $secondary-bg-color,);
+
+  height: 3rem;
+
+  padding: 0 0.44rem;
+  border-radius: $primary-radius;
+
+  fill: $white-color;
+  color: $white-color;
+
+  @media screen and (max-width: 991px) {
+    height: 2.5rem;
+
+    letter-spacing: 0.01875rem;
+  }
+
+  &:active {
+    background-color: $fourth-bg-color;
+  }
+}
+
+.button-secondary {
+  padding: 0.5rem 1rem;
+
+  border-radius: $secondary-radius;
+
+  fill: $white-color;
+
+  @media screen and (min-width: 992px) {
+    padding: 0.75rem 1rem;
+  }
+}
+
+.ctrls-list__item {
+  @include hover(fill $secondary-accent-color $accent-color);
+}
+
+.swiper-pagination-horizontal {
+  &.swiper-pagination-bullets .swiper-pagination-bullet {
+    width: 0.5rem;
+    height: 0.5rem;
+
+    margin: 0;
+
+    opacity: 1;
+    background-color: $ninth-bg-color;
+
+    &.swiper-pagination-bullet-active {
+      background-color: $secondary-accent-color;
+    }
+
+    &:not(:last-child) {
+      margin-right: 0.75rem;
+    }
+  }
+}
+
+.breadcrumb {
+  display: block;
+
+  margin-bottom: 0;
+
+  font-size: 0.875rem;
+  letter-spacing: 0.01875rem;
+  line-height: 1.4;
+
+  color: $eighth-text-color;
+
+  @media screen and (max-width: 991px) {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+
+    border-bottom: 1px solid $fifth-bg-color;
+    background-color: $fourth-text-color;
+  }
+
+  @media screen and (min-width: 992px) {
+    margin-bottom: 1.5rem;
+  }
+
+  & .current {
+    color: $third-text-color;
+  }
+}
+
+.button-loading {
+  & span {
+    @include transition(scale);
+  }
+
+  &.loading,
+  &:disabled {
+    pointer-events: none;
+    background-color: $fifth-bg-color;
+
+    & span {
+      scale: 0;
+    }
+
+    & .loader-container {
+      scale: 1;
+    }
+  }
+}
+
+.fly-cart {
+  pointer-events: none;
+  z-index: 9999;
+  width: 200px;
+}
+
+textarea {
+  resize: none;
+  height: 5.125rem;
+}
+
+input {
+  height: 2.5rem;
+}
+
+input,
+textarea,
+.select-button-js{
+  padding: 0.625rem 0.75rem;
+  border-radius: $primary-radius;
+
+  &::placeholder {
+    font-weight: 300;
+    color: $fifth-text-color;
+  }
+}
+
+.form-title {
+  letter-spacing: 0.03125rem;
+  color: $third-text-color;
+}

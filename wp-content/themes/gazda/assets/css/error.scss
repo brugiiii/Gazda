@@ -1,0 +1,40 @@
+@import "base/variables";
+
+#error {
+  padding-top: 3.75rem;
+  padding-bottom: 2.875rem;
+}
+
+.thumb {
+  aspect-ratio: 1 / calc(24.625 / 25.75);
+
+  max-width: 25.75rem;
+  
+  margin-bottom: 1.5rem;
+
+  background-image: url(../images/404.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.error-text {
+  margin-bottom: 1.5rem;
+
+  font-size: 1.125rem;
+  line-height: 1.5;
+
+  color: $third-text-color;
+}
+
+.error-link {
+  min-width: 13.8125rem;
+  height: initial;
+
+  padding: 0.84rem;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: normal;
+  color: $white-color;
+}

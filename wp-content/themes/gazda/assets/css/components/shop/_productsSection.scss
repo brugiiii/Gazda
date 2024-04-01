@@ -1,0 +1,38 @@
+#shop, #delivery {
+  padding-bottom: 2.5rem;
+
+  line-height: 1.4;
+  font-size: 0.875rem;
+  letter-spacing: 0.01875rem;
+
+  @media screen and (min-width: 992px) {
+    padding-top: 1.5rem;
+  }
+
+  & .products > .container {
+    @media screen and (max-width: 991px) {
+      max-width: initial;
+      padding: 0;
+    }
+
+    & .container {
+      @media screen and (min-width: 992px) {
+        display: contents;
+      }
+    }
+  }
+
+  & button {
+    letter-spacing: inherit;
+  }
+
+  & h2:not(.woocommerce-loop-product__title) {
+    font-size: 1.5rem;
+
+    color: $third-text-color;
+  }
+}
+
+.products-wrapper {
+  gap: 1.25rem;
+}

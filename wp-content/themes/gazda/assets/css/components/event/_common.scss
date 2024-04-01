@@ -1,0 +1,38 @@
+.button-secondary {
+  all: unset;
+
+  min-width: clamp(13.375rem, 13.126rem + 1.11vw, 13.813rem);
+
+  padding: clamp(0.625rem, 0.503rem + 0.54vw, 0.84rem);
+
+  font-size: clamp(0.875rem, 0.804rem + 0.32vw, 1rem);
+
+  border-radius: $primary-radius;
+  background-color: $secondary-accent-color;
+
+  cursor: pointer;
+
+  @media screen and (max-width: 991px) {
+    line-height: 1.4;
+    letter-spacing: 0.03125rem;
+  }
+}
+
+.title {
+  font-size: 2rem;
+
+  @media screen and (min-width: 992px) {
+    text-transform: uppercase;
+  }
+}
+
+%styled-list-item {
+  display: flex;
+  gap: 0.5rem;
+
+  &::before {
+    content: '•';
+
+    flex-shrink: 0;
+  }
+}

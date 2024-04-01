@@ -1,0 +1,84 @@
+.auth {
+  width: clamp(20.5rem, 17.652rem + 12.66vw, 25.5rem);
+  padding: 2.5rem clamp(1rem, 0.146rem + 3.8vw, 2.5rem) 1.5rem;
+  gap: clamp(1rem, 0.146rem + 3.8vw, 2.5rem);
+
+  &.login-form {
+    & .login {
+      display: block;
+    }
+
+    & .register {
+      display: none;
+    }
+  }
+
+  & .login {
+    display: none;
+  }
+}
+
+.login {
+  & .auth-title {
+    margin-bottom: 0.13rem;
+  }
+}
+
+.auth-title {
+  font-size: 1.25rem;
+  line-height: calc(1.7875 / 1.25);
+}
+
+.auth-form__field {
+  &:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.auth-form__input {
+  background-color: $fourth-text-color;
+
+  &::placeholder {
+    color: $fifth-text-color;
+  }
+}
+
+.auth-form__button {
+  height: 3rem;
+}
+
+.loader-container {
+  scale: 0;
+}
+
+.auth-terms {
+  font-size: 0.75rem;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.register-text {
+  & button {
+    @include hover(color $secondary-accent-color $accent-color);
+  }
+}
+
+.register .auth-title,
+.auth-form,
+.auth-terms,
+.auth-form__field:last-child,
+.auth-undertitle {
+  margin-bottom: 2rem;
+}
+
+.auth-title,
+.auth-form__title,
+.register-text {
+  color: $third-text-color;
+}
+
+.auth-form__title,
+.auth-form__input,
+.register-text {
+  letter-spacing: 0.03125rem;
+}

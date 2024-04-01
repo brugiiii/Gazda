@@ -1,0 +1,205 @@
+.products-wrapper {
+  & .parent-swiper,
+  & .child-swiper {
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  & .nav-wrapper > div:last-child,
+  & .child-swiper {
+    gap: 0.625rem;
+  }
+
+  & .parent-swiper {
+    margin-bottom: 0.75rem;
+  }
+
+  & .child-swiper {
+    display: none;
+
+    &.visible {
+      display: flex;
+    }
+  }
+
+  & .parent-swiper__item,
+  & .child-swiper__item {
+    scroll-snap-align: center;
+  }
+
+  & .parent-swiper__button,
+  & .child-swiper__button {
+    white-space: nowrap;
+
+    line-height: 1.4;
+    letter-spacing: 0.03125rem !important;
+  }
+
+  & .parent-swiper__button {
+    @include transition(border-bottom-color);
+
+    padding-bottom: 0.3125rem;
+
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: transparent;
+
+    color: inherit;
+
+    &.is-active {
+      border-bottom-color: $accent-color;
+    }
+  }
+
+  & .child-swiper__button {
+    @include transition(color, background-color);
+
+    padding: 0.625rem 0.75rem;
+
+    border-radius: $fourth-radius;
+
+    color: $third-text-color;
+    background-color: $white-color;
+
+    &.is-active {
+      background-color: $secondary-accent-color;
+      color: $white-color;
+    }
+  }
+}
+
+.nav-wrapper {
+  &.accordion {
+    & .nav-list__item {
+      &:not(:last-child) {
+        margin-bottom: 0.75rem;
+      }
+
+      &:not(:first-child) {
+        & .sub-menu {
+          display: none;
+        }
+      }
+    }
+
+    & .sub-menu {
+      margin-top: 0.75rem;
+    }
+
+    & .sub-menu__item {
+      &:not(:first-child) {
+        & .sub-menu__button {
+          padding-top: 0.375rem;
+        }
+      }
+
+      &:not(:last-child) {
+        & .sub-menu__button {
+          padding-bottom: 0.375rem;
+        }
+      }
+
+      &:first-child {
+        & .sub-menu__button {
+          padding-top: 0;
+        }
+      }
+
+      &:last-child {
+        & .sub-menu__button {
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    & .sub-menu__button {
+      &::before {
+        @include transition(opacity);
+
+        content: '';
+
+        display: block;
+
+        width: 1rem;
+        height: 1rem;
+
+        opacity: 0;
+
+        background-image: url(../images/icon_caret_right.svg);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      &.is-active {
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+
+    & .nav-list__button {
+      font-size: 1.125rem;
+      line-height: 1.5;
+    }
+
+    & .nav-list__button,
+    & .sub-menu__button {
+      @include transition(color);
+
+      color: inherit;
+    }
+  }
+
+  &.desk {
+    & .nav-list__button,
+    & .sub-menu__button {
+      &.is-active {
+        color: $third-text-color;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          color: $third-text-color;
+        }
+      }
+
+      @media (hover: none) {
+        &:active {
+          color: $third-text-color;
+        }
+      }
+    }
+  }
+
+  &.mob {
+    & .nav-list__button,
+    & .sub-menu__button {
+      &.is-active {
+        color: $white-color;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          color: $white-color;
+        }
+      }
+
+      @media (hover: none) {
+        &:active {
+          color: $white-color;
+        }
+      }
+    }
+
+    & .sub-menu__button {
+      &::before {
+        background-image: url(../images/icon_caret_right_white.svg);
+      }
+    }
+  }
+}

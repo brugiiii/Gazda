@@ -1,0 +1,40 @@
+#account {
+  padding-bottom: 4.25rem;
+
+  @media screen and (min-width: 992px) {
+    padding-top: 1.5rem;
+  }
+
+  & .breadcrumb {
+    margin-bottom: clamp(1.063rem, 0.813rem + 1.11vw, 1.5rem);
+  }
+
+  & > .breadcrumb {
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+  }
+
+  & .container {
+    .breadcrumb {
+      @media screen and (max-width: 991px) {
+        display: none;
+      }
+    }
+  }
+
+  h2 {
+    padding-bottom: 0.6875rem;
+    border-bottom: 1px solid $fourth-text-color;
+
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: calc(1.62 / 1.25);
+
+    color: $third-text-color;
+  }
+}
+
+.account-wrapper {
+  gap: clamp(1rem, 0.858rem + 0.63vw, 1.25rem);
+}

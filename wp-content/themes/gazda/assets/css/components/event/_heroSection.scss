@@ -1,0 +1,69 @@
+.hero {
+  height: 100dvh;
+
+  line-height: normal;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: $white-color;
+
+  @media screen and (min-width: 992px) {
+    height: 44.5rem;
+
+    padding-top: 1.94rem;
+  }
+
+  & > .breadcrumb {
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+  }
+
+  & .container {
+    & .breadcrumb {
+      @media screen and (max-width: 991px) {
+        display: none;
+      }
+    }
+  }
+}
+
+.breadcrumb {
+  color: $secondary-text-color;
+
+  @media screen and (min-width: 992px) {
+    margin-bottom: 9.41rem;
+  }
+
+  & .current {
+    @media screen and (min-width: 992px) {
+      color: $white-color;
+    }
+  }
+}
+
+.hero-title {
+  margin-bottom: 0.9375rem;
+
+  font-size: clamp(1.938rem, 1.332rem + 2.69vw, 3rem);
+  
+  @media screen and (min-width: 992px) {
+    text-transform: uppercase;
+  }
+}
+
+.hero-text {
+  margin-bottom: 1.5rem;
+
+  font-size: 1rem;
+}
+
+.hero-title,
+.hero-text {
+  & br {
+    @media screen and (max-width: 991px) {
+      display: none;
+    }
+  }
+}

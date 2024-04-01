@@ -1,0 +1,359 @@
+/*!*******************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/toastify-js/src/toastify.css ***!
+  \*******************************************************************************************************************************************************************/
+/*!
+ * Toastify js 1.12.0
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2018 Varun A P
+ */
+
+.toastify {
+    padding: 12px 20px;
+    color: #ffffff;
+    display: inline-block;
+    -webkit-box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+            box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+    background: linear-gradient(135deg, #73a5ff, #5477f5);
+    position: fixed;
+    opacity: 0;
+    -webkit-transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    max-width: calc(50% - 20px);
+    z-index: 2147483647;
+}
+
+.toastify.on {
+    opacity: 1;
+}
+
+.toast-close {
+    background: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    opacity: 0.4;
+    padding: 0 5px;
+}
+
+.toastify-right {
+    right: 15px;
+}
+
+.toastify-left {
+    left: 15px;
+}
+
+.toastify-top {
+    top: -150px;
+}
+
+.toastify-bottom {
+    bottom: -150px;
+}
+
+.toastify-rounded {
+    border-radius: 25px;
+}
+
+.toastify-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin: -7px 5px;
+    border-radius: 2px;
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: -webkit-fit-content;
+    max-width: fit-content;
+    max-width: -moz-fit-content;
+}
+
+@media only screen and (max-width: 360px) {
+    .toastify-right, .toastify-left {
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        max-width: -webkit-fit-content;
+        max-width: -moz-fit-content;
+        max-width: fit-content;
+    }
+}
+
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/css/loyalty.scss ***!
+  \****************************************************************************************************************************************************************************************/
+.button-secondary {
+  all: unset;
+  min-width: clamp(13.375rem, 13.126rem + 1.11vw, 13.813rem);
+  padding: clamp(0.625rem, 0.503rem + 0.54vw, 0.84rem);
+  font-size: clamp(0.875rem, 0.804rem + 0.32vw, 1rem);
+  border-radius: 0.75rem;
+  background-color: #E5A83A;
+  cursor: pointer;
+}
+@media screen and (max-width: 991px) {
+  .button-secondary {
+    line-height: 1.4;
+    letter-spacing: 0.03125rem;
+  }
+}
+
+.title {
+  font-size: 2rem;
+}
+@media screen and (min-width: 992px) {
+  .title {
+    text-transform: uppercase;
+  }
+}
+
+.hero {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media screen and (min-width: 992px) {
+  .hero > .breadcrumb {
+    display: none;
+  }
+}
+.hero .container {
+  height: clamp(38.25rem, 33.408rem + 21.52vw, 46.75rem);
+}
+.hero .container .breadcrumb {
+  position: absolute;
+  top: 1.5rem;
+  margin-bottom: 0rem;
+}
+@media screen and (max-width: 991px) {
+  .hero .container .breadcrumb {
+    display: none;
+  }
+}
+.hero .container .breadcrumb .current {
+  color: #FFF;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 1.43rem + 2.53vw, 3rem);
+  line-height: 1.295;
+}
+@media screen and (min-width: 992px) {
+  .hero-title {
+    line-height: 1.295;
+    text-transform: uppercase;
+  }
+}
+
+.hero-text {
+  font-size: clamp(0.875rem, 0.804rem + 0.32vw, 1rem);
+  line-height: 1.4;
+  letter-spacing: 0.03125rem;
+}
+@media screen and (min-width: 992px) {
+  .hero-text {
+    line-height: 1.295;
+    letter-spacing: normal;
+  }
+}
+@media screen and (max-width: 991px) {
+  .hero-text br {
+    display: none;
+  }
+}
+
+.steps {
+  padding-top: 13.5rem;
+}
+
+.steps-list {
+  max-width: 66.5rem;
+  background-image: url(../images/arrow_bottom_right.svg), url(../images/arrow_bottom_left.svg);
+  background-repeat: no-repeat;
+  background-position: top 27% left 34%, bottom 12.31% left 34%;
+}
+
+.steps__item {
+  max-width: 36.25rem;
+  padding: 1rem;
+}
+@media screen and (min-width: 992px) {
+  .steps__item {
+    padding: 1.5rem;
+  }
+}
+@supports (padding: clamp(1rem, 0.715rem + 1.27vw, 1.5rem)) {
+  .steps__item {
+    padding: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
+  }
+}
+.steps__item:nth-child(even) {
+  margin-left: auto;
+}
+.steps__item:nth-child(2) {
+  margin-top: 27.1875rem;
+}
+.steps__item:last-child {
+  margin-top: 21.625rem;
+}
+
+.steps__title {
+  color: #1F252E;
+  font-size: 2rem;
+  line-height: 1.295;
+}
+@media screen and (min-width: 992px) {
+  .steps__title {
+    font-size: 3rem;
+    line-height: 1.295;
+  }
+}
+@supports (font-size: clamp(2rem, 1.43rem + 2.53vw, 3rem)) {
+  .steps__title {
+    font-size: clamp(2rem, 1.43rem + 2.53vw, 3rem);
+  }
+}
+@media screen and (min-width: 992px) {
+  .steps__title {
+    text-transform: uppercase;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .steps__text br {
+    display: none;
+  }
+}
+
+.cta {
+  padding: clamp(6.5rem, 5.432rem + 4.75vw, 8.375rem) 0;
+  background-image: url(../images/wave.webp), url(../images/cloud.webp);
+  background-repeat: no-repeat;
+  background-position: top 20rem left calc(50% - 40.625rem), top 2.6875rem right calc(50% - 28.125rem);
+}
+
+.cta-title {
+  margin-bottom: 2rem;
+  color: #1F252E;
+}
+
+.form-wrapper {
+  max-width: 28.4375rem;
+}
+
+.cta-form__field:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+.cta-form__field:last-of-type {
+  margin-bottom: 2rem;
+}
+.cta-form__field:not(:has(.cta-form__input[required])) .cta-form__title::after {
+  content: "";
+}
+
+.cta-form__input.select {
+  cursor: pointer;
+}
+
+.cta-form__title::after {
+  content: "*";
+  color: #E5A83A;
+}
+
+.cta-form__button {
+  height: 3rem;
+  font-size: 1rem;
+  line-height: normal;
+}
+
+.select:not(:focus) ~ .options-list {
+  opacity: 0;
+  visibility: hidden;
+}
+.select:focus ~ .cta-form___icon {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+
+.cta-form___icon {
+  -webkit-transition: -webkit-transform 300ms ease-in-out;
+  transition: -webkit-transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+  right: 0.625rem;
+  bottom: 0.5rem;
+}
+
+.options-list {
+  -webkit-transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+  top: calc(100% + 0.25rem);
+  border-radius: 1rem;
+  -webkit-box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+          box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+}
+
+.options-list__item:first-child .options-list__button {
+  padding-top: 0.75rem;
+}
+.options-list__item:last-child .options-list__button {
+  padding-bottom: 0.75rem;
+}
+.options-list__item:not(:last-child) .options-list__button {
+  padding-bottom: 0.5rem;
+}
+.options-list__item:not(:first-child) .options-list__button {
+  padding-top: 0.5rem;
+}
+
+.options-list__button {
+  color: #1F252E;
+  background-color: #FFF;
+  -webkit-transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+@media (hover: hover) {
+  .options-list__button:hover {
+    color: #FFF;
+  }
+  .options-list__button:focus {
+    color: #FFF;
+  }
+}
+@media (hover: none) {
+  .options-list__button:active {
+    color: #FFF;
+  }
+}
+@media (hover: hover) {
+  .options-list__button:hover {
+    background-color: #1F4C43;
+  }
+  .options-list__button:focus {
+    background-color: #1F4C43;
+  }
+}
+@media (hover: none) {
+  .options-list__button:active {
+    background-color: #1F4C43;
+  }
+}
+.options-list__button.is-active {
+  color: #FFF;
+  background-color: #1F4C43;
+}
+
+/*# sourceMappingURL=loyalty.bundle.css.map*/

@@ -1,0 +1,37 @@
+.current-filter {
+  & button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    height: 1.75rem;
+
+    border-radius: $fourth-radius;
+    border: 1px solid $accent-color;
+    margin-top: 0.75rem;
+
+    color: $accent-color;
+    background-color: transparent;
+
+    @media screen and (min-width: 992px) {
+      margin-top: 0.5rem;
+    }
+
+    &:before {
+      content: '';
+
+      display: block;
+      
+      width: 1rem;
+      height: 1rem;
+
+      padding: 0 0.5rem;
+
+      background-image: url(../images/icon_close.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+}

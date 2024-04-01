@@ -1,0 +1,111 @@
+.team {
+  padding-top: clamp(4.5rem, 2.293rem + 9.81vw, 8.375rem);
+  padding-bottom: 4rem;
+
+  @media screen and (min-width: 992px) {
+    padding-top: clamp(8.375rem, 7.144rem + 1.92vw, 8.875rem);
+    padding-bottom: 3.5rem;
+  }
+
+  &:not(:has(.team-list__item:nth-child(2))) {
+    & .ctrl-list {
+      display: none !important;
+    }
+  }
+
+  @media screen and (min-width: 576px) {
+    &:not(:has(.team-list__item:nth-child(3))) {
+      & .ctrl-list {
+        display: none !important;
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    &:not(:has(.team-list__item:nth-child(4))) {
+      & .ctrl-list {
+        display: none !important;
+      }
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    &:not(:has(.team-list__item:nth-child(5))) {
+      & .ctrl-list {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.team-title {
+  margin-bottom: clamp(3.5rem, 2.717rem + 3.48vw, 4.875rem);
+
+  font-size: clamp(2.125rem, 1.911rem + 0.95vw, 2.5rem);
+  line-height: calc(44.03 / 34);
+
+  color: $third-text-color;
+
+  @media screen and (min-width: 992px) {
+    line-height: calc(51.08 / 40);
+  }
+}
+
+.team-swiper {
+  @media screen and (max-width: 575px) {
+    max-width: 13.6875rem;
+  }
+
+  @media screen and (max-width: 991px) {
+    overflow: visible !important;
+  }
+}
+
+.team-list__item {
+  box-sizing: border-box;
+
+  padding: 2.0625rem 0.5rem;
+  border-radius: $third-radius;
+
+  color: $fifth-bg-color;
+  background-color: $accent-color;
+}
+
+.team-list__thumb {
+  padding: 0 1.125rem;
+  height: clamp(12.75rem, -0.788rem + 21.15vw, 18.25rem);
+}
+
+.team-list__image {
+  object-fit: contain;
+}
+
+.team-list__name {
+  font-size: 1.25rem;
+  line-height: calc(28.6 / 20);
+}
+
+.team-list__position {
+  font-size: 1.125rem;
+  line-height: calc(27 / 18);
+}
+
+.ctrl-list {
+  width: fit-content;
+
+  margin-top: 3.5rem;
+  border-radius: $primary-radius;
+  background-color: $secondary-accent-color;
+}
+
+.ctrl-list__item {
+  @include hover(fill $white-color $accent-color);
+
+  &:first-child {
+    padding-right: 11.5px;
+  }
+
+  &:last-child {
+    padding-left: 11.5px;
+  }
+}

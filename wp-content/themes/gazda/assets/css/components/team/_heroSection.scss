@@ -1,0 +1,87 @@
+.hero {
+  padding-top: 6.25rem;
+  padding-bottom: clamp(2.063rem, -2.494rem + 20.25vw, 10.063rem);
+
+  @media screen and (min-width: 992px) {
+    padding-top: 2.8125rem;
+  }
+}
+
+.hero-bg {
+  top: -0.8125rem;
+  left: calc(50% + 27.1875rem);
+
+  width: 18.75rem;
+  height: 18.75rem;
+
+}
+
+.hero-wrapper {
+  @media screen and (min-width: 992px) {
+    gap: 1.4375rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    gap: 1.875rem;
+  }
+}
+
+.hero-logo {
+  @media screen and (max-width: 991px) {
+    margin-bottom: -4.875rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 49.5rem;
+  }
+}
+
+.hero-logo__image {
+  object-fit: contain;
+}
+
+.hero-thumb-wrapper {
+  @media screen and (min-width: 992px) {
+    padding-right: 3.8125rem;
+  }
+}
+
+.hero-thumb {
+  aspect-ratio: 1 / calc(279 / 174);
+
+  @media screen and (max-width: 991px) {
+    width: 53.04%;
+
+    margin-left: auto;
+    margin-right: clamp(1.188rem, -0.308rem + 6.65vw, 3.813rem);
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 24.75rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 23.875rem;
+    height: 35.875rem;
+  }
+}
+
+.hero-text {
+  padding: clamp(1rem, 0.715rem + 1.27vw, 1.5rem) clamp(1rem, 0.43rem + 2.53vw, 2rem);
+  border-radius: $primary-radius;
+
+  font-size: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
+
+  color: $third-text-color;
+
+  @media screen and (min-width: 992px) {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transform: translateY(-50%);
+
+    width: 32.0625rem;
+
+    line-height: calc(35.57 / 24);
+  }
+}

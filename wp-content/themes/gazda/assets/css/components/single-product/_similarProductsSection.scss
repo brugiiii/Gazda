@@ -1,0 +1,56 @@
+.similar-products-section {
+  padding-top: 1.5rem;
+}
+
+.similar-products-swiper {
+  padding-bottom: 3.5rem;
+}
+
+.similar-products-title {
+  padding-bottom: 0.3125rem;
+  border-bottom: 3px solid $accent-color;
+
+  font-size: 1.125rem;
+  line-height: 1.5;
+
+  color: $seventh-text-color;
+}
+
+.similar-products-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.product{
+  flex-basis: initial;
+  box-sizing: border-box;
+}
+
+.add_to_cart_button {
+  min-width: initial;
+}
+
+.ctrl-list {
+  border-radius: $primary-radius;
+
+  background-color: $accent-color;
+}
+
+.ctrl-list__item {
+  @include transition(background-color);
+
+  fill: $white-color;
+
+  &:hover {
+    background-color: $secondary-bg-color;
+  }
+
+  &.prev {
+    padding-right: 0.71875rem;
+    border-radius: $primary-radius 0 0 $primary-radius;
+  }
+
+  &.next {
+    padding-left:  0.71875rem;
+    border-radius: 0 $primary-radius $primary-radius 0;
+  }
+}

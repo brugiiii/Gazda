@@ -1,0 +1,161 @@
+.section {
+  padding-bottom: 2.625rem;
+  color: $third-text-color;
+
+  & form {
+    max-width: 20.5rem;
+  }
+
+  input {
+    background-color: $fourth-text-color;
+  }
+
+  & > div {
+    &:not(:first-child) {
+      display: none;
+    }
+  }
+}
+
+.form-field {
+  &:not(:last-of-type) {
+    margin-bottom: 0.75rem;
+  }
+
+  &:last-of-type {
+    margin-bottom: 2rem;
+  }
+}
+
+.form-field__button {
+  padding: 0.5rem 0.75rem;
+
+  fill: $fifth-text-color;
+
+  &.is-active {
+    & .show {
+      display: none;
+    }
+  }
+
+  &:not(.is-active) {
+    & .hide {
+      display: none;
+    }
+  }
+}
+
+.orders-list__item {
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &.loading {
+    & .loader-container {
+      scale: 1.5;
+    }
+  }
+
+  .loader .circle {
+    background-color: $accent-color;
+  }
+}
+
+.orders-list__button {
+  @include transition(opacity);
+
+  border-radius: $fourth-radius;
+  border: 1px solid $fourth-text-color;
+
+  letter-spacing: normal;
+
+  &:disabled {
+    opacity: 0.7;
+  }
+}
+
+.orders-list__wrapper {
+  margin-bottom: clamp(1rem, 0.715rem + 1.27vw, 1.5rem);
+}
+
+.orders-list__date {
+  color: $secondary-text-color;
+}
+
+.orders-list__title {
+  font-size: 1.125rem;
+  line-height: calc(1.6875 / 1.125);
+}
+
+.orders-list__price {
+  letter-spacing: 0.03125rem;
+}
+
+.swiper-button {
+  @include hover(color $accent-color $secondary-bg-color, fill $accent-color $secondary-bg-color);
+
+  box-sizing: content-box;
+  min-width: 10.25rem;
+  padding: 0.75rem;
+}
+
+.order-info__title {
+  line-height: 1.295;
+}
+
+.products-list__item {
+  border-bottom: 1px solid $fourth-text-color;
+
+  &:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.products-list__thumb {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: $fifth-radius;
+}
+
+.products-list__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  max-width: clamp(13rem, 11.006rem + 8.86vw, 16.5rem);
+
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.products-list__price {
+  font-size: 1.125rem;
+  line-height: calc(1.6875 / 1.125);
+
+  color: $secondary-accent-color;
+}
+
+.total-price {
+  font-size: 1.125rem;
+  line-height: calc(1.6875 / 1.125);
+}
+
+.total-price__item {
+  color: $secondary-text-color;
+}
+
+.price-details {
+  border: 1px solid $accent-color;
+  background-color: $fourth-text-color;
+}
+
+.price-details__item {
+  color: $secondary-text-color;
+}
+
+.price-details__field {
+  &:last-child {
+    font-size: 1.125rem;
+    line-height: calc(1.6875 / 1.125);
+  }
+}
