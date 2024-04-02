@@ -93,6 +93,7 @@
 }
 .xoo-wsc-icon-trash:before {
   content: "\e908";
+  opacity: 0.5;
 }
 .xoo-wsc-icon-cross:before {
   content: "\e909";

@@ -115,13 +115,12 @@ else{
 	border: <?php echo $HVbuttonBorder ?>;
 }
 
-<?php endif; ?> 
+<?php endif; ?>
 
 .xoo-wsc-footer{
 	background-color: <?php echo $ftrBgColor ?>;
 	color: <?php echo $ftrTxtColor ?>;
 	padding: <?php echo $ftrPadding ?>;
-	box-shadow: <?php echo $ftrShadow ?>;
 }
 
 .xoo-wsc-footer, .xoo-wsc-footer a, .xoo-wsc-footer .amount{
@@ -237,7 +236,7 @@ span.xoo-wsch-close {
 }
 
 .xoo-wsc-body{
-	background-color: <?php echo $bodyBGColor ?>;
+<!--	background-color: --><?php //echo $bodyBGColor ?><!--;-->
 }
 
 .xoo-wsc-body, .xoo-wsc-body span.amount, .xoo-wsc-body a{
@@ -248,8 +247,6 @@ span.xoo-wsch-close {
 .xoo-wsc-product{
 	padding: <?php echo $bPpadding ?>;
 	margin: <?php echo $bPmargin ?>;
-	border-radius: <?php echo $bPradius ?>px;
-	box-shadow: <?php echo $bPshadow ?>;
 	background-color: <?php echo $bpBgColor ?>;
 }
 

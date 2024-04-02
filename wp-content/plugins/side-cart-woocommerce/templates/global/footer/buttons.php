@@ -27,19 +27,25 @@ $buttonHTML = '<a href="%1$s" class="%2$s">%3$s</a>';
 ?>
 <div class="xoo-wsc-ft-buttons-cont">
 
-	<?php foreach ( $buttons as $key => $button_data ){
+    <?php
+    if(count($buttons) > 1){
+    // Виводити посилання на сторінку оплати
+        ?>
+        <a class="cart-button" href="<?= get_permalink("checkout"); ?>">
+            <?= translate_and_output("to_order"); ?>
+        </a>
+        <?php
+    } else {
+   // Посилання на сторінку магазину
+        ?>
+            <img  alt="" src="<?= get_image("image_no_products.svg"); ?>"/>
+        <a class="cart-button" href="<?= get_permalink("shop"); ?>">
+            <?= translate_and_output("view_products"); ?>
+        </a>
 
-		if( !$button_data['label'] ) continue;
-		$button_data['class'][] = 'xoo-wsc-ft-btn-'.$key;
-
-		printf(
-			$buttonHTML,
-			esc_url( $button_data['url'] ),
-			implode( ' ', $button_data['class'] ),
-			wp_kses_post( $button_data['label'] )
-		);
-
-	} ?>
+            <?php
+    }
+    ?>
 
 </div>
 

@@ -38,7 +38,6 @@ extract( Xoo_Wsc_Template_Args::cart_body() );
 		$emptyHTML .= sprintf( '<a class="%1$s" href="%2$s">%3$s</a>', esc_attr( $buttonClass ), esc_url( $shopURL ), esc_html( $shopBtnText ) );
 	}
 
-	printf( '<div class="xoo-wsc-empty-cart">%s</div>', $emptyHTML );
 
 	do_action( 'xoo_wsc_empty_cart_content' );
 

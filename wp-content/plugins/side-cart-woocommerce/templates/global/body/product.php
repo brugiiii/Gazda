@@ -76,7 +76,7 @@ $productClasses = apply_filters( 'xoo_wsc_product_class', $productClasses );
 					<?php if( $showPprice && $qtyPriceDisplay === 'one_liner' ): ?>
 						<span><?php echo $cart_item['quantity']; ?></span> X <span><?php echo $product_price; ?></span>
 						<?php if( $showPtotal ): ?>
-							<span> = <?php echo $product_subtotal ?></span>
+							<span class="gold-price"> = <?php echo $product_subtotal ?></span>
 						<?php endif; ?>
 
 					<?php else: ?>

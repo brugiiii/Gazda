@@ -68,7 +68,7 @@ foreach ($products as $product) {
 
 		</div>
 
-		<div class="xoo-wsc-footer">
+		<div class="xoo-wsc-footer">x
 			<?php xoo_wsc_helper()->get_template( 'xoo-wsc-footer-preview.php', array(), XOO_WSC_PATH.'/admin/templates/preview' ); ?>
 		</div>
 	</div>

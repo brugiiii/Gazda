@@ -318,7 +318,6 @@ span.xoo-wsch-text {
     display: flex;
     flex-direction: column;
 }
-
 .xoo-wsc-img-col img {
     width: 100%;
     height: auto;
@@ -406,6 +405,7 @@ a.xoo-wsc-ft-btn, .xoo-wsc-container .xoo-wsc-btn {
     align-items: center;
     justify-content: center;
 }
+
 
 a.xoo-wsc-ft-btn, a.xoo-wsc-ft-btn:hover, .xoo-wsc-container .xoo-wsc-btn, .xoo-wsc-container .xoo-wsc-btn:hover{
     text-decoration: none;

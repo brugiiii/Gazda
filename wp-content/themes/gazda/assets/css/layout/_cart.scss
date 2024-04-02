@@ -1,0 +1,110 @@
+.xoo-wsc-header{
+  padding: 56px 16px 24px 16px;
+  .xoo-wsch-top{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.xoo-wsc-body {
+
+  overflow: auto;
+  .xoo-wsc-product {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    .xoo-wsc-sm-info {
+      display: flex;
+      justify-content: space-between;
+      .xoo-wsc-sm-left {
+        display: grid;
+        row-gap: .8rem;
+        .xoo-wsc-qty-price {
+          font-size: 14px;
+          margin-right: -1rem;
+
+          .gold-price span {
+            bdi{
+              color: #E5A83A;
+            }
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+}
+.xoo-wsc-ft-totals{
+  text-align: right;
+  margin-top: 1rem;
+  .xoo-wsc-ft-amt-label{
+    color: #8A8D92;
+  }
+}
+.xoo-wsc-header, .xoo-wsc-sum-col .xoo-wsc-sm-left a, .xoo-wsc-qty-price, .xoo-wsc-qty-price bdi{
+  color: #1F252E;
+}
+.cart-button{
+  text-align: center;
+  margin-top: 3.3rem;
+  color: white;
+  background-color: #1F4C43;
+  padding: .8rem 1.2rem;
+  border-radius: 12px;
+  width: 100%;
+  display: inline-block;
+}
+
+//код який я скопіював з старих стилів, так шкидше
+body.xoo-wsc-cart-active, html.xoo-wsc-cart-active{
+  overflow: hidden!important;
+}
+
+.xoo-wsc-loading .xoo-wsc-loader{
+  display: block;
+}
+
+span.xoo-wsc-loader {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0.5;
+  background-color: #eee;
+  z-index: 10;
+}
+
+
+.xoo-wsc-loader-icon{
+  display: none;
+}
+
+.xoo-wsc-loading .xoo-wsc-loader-icon {
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 47%;
+  left: 49%;
+  z-index: 11;
+  font-size: 24px;
+  animation: xoo-wsc-spin 2s linear infinite;
+  display: block;
+}
+
+@keyframes xoo-wsc-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+span.xoo-wsc-sc-count {
+  border-radius: 50%;
+  height: 18px;
+  line-height: 18px;
+  width: 18px;
+  display: inline-block;
+  text-align: center;
+  font-size: 13px;
+  right: -7px;
+  position: absolute;
+  top: -4px;
+}

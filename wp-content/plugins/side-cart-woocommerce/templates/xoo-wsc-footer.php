@@ -25,7 +25,7 @@ extract( Xoo_Wsc_Template_Args::cart_footer() );
 <?php xoo_wsc_helper()->get_template( 'global/footer/totals.php' ) ?>
 
 <?php if( $footerTxt && $showFooterTxt ): ?>
-<span class="xoo-wsc-footer-txt"><?php echo $footerTxt; ?></span>
+
 <?php endif; ?>
 
 <?php xoo_wsc_helper()->get_template( 'global/footer/buttons.php' ); ?>

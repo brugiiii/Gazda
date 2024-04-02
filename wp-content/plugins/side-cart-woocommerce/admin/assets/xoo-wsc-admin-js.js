@@ -286,7 +286,7 @@ jQuery(document).ready(function($){
 				'.xoo-wsch-top': headerTop,
 				'.xoo-wsc-body': body,
 				'.xoo-wsc-body, .xoo-wsc-body span.amount, .xoo-wsc-body a': bodyText,
-				'.xoo-wsc-ft-buttons-cont a.xoo-wsc-ft-btn, .xoo-wsc-container .xoo-wsc-btn': footerBtn,
+				'.xoo-wsc-ft-buttons-cont a.xoo-wsc-ft-btn, .xoo-wsc-container .xoo-wsc-btn, custom-link': footerBtn,
 				'.xoo-wsc-ft-buttons-cont a.xoo-wsc-ft-btn:hover, .xoo-wsc-container .xoo-wsc-btn:hover': footerBtnHover,
 				'.xoo-wsc-footer': footer,
 				'.xoo-wsc-footer, .xoo-wsc-footer a, .xoo-wsc-footer .amount': footerFSize,
