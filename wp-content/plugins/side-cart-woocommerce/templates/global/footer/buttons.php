@@ -12,10 +12,11 @@
  * @version 2.4
  */
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+$current_lang = '';
+
 
 
 extract( Xoo_Wsc_Template_Args::footer_buttons() );
@@ -30,16 +31,20 @@ $buttonHTML = '<a href="%1$s" class="%2$s">%3$s</a>';
     <?php
     if(count($buttons) > 1){
     // Виводити посилання на сторінку оплати
+
+        $checkout_page_id =  wc_get_page_id( 'checkout' );
         ?>
-        <a class="cart-button" href="<?= get_permalink("checkout"); ?>">
+        <a class="cart-button" href="<?= get_permalink($checkout_page_id); ?>">
             <?= translate_and_output("to_order"); ?>
+
         </a>
         <?php
     } else {
    // Посилання на сторінку магазину
+        $shop_page_id = wc_get_page_id( 'shop' )
         ?>
-            <img  alt="" src="<?= get_image("image_no_products.svg"); ?>"/>
-        <a class="cart-button" href="<?= get_permalink("shop"); ?>">
+        <img  alt="" src="<?= get_image("image_no_products.svg"); ?>"/>
+        <a class="cart-button" href="<?= get_permalink($shop_page_id); ?>">
             <?= translate_and_output("view_products"); ?>
         </a>
 

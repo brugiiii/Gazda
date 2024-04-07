@@ -6,7 +6,6 @@ function enqueue_scripts_and_styles()
 // Deregister and register jQuery
     wp_deregister_script('jquery');
     wp_register_script('jquery', '//code.jquery.com/jquery-1.11.0.min.js', array(), '1.11.0', false);
-
 // Register jQuery Migrate
     wp_register_script('jquery-migrate', '//code.jquery.com/jquery-migrate-1.2.1.min.js', array('jquery'), '1.2.1', false);
 
@@ -114,7 +113,8 @@ function enqueue_scripts_and_styles()
         'is_search_page' => is_page_template('pages/search.php') ? true : false,
         'is_delivery_page' => is_page_template('pages/delivery.php') ? true : false,
         'search_page_link' => get_permalink(pll_get_post(6613, $current_lang)),
-        'account_page_link' => get_permalink(pll_get_post(6840, $current_lang))
+        'account_page_link' => get_permalink(pll_get_post(6840, $current_lang)),
+        'current_lang' => $current_lang
     );
     wp_localize_script('main', 'settings', $settings);
     wp_localize_script('team-js', 'settings', $settings);
