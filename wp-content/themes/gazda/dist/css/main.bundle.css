@@ -15127,6 +15127,7 @@ button.swiper-pagination-bullet {
 /*!*************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/css/main.scss ***!
   \*************************************************************************************************************************************************************************************/
+@charset "UTF-8";
 @font-face {
   font-family: "Gazda Pro";
   src: url(../fonts/Gazda.eot);
@@ -15174,7 +15175,8 @@ html {
   scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -15299,6 +15301,46 @@ img {
      object-fit: contain;
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 12rem;
+  right: 1rem;
+  z-index: 9999;
+  padding: 0.62rem;
+  border-radius: 0.75rem;
+  background: #e5a83a;
+  -webkit-transition: -webkit-clip-path 0.5s ease 0.1s;
+  transition: -webkit-clip-path 0.5s ease 0.1s;
+  transition: clip-path 0.5s ease 0.1s;
+  transition: clip-path 0.5s ease 0.1s, -webkit-clip-path 0.5s ease 0.1s;
+  -webkit-clip-path: circle(0% at 50% 50%);
+          clip-path: circle(0% at 50% 50%);
+  border: none;
+}
+.scroll-to-top[show] {
+  -webkit-clip-path: circle(100% at 50% 50%);
+          clip-path: circle(100% at 50% 50%);
+  -webkit-animation: show 0.8s ease forwards;
+          animation: show 0.8s ease forwards;
+}
+
+@-webkit-keyframes show {
+  from {
+    bottom: 5rem;
+  }
+  to {
+    bottom: 12rem;
+  }
+}
+
+@keyframes show {
+  from {
+    bottom: 5rem;
+  }
+  to {
+    bottom: 12rem;
+  }
+}
 @media screen and (max-width: 575px) {
   .container {
     padding: 0 1rem;
@@ -16075,6 +16117,186 @@ span.xoo-wsc-sc-count {
   color: #1F252E !important;
 }
 
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) {
+  padding: 1.5rem 2.75rem;
+  --colorGreen: #1F4C43;
+  --colorGold: #E5A83A;
+}
+@media screen and (min-width: 1440px) {
+  .container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) {
+    padding: 3rem 8.125rem;
+  }
+}
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-notice, .container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-notice ~ p {
+  font-weight: 700;
+}
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-overview {
+  font-size: clamp(0.625rem, 0.537rem + 0.3756vw, 0.875rem);
+}
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-overview li strong {
+  color: var(--colorGreen);
+}
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-overview li.woocommerce-order-overview__total strong .woocommerce-Price-amount bdi {
+  color: var(--colorGold);
+}
+@media screen and (max-width: 493px) {
+  .container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-overview li.woocommerce-order-overview__payment-method {
+    margin-top: 1rem;
+  }
+}
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-order-details__title {
+  color: var(--colorGreen);
+}
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-table--order-details {
+  border: none;
+  font-size: clamp(0.625rem, 0.537rem + 0.3756vw, 0.875rem);
+}
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-table--order-details tbody, .container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-table--order-details tfoot {
+  font-weight: 700;
+}
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-table--order-details tbody .product-total, .container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-table--order-details tbody .woocommerce-Price-amount, .container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-table--order-details tfoot .product-total, .container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-table--order-details tfoot .woocommerce-Price-amount {
+  color: var(--colorGold);
+}
+.container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-table--order-details tbody td, .container:has(.woocommerce-order, .woocommerce-notice, .woocommerce-order-details__title) .woocommerce .woocommerce-order .woocommerce-order-details .woocommerce-table--order-details tfoot td {
+  color: var(--colorGreen);
+}
+
+/* The Modal (background) */
+.ebcf_modal {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  top: 0;
+  left: 0;
+  z-index: 999; /* Sit on top */
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.ebcf_modal-content {
+  position: relative;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  width: 66%;
+  max-width: 680px;
+  height: 75vh;
+  z-index: 999999999;
+}
+@media screen and (max-width: 720px) {
+  .ebcf_modal-content {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 430px) {
+  .ebcf_modal-content {
+    width: 90%;
+  }
+}
+
+/* The Close Button */
+.ebcf_close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 1rem;
+  line-height: 1;
+  z-index: 9999;
+}
+@media screen and (max-width: 720px) {
+  .ebcf_close {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+@media screen and (max-width: 430px) {
+  .ebcf_close {
+    top: 0.4rem;
+    right: 0.4rem;
+  }
+}
+
+.ebcf_close {
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+}
+
+.ebcf_close:hover {
+  color: #000;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body:has(#mySizeChartModal[style*="display: flex;"]) {
+  overflow: hidden;
+}
+
+.yith_wcwl_wishlist_footer,
+.product-add-to-cart,
+.wishlist-title-container {
+  display: none !important;
+}
+
+.wishlist_table {
+  margin: 5rem auto !important;
+}
+
+html[lang=uk] .wishlist_table .product-name .nobr,
+html[lang=uk] .wishlist_table .product-price .nobr,
+html[lang=uk] .wishlist_table .product-stock-status .nobr {
+  font-size: 0;
+}
+html[lang=uk] .wishlist_table .product-name .nobr::before,
+html[lang=uk] .wishlist_table .product-price .nobr::before,
+html[lang=uk] .wishlist_table .product-stock-status .nobr::before {
+  content: "Назва продукту";
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+}
+html[lang=uk] .wishlist_table .product-price .nobr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+html[lang=uk] .wishlist_table .product-price .nobr::before {
+  content: "Ціна продукту";
+}
+html[lang=uk] .wishlist_table .product-stock-status .nobr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+html[lang=uk] .wishlist_table .product-stock-status .nobr::before {
+  content: "Статус наявності";
+}
+html[lang=uk] .wishlist_table .product-stock-status .wishlist-in-stock {
+  font-size: 0;
+}
+html[lang=uk] .wishlist_table .product-stock-status .wishlist-in-stock::before {
+  content: "В наявності";
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+}
+
 .burger-search {
   width: calc(100% - 2rem);
   margin: 0.75rem auto;
@@ -16112,6 +16334,7 @@ span.xoo-wsc-sc-count {
 }
 
 .burger {
+  z-index: 4 !important;
   display: none;
   background-color: #2A2A2A;
 }
@@ -16412,13 +16635,13 @@ span.xoo-wsc-sc-count {
 }
 
 @media screen and (min-width: 992px) {
-  #menu-burger-menu-mobile {
+  #menu-burger-menu-mobile, #menu-burger-menu-mobile-eng {
     display: none;
   }
 }
 
 @media screen and (max-width: 991px) {
-  #menu-burger-menu-desktop {
+  #menu-burger-menu-desktop, #menu-burger-menu-desktop-eng {
     display: none;
   }
 }
@@ -16513,7 +16736,7 @@ span.xoo-wsc-sc-count {
   position: absolute;
   top: calc(100% - 0.4375rem);
   left: -1.25rem;
-  z-index: 3;
+  z-index: 999;
   min-width: 9.9375rem;
   border-radius: 0.5rem;
   opacity: 0;
@@ -16591,6 +16814,7 @@ span.xoo-wsc-sc-count {
 .language-switcher:hover .languages-list, .language-switcher:focus .languages-list {
   opacity: 1;
   visibility: visible;
+  z-index: 5 !important;
 }
 .language-switcher:hover .language-switcher__icon, .language-switcher:focus .language-switcher__icon {
   -webkit-transform: rotateX(180deg);
@@ -16789,7 +17013,6 @@ span.xoo-wsc-sc-count {
   }
 }
 .footer .nav-list > li > a {
-  pointer-events: none;
   margin-bottom: 0.81rem;
   color: #E5A83A;
 }

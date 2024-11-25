@@ -11,3 +11,4 @@ require_once get_template_directory() . '/includes/customFunctions.php';
 require_once get_template_directory() . '/includes/uploadMimes.php';
 
 require_once get_template_directory() . '/includes/changeWooTabs.php';
+

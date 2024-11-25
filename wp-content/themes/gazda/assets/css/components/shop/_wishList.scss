@@ -1,0 +1,52 @@
+.yith_wcwl_wishlist_footer,
+.product-add-to-cart,
+.wishlist-title-container {
+  display: none !important;
+}
+
+.wishlist_table {
+  margin: 5rem auto !important;
+}
+
+html[lang="uk"] {
+  .wishlist_table {
+    .product-name .nobr,
+    .product-price .nobr,
+    .product-stock-status .nobr {
+      font-size: 0;
+      &::before {
+        content: "Назва продукту";
+        font-size: 0.75rem;
+        line-height: 1.5rem;
+      }
+    }
+    .product-price {
+      .nobr {
+        display: flex;
+        justify-content: center;
+        &::before {
+          content: "Ціна продукту";
+        }
+      }
+    }
+    .product-stock-status {
+      .nobr {
+        display: flex;
+        justify-content: center;
+        &::before {
+          content: "Статус наявності";
+        }
+      }
+    }
+    .product-stock-status {
+      .wishlist-in-stock {
+        font-size: 0;
+        &::before {
+          content: "В наявності";
+          font-size: 0.75rem;
+          line-height: 1.5rem;
+        }
+      }
+    }
+  }
+}

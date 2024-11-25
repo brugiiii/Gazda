@@ -2,7 +2,7 @@
 $is_logged_in = is_user_logged_in();
 ?>
 
-<div class="burger position-absolute top-100 start-0 w-100 z-2">
+<div class="burger position-absolute top-100 start-0 w-100">
     <div class="burger-wrapper">
         <label class="burger-search position-relative d-block d-sm-none">
             <svg class="search-icon position-absolute top-50 translate-middle-y" width="24" height="24">

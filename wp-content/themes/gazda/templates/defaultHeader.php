@@ -15,6 +15,7 @@ the_custom_logo();
 get_template_part('templates/toolbar');
 ?>
 
-<button class="button-primary header-button border-0 ms-auto ms-sm-2 ms-xl-3">
+
+<button class="button-primary header-button border-0 ms-auto ms-sm-2 ms-xl-3 mySizeChart">
     <?= translate_and_output('reserve'); ?>
 </button>

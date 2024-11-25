@@ -41,7 +41,7 @@ const refs = {
     formModalTitle: $('.form-modal__title'),
     formModalForm: $('#form-modal form'),
     hideFormModalButton: $('.form-modal__close'),
-    submitForm: $('.form-js')
+    submitForm: $('.form-js'),
+    heroButtonToGiftSet: $('[data-taxonomy]')
 };
-
 export default refs;

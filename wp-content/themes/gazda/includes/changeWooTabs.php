@@ -15,10 +15,17 @@ function exchanges_and_returns_tab($tabs)
 {
     // Додаємо вкладку з іменем "Моя вкладка"
     $tabs['exchanges_and_returns'] = array(
-        'title' => __(translate_and_output('return'), 'woocommerce'),
-        'priority' => 50,
+        'title' => __(translate_and_output('product_description'), 'woocommerce'),
+        'priority' => 10,
         'callback' => 'exchanges_and_returns_content'
     );
+    // Додаємо вкладку з іменем "Моя вкладка"
+    $tabs['delivery_payment'] = array(
+        'title' => __(translate_and_output('delivery_payment'), 'woocommerce'),
+        'priority' => 50,
+        'callback' => 'delivery_payment_content'
+    );
+
 
     return $tabs;
 }
@@ -26,6 +33,10 @@ function exchanges_and_returns_tab($tabs)
 function exchanges_and_returns_content()
 {
     return the_field('exchanges_and_returns');
+}
+function delivery_payment_content()
+{
+    return the_field('single_product_delivery_payment_text', 6354);
 }
 
 function custom_product_description_heading()

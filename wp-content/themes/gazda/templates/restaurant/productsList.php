@@ -11,6 +11,7 @@ function display_category_products($category_hierarchy)
             'posts_per_page' => 1,
             'product_cat' => $category->slug,
         );
+
         $query = new WP_Query($args);
 
         if ($query->have_posts()) {
@@ -23,7 +24,12 @@ function display_category_products($category_hierarchy)
                     'posts_per_page' => -1,
                     'product_cat' => $category->slug,
                 );
-
+                $args['tax_query'][] = array(
+                    'taxonomy' => 'class',
+                    'field' => 'slug',
+                    'terms' => "menu",
+                    'operator' => 'IN',
+                );
                 $query = new WP_Query($args);
 
                 if ($query->have_posts()) : ?>
@@ -49,7 +55,39 @@ function display_category_products($category_hierarchy)
                                             <?= get_the_title() ?>
                                         </h3>
                                         <span class="products-list__price d-md-none">
-                                            <?= get_template_part('templates/price.php'); ?>
+                                           <?php
+                                           $currency_symbol = get_woocommerce_currency_symbol();
+                                           $product_id = get_the_ID();
+                                           $product = wc_get_product($product_id);
+
+                                           if ($product->is_type('variable')) {
+                                               // For variable products, get the variation prices
+                                               $variation_prices = $product->get_variation_prices();
+
+                                               if ($variation_prices) {
+                                                   $min_price = current($variation_prices['price']);
+                                                   $max_price = end($variation_prices['price']);
+
+                                                   // Format the prices with two decimal places
+                                                   $formatted_min_price = number_format($min_price, 2, '.', '');
+                                                   $formatted_max_price = number_format($max_price, 2, '.', '');
+
+                                                   // Output the price range
+                                                   if ($min_price !== $max_price) {
+                                                       echo esc_html($formatted_min_price . $currency_symbol . ' - ' . $formatted_max_price . $currency_symbol);
+                                                   } else {
+                                                       echo esc_html($formatted_min_price . $currency_symbol);
+                                                   }
+                                               }
+                                           } else {
+                                               // For regular products, display the regular price
+                                               $price = get_post_meta($product_id, '_price', true);
+                                               $formatted_price = number_format($price, 2, '.', '');
+
+                                               echo esc_html($formatted_price . $currency_symbol);
+                                           }
+                                           ?>
+
                                         </span>
                                     </div>
                                 </div>
@@ -134,9 +172,42 @@ function display_category_products($category_hierarchy)
                                 </div>
 
                                 <div class="d-flex flex-column justify-content-between">
-                                    <span class="products-list__price d-none d-md-block">
-                                    <?= get_template_part('templates/price.php'); ?>
+                                    <span class="products-list__price  d-none  d-md-block">
+                                       <?php
+                                       $currency_symbol = get_woocommerce_currency_symbol();
+                                       $product_id = get_the_ID();
+                                       $product = wc_get_product($product_id);
+
+                                       if ($product->is_type('variable')) {
+                                           // For variable products, get the variation prices
+                                           $variation_prices = $product->get_variation_prices();
+
+                                           if ($variation_prices) {
+                                               $min_price = current($variation_prices['price']);
+                                               $max_price = end($variation_prices['price']);
+
+                                               // Format the prices with two decimal places
+                                               $formatted_min_price = number_format($min_price, 2, '.', '');
+                                               $formatted_max_price = number_format($max_price, 2, '.', '');
+
+                                               // Output the price range
+                                               if ($min_price !== $max_price) {
+                                                   echo esc_html($formatted_min_price . $currency_symbol . ' - ' . $formatted_max_price . $currency_symbol);
+                                               } else {
+                                                   echo esc_html($formatted_min_price . $currency_symbol);
+                                               }
+                                           }
+                                       } else {
+                                           // For regular products, display the regular price
+                                           $price = get_post_meta($product_id, '_price', true);
+                                           $formatted_price = number_format($price, 2, '.', '');
+
+                                           echo esc_html($formatted_price . $currency_symbol);
+                                       }
+                                       ?>
+
                                     </span>
+
                                     <span class="products-list__favorite">
                                         <?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
                                     </span>

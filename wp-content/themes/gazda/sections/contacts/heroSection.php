@@ -1,6 +1,7 @@
 <?php
 $address = get_field('address', 16);
-$email = get_field('email', 16)
+$email = get_field('email', 16);
+$email_second = get_field('email_second', 16)
 ?>
 
 <section class="hero text-white">
@@ -29,6 +30,12 @@ $email = get_field('email', 16)
                            rel="noreferrer nofollow noopener">
                             <?= $email['title']; ?>
                         </a>
+												<?php if(!empty($email_second)):?>
+                        <a class="hero-content__link mb-3" href="<?= $email_second['url']; ?>" target="<?= $email_second['target']; ?>"
+                           rel="noreferrer nofollow noopener">
+                            <?= $email_second['title']; ?>
+                        </a>
+												<?php endif;?>
                         <span class="hero-content__title fs-6 mb-1">
                             <?= translate_and_output('socials'); ?>
                         </span>

@@ -22,9 +22,9 @@ function si__init_runner_woo() {
 
             $product['SaleStatus'] = ($product['SaleStatus']) ? $product['SaleStatus'] : '1';
 
-            if (!si__woocommerce_add_product($product['ID'], $product['Name'], $product['Price'], $product['Code'], $product['SaleStatus'])) {
+            if (!si__woocommerce_add_product($product['ID'], $product['Name'], $product['Price'], $product['Code'], $product['SaleStatus'], $product['Category'])) {
 
-                si__woocommerce_update_product($product['ID'],  $product['Name'], $product['Price'], $product['Code'], $product['SaleStatus']);
+                si__woocommerce_update_product($product['ID'],  $product['Name'], $product['Price'], $product['Code'], $product['SaleStatus'], $product['Category']);
             }
         }
     }
@@ -41,6 +41,3 @@ if (!wp_next_scheduled('si_cron_hook')) {
     // Set the cron task to run every day at 10:30
     wp_schedule_event(strtotime('10:30'), 'daily', 'si_cron_hook');
 }
-
-
-

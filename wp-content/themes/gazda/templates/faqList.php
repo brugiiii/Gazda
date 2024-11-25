@@ -21,9 +21,7 @@ if (is_shop() || ($parent_id === 6354)) {
                     <?= $qna['question']; ?>
                 </h3>
             </div>
-            <p class="faq-list__text mb-0 mt-2">
-                <?= $qna['answer']; ?>
-            </p>
+						<?= $qna['answer']; ?>
         </li>
         <?php
     }

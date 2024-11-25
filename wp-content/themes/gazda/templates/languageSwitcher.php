@@ -8,7 +8,7 @@ $current_language = pll_current_language();
     <svg class="language-switcher__icon" width="24" height="24">
         <use href="<?= get_image('sprite.svg#icon-caret-down'); ?>"></use>
     </svg>
-    <ul class="languages-list position-absolute top-100 z-3">
+    <ul class="languages-list position-absolute top-100 ">
         <?php foreach ($languages as $lang_code => $language) : ?>
             <?php if ($lang_code !== $current_language) : ?>
                 <li class="languages-list__item">

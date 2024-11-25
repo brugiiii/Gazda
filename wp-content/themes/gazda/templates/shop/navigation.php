@@ -24,7 +24,10 @@ if ($page === 'shop') {
         <?php if (!empty($category_ids) && !empty($category_names)) {
             foreach (array_combine($category_ids, $category_names) as $category_id => $category_name) { ?>
                 <li class="products-nav__item">
-                    <button class="products-nav__button category-button d-block border-0 <?= $is_swiper ? 'h-100 swiper-button-js' : ''; ?>"
+                    <?php
+
+                    ?>
+                    <button class="products-nav__button category-button d-block border-0  <?= $is_swiper ? 'h-100 swiper-button-js' : ''; ?>"
                             data-category-id="<?= esc_attr($category_id); ?>">
                         <?= esc_html($category_name); ?>
                     </button>

@@ -1,5 +1,21 @@
 #home {
   color: $white-color;
+  .ctrls-list{
+    height: 100%;
+    --position: 80%;
+    @media screen and (max-width: 1024px){
+      --position: 90%;
+    }
+    li.ctrls-list__item.prev{
+      right: var(--position);
+    }
+    li.ctrls-list__item.next{
+      left: var(--position);
+    }
+    li.ctrls-list__item{
+      z-index: 3;
+    }
+  }
 
   @media screen and (min-width: 992px) {
     font-size: 1rem;
@@ -72,6 +88,13 @@
   }
 
   & .hero-list__button {
+    margin-top: 3rem;
+    display: inline-grid;
+    place-items: center;
+
+    @media screen and (max-width: 567px){
+      margin-top: 1.75rem;
+    }
     min-width: 13.8125rem;
   }
 }

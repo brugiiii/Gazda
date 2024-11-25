@@ -13,7 +13,7 @@
 
   & .navigation-mob__wrapper,
   & .menu-content__breadcrumb,
-  & .child-swiper{
+  & .child-swiper {
     @media screen and (max-width: 991px) {
       border-bottom: 1px solid $fifth-bg-color;
       background-color: $fourth-text-color;
@@ -22,6 +22,9 @@
 
   & .navigation {
     padding-top: 1.4375rem;
+    // .wishlist-link {
+    //   display: none !important;
+    // }
 
     @media screen and (min-width: 992px) {
       width: 15rem;
@@ -135,7 +138,7 @@
 
         & .sub-menu__link {
           &::before {
-            content: '';
+            content: "";
 
             @include transition(opacity);
 
@@ -255,7 +258,7 @@
     color: $accent-color;
 
     &::before {
-      content: '';
+      content: "";
 
       width: 1rem;
       height: 1rem;
@@ -347,7 +350,7 @@
 
       &.is-active {
         &::after {
-          content: '';
+          content: "";
 
           position: absolute;
           bottom: 0;

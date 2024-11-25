@@ -696,8 +696,11 @@ select.toolbar-els__button {
   padding-top: 3rem;
 }
 
-.faq-list__item:not(:first-child) .faq-list__text {
+.faq-list__item:not(:first-child):not(:has(.rotated)) .faq-list__text {
   display: none;
+}
+.faq-list__item a {
+  color: rgb(101, 102, 105);
 }
 .faq-list__item:not(:last-child) {
   margin-bottom: 1.5rem;
@@ -752,6 +755,10 @@ select.toolbar-els__button {
 .faq-list__icon.rotated::before {
   -webkit-transform: rotateZ(90deg);
           transform: rotateZ(90deg);
+}
+
+.section p a {
+  color: rgb(101, 102, 105);
 }
 
 .current-filter button {

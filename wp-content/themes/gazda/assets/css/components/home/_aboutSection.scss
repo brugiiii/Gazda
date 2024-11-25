@@ -1,14 +1,14 @@
 
 .about {
   padding: clamp(4rem, 3.042rem + 4.26vw, 6.875rem) 0;
-
+  position: relative;
+  z-index: 3;
   & .container {
     @media screen and (min-width: 768px) and (max-width: 991px) {
       max-width: 540px;
     }
   }
 }
-
 .about-wrapper {
   border-radius: $secondary-radius;
   background-color: $accent-color;

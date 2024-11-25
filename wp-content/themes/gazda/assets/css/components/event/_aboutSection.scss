@@ -51,7 +51,11 @@
     width: 61.69%;
   }
 }
-
+.about_description{
+  ul{
+    margin-bottom: 1rem;
+  }
+}
 .cards-list__content {
   padding: 1rem;
 
@@ -63,6 +67,8 @@
 
   & ul {
     &:last-of-type {
+      &:not(.data-list){
+
       font-size: 0.875rem;
       line-height: 1.4;
       letter-spacing: 0.03125rem;
@@ -78,7 +84,12 @@
           }
         }
       }
+      }
     }
+  }
+  .description__undertitle{
+    color: black !important;
+    margin-top: .7rem;
   }
 
   & p {

@@ -76,7 +76,8 @@ var refs = {
   formModalTitle: $('.form-modal__title'),
   formModalForm: $('#form-modal form'),
   hideFormModalButton: $('.form-modal__close'),
-  submitForm: $('.form-js')
+  submitForm: $('.form-js'),
+  heroButtonToGiftSet: $('[data-taxonomy]')
 };
 /* harmony default export */ __webpack_exports__["default"] = (refs);
 
@@ -171,6 +172,41 @@ function showToastMessage($message, $class) {
 $("document").ready(function () {
   bodyEl.css("visibility", "visible");
 });
+document.addEventListener("DOMContentLoaded", function () {
+  if (document.querySelector(".scroll-to-top")) return;
+  console.log("DOM is ready");
+  var button = document.createElement("button");
+  button.innerHTML = "\n\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n  <path d=\"M4.71896 14.719L12.219 7.21896C12.2886 7.14922 12.3713 7.09391 12.4624 7.05616C12.5534 7.01842 12.651 6.99899 12.7496 6.99899C12.8481 6.99899 12.9457 7.01842 13.0368 7.05616C13.1278 7.09391 13.2106 7.14922 13.2802 7.21896L20.7802 14.719C20.9209 14.8597 21 15.0506 21 15.2496C21 15.4486 20.9209 15.6395 20.7802 15.7802C20.6395 15.9209 20.4486 16 20.2496 16C20.0506 16 19.8597 15.9209 19.719 15.7802L12.7496 8.80989L5.78021 15.7802C5.71052 15.8499 5.6278 15.9052 5.53675 15.9429C5.44571 15.9806 5.34813 16 5.24958 16C5.15104 16 5.05345 15.9806 4.96241 15.9429C4.87137 15.9052 4.78864 15.8499 4.71896 15.7802C4.64927 15.7105 4.594 15.6278 4.55629 15.5368C4.51858 15.4457 4.49916 15.3481 4.49916 15.2496C4.49916 15.151 4.51858 15.0535 4.55629 14.9624C4.594 14.8714 4.64927 14.7886 4.71896 14.719Z\" fill=\"white\"/>\n</svg>";
+  button.classList.add("scroll-to-top");
+  document.body.appendChild(button);
+  button.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+  window.addEventListener("scroll", function () {
+    if (window.scrollY < 1000) {
+      button.removeAttribute("show");
+    } else {
+      button.setAttribute("show", "");
+    }
+  });
+});
+document.addEventListener("DOMContentLoaded", function () {
+  var _document$querySelect;
+  (_document$querySelect = document.querySelector(".popup-menu")) === null || _document$querySelect === void 0 || _document$querySelect.addEventListener("click", function (e) {
+    var backdrop = document.querySelector(".backdrop.menu");
+    console.log(backdrop);
+    if (!backdrop) return;
+    backdrop.setAttribute("show", "");
+    backdrop.addEventListener("click", function (e) {
+      if (e.target === e.currentTarget) {
+        backdrop.removeAttribute("show");
+      }
+    });
+  });
+});
 
 /***/ }),
 
@@ -194,15 +230,15 @@ iconToggle.on('click', function (e) {
 });
 $(document).ready(function () {
   $('.faq-list__wrapper').on("click", function () {
-    var faqItem = $(this).parent('.faq-list__item');
+    var faqItem = $(this).closest('.faq-list__item');
     var siblingsItem = faqItem.siblings('.faq-list__item');
-    var siblingsChildren = siblingsItem.children('.faq-list__text');
-    var siblingsChildrenQuestion = siblingsItem.children('.faq-list__wrapper');
+    var siblingsChildren = siblingsItem.find('.faq-list__text');
+    var siblingsChildrenQuestion = siblingsItem.find('.faq-list__wrapper');
     var siblingsChildrenArrow = siblingsChildrenQuestion.find('.faq-list__icon');
-    $(this).next().slideToggle(500);
-    $(this).find('.faq-list__icon').toggleClass('rotated');
     siblingsChildren.slideUp();
     siblingsChildrenArrow.removeClass('rotated');
+    $(this).next('.faq-list__text').slideToggle(500);
+    $(this).find('.faq-list__icon').toggleClass('rotated');
   });
 });
 
@@ -303,7 +339,8 @@ var orderButtons = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].orderButto
   toolbarFilter = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].toolbarFilter,
   currentFilter = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].currentFilter,
   selectContainer = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].selectContainer,
-  navWrapper = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].navWrapper;
+  navWrapper = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].navWrapper,
+  heroButtonToGiftSet = _main_refs__WEBPACK_IMPORTED_MODULE_9__["default"].heroButtonToGiftSet;
 var _settings = settings,
   ajax_url = _settings.ajax_url,
   is_delivery_page = _settings.is_delivery_page;
@@ -376,7 +413,17 @@ orderButtons.on("click", function (e) {
   return (0,_productFunctions__WEBPACK_IMPORTED_MODULE_10__.handleOrderButtonClick)(e, query, fetchAndRenderProducts);
 });
 $(document).ready(function () {
-  is_delivery_page ? $('.nav-list__item:first .sub-menu .sub-menu__item:first button').trigger("click") : $('.products-nav__button:first').trigger("click");
+  if (!is_delivery_page) {
+    var handleHeroButtonRedirecter = localStorage.getItem('handleHeroButtonRedirecter');
+    if (handleHeroButtonRedirecter) {
+      $("[data-category-id='".concat(localStorage.getItem('handleHeroButtonRedirecter'), "']")).trigger("click");
+      localStorage.removeItem('handleHeroButtonRedirecter');
+    } else {
+      $('.products-nav__button:first').trigger("click");
+    }
+  } else {
+    $('.nav-list__item:first .sub-menu .sub-menu__item:first button').trigger("click");
+  }
 });
 
 /***/ }),
@@ -542,19 +589,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   handleSelectFilterChange: function() { return /* binding */ handleSelectFilterChange; },
 /* harmony export */   shopPageScrollTo: function() { return /* binding */ shopPageScrollTo; }
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
-/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
-/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
-/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _main_refs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../main/refs */ "./assets/js/main/refs.js");
+/* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
+/* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _main_refs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../main/refs */ "./assets/js/main/refs.js");
 
 
 
@@ -562,110 +611,186 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var toolbarFilter = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].toolbarFilter,
-  orderSelect = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].orderSelect,
-  orderList = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].orderList,
-  paginationContainer = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].paginationContainer,
-  productsList = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].productsList,
-  selectContainer = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].selectContainer,
-  filterContainer = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].filterContainer,
-  breadCrumbCurrent = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].breadCrumbCurrent,
-  toolbarTitle = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].toolbarTitle,
-  currentFilter = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].currentFilter,
-  orderButtonText = _main_refs__WEBPACK_IMPORTED_MODULE_6__["default"].orderButtonText;
 
-// Actions
+var toolbarFilter = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].toolbarFilter,
+  orderSelect = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].orderSelect,
+  orderList = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].orderList,
+  paginationContainer = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].paginationContainer,
+  productsList = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].productsList,
+  selectContainer = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].selectContainer,
+  filterContainer = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].filterContainer,
+  breadCrumbCurrent = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].breadCrumbCurrent,
+  toolbarTitle = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].toolbarTitle,
+  currentFilter = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].currentFilter,
+  orderButtonText = _main_refs__WEBPACK_IMPORTED_MODULE_7__["default"].orderButtonText;
+
+//old
+// export const handleProductsFetchSuccess = (res, query) => {
+//   console.log(res, query);
+//   const { productMarkup, productContent } = JSON.parse(res);
+//   const tempElement = document.createElement("div");
+//   tempElement.innerHTML = productMarkup;
+//   const textContent = document.querySelector(".text-content");
+
+//   if (textContent) textContent.innerHTML = productContent;
+
+//   const paginationWrapper = tempElement.querySelector(".pagination-wrapper");
+//   const filterWrapper = tempElement.querySelector(".filter-wrapper");
+//   const filterSelect = tempElement.querySelector(".filter-select");
+
+//   paginationContainer.addClass("d-none");
+//   toolbarFilter.addClass("d-none");
+
+//   if (paginationWrapper) {
+//     paginationContainer.removeClass("d-none");
+//     paginationWrapper.remove();
+
+//     paginationContainer.html(paginationWrapper);
+//   }
+
+//   if (filterWrapper) {
+//     toolbarFilter.removeClass("d-none");
+//     filterWrapper.remove();
+
+//     if (query.tags.length === 0) {
+//       filterContainer.html(filterWrapper);
+//     }
+//   }
+
+//   if (filterSelect) {
+//     filterSelect.remove();
+
+//     if (query.tags.length === 0) {
+//       selectContainer.html(filterSelect);
+//     }
+//   }
+
+//   const remainingHTML = tempElement.innerHTML;
+
+//   productsList.html(remainingHTML);
+
+//   const lastPaginationItem = $(".pagination__item[data-page]:last");
+
+//   lastPaginationItem.data("page") === query.page
+//     ? $(".load-more").addClass("d-none")
+//     : $(".load-more").removeClass("d-none");
+// };
 
 var handleProductsFetchSuccess = function handleProductsFetchSuccess(res, query) {
-  var tempElement = document.createElement('div');
-  tempElement.innerHTML = res;
-  var paginationWrapper = tempElement.querySelector('.pagination-wrapper');
-  var filterWrapper = tempElement.querySelector('.filter-wrapper');
-  var filterSelect = tempElement.querySelector('.filter-select');
-  paginationContainer.addClass("d-none");
-  toolbarFilter.addClass('d-none');
-  if (paginationWrapper) {
-    paginationContainer.removeClass('d-none');
-    paginationWrapper.remove();
-    paginationContainer.html(paginationWrapper);
-  }
-  if (filterWrapper) {
-    toolbarFilter.removeClass('d-none');
-    filterWrapper.remove();
-    if (query.tags.length === 0) {
-      filterContainer.html(filterWrapper);
+  console.log(query, res);
+  try {
+    // Перевірка, чи відповідь є валідним JSON
+    var parsedResponse;
+    try {
+      parsedResponse = JSON.parse(res);
+    } catch (e) {
+      console.warn("Не JSON відповідь, спроба обробити як HTML:", res);
+      parsedResponse = null;
     }
-  }
-  if (filterSelect) {
-    filterSelect.remove();
-    if (query.tags.length === 0) {
-      selectContainer.html(filterSelect);
+
+    // Якщо це JSON, обробляємо як JSON
+    if (parsedResponse) {
+      var _parsedResponse = parsedResponse,
+        productMarkup = _parsedResponse.productMarkup,
+        productContent = _parsedResponse.productContent;
+      var tempElement = document.createElement("div");
+      tempElement.innerHTML = productMarkup;
+      var textContent = document.querySelector(".text-content");
+      if (textContent) textContent.innerHTML = productContent;
+      var paginationWrapper = tempElement.querySelector(".pagination-wrapper");
+      var filterWrapper = tempElement.querySelector(".filter-wrapper");
+      var filterSelect = tempElement.querySelector(".filter-select");
+      paginationContainer.addClass("d-none");
+      toolbarFilter.addClass("d-none");
+      if (paginationWrapper) {
+        paginationContainer.removeClass("d-none");
+        paginationWrapper.remove();
+        paginationContainer.html(paginationWrapper);
+      }
+      if (filterWrapper) {
+        toolbarFilter.removeClass("d-none");
+        filterWrapper.remove();
+        if (query.tags.length === 0) {
+          filterContainer.html(filterWrapper);
+        }
+      }
+      if (filterSelect) {
+        filterSelect.remove();
+        if (query.tags.length === 0) {
+          selectContainer.html(filterSelect);
+        }
+      }
+      var remainingHTML = tempElement.innerHTML;
+      productsList.html(remainingHTML);
+      var lastPaginationItem = $(".pagination__item[data-page]:last");
+      lastPaginationItem.data("page") === query.page ? $(".load-more").addClass("d-none") : $(".load-more").removeClass("d-none");
+    } else {
+      // Якщо це HTML, вставляємо його напряму
+      productsList.html(res);
     }
+  } catch (error) {
+    console.error("Error in handleProductsFetchSuccess: ", error);
   }
-  var remainingHTML = tempElement.innerHTML;
-  productsList.html(remainingHTML);
-  var lastPaginationItem = $('.pagination__item[data-page]:last');
-  lastPaginationItem.data('page') === query.page ? $('.load-more').addClass('d-none') : $('.load-more').removeClass('d-none');
 };
 var deliveryPageScrollTo = function deliveryPageScrollTo($clickedButton) {
-  var categoryId = $clickedButton.data('categoryId');
-  var parentCategoryId = $clickedButton.data('parentCategoryId');
+  var categoryId = $clickedButton.data("categoryId");
+  var parentCategoryId = $clickedButton.data("parentCategoryId");
   var currentCategory = $clickedButton.text();
   var activeButtons = $("button[data-category-id=\"".concat(categoryId, "\"]"));
   var inactiveButtons = $("button.is-active[data-category-id]:not([data-category-id=\"".concat(categoryId, "\"])"));
   var activeParentButton = $("button.parent-swiper__button[data-parent-category-id=\"".concat(parentCategoryId, "\"]"));
   var inactiveParentButton = $("button.is-active.parent-swiper__button").not(activeParentButton);
   var scrollToViewOptions = {
-    behavior: 'smooth',
-    block: 'nearest',
-    inline: 'center'
+    behavior: "smooth",
+    block: "nearest",
+    inline: "center"
   };
   activeParentButton[0].scrollIntoView(scrollToViewOptions);
-  $(".nav-wrapper .sub-menu__button[data-parent-category-id=\"".concat(parentCategoryId, "\"]")).closest('.nav-list__item').find('.nav-list__button').trigger('click');
-  if ($clickedButton.hasClass('child-swiper__button')) {
+  $(".nav-wrapper .sub-menu__button[data-parent-category-id=\"".concat(parentCategoryId, "\"]")).closest(".nav-list__item").find(".nav-list__button").trigger("click");
+  if ($clickedButton.hasClass("child-swiper__button")) {
     $clickedButton[0].scrollIntoView(scrollToViewOptions);
   } else {
-    var closestChildSwiper = $(".child-swiper__button[data-category-id=\"".concat(categoryId, "\"]")).closest('.child-swiper');
-    if (!closestChildSwiper.hasClass('visible')) {
-      $('.child-swiper.visible').removeClass('visible');
-      closestChildSwiper.addClass('visible');
+    var closestChildSwiper = $(".child-swiper__button[data-category-id=\"".concat(categoryId, "\"]")).closest(".child-swiper");
+    if (!closestChildSwiper.hasClass("visible")) {
+      $(".child-swiper.visible").removeClass("visible");
+      closestChildSwiper.addClass("visible");
     }
     $("button.child-swiper__button[data-category-id=\"".concat(categoryId, "\"]"))[0].scrollIntoView(scrollToViewOptions);
   }
-  activeButtons.addClass('is-active');
-  inactiveButtons.removeClass('is-active');
-  activeParentButton.addClass('is-active');
-  inactiveParentButton.removeClass('is-active');
+  activeButtons.addClass("is-active");
+  inactiveButtons.removeClass("is-active");
+  activeParentButton.addClass("is-active");
+  inactiveParentButton.removeClass("is-active");
   breadCrumbCurrent.text(currentCategory);
   toolbarTitle.text(currentCategory);
 };
 var shopPageScrollTo = function shopPageScrollTo($clickedButton) {
   var currentCategory = $clickedButton.text();
-  var categoryId = $clickedButton.data('categoryId');
+  var categoryId = $clickedButton.data("categoryId");
   var activeButtons = $(".products-nav__button[data-category-id=\"".concat(categoryId, "\"]"));
   var inactiveButtons = $(".products-nav__button.is-active[data-category-id]:not([data-category-id=\"".concat(categoryId, "\"])"));
-  if ($clickedButton.hasClass('swiper-button-js')) {
+  if ($clickedButton.hasClass("swiper-button-js")) {
     $clickedButton[0].scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center"
     });
   } else {
     $(".swiper-button-js[data-category-id=\"".concat(categoryId, "\"]"))[0].scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center"
     });
   }
   inactiveButtons.each(function () {
-    $(this).removeClass('is-active');
+    $(this).removeClass("is-active");
   });
   activeButtons.each(function () {
-    $(this).addClass('is-active');
+    $(this).addClass("is-active");
   });
   breadCrumbCurrent.text(currentCategory);
   toolbarTitle.text(currentCategory);
-  currentFilter.html('');
+  currentFilter.html("");
 };
 var handleOrderButtonClick = function handleOrderButtonClick(e, query, fetchProducts) {
   var $clickedButton = $(e.currentTarget);
@@ -673,9 +798,9 @@ var handleOrderButtonClick = function handleOrderButtonClick(e, query, fetchProd
   if (query.order === order) {
     return;
   }
-  $clickedButton.addClass("is-active").siblings().removeClass('is-active');
+  $clickedButton.addClass("is-active").siblings().removeClass("is-active");
   orderButtonText.text($clickedButton.text());
-  orderList.addClass('is-hidden');
+  orderList.addClass("is-hidden");
   orderSelect.val(order);
   query.order = order;
   fetchProducts();
@@ -685,8 +810,8 @@ var handleOrderSelectChange = function handleOrderSelectChange(e, query, fetchPr
   var value = $this.val();
   var orderButtonToActive = $(".order-list__button[data-order=\"".concat(value, "\"]"));
   var selectedOptionText = $this.find("option[value=\"".concat(value, "\"]")).text();
-  orderButtonToActive.siblings().removeClass('is-active');
-  orderButtonToActive.addClass('is-active');
+  orderButtonToActive.siblings().removeClass("is-active");
+  orderButtonToActive.addClass("is-active");
   orderButtonText.text(selectedOptionText);
   query.order = value;
   fetchProducts();
@@ -699,7 +824,7 @@ var handleFilterChange = function handleFilterChange(e, query, fetchProducts) {
   if (tagIndex === -1) {
     // Якщо тега немає в масиві, то додаємо його
     tags.push(tagId);
-    currentFilter.append("<button data-id=\"".concat(tagId, "\">").concat($this.closest('label').text(), "</button>"));
+    currentFilter.append("<button data-id=\"".concat(tagId, "\">").concat($this.closest("label").text(), "</button>"));
   } else {
     // Якщо тег вже є в масиві, то видаляємо його
     tags.splice(tagIndex, 1);
@@ -710,13 +835,13 @@ var handleFilterChange = function handleFilterChange(e, query, fetchProducts) {
 var handleSelectFilterChange = function handleSelectFilterChange(e) {
   var $this = $(e.target);
   var values = $this.val();
-  $('.filter-wrapper__input').each(function () {
+  $(".filter-wrapper__input").each(function () {
     var inputValue = $(this).val();
     var isChecked = values && values.includes(inputValue);
-    if (isChecked && !$(this).prop('checked')) {
+    if (isChecked && !$(this).prop("checked")) {
       // Якщо елемент повинен бути вибраним і він не вибраний, викликаємо click
       $(this).click();
-    } else if (!isChecked && $(this).prop('checked')) {
+    } else if (!isChecked && $(this).prop("checked")) {
       // Якщо елемент не повинен бути вибраним і він вибраний, викликаємо click
       $(this).click();
     }
@@ -725,38 +850,38 @@ var handleSelectFilterChange = function handleSelectFilterChange(e) {
 var handleRemoveFilter = function handleRemoveFilter(e, query, fetchProducts) {
   var $this = $(e.currentTarget);
   var tags = query.tags;
-  var tagId = String($this.data('id'));
+  var tagId = String($this.data("id"));
   var tagIndex = tags.indexOf(tagId);
   currentFilter.find("button[data-id=\"".concat(tagId, "\"]")).remove();
   tags.splice(tagIndex, 1);
-  toolbarFilter.find("input[value=\"".concat(tagId, "\"]")).prop('checked', false);
+  toolbarFilter.find("input[value=\"".concat(tagId, "\"]")).prop("checked", false);
   fetchProducts();
 };
 var handleLoadMoreClick = function handleLoadMoreClick($this, query, utils, fetchProducts) {
-  $this.addClass('loading');
-  $this.attr('disabled', true);
+  $this.addClass("loading");
+  $this.attr("disabled", true);
   utils.loadMoreClickCount += 1;
   query.posts_per_page = utils.initialPostsPerPage * utils.loadMoreClickCount;
   fetchProducts(false);
 };
 var handlePaginationButtonClick = function handlePaginationButtonClick($clickedButton, query, fetchProducts) {
-  if ($clickedButton.hasClass('current')) {
+  if ($clickedButton.hasClass("current")) {
     return;
   }
   var action = $clickedButton.data("action");
   if (action) {
     switch (action) {
-      case 'prev':
+      case "prev":
         query.page -= 1;
         break;
-      case 'next':
+      case "next":
         query.page += 1;
         break;
-      case 'first':
+      case "first":
         query.page = 1;
         break;
-      case 'last':
-        query.page = $clickedButton.data('last-page');
+      case "last":
+        query.page = $clickedButton.data("last-page");
         break;
     }
   } else {
@@ -766,7 +891,7 @@ var handlePaginationButtonClick = function handlePaginationButtonClick($clickedB
 };
 var handlePaginationClick = function handlePaginationClick(e, query, utils, fetchProducts) {
   var $clickedButton = $(e.currentTarget);
-  if ($clickedButton.hasClass('load-more')) {
+  if ($clickedButton.hasClass("load-more")) {
     handleLoadMoreClick($clickedButton, query, utils, fetchProducts);
   } else {
     handlePaginationButtonClick($clickedButton, query, fetchProducts);
@@ -832,6 +957,11 @@ var hiddenContent = $('.text-content__hidden');
 $('.text-content__button').on('click', function () {
   $this = $(this);
   $this.toggleClass('is-active');
+  if ($(this).text() === 'Читати більше') {
+    $(this).text('Приховати');
+  } else {
+    $(this).text('Читати більше');
+  }
   hiddenContent.slideToggle();
 });
 

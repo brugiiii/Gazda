@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Servio Integration
  * Description: Works with WooCommerce
- * Version: 0.1.3
+ * Version: 1.6.0
  * Text Domain: servio_integration
  * Domain Path: /languages/
  * Requires at least: 6.4
@@ -31,6 +31,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
 
         // Admin
         require_once plugin_dir_path(__FILE__) . 'admin/integration-settings.php';
+        require_once plugin_dir_path(__FILE__) . 'admin/servioid.php';
 
         // Readers
         require_once plugin_dir_path(__FILE__) . 'readers/authServio.php';

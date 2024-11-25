@@ -34,8 +34,10 @@ const gallerySwiper = new Swiper(".gallery-swiper", {
     slidesPerView: 1,
     spaceBetween: 30,
     grabCursor: true,
+		centeredSlides: true,
     pagination: {
         el: ".gallery .swiper-pagination",
+				clickable: true,
     },
     breakpoints: {
         576: {
@@ -43,6 +45,7 @@ const gallerySwiper = new Swiper(".gallery-swiper", {
         },
         1200: {
             slidesPerView: 3,
+						centeredSlides: false,
         },
         1920: {
             slidesPerView: 4

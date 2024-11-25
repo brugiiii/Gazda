@@ -15,8 +15,8 @@ function enqueue_scripts_and_styles()
         wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/css/main.bundle.css');
 
 // Enqueue main script
-        wp_enqueue_script('main', get_template_directory_uri() . '/dist/js/main.bundle.js', array('jquery'), null, true);
-    }
+}
+wp_enqueue_script('main', get_template_directory_uri() . '/dist/js/main.bundle.js', array('jquery'), null, true);
 
 // Conditional scripts and styles
     if (is_shop() || is_page_template('woocommerce/archive-product.php') || is_page_template('pages/delivery.php') || is_page_template('pages/search.php') || is_singular('product')) {
@@ -104,6 +104,9 @@ function enqueue_scripts_and_styles()
     }
 
     $current_lang = pll_current_language();
+    $current_page = get_the_ID();
+    $ifrage_link = get_field("iframe_link", 16);
+		$cta_url = get_field("cta_url", 16);
 
 // Localize main script
     $settings = array(
@@ -114,7 +117,10 @@ function enqueue_scripts_and_styles()
         'is_delivery_page' => is_page_template('pages/delivery.php') ? true : false,
         'search_page_link' => get_permalink(pll_get_post(6613, $current_lang)),
         'account_page_link' => get_permalink(pll_get_post(6840, $current_lang)),
-        'current_lang' => $current_lang
+        'current_lang' => $current_lang,
+        "current_page" => $current_page,
+        'iframe_link' => $ifrage_link,
+				'cta_url' => $cta_url,
     );
     wp_localize_script('main', 'settings', $settings);
     wp_localize_script('team-js', 'settings', $settings);

@@ -1,7 +1,12 @@
 <?php
-$instagram = get_field('instagram-link', 16);
-$facebook = get_field('facebook-link', 16);
-?>
+if($args){
+		$instagram = $args['inst'];
+		$facebook = $args['fb'];
+}else{
+		$instagram = get_field('instagram-link', 16);
+		$facebook = get_field('facebook-link', 16);
+}
+?> 
 
 <ul class="socials-list">
     <li class="socials-list__item ">
@@ -21,3 +26,4 @@ $facebook = get_field('facebook-link', 16);
         </a>
     </li>
 </ul>
+

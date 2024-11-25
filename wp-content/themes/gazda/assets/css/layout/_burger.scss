@@ -28,6 +28,7 @@
 }
 
 .burger {
+  z-index: 4 !important;
   display: none;
 
   background-color: $seventh-bg-color;

@@ -23,7 +23,4 @@ $gallery = get_field('gallery_list', $home_post);
             ?>
         </ul>
     </div>
-    <div class="container">
-        <div class="swiper-pagination text-center text-lg-start position-relative text-start"></div>
-    </div>
 </section>

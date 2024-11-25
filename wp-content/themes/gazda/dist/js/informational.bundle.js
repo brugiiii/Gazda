@@ -21,15 +21,15 @@ iconToggle.on('click', function (e) {
 });
 $(document).ready(function () {
   $('.faq-list__wrapper').on("click", function () {
-    var faqItem = $(this).parent('.faq-list__item');
+    var faqItem = $(this).closest('.faq-list__item');
     var siblingsItem = faqItem.siblings('.faq-list__item');
-    var siblingsChildren = siblingsItem.children('.faq-list__text');
-    var siblingsChildrenQuestion = siblingsItem.children('.faq-list__wrapper');
+    var siblingsChildren = siblingsItem.find('.faq-list__text');
+    var siblingsChildrenQuestion = siblingsItem.find('.faq-list__wrapper');
     var siblingsChildrenArrow = siblingsChildrenQuestion.find('.faq-list__icon');
-    $(this).next().slideToggle(500);
-    $(this).find('.faq-list__icon').toggleClass('rotated');
     siblingsChildren.slideUp();
     siblingsChildrenArrow.removeClass('rotated');
+    $(this).next('.faq-list__text').slideToggle(500);
+    $(this).find('.faq-list__icon').toggleClass('rotated');
   });
 });
 

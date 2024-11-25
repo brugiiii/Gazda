@@ -2,8 +2,8 @@
 $hero_bg = get_field('hero_bg');
 ?>
 
-<div class="hero">
-   <div class="container d-flex align-items-center h-100">
+<div class="hero" style="background: none">
+   <div class="container d-flex align-items-center h-100" style="max-width: none;">
        <h1 class="visually-hidden">
            <?php echo get_bloginfo('name'); ?>
        </h1>

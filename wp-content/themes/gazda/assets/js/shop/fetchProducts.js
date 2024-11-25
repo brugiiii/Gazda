@@ -21,7 +21,8 @@ const {
     toolbarFilter,
     currentFilter,
     selectContainer,
-    navWrapper
+    navWrapper,
+    heroButtonToGiftSet,
 } = refs;
 
 
@@ -86,6 +87,17 @@ toolbarFilter.on("change", '.filter-wrapper__input', (e) => handleFilterChange(e
 selectContainer.on('change', 'select', handleSelectFilterChange);
 orderButtons.on("click", (e) => handleOrderButtonClick(e, query, fetchAndRenderProducts));
 
+
 $(document).ready(function () {
-    is_delivery_page ? $('.nav-list__item:first .sub-menu .sub-menu__item:first button').trigger("click") : $('.products-nav__button:first').trigger("click");
+    if (!is_delivery_page) {
+        let handleHeroButtonRedirecter = localStorage.getItem('handleHeroButtonRedirecter');
+        if (handleHeroButtonRedirecter) {
+            $(`[data-category-id='${localStorage.getItem('handleHeroButtonRedirecter')}']`).trigger("click");
+            localStorage.removeItem('handleHeroButtonRedirecter');
+        } else {
+            $('.products-nav__button:first').trigger("click");
+        }
+    } else {
+        $('.nav-list__item:first .sub-menu .sub-menu__item:first button').trigger("click");
+    }
 });

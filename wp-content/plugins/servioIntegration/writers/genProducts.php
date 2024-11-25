@@ -66,7 +66,7 @@ function si__woocommerce_add_product($servio_product_id, $product_title, $produc
         update_post_meta($product_id, '_price', $product_price);
         update_post_meta($product_id, '_regular_price', $product_price);
         update_post_meta($product_id, '_sale_price', $product_price);
-        update_post_meta($product_id, '_sku', $product_sku);
+        // update_post_meta($product_id, '_sku', $product_sku);
 
         // Servio ID for the product
         update_post_meta($product_id, 'servio_product_id', $servio_product_id);
@@ -126,6 +126,6 @@ function si__woocommerce_update_product($servio_product_id, $new_product_title, 
         update_post_meta($product_id, '_price', $new_product_price);
         update_post_meta($product_id, '_regular_price', $new_product_price);
         update_post_meta($product_id, '_sale_price', $new_product_price);
-        update_post_meta($product_id, '_sku', $new_product_sku);
+        // update_post_meta($product_id, '_sku', $new_product_sku);
     }
 }

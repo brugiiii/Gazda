@@ -3,24 +3,25 @@ $current_lang = pll_current_language();
 ?>
 
 <section class="info">
-    <div class="container">
-        <div class="section-wrapper">
-            <div class="text-content">
+	<div class="container">
+		<div class="section-wrapper">
+
+
+            <?php if (is_shop()) : ?>
                 <div class="text-content__visible">
-                    <?= is_shop() ? get_field('content_visible', 6354) : get_field('content_visible'); ?>
+                    <?php the_field('content_visible', 6354); ?>
                 </div>
                 <div class="text-content__hidden">
-                    <?= is_shop() ? get_field('content_hidden', 6354) : get_field('content_hidden'); ?>
+                    <?php the_field('content_hidden', 6354); ?>
                 </div>
-                <button class="text-content__button d-block py-0 border-0 mx-auto mt-3 text-white" type="button">
-                    <span class="show">
-                        <?= translate_and_output('read_more'); ?>
-                    </span>
-                    <span class="hide">
-                        <?= translate_and_output('hide'); ?>
-                    </span>
-                </button>
-            </div>
+                <button class="text-content__button d-flex align-items-center justify-content-center gap-2 border-0">Читати більше</button>
+
+            <?php endif; ?>
+            <?php if (!is_shop()) : ?>
+                <div class="text-content">
+                </div>
+            <?php endif; ?>
+
         </div>
-    </div>
+	</div>
 </section>

@@ -121,13 +121,13 @@
   }
 }
 
-.benefits.with_image ul li, .cards-list__content ul:last-of-type li {
+.benefits.with_image ul li, .cards-list__content ul:last-of-type:not(.data-list) li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 0.5rem;
 }
-.benefits.with_image ul li::before, .cards-list__content ul:last-of-type li::before {
+.benefits.with_image ul li::before, .cards-list__content ul:last-of-type:not(.data-list) li::before {
   content: "•";
   -ms-flex-negative: 0;
       flex-shrink: 0;
@@ -249,6 +249,10 @@
   }
 }
 
+.about_description ul {
+  margin-bottom: 1rem;
+}
+
 .cards-list__content {
   padding: 1rem;
   background-color: #FFF;
@@ -258,18 +262,22 @@
     padding: 2.5rem;
   }
 }
-.cards-list__content ul:last-of-type {
+.cards-list__content ul:last-of-type:not(.data-list) {
   font-size: 0.875rem;
   line-height: 1.4;
   letter-spacing: 0.03125rem;
 }
-.cards-list__content ul:last-of-type li {
+.cards-list__content ul:last-of-type:not(.data-list) li {
   color: #8A8D92;
 }
 @media screen and (max-width: 991px) {
-  .cards-list__content ul:last-of-type li br {
+  .cards-list__content ul:last-of-type:not(.data-list) li br {
     display: none;
   }
+}
+.cards-list__content .description__undertitle {
+  color: black !important;
+  margin-top: 0.7rem;
 }
 .cards-list__content p {
   letter-spacing: 0.03125rem;
@@ -423,6 +431,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   -ms-scroll-snap-type: x mandatory;
@@ -474,6 +485,30 @@
 
 .benefits-title {
   margin-bottom: clamp(0.625rem, -0.836rem + 6.49vw, 3.19rem);
+}
+
+.benefits-list {
+  width: 100%;
+  gap: 1.5rem !important;
+}
+.benefits-list li {
+  -webkit-box-flex: 0 !important;
+      -ms-flex: 0 1 100% !important;
+          flex: 0 1 100% !important;
+}
+.benefits-list li img {
+  width: 4rem;
+  height: 4rem;
+}
+@media screen and (max-width: 991px) {
+  .benefits-list {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
+.benefits-list__undertext {
+  margin-top: 4rem;
 }
 
 .cta {

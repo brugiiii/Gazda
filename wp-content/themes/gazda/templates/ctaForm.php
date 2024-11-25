@@ -13,7 +13,7 @@ if ($fields) {
             <?php
 
             foreach ($fields as $field) {
-                $type = $field['type'];
+                $type = $field['type']; 
                 $options = $field['options'];
                 $is_required = $field['is_required'];
                 $title = $field['title'];

@@ -3,12 +3,6 @@
     padding-top: clamp(3.5rem, 2.813rem + 3.06vw, 5.563rem);
     padding-bottom: clamp(3.5rem, 3.063rem + 1.94vw, 4.813rem);
 
-    @media screen and (min-width: 992px) {
-      background-image: url(../images/horizontal.webp);
-      background-position: top 1.90625rem left calc(50% - 15.34375rem);
-      background-repeat: no-repeat;
-    }
-
     & .vertical {
       position: absolute;
       bottom: -8.25rem;

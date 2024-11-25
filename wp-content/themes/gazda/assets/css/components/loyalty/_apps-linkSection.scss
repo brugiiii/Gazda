@@ -1,0 +1,38 @@
+#loyalty{
+  #apps{
+    .container{
+      .app-list{
+        margin-bottom: 4rem;
+        @media screen and (min-width: 1440px){
+          margin-left: 4rem;
+        }
+        gap: 2rem;
+        @media screen and (max-width: 440px){
+          justify-content: center;
+          gap: 0;
+        }
+        .app-list__item{
+          width: 154px;
+          height: 46px;
+          position: relative;
+          &::before{
+            content: '';
+            width: 152px;
+            height: inherit;
+            z-index: -1;
+            left: 1px;
+            position: absolute;
+            background-color: #1F4C43;
+            border-radius: 8px;
+          }
+          &:first-child{
+            &::before{
+              width: 136px;
+              left: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

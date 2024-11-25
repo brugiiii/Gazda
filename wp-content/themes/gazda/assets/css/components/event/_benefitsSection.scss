@@ -65,6 +65,7 @@
   &.without_image {
     & ul {
       display: flex;
+      justify-content: space-between;
       overflow-x: auto;
       overscroll-behavior-x: contain;
       scroll-snap-type: x mandatory;
@@ -120,4 +121,22 @@
 
 .benefits-title {
   margin-bottom: clamp(0.625rem, -0.836rem + 6.49vw, 3.19rem);
+}
+.benefits-list{
+  width: 100%;
+  gap: 1.5rem !important;
+
+  li{
+    flex: 0 1 100% !important;
+    img{
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+  @media screen and (max-width: 991px){
+    flex-wrap: wrap;
+  }
+}
+.benefits-list__undertext{
+  margin-top: 4rem;
 }

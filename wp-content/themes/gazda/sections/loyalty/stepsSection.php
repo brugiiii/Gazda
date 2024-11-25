@@ -18,6 +18,8 @@ $steps = get_field("steps");
                     <p class="steps__text mb-0">
                         <?= $step["text"]; ?>
                     </p>
+
+                    <img src="<?php echo $step['step_image']?>" alt="">
                 </li>
             <?php
             }

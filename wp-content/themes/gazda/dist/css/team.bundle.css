@@ -14241,7 +14241,8 @@ html {
   scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -14366,6 +14367,46 @@ img {
      object-fit: contain;
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 12rem;
+  right: 1rem;
+  z-index: 9999;
+  padding: 0.62rem;
+  border-radius: 0.75rem;
+  background: #e5a83a;
+  -webkit-transition: -webkit-clip-path 0.5s ease 0.1s;
+  transition: -webkit-clip-path 0.5s ease 0.1s;
+  transition: clip-path 0.5s ease 0.1s;
+  transition: clip-path 0.5s ease 0.1s, -webkit-clip-path 0.5s ease 0.1s;
+  -webkit-clip-path: circle(0% at 50% 50%);
+          clip-path: circle(0% at 50% 50%);
+  border: none;
+}
+.scroll-to-top[show] {
+  -webkit-clip-path: circle(100% at 50% 50%);
+          clip-path: circle(100% at 50% 50%);
+  -webkit-animation: show 0.8s ease forwards;
+          animation: show 0.8s ease forwards;
+}
+
+@-webkit-keyframes show {
+  from {
+    bottom: 5rem;
+  }
+  to {
+    bottom: 12rem;
+  }
+}
+
+@keyframes show {
+  from {
+    bottom: 5rem;
+  }
+  to {
+    bottom: 12rem;
+  }
+}
 @media screen and (max-width: 575px) {
   .container {
     padding: 0 1rem;
@@ -14871,10 +14912,32 @@ body .toastify::before {
   }
 }
 
+.links-list__item button {
+  background: none;
+  color: white;
+  border: none;
+}
 @media screen and (max-width: 767px) {
   .links-list__item:not(:last-child) {
     margin-bottom: 1rem;
   }
+}
+
+.backdrop.confident .window {
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 10px;
+  padding: 4vw;
+  overflow-y: scroll;
+}
+.backdrop.confident .window a {
+  color: rgba(0, 0, 0, 0.7333333333);
 }
 
 .cta {

@@ -59,9 +59,31 @@
 }
 
 .links-list__item {
+	button{
+		background: none;
+		color: white;
+		border: none;
+	}
   &:not(:last-child) {
     @media screen and (max-width: 767px) {
       margin-bottom: 1rem;
     }
   }
+}
+.backdrop.confident{
+	.window{
+		position: absolute;
+		width: 80vw;
+		height: 80vh;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: white;
+		border-radius: 10px;
+		padding: 4vw;
+		overflow-y: scroll;
+		a{
+			color: #000b;
+		}
+	}
 }

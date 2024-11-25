@@ -5,12 +5,13 @@ html {
   scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
-  font-family: 'Gazda Pro', sans-serif;
+  font-family: "Gazda Pro", sans-serif;
   font-size: 0.875rem;
   line-height: 1.4;
   letter-spacing: 0.01875rem;
@@ -46,7 +47,7 @@ h2,
 h3,
 h4,
 h5,
-h6, {
+h6 {
   font-weight: 400;
   line-height: normal;
 }
@@ -115,12 +116,37 @@ img {
   all: unset;
 }
 
-.custom-logo{
+.custom-logo {
   object-fit: contain;
 }
 
-.app-list__link{
+.app-list__link {
   & img {
     object-fit: contain;
+  }
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 12rem;
+  right: 1rem;
+  z-index: 9999;
+  padding: 0.62rem;
+  border-radius: 0.75rem;
+  background: #e5a83a;
+  transition: clip-path 0.5s ease 0.1s;
+  clip-path: circle(0% at 50% 50%);
+  border: none;
+  &[show] {
+    clip-path: circle(100% at 50% 50%);
+    animation: show 0.8s ease forwards;
+  }
+}
+@keyframes show {
+  from {
+    bottom: 5rem;
+  }
+  to {
+    bottom: 12rem;
   }
 }
