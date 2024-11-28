@@ -100,13 +100,17 @@
 
 .cart-products__title {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   font-size: 0.875rem;
   line-height: 140%;
   letter-spacing: 0.03125rem;
   overflow: hidden;
   color: $third-text-color;
+
+  @media screen and (min-width: 576px) {
+    -webkit-line-clamp: 2;
+  }
 }
 
 .delete-button {

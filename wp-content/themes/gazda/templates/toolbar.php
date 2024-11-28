@@ -23,7 +23,7 @@ $is_logged_in = is_user_logged_in();
             <svg class="header-icon" width="24" height="24">
                 <use href="<?php get_image('sprite.svg#icon-shopping-cart'); ?>"></use>
             </svg>
-            <span class="cart-count position-absolute text-white text-center rounded-circle <?= $products_count ? '' : 'hidden'; ?>">
+            <span id="cart-count" class="cart-count position-absolute text-white text-center rounded-circle <?= $products_count ? '' : 'hidden'; ?>">
                 <?= $products_count; ?>
             </span>
         </button>

@@ -231,7 +231,7 @@ function send_mail_ajax()
 
         $telegram_response = send_telegram_message($form_title, $data);
 
-        if($telegram_response->ok === true){
+        if ($telegram_response->ok === true) {
             wp_send_json_success(translate_and_output('thank_you_letter'));
         } else {
             wp_send_json_error('Server error');
@@ -250,23 +250,28 @@ function update_product_quantity_ajax()
         wp_send_json_error("Error: Product ID is missing.");
     }
 
+    $product = wc_get_product($product_id);
+    $parent_id = $product->get_parent_id();
+
     $cart = WC()->cart;
 
-    $product_cart_id = $cart->generate_cart_id($product_id);
-    $cart_item_key = $cart->find_product_in_cart($product_cart_id);
+    foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+        if ((!$parent_id && $product_id === $cart_item['product_id']) || ($parent_id && $cart_item['variation_id'] == $product_id)) {
 
-    if ($cart_item_key) {
-       $cart->set_quantity($cart_item_key, $quantity);
-    } else {
-       $cart->add_to_cart($product_id, $quantity);
+            $cart->set_quantity($cart_item_key, $quantity);
+            break;
+        }
     }
 
     ob_start();
     get_template_part('templates/cart/content');
     $cart_markup = ob_get_clean();
 
+    $cart_count = $cart->get_cart_contents_count();
+
     $response = array(
         "cartMarkup" => $cart_markup,
+        "cartCount" => $cart_count
     );
 
     wp_send_json_success($response);
@@ -278,19 +283,32 @@ function remove_product_ajax()
 {
     $product_id = isset($_POST["productId"]) ? intval($_POST["productId"]) : 0;
 
-    $product_cart_id = WC()->cart->generate_cart_id($product_id);
-    $cart_item_key = WC()->cart->find_product_in_cart($product_cart_id);
+    if (!$product_id) {
+        wp_send_json_error("Error: Product ID is missing.");
+    }
 
-    if ($cart_item_key) {
-        WC()->cart->remove_cart_item($cart_item_key);
+    $product = wc_get_product($product_id);
+    $parent_id = $product->get_parent_id();
+
+    $cart = WC()->cart;
+
+    foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+        if ((!$parent_id && $product_id === $cart_item['product_id']) || ($parent_id && $cart_item['variation_id'] == $product_id)) {
+
+            $cart->remove_cart_item($cart_item_key);
+            break;
+        }
     }
 
     ob_start();
     get_template_part('templates/cart/content');
     $cart_markup = ob_get_clean();
 
+    $cart_count = $cart->get_cart_contents_count();
+
     $response = array(
         "cartMarkup" => $cart_markup,
+        "cartCount" => $cart_count,
     );
 
     wp_send_json_success($response);

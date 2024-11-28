@@ -1,6 +1,6 @@
 import refs from "./refs"
 
-const {cartModal, cartContent} = refs
+const {cartModal, cartContent, cartCountEl} = refs
 const {ajax_url} = settings
 
 let timeout
@@ -39,9 +39,9 @@ function updateQuantity(productId, quantity) {
         url: ajax_url,
         type: 'post',
         data: {action: 'update_product_quantity', ...query},
-        success: ({data: {cartMarkup}, success}) => {
+        success: ({data: {cartMarkup, cartCount}, success}) => {
             if (!success) return
-            cartContent.html(cartMarkup)
+            updateUI(cartMarkup, cartCount)
 
             cartModal.removeClass("loading")
         },
@@ -49,7 +49,7 @@ function updateQuantity(productId, quantity) {
     })
 }
 
-function handleRemove(e){
+function handleRemove(e) {
     const $this = $(e.currentTarget)
 
     const productItem = $this.closest(".cart-products__item")
@@ -67,10 +67,9 @@ function removeProduct(productId) {
         url: ajax_url,
         type: 'post',
         data: {action: 'remove_product', ...query},
-        success: ({data: {cartMarkup}, success}) => {
+        success: ({data: {cartMarkup, cartCount}, success}) => {
             if (!success) return
-            cartContent.html(cartMarkup)
-
+            updateUI(cartMarkup, cartCount)
             cartModal.removeClass("loading")
         },
         error: (error) => console.log("error: ", error),
@@ -78,9 +77,20 @@ function removeProduct(productId) {
 
 }
 
+function updateUI(cartMarkup, cartCount) {
+    cartContent.html(cartMarkup)
+    updateCartCount(cartCount)
+}
+
+function updateCartCount(count) {
+    count ? cartCountEl.removeClass("hidden") : cartCountEl.addClass("hidden")
+
+    cartCountEl.text(count)
+}
+
 cartModal.on("click", ".cart-quantity__button", handleQuantity)
 cartModal.on("click", ".delete-button", handleRemove)
 
-$(document.body).on('added_to_cart', function (event, fragments, cart_hash, button) {
-    cartContent.html(fragments.cartMarkup)
+$(document.body).on('added_to_cart', function (event, {cartMarkup, cartCount}, cart_hash, button) {
+    updateUI(cartMarkup, cartCount)
 });

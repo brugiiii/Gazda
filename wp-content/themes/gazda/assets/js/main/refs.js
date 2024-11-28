@@ -27,6 +27,7 @@ const refs = {
     cartBackdrop: $('#cart-backdrop'),
     cartModal: $('#cart-modal'),
     cartContent: $('#cart-content'),
+    cartCountEl: $('#cart-count'),
     authButton: $('.auth-button-js'),
     cartButton: $('.cart-button-js'),
     hideCartButton: $('.hide-cart-button-js'),
