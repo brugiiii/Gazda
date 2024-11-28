@@ -61,11 +61,21 @@ function handleResize() {
 }
 
 export function enableBodyScroll() {
-  bodyEl.css("overflow-y", "scroll");
+  bodyEl.css({
+    "overflow-y": "auto",
+    "touch-action": "unset",
+    "padding-right": '0'
+  });
 }
 
 export function disableBodyScroll() {
-  bodyEl.css("overflow-y", "hidden");
+  const scrollbarWidth = window.innerWidth - document.body.getBoundingClientRect().width
+
+  bodyEl.css({
+    "overflow-y": "hidden",
+    "touch-action": "none",
+    "padding-right": `${scrollbarWidth}px`
+  });
 }
 
 export function showToastMessage($message, $class) {
@@ -85,7 +95,7 @@ $("document").ready(function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   if (document.querySelector(".scroll-to-top")) return;
-  console.log("DOM is ready");
+
   const button = document.createElement("button");
   button.innerHTML = `
 	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -114,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector(".popup-menu")
     ?.addEventListener("click", function (e) {
       const backdrop = document.querySelector(".backdrop.menu");
-      console.log(backdrop);
+
       if (!backdrop) return;
       backdrop.setAttribute("show", "");
       backdrop.addEventListener("click", function (e) {

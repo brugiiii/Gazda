@@ -1,17 +1,17 @@
 function generateModal() {
-  var modalDiv = document.createElement("div");
+  const modalDiv = document.createElement("div");
   modalDiv.id = "mySizeChartModal";
   modalDiv.classList.add("ebcf_modal");
 
-  var contentDiv = document.createElement("div");
+  const contentDiv = document.createElement("div");
   contentDiv.classList.add("ebcf_modal-content");
 
-  var closeButton = document.createElement("span");
+  const closeButton = document.createElement("span");
   closeButton.classList.add("ebcf_close");
   closeButton.innerHTML = "&times;";
   contentDiv.appendChild(closeButton);
 
-  var iframe = document.createElement("iframe");
+  const iframe = document.createElement("iframe");
   iframe.src = settings.iframe_link;
 	iframe.title = "Size Chart";
   iframe.style.width = "100%";
@@ -24,7 +24,7 @@ function generateModal() {
 	window.scrollTo(0, 0)
 }
 
-var modalContainer = document.createElement("div");
+const modalContainer = document.createElement("div");
 modalContainer.classList.add("modal-container");
 document.body.appendChild(modalContainer);
 

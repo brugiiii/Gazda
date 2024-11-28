@@ -3,7 +3,7 @@ $languages = pll_the_languages(array('raw' => 1));
 $current_language = pll_current_language();
 ?>
 
-<button class="language-switcher position-relative d-flex align-items-center gap-1 gap-sm-2 text-uppercase unset">
+<button class="language-switcher position-relative d-flex align-items-center gap-1 gap-sm-2 text-uppercase unset fs-6">
     <?= $current_language; ?>
     <svg class="language-switcher__icon" width="24" height="24">
         <use href="<?= get_image('sprite.svg#icon-caret-down'); ?>"></use>

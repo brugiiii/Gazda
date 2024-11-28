@@ -5,6 +5,12 @@ html {
   scroll-behavior: smooth;
 }
 
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
 html,
 body {
   height: 100%;
@@ -20,6 +26,7 @@ body {
   background-color: $primary-bg-color;
 
   overflow-x: hidden;
+
 }
 
 main {
@@ -34,12 +41,6 @@ section {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
 }
 
 h1,
@@ -75,7 +76,7 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 99999;
   width: 100%;
   height: 100%;
 

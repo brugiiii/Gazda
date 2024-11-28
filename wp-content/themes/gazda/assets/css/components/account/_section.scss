@@ -94,9 +94,9 @@
 .swiper-button {
   @include hover(color $accent-color $secondary-bg-color, fill $accent-color $secondary-bg-color);
 
-  box-sizing: content-box;
   min-width: 10.25rem;
   padding: 0.75rem;
+  box-sizing: border-box;
 }
 
 .order-info__title {

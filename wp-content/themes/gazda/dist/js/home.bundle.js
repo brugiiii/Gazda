@@ -23,10 +23,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-console.log("galleryImage.js");
 document.addEventListener("DOMContentLoaded", function () {
   var gallery = document.querySelector(".gallery .swiper");
-  console.log("gallery", gallery);
   if (!gallery) return;
   var _init = init(gallery),
     backdrop = _init.backdrop,
@@ -39,10 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 function openPopup(e, backdrop, swiper) {
-  console.log(e);
   try {
     var index = parseInt(e.target.closest(".swiper-slide").getAttribute("aria-label").split("/")[0].trim()) - 1;
-    swiper.slideTo(index);
+    swiper.slideTo(index, 0);
     setTimeout(function () {
       backdrop.classList.add("show");
     }, 200);
@@ -51,7 +48,6 @@ function openPopup(e, backdrop, swiper) {
   }
 }
 function closePopup(e, backdrop) {
-  console.log(e);
   backdrop.classList.remove("show");
   if (e.target === e.currentTarget) {}
 }

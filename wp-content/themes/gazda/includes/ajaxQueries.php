@@ -15,8 +15,14 @@ add_action('wp_ajax_change_password', 'change_password_ajax');
 add_action('wp_ajax_nopriv_change_password', 'change_password_ajax');
 add_action('wp_ajax_get_order_info', 'get_order_info_ajax');
 add_action('wp_ajax_nopriv_get_order_info', 'get_order_info_ajax');
-add_action('wp_ajax_send_mail', 'send_mail');
-add_action('wp_ajax_nopriv_send_mail', 'send_mail');
+add_action('wp_ajax_send_mail', 'send_mail_ajax');
+add_action('wp_ajax_nopriv_send_mail', 'send_mail_ajax');
+add_action('wp_ajax_update_product_quantity', 'update_product_quantity_ajax');
+add_action('wp_ajax_nopriv_update_product_quantity', 'update_product_quantity_ajax');
+add_action('wp_ajax_remove_product', 'remove_product_ajax');
+add_action('wp_ajax_nopriv_remove_product', 'remove_product_ajax');
+
+
 function fetch_products()
 {
     get_template_part('templates/shop/fetchProducts');
@@ -209,7 +215,7 @@ function get_order_info_ajax()
     get_template_part('templates/account/orderInfo');
 }
 
-function send_mail()
+function send_mail_ajax()
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $form_title = sanitize_text_field($_POST['formTitle']);
@@ -231,6 +237,63 @@ function send_mail()
             wp_send_json_error('Server error');
         }
     }
+
+    wp_die();
+}
+
+function update_product_quantity_ajax()
+{
+    $product_id = isset($_POST["productId"]) ? intval($_POST["productId"]) : 0;
+    $quantity = isset($_POST["quantity"]) ? intval($_POST["quantity"]) : 0;
+
+    if (!$product_id) {
+        wp_send_json_error("Error: Product ID is missing.");
+    }
+
+    $cart = WC()->cart;
+
+    $product_cart_id = $cart->generate_cart_id($product_id);
+    $cart_item_key = $cart->find_product_in_cart($product_cart_id);
+
+    if ($cart_item_key) {
+       $cart->set_quantity($cart_item_key, $quantity);
+    } else {
+       $cart->add_to_cart($product_id, $quantity);
+    }
+
+    ob_start();
+    get_template_part('templates/cart/content');
+    $cart_markup = ob_get_clean();
+
+    $response = array(
+        "cartMarkup" => $cart_markup,
+    );
+
+    wp_send_json_success($response);
+
+    wp_die();
+}
+
+function remove_product_ajax()
+{
+    $product_id = isset($_POST["productId"]) ? intval($_POST["productId"]) : 0;
+
+    $product_cart_id = WC()->cart->generate_cart_id($product_id);
+    $cart_item_key = WC()->cart->find_product_in_cart($product_cart_id);
+
+    if ($cart_item_key) {
+        WC()->cart->remove_cart_item($cart_item_key);
+    }
+
+    ob_start();
+    get_template_part('templates/cart/content');
+    $cart_markup = ob_get_clean();
+
+    $response = array(
+        "cartMarkup" => $cart_markup,
+    );
+
+    wp_send_json_success($response);
 
     wp_die();
 }

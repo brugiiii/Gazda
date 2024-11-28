@@ -67,7 +67,6 @@ const {
 // };
 
 export const handleProductsFetchSuccess = (res, query) => {
-  console.log(query, res);
   try {
     // Перевірка, чи відповідь є валідним JSON
     let parsedResponse;

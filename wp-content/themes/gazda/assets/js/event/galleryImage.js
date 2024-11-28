@@ -1,8 +1,6 @@
 import Swiper from "swiper";
-console.log("galleryImage.js");
 document.addEventListener("DOMContentLoaded", function () {
   const gallery = document.querySelector(".gallery .swiper");
-  console.log("gallery", gallery);
   if (!gallery) return;
 
   const { backdrop, swiper } = init(gallery);
@@ -12,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function openPopup(e, backdrop, swiper) {
-  console.log(e);
   try {
     const index =
       parseInt(
@@ -22,7 +19,7 @@ function openPopup(e, backdrop, swiper) {
           .split("/")[0]
           .trim()
       ) - 1;
-    swiper.slideTo(index);
+    swiper.slideTo(index, 0);
 
     setTimeout(() => {
       backdrop.classList.add("show");
@@ -32,7 +29,6 @@ function openPopup(e, backdrop, swiper) {
   }
 }
 function closePopup(e, backdrop) {
-  console.log(e);
   backdrop.classList.remove("show");
   if (e.target === e.currentTarget) {
   }
@@ -85,6 +81,7 @@ function init(gallery) {
 
 function clickOn(element, callback) {
   list[element] = callback;
+
 }
 document.addEventListener("click", (event) => {
   Object.keys(list).forEach((selector) => {

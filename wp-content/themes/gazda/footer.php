@@ -27,7 +27,21 @@ if (!is_user_logged_in() && !is_page_template('pages/team.php')) {
 if (is_page_template('pages/team.php')) {
     get_template_part('templates/team/formModal');
 }
+
+if (!is_page_template('pages/team.php')) {
+    get_template_part('templates/cart/index');
+}
 ?>
+
+<script>
+    (function (w, d, u) {
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = u + '?' + (Date.now() / 60000 | 0);
+        var h = d.getElementsByTagName('script')[0];
+        h.parentNode.insertBefore(s, h);
+    })(window, document, 'https://cdn.bitrix24.eu/b6947299/crm/site_button/loader_1_hu3fsk.js');
+</script>
 
 <?php wp_footer(); ?>
 

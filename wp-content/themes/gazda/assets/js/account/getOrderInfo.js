@@ -6,6 +6,8 @@ const {ajax_url} = settings;
 const handleOrderButtonClick = (e) => {
     const $this = $(e.currentTarget);
 
+    console.log(this)
+
     if($this.hasClass('is-active')) return ordersSwiper.slideTo(1);
 
     const previousActiveButton = $('.orders-list__button.is-active')

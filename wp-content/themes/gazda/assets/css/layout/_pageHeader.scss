@@ -206,7 +206,22 @@
   }
 }
 
+.cart-count {
+  top: 0.1875rem;
+  right: 0.1875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  font-size: 0.75rem;
+  line-height: 150%;
+  background-color: $eleventh-bg-color;
+}
+
+.cart-count.hidden {
+  opacity: 0;
+}
+
 .language-switcher {
+  line-height: calc((20.72 / 16) * 100%);
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 
@@ -214,7 +229,7 @@
   color: $secondary-text-color;
 
   @media screen and (min-width: 576px) {
-    padding: 0.75rem;
+    padding: 1rem 0.75rem;
   }
 
   &:hover,

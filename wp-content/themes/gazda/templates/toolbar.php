@@ -1,6 +1,6 @@
 <?php
 $products_count = WC()->cart->get_cart_contents_count();
-$is_logged_in =  is_user_logged_in();
+$is_logged_in = is_user_logged_in();
 ?>
 
 <div class="toolbar d-flex flex-row-reverse flex-sm-row align-items-center gap-1 gap-sm-2 gap-xl-3">
@@ -19,7 +19,14 @@ $is_logged_in =  is_user_logged_in();
         <?= $is_logged_in ? '</a>' : '</button>'; ?>
     </div>
     <div class="toolbar__item position-relative" id="cart">
-        <?= do_shortcode('[xoo_wsc_cart]'); ?>
+        <button type="button" class="toolbar__button cart-button-js position-relative unset">
+            <svg class="header-icon" width="24" height="24">
+                <use href="<?php get_image('sprite.svg#icon-shopping-cart'); ?>"></use>
+            </svg>
+            <span class="cart-count position-absolute text-white text-center rounded-circle <?= $products_count ? '' : 'hidden'; ?>">
+                <?= $products_count; ?>
+            </span>
+        </button>
     </div>
     <div class="toolbar__item">
         <?= get_template_part('templates/languageSwitcher'); ?>
